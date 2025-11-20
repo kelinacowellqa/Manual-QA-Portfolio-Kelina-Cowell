@@ -360,30 +360,36 @@ header.hero::after{
     </section>
 
     <!-- 3: Sworn (COMING SOON) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/s-poster.png" alt="Sworn poster">
+   <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/s-poster.png" alt="Sworn poster">
 
-      <h2>3: Regression Testing — <em>Sworn (PC)</em></h2>
+  <h2>3: Regression Testing — <em>Sworn (PC)</em></h2>
+  <ul>
+    <li><strong>Goal:</strong> Run a focused 1–2 week solo regression pass on recent fixes, confirming they hold and catching side-effects before release.</li>
+
+    <li><strong>Scope:</strong> Changes called out in patch notes and community reports across save/load, quest and stamina systems, UI readability, and core session flow.</li>
+
+    <li><strong>Focus Areas:</strong>
       <ul>
-   <li><strong>Goal:</strong> Re-test recent fixes to confirm they hold and catch side-effects before release.</li>
-  <li><strong>Scope:</strong> Save/load integrity · Input/control mapping · UI scaling/readability · Patch-notes verification.</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Pause / Join-In / Resume during interruptions</li>
-      <li>Controller ownership and hand-off</li>
-      <li>Local co-op edge cases</li>
-      <li>Menu navigation prompts and error states</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> Jira regression suite · Before/after evidence clips · Build notes.</li>
-  <li><strong>Deliverables:</strong> Regression log · Verification matrix · Before/after screenshots & short videos.</li>
-  <li><strong>Status:</strong> Scheduled — target start date to be confirmed.</li>
+        <li>Change-driven charters mapped to updated systems and specific bug fixes.</li>
+        <li>Risk-baseline checks that always run: save/load safety, session start/quit flows, input and control mapping.</li>
+        <li>Pause / join-in / resume behaviour during interruptions.</li>
+        <li>Local co-op ownership, hand-off, and edge cases.</li>
+        <li>Menu navigation, prompts, and error states.</li>
+      </ul>
+    </li>
 
-  <li><strong>Why this game?</strong> Systems-heavy, frequently updated—ideal for disciplined regression passes.</li>
-</ul>
+    <li><strong>Tools:</strong> Trello regression board · Excel/Sheets verification log · OBS before/after clips · Public patch notes and forums used as change oracles.</li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li><strong>Deliverables:</strong> Regression log · Fixed / Not Fixed / Reopened table · Verification matrix tied to patch-note items · Before/after screenshots and short comparison videos.</li>
+
+    <li><strong>Status:</strong> In design, with scope shaped by advice from industry QA managers on change-focused, risk-based regression.</li>
+
+    <li><strong>Why this game?</strong> Sworn is a systems-heavy, frequently updated action RPG, which makes it ideal for practising disciplined regression that is driven by real patch changes rather than a giant wall of test cases.</li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
 
     <!-- 4: Shadow Point (COMING SOON) -->
     <section markdown="1" class="project-block with-thumb">
