@@ -481,32 +481,38 @@ header.hero::after{
     </section>
 
     <!-- 6: Oxenfree (COMING SOON) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/o-poster.png" alt="Oxenfree poster">
+  <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/o-poster.png" alt="Oxenfree poster">
 
-      <h2>7: Narrative / Localisation QA - <em>Oxenfree (Netflix Mobile)</em></h2>
+  <h2>7: Narrative / Localisation QA - <em>Oxenfree (Netflix Mobile)</em></h2>
+  <ul>
+    <li><strong>Goal:</strong> Evaluate subtitle timing, readability, tone consistency, and key narrative choices in a branching mobile playthrough, with issues formatted so LQA teams can search and reproduce them easily.</li>
+
+    <li><strong>Scope:</strong> English source-language subtitles and UI text on Android (Netflix Games build). Audio quality, VO acting, and non-English localisations are out of scope for this pass.</li>
+
+    <li><strong>Focus:</strong> Subtitle timing and pacing · Line breaks and overflow · Speaker tags and attribution · Tone and sensitive phrasing · UI legibility on mobile.</li>
+
+    <li><strong>Focus Areas:</strong>
       <ul>
-         <li><strong>Goal:</strong> Ensure dialogue, subtitles, and UI text read naturally and stay in sync on mobile.</li>
-  <li><strong>Focus:</strong> Subtitle timing/sync · Line breaks & overflow · Speaker tags · Tone/idiom checks · Punctuation/typography · UI legibility · Locale/device behaviour.</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Timing offsets vs VO/SFX (start/end, gaps, interruptions)</li>
-      <li>Line breaks, hyphenation, truncation, and scrolling captions</li>
-      <li>Speaker attribution, overlapping lines, and off-screen dialogue</li>
-      <li>Style/terminology consistency and sensitive phrasing</li>
-      <li>Font size & scaling across devices; dark/light background contrast</li>
-      <li>Locale behaviour (date/time formats, special characters, encoding)</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> Script log & timing notes · On-device recordings (Android) · Style/terminology checklist · Font/size legibility checks.</li>
-  <li><strong>Deliverables:</strong> Timing log · Text/typo issue list with screenshots · Style notes · Short evidence clips.</li>
-  <li><strong>Status:</strong> Scheduled - target start date to be confirmed.</li>
-        
-  <li><strong>Why this game?</strong> Choice-heavy dialogue with moody SFX makes timing, tone, and readability critical.</li>
-</ul>
+        <li>Subtitle pacing vs VO during walk-and-talk, radio tuning, and interruptions.</li>
+        <li>Line breaks, truncation, and scrolling captions in busy or fast-paced scenes.</li>
+        <li>Speaker attribution for overlapping lines and off-screen dialogue.</li>
+        <li>Empathy and inclusion in key choices and outcomes, aiming for reflection rather than pure confrontation.</li>
+        <li>Font size, scaling, and contrast on dark scenes, UI overlays, and glitch effects.</li>
+      </ul>
+    </li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li><strong>Tools:</strong> Google Sheets subtitle timing and localisation log · On-device Android recordings for VO/subtitle sync and branches · OBS / screen recorder (mirrored device) for evidence clips · Windows / Android accessibility tools for font scaling and contrast checks.</li>
+
+    <li><strong>Deliverables:</strong> Subtitle and tone QA report · Accessibility checklist (readability, scaling, contrast) · Localisation consistency log (terms, names, recurring phrases) · LQA-style bug set with full lines, context, and annotated screenshots or short clips.</li>
+
+    <li><strong>Status:</strong> Scheduled narrative / localisation pass, to be run after the current mobile QA case study.</li>
+
+    <li><strong>Why this game?</strong> Oxenfree’s walk-and-talk dialogue, radio tuning, and branching supernatural story make timing, tone, and readability critical, and it is ideal for practising narrative and localisation QA on mobile.</li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
 
     <!-- 7: PowerWash Simulator 2 (COMING SOON) -->
     <section markdown="1" class="project-block with-thumb">
