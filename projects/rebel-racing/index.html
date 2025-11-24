@@ -177,6 +177,92 @@
 <p><strong>Action:</strong> Designed charters from the project brief and senior QA insight, ran daily smoke runs, executed focused sessions for interruptions, scaling, performance, input and network, captured short 1080p clips with scrcpy and OBS, and tracked everything in a Google Sheets workbook with a clear bug log and STAR summary.</p>
 <p><strong>Result:</strong> All smoke runs passed with no crashes. I found and documented one soft lock in the post race rewards flow after an alarm and app close (RR-1) with 1 out of 1 repro, plus smaller observations on LTE load delays, warm device feel and BlueStacks visual only behaviour that can inform future testing or device coverage.</p>
 
+<h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
+
+<p class="method-note">
+  During this project I used targeted guidance from QA leaders and built the charters around their advice.
+  
+  <a href="https://www.linkedin.com/in/nathan-glatus/"><strong>Nathan Glatus</strong></a><em>(Senior QA / Game Integrity Analyst - Fortnite, ex Epic Games)</em>
+  shaped the initial scope by telling me to treat Rebel Racing like a real live mobile racer and anchor the work in
+  daily golden path smoke, input and handling tiers, collisions and exits, UI scaling and live surfaces rather than
+  chasing every possible edge case. I turned that into focused charters for smoke runs and high risk flows on a single
+  physical device.
+ 
+  <a href="https://www.linkedin.com/in/raduposoi/"><strong>Radu Posoi</strong></a><em>(Founder, AlkoTech Labs; ex Ubisoft QA Lead)</em>
+  then helped me tighten the scope so it stayed realistic for one phone, using a simple device and network matrix and
+  treating interruptions, battery and heat, and multi touch stress as dedicated surfaces instead of random one off tests.
+  Their insight directly shaped the scope, the charters and the final STAR summary for this case study.
+</p>
+
+<table class="table-insight">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Key takeaway</th>
+      <th>How I applied it in this project</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- Nathan -->
+    <tr>
+      <td>
+        <strong>Nathan Glatus</strong><br>
+        Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)
+      </td>
+      <td>
+        Anchor testing in realistic, high value surfaces for a live mobile racer.
+        Prioritise golden path stability, input and handling tiers, collisions, exits,
+        UI scaling, and live surfaces over low value edge case spam.
+      </td>
+      <td>
+        <ul>
+          <li>Scoped the whole week around <strong>daily golden path smoke runs</strong> to validate launch to hub to race to rewards.</li>
+          <li>Created focused charters for <strong>interruptions</strong>, <strong>Home</strong>, <strong>app close</strong>, <strong>alarms</strong>, <strong>LTE toggles</strong> and <strong>UI scaling</strong>.</li>
+          <li>Logged RR-1 (Rewards soft lock) with context on how a real player would hit it after an alarm or app close.</li>
+          <li>Kept device coverage realistic (one physical device) and avoided low value stress tests that inflate scope.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="./media/linkedin-nathan-glatus.png" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="./media/linkedin-nathan-glatus.png"
+               alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+    <!-- Radu -->
+    <tr>
+      <td>
+        <strong>Radu Posoi</strong><br>
+        Founder, AlkoTech Labs (ex Ubisoft QA Lead)
+      </td>
+      <td>
+        Keep scope tight and realistic for one device. Use a simple device and network matrix.
+        Treat interruptions, battery and heat, and multi touch stress as structured surfaces.
+      </td>
+      <td>
+        <ul>
+          <li>Built a <strong>simple device and network matrix</strong> (WiFi baseline, warm device run, LTE).</li>
+          <li>Turned interruptions, battery and heat and multi touch stress into <strong>dedicated surfaces</strong> instead of random checks.</li>
+          <li>Kept session lengths tight and avoided creating unrealistic device coverage that a solo tester cannot support.</li>
+          <li>Used Radu’s workflow insight to simplify the workbook and keep focus on evidence and outcomes.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="./media/linkedin-radu-posoi.png" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="./media/linkedin-radu-posoi.png"
+               alt="LinkedIn conversation with Radu Posoi about realistic solo QA scope" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+    
     <hr>
     <h2>📚 JIRA Courses & Application</h2>
    <p class="method-note">
@@ -403,92 +489,6 @@ All planned charters and daily smoke runs were completed on the Moto g54 device.
 <p class="method-note">See <a href="#metrics">Metrics</a> above for the full table and run references.</p>
 
  <hr>
-
-<h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
-
-<p class="method-note">
-  During this project I used targeted guidance from QA leaders and built the charters around their advice.
-  <strong>Nathan Glatus</strong>
-  <em>(Senior QA / Game Integrity Analyst - Fortnite, ex Epic Games)</em>
-  shaped the initial scope by telling me to treat Rebel Racing like a real live mobile racer and anchor the work in
-  daily golden path smoke, input and handling tiers, collisions and exits, UI scaling and live surfaces rather than
-  chasing every possible edge case. I turned that into focused charters for smoke runs and high risk flows on a single
-  physical device.
-  <a href="https://www.linkedin.com/in/raduposoi/"><strong>Radu Posoi</strong></a>
-  <em>(Founder, AlkoTech Labs; ex Ubisoft QA Lead)</em>
-  then helped me tighten the scope so it stayed realistic for one phone, using a simple device and network matrix and
-  treating interruptions, battery and heat, and multi touch stress as dedicated surfaces instead of random one off tests.
-  Their insight directly shaped the scope, the charters and the final STAR summary for this case study.
-</p>
-
-<table class="table-insight">
-  <thead>
-    <tr>
-      <th>Source</th>
-      <th>Key takeaway</th>
-      <th>How I applied it in this project</th>
-      <th>Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <!-- Nathan -->
-    <tr>
-      <td>
-        <strong>Nathan Glatus</strong><br>
-        Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)
-      </td>
-      <td>
-        Anchor testing in realistic, high value surfaces for a live mobile racer.
-        Prioritise golden path stability, input and handling tiers, collisions, exits,
-        UI scaling, and live surfaces over low value edge case spam.
-      </td>
-      <td>
-        <ul>
-          <li>Scoped the whole week around <strong>daily golden path smoke runs</strong> to validate launch to hub to race to rewards.</li>
-          <li>Created focused charters for <strong>interruptions</strong>, <strong>Home</strong>, <strong>app close</strong>, <strong>alarms</strong>, <strong>LTE toggles</strong> and <strong>UI scaling</strong>.</li>
-          <li>Logged RR-1 (Rewards soft lock) with context on how a real player would hit it after an alarm or app close.</li>
-          <li>Kept device coverage realistic (one physical device) and avoided low value stress tests that inflate scope.</li>
-        </ul>
-      </td>
-      <td class="evidence">
-        <a href="./media/linkedin-nathan-glatus.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/linkedin-nathan-glatus.png"
-               alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
-        </a>
-        <small>Click to enlarge</small>
-      </td>
-    </tr>
-
-    <!-- Radu -->
-    <tr>
-      <td>
-        <strong>Radu Posoi</strong><br>
-        Founder, AlkoTech Labs (ex Ubisoft QA Lead)
-      </td>
-      <td>
-        Keep scope tight and realistic for one device. Use a simple device and network matrix.
-        Treat interruptions, battery and heat, and multi touch stress as structured surfaces.
-      </td>
-      <td>
-        <ul>
-          <li>Built a <strong>simple device and network matrix</strong> (WiFi baseline, warm device run, LTE).</li>
-          <li>Turned interruptions, battery and heat and multi touch stress into <strong>dedicated surfaces</strong> instead of random checks.</li>
-          <li>Kept session lengths tight and avoided creating unrealistic device coverage that a solo tester cannot support.</li>
-          <li>Used Radu’s workflow insight to simplify the workbook and keep focus on evidence and outcomes.</li>
-        </ul>
-      </td>
-      <td class="evidence">
-        <a href="./media/linkedin-radu-posoi.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/linkedin-radu-posoi.png"
-               alt="LinkedIn conversation with Radu Posoi about realistic solo QA scope" loading="lazy">
-        </a>
-        <small>Click to enlarge</small>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
 
 <h2 id="peer-comparison">🎮 Peer-style UX benchmark (Rebel Racing vs Asphalt 9)</h2>
 
