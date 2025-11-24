@@ -489,188 +489,128 @@ All planned charters and daily smoke runs were completed on the Moto g54 device.
 
   </tbody>
 </table>
-    
+
+<h2 id="peer-comparison">🎮 Peer-style UX benchmark (Rebel Racing vs Asphalt 9)</h2>
+
+<p class="method-note">
+  As a small add on to the main Rebel Racing work, I ran a quick visual only peer benchmark against
+  <em>Asphalt 9</em>. The goal was not to file bugs, but to see how two mobile racers from the same space
+  handle menu clarity, taps to driving, HUD readability and reward pacing, using my own dyslexic and
+  dyscalculic perspective as a lens. The findings below helped me frame Rebel Racing’s UX strengths and
+  risks in a way that is easier to explain to designers and producers.
+</p>
+
 <h3 id="addon-comparative">⭐ MICRO-STAR SUMMARY – Comparative Findings</h3>
 
-<p><strong>Situation:</strong> Post-pass curiosity: how do similar titles handle first-minute flow, Pause→Back, and HUD readability?</p>
-<p><strong>Task:</strong> Benchmark <em>Battletoads</em> against <em>Teenage Mutant Ninja Turtles: Shredder’s Revenge</em> and <em>Disney Illusion Island</em> to highlight UX strengths/risks.</p>
-<p><strong>Action:</strong> Timed title→control presses; reviewed Pause→Back behaviour; captured HUD readability snapshots.</p>
-<p><strong>Result:</strong> <em>Battletoads</em> reached control fastest (4 presses) and resumed cleanly; biggest risk: HUD readability in combat.</p>
-    
-    <h3>📊 Summary Metrics (across all three tests)</h3>
-    <ul>
-      <li><strong>Presses to first control (Title → Play):</strong> Battletoads: 4 • Teenage Mutant Ninja Turtles: Shredder’s Revenge: 6 • Disney Illusion Island: 13</li>
-      <li><strong>Pause → Back (resume control):</strong> Battletoads: immediate • Teenage Mutant Ninja Turtles: Shredder’s Revenge: immediate • Disney Illusion Island: <em>not observed in available footage</em></li>
-      <li><strong>HUD readability (combat):</strong> Battletoads: info spread to corners • Teenage Mutant Ninja Turtles: Shredder’s Revenge: tiny unlabeled bars; pop-ups obscure UI</li>
-    </ul>
+<p><strong>Situation:</strong> During the Rebel Racing project I ran a short visual UX benchmark against <em>Asphalt 9</em> to understand how similar mobile racers handle menu clarity, taps-to-driving, HUD readability, reward pacing, and return-to-hub flow.</p>
 
-    <!-- Comparison Table -->
-    <table class="table-compare">
-      <thead>
-        <tr>
-          <th>Game</th>
-          <th>Timestamp</th>
-          <th>Area / Feature</th>
-          <th>What happened</th>
-          <th>Why it matters</th>
-          <th>Evidence</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Battletoads -->
-        <tr>
-          <td><strong>Battletoads</strong></td>
-          <td>0:07–1:12 (1:05)</td>
-          <td>Title → New Game</td>
-          <td><strong>4 presses</strong> to first control</td>
-          <td>Smooth first minute; low friction</td>
-          <td>
-            <a href="https://youtu.be/CN3oHz5fnFw" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/CN3oHz5fnFw/hqdefault.jpg" alt="Battletoads — New Game video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0:01–0:20 (0:19)</td>
-          <td>Title → Continue</td>
-          <td><strong>4 presses</strong>; intro dialogue skipped</td>
-          <td>Faster return-to-play; risk of missed context</td>
-          <td>
-            <a href="https://youtu.be/iGk1TNBuZWc" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/iGk1TNBuZWc/hqdefault.jpg" alt="Battletoads — Continue video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0:04–0:13 (0:09)</td>
-          <td>Pause → Back</td>
-          <td>Immediate control; no unintended actions</td>
-          <td>Prevents stray menu inputs</td>
-          <td>
-            <a href="https://youtu.be/P7QNSN-6wqI" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/P7QNSN-6wqI/hqdefault.jpg" alt="Battletoads — Pause to Back video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>—</td>
-          <td>HUD readability</td>
-          <td>Info spread across corners; tracking health/rank/combo is difficult mid-fight (tester is dyslexic and dyscalculic)</td>
-          <td>Accessibility/readability risk</td>
-          <td>
-            <a href="./media/bt_observation4-hud-readability.png" target="_blank" rel="noopener">
-              <img class="thumb square" src="./media/bt_observation4-hud-readability.png" alt="Battletoads HUD screenshot" loading="lazy">
-            </a>
-          </td>
-        </tr>
+<p><strong>Task:</strong> Compare the first-minute path, HUD readability, clarity of labels, reward pacing, and any hiccups or friction points in the standard race loop.</p>
 
-        <!-- Illusion Island -->
-        <tr>
-          <td><strong>Disney Illusion Island</strong></td>
-          <td>0:09–3:11 (3:02)</td>
-          <td>Title → Play</td>
-          <td><strong>13 presses</strong> to first control</td>
-          <td>Higher start friction than Battletoads (4) &amp; TMNT (6)</td>
-          <td>
-            <a href="https://youtu.be/Xq_XEP8lKZI" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/Xq_XEP8lKZI/hqdefault.jpg" alt="Illusion Island — Play video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>—</td>
-          <td>Pause → Back</td>
-          <td>Not observed in available public footage (longplay/stream review)</td>
-          <td>No inference without evidence</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>3:11</td>
-          <td>Onboarding</td>
-          <td>Just-in-time jump prompt</td>
-          <td>Clear guidance for new players</td>
-          <td>
-            <a href="./media/ii_observation6onboarding_prompt_00MM_playable_v01.png" target="_blank" rel="noopener">
-              <img class="thumb square" src="./media/ii_observation6onboarding_prompt_00MM_playable_v01.png" alt="Illusion Island onboarding screenshot" loading="lazy">
-            </a>
-          </td>
-        </tr>
+<p><strong>Action:</strong> Opened both apps, timed taps-to-driving, reviewed HUD readability, checked clarity of results and reward steps, and noted anything that slowed the player down or was easy to miss (from a dyslexic and dyscalculic tester’s perspective).</p>
 
-        <!-- TMNT -->
-        <tr>
-          <td><strong>Teenage Mutant Ninja Turtles: Shredder’s Revenge</strong></td>
-          <td>0:01–3:55 (3:54)</td>
-          <td>Title → Start</td>
-          <td><strong>6 presses</strong> to first control</td>
-          <td>Higher friction than Battletoads</td>
-          <td>
-            <a href="https://youtu.be/MDEyQjmjfFU" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/MDEyQjmjfFU/hqdefault.jpg" alt="TMNT — Title to Start video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>0:06–0:16 (0:10)</td>
-          <td>Pause → Back</td>
-          <td>Immediate control; no unintended actions</td>
-          <td>Consistent resume behaviour</td>
-          <td>
-            <a href="https://youtu.be/MDEyQjmjfFU" target="_blank" rel="noopener">
-              <img class="thumb" src="https://img.youtube.com/vi/MDEyQjmjfFU/hqdefault.jpg" alt="TMNT — Pause to Back video" loading="lazy">
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>—</td>
-          <td>HUD readability</td>
-          <td>Tiny blue/green unlabeled bars; score pop-ups obstruct</td>
-          <td>Readability risk in combat</td>
-          <td>
-            <a href="./media/TMNT_observation7-hud-readability.png" target="_blank" rel="noopener">
-              <img class="thumb square" src="./media/TMNT_observation7-hud-readability.png" alt="TMNT HUD screenshot" loading="lazy">
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<p><strong>Result:</strong> <em>Rebel Racing</em> reached driving quicker (4 taps) than <em>Asphalt 9</em> (6 taps). Asphalt 9 had clearer HUD labels overall, while Rebel Racing contained several readability risks in white-on-bright UI elements.</p>
 
-    <p><sub><strong>Method (Disney Illusion Island rows):</strong> Not hands-on — I reviewed public longplay/stream footage. Where behaviour wasn’t visible, it’s recorded as <em>Not observed in available footage</em> rather than guessed.</sub></p>
+<h3>📊 Summary Metrics</h3>
+<ul>
+  <li><strong>Taps to driving:</strong> Rebel Racing: 4 • Asphalt 9: 6</li>
+  <li><strong>Menu clarity:</strong> Both strong, but Asphalt 9’s large yellow Play button was clearer</li>
+  <li><strong>HUD readability:</strong> Asphalt 9: clearer labels • Rebel Racing: some hard-to-read small text and unboxed labels</li>
+  <li><strong>Reward pacing:</strong> Both smooth; Asphalt 9 had slight friction due to “Next” changing into “Miss Out”</li>
+  <li><strong>Hiccups:</strong> None observed in either title</li>
+</ul>
 
-    <h3>🏁 Result & takeaway</h3>
-<p><strong>Result:</strong> Battletoads reaches first control in <strong>4 presses</strong> (Teenage Mutant Ninja Turtles: Shredder’s Revenge <strong>6</strong>, Disney Illusion Island <strong>13</strong>) and resumes cleanly from Pause.</p>
+<table class="table-compare">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Area / Feature</th>
+      <th>What happened</th>
+      <th>Why it matters</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
 
-<p><strong>Takeaway:</strong> Battletoads was fastest to control among the three; the primary risk is <strong>HUD readability</strong> during combat.</p>
+    <!-- Asphalt 9 -->
+    <tr>
+      <td><strong>Asphalt 9</strong></td>
+      <td>Taps to driving</td>
+      <td>6 taps to reach the race</td>
+      <td>Clear Play CTA; onboarding friction slightly higher than Rebel Racing</td>
+      <td>Video (visual-only)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>HUD readability</td>
+      <td>Large readable labels: "POS", "DIST", timer; MPH clearly visible</td>
+      <td>High clarity helps dyslexic and dyscalculic players track race state</td>
+      <td>Video (visual-only)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Rewards flow</td>
+      <td>"Next" CTA changes to "Miss Out", requires a second tap</td>
+      <td>Potential confusion; CTA changing can cause mis-taps</td>
+      <td>Video (visual-only)</td>
+    </tr>
+
+    <!-- Rebel Racing -->
+    <tr>
+      <td><strong>Rebel Racing</strong></td>
+      <td>Taps to driving</td>
+      <td>4 taps to reach driving, faster than Asphalt 9</td>
+      <td>Lower friction; faster access to gameplay</td>
+      <td>Video (visual-only)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>HUD readability</td>
+      <td>Small POS label (no box), small white timer (hard to read), rival name in small unboxed white text. "BEAT JASMINE" not bold and easy to miss.</td>
+      <td>Readability risks for players with dyslexia or dyscalculia, especially mid-race</td>
+      <td>Video (visual-only)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Rewards flow</td>
+      <td>Snappy; no ads; consistent taps</td>
+      <td>Strong UX, quick return to hub</td>
+      <td>Video (visual-only)</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p><h3>🏁 Result and takeaway</h3></p>
+<p><strong>Result:</strong> Rebel Racing reaches driving fastest (<strong>4 taps</strong>). Asphalt 9’s HUD readability was stronger due to clearer labels and boxed text.</p>
+
+<p><strong>Takeaway:</strong> Rebel Racing’s core loop is faster but could benefit from improved readability in HUD elements, especially small unboxed text.</p>
 
     <hr>
 
-    <h2>🧩 What I learned</h2>
-    <ul>
-      <li><strong>Write steps so “future me” and any teammate can re-run them first try.</strong> Plain, tight repros meant I could pick the test back up days later without thinking.</li>
-      <li><strong>Input hand-off needs its own mini-suite.</strong> Treat keyboard↔controller focus like a feature; that’s where the bugs on this project lived.</li>
-      <li><strong>Short clips beat long recordings.</strong> 10–30s videos told the story quicker than paragraphs and made severity obvious.</li>
-      <li><strong>Baseline numbers help.</strong> “4 presses to first control” became a simple guardrail to spot regressions fast.</li>
-      <li><strong>Evidence where you triage.</strong> Jira thumbnails + links kept every issue self-contained and easy to review.</li>
-    </ul>
+   <h2>🧩 What I learned</h2>
+<ul>
+  <li><strong>Keep charters tight and scoped to one behaviour.</strong> Splitting interruptions, network flips, heat, and UI scaling into separate surfaces made each run cleaner and easier to repeat.</li>
+  <li><strong>Evidence must be fast to review.</strong> Short 10–30s clips of each run told the story better than long recordings and made RR-1 (Rewards soft lock) immediately clear.</li>
+  <li><strong>Baseline numbers matter.</strong> Simple metrics like “4 taps to driving” and timing the reward loop gave me guardrails that made comparison and regression checks trivial.</li>
+  <li><strong>Visual-only peer benchmarks are surprisingly effective.</strong> Comparing Rebel Racing with Asphalt 9 helped me articulate HUD readability risks and pacing strengths with far more confidence.</li>
+  <li><strong>Write notes for ‘future me’.</strong> Clean, plain-language steps meant I could pick up the project the next day without rethinking the flow.</li>
+  <li><strong>Tester context matters.</strong> As someone who is dyslexic and dyscalculic, documenting readability issues explicitly helped me explain why small unboxed HUD text or pale UI labels are real accessibility risks.</li>
+  <li><strong>Keep admin light.</strong> The project worked best when the workbook supported the testing, not the other way around. Clear tables, simple IDs, and one source of truth kept everything easy to maintain.</li>
+</ul>
 
     <hr>
 
-    <h2>🔚 Conclusion</h2>
-    <p>Full functional pass complete on <em>Battletoads</em> (PC Game Pass). I validated core flows end-to-end, stress-checked stability/performance, and documented <strong>4 input-ownership defects</strong> with <strong>100% repro</strong>, each backed by short videos and tidy Jira cards.</p>
-    <ul>
-      <li><strong>Coverage delivered:</strong> start→first control (4-press baseline), Pause/Resume behaviour, keyboard↔controller focus/hand-off, local co-op Join/Leave, respawn & checkpoint integrity, arena-clear progression timing, audio pause/resume, HUD restoration/readability, Game Over flow, controller disconnect/reconnect, performance sanity (avg ~140 FPS; no sustained dips), and stress/transition checks.</li>
-      <li><strong>Highest-impact finding:</strong> Pause/Join-In hand-off issues that can confuse or block input ownership.</li>
-      <li><strong>Evidence maturity:</strong> Every finding has a video thumbnail in the bugs table plus clear repro steps and severity in Jira.</li>
-    </ul>
+  <h2>🔚 Conclusion</h2>
+<p>
+  Exploratory and edge case pass complete on <em>Rebel Racing</em> (Android – Moto g54 5G). I kept device coverage realistic, ran daily golden path smoke checks, pushed interruptions, network changes and basic scaling, and documented one high impact rewards soft lock with 100 percent repro, backed by short 1080p evidence and a clear STAR summary.
+</p>
+<ul>
+  <li><strong>Coverage delivered:</strong> launch to hub to race to rewards golden path, daily smoke runs, alarms and notification interruptions, Home and app close behaviour, LTE and WiFi switching, light performance and device feel checks, UI scaling and readability, visual only BlueStacks aspect ratio check, and a peer style UX benchmark against Asphalt 9.</li>
+  <li><strong>Highest impact finding:</strong> rewards soft lock after an alarm and app close that leaves the Continue button unresponsive and forces a kill of the app (RR 1), plus smaller UX risks around LTE load delays and HUD readability.</li>
+  <li><strong>Evidence maturity:</strong> Every key finding is backed by short clips, workbook entries, and a simple device and network matrix, with bug and STAR style summaries that can be lifted straight into Jira.</li>
+</ul>
 
-    <p><strong>Up next:</strong> I’m moving on to an <em>Exploratory &amp; Edge-Case Testing</em> project on <em>Rebel Racing</em> (Mobile) focused on <strong>device compatibility</strong>, <strong>input latency</strong>, <strong>UI scaling</strong>, and <strong>crash handling</strong>.</p>
-
+   <p><strong>Up next:</strong> I’m moving on to a <em>1–2 week Regression Testing</em> project on <em>Sworn</em> (PC). This one is focused on verifying recent fixes against patch notes, checking save/load safety, session start/quit flows, stamina and quest systems, UI readability, and catching any side effects introduced by the latest update.</p>
 
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
