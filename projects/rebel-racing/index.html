@@ -381,9 +381,14 @@
     </table>
 
     <hr>
-<h2 id="core-findings">🧪 Core Project Findings - Sessions and Bugs</h2>
+<h2 id="core-findings">📌 Core Project Findings – Sessions and Bugs</h2>
+
 <p class="method-note">
-All planned charters and daily smoke runs were completed on the Moto g54 device. The build remained stable across the week with no crashes. One high impact soft lock was found and logged with clear evidence, along with smaller observations on LTE load delays, warm device behaviour, and UI scaling in BlueStacks. Evidence below includes the Jira style summary, verified thumbnails, and the bug table with video links.
+  All planned charters and daily smoke runs were completed on the Moto g54 with no crashes. The build
+  stayed stable across the week, but one high-impact soft lock in the post-race rewards flow was found
+  and logged with full evidence. I also captured smaller observations around LTE load delays, warm-device
+  performance feel, and UI scaling in Bluestacks. The evidence below covers the STAR summary, verified
+  thumbnails, and the bug table with video links.
 </p>
     
    <h3>📁 Jira Board Screenshot - Overview</h3>
@@ -502,22 +507,59 @@ All planned charters and daily smoke runs were completed on the Moto g54 device.
 <div style="clear:both; padding-top:8px;"></div>
 
 <h2 id="results">📈 Results</h2>
+
 <ul>
-  <li>Completed all planned daily smoke runs and exploratory charters on the Moto g54 without any crashes or hard failures.</li>
-  <li><strong>1 major defect</strong> logged (RR-1 Rewards soft lock) with <strong>100 percent repro</strong> and short 1080p evidence, plus smaller UX and performance observations captured for future device and network coverage.</li>
-  <li>Confirmed the golden path flow (launch to race to rewards to hub) stayed stable under alarms, notifications, Home and app close, with LTE showing slower results loading compared to WiFi.</li>
+  <li>
+    Completed all planned daily smoke runs and exploratory charters on the Moto g54 without
+    any crashes or hard failures.
+  </li>
+
+  <li>
+    Logged <strong>one major defect</strong> (RR-1 Rewards soft lock) with clear 1080p evidence and
+    a full bug entry, plus a set of smaller UX and performance observations for future
+    device / network coverage.
+  </li>
+
+  <li>
+    Confirmed the core golden path (launch → race → rewards → hub) stayed stable on
+    baseline Wi-Fi and across most interruption scenarios, with LTE showing slower results
+    loading compared to Wi-Fi.
+  </li>
+
+  <li>
+    <strong>Rewards soft lock (RR-1):</strong> after finishing a race, if an OS alarm fires while the
+    Rewards screen is open and the player then closes and relaunches the app, the post-race
+    Rewards screen can appear with the <em>Continue</em> button unresponsive. Back, notification
+    shade, Home→Return and Wi-Fi toggle do not recover the flow; the practical workaround
+    is to Pause the app from Android app info, then Unpause and relaunch so Continue works
+    again. This was captured with video and documented as a high-severity soft lock.
+  </li>
+
+  <li>
+    <strong>LTE results delay:</strong> on LTE, the results screen shows a noticeably longer loading
+    spinner before rewards appear compared to the much quicker transition on Wi-Fi. This
+    did not reproduce as a hard failure but is worth tracking as a performance / UX risk.
+  </li>
+
+  <li>
+    <strong>Warm device &amp; scaling notes:</strong> extended play on the Moto g54 made the device feel
+    warm but not dangerously hot, with no visible frame drops in core races. BlueStacks 16:9
+    runs looked clean, while Portrait mode showed stretched backgrounds and very small text
+    that would be hard to read for some players; attempts to force a 20:9 preset were blocked
+    by the emulator.
+  </li>
+
+  <li>
+    <strong>Performance &amp; device feel:</strong> the Moto g54 stayed stable across all runs with no
+    visible stutters or visual hitches during races. LTE produced slower results loading
+    compared to Wi-Fi but did not cause crashes or hard failures.
+  </li>
 </ul>
 
-  <!-- Key risks from your “Key Risks” field, written plainly with evidence -->
-  <li><strong>Rewards soft lock:</strong> after finishing a race, triggering an alarm then closing and reopening the app can leave the post race rewards screen stuck with the Continue button unresponsive, forcing the player to kill the app. Evidence: <code>RUN-20251120-INT-ALARM-01</code> (RR-1 - Fail).</li>
-  <li><strong>LTE results delay:</strong> on LTE, the results screen shows a long loading spinner before rewards appear, compared to a much quicker transition on WiFi. This did not reproduce as a hard failure but is worth tracking as a performance and UX risk. Evidence: <code>RUN-20251120-NET-LTE-01</code> (Observation).</li>
-  <li><strong>Warm device and scaling notes:</strong> extended play on the Moto g54 made the device feel warm but not dangerously hot, with no visible frame drops in core races. BlueStacks 16:9 looked clean, while portrait mode produced stretched backgrounds and small text that would be hard to read for some players. Evidence: <code>RUN-20251119-PERF-01</code>, <code>RUN-20251119-BS-01</code> (Observations).</li>
+<p class="method-note">
+  See Metrics above for the full table of runs and references.
+</p>
 
-  <!-- Performance summary from Observations -->
-  <li><strong>Performance and device feel:</strong> the Moto g54 stayed stable across all runs with no stutters or visual hitches during races. The device felt warm during extended testing but performance remained smooth. LTE produced slower results loading compared to WiFi but did not cause crashes or hard failures. Evidence: <code>RUN-20251119-PERF-01</code>, <code>RUN-20251120-NET-LTE-01</code>.</li>
-</ul>
-
-<p class="method-note">See <a href="#metrics">Metrics</a> above for the full table and run references.</p>
 
  <hr>
 
