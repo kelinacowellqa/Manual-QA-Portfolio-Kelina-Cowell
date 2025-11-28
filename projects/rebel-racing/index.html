@@ -106,7 +106,7 @@
     <ul>
       <li><strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp; device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events, Wi-Fi/LTE toggles), and light BlueStacks visual-only checks for 16:9, portrait, and attempted 20:9 aspect ratios.</li>
       <li><strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi), time-boxed to ~20–45 minutes each, with one smoke pass per day plus focused charters layered on top. High-impact issues were captured with short 1080p videos, clear repro steps, device/network context, and a simple device/network matrix to keep coverage realistic on a single physical phone.</li>
-      <li><strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; LTE felt noticeably slower than Wi-Fi with a results-loading delay; BlueStacks 16:9 looked clean, portrait showed stretched background and tiny text; Android Studio AVD was blocked by Play Store eligibility.</li>
+      <li><strong>Outcome:</strong> * Outcome: all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards soft-lock after an alarm + app close (RR-1) captured with video and logged; LTE felt noticeably slower than Wi-Fi with a results-loading delay; Bluestacks Portrait mode showed stretched backgrounds and very small text; Android Studio AVD was blocked by Play Store eligibility.</li>
       <li><strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR, daily smoke, device matrix, glossary), YouTube playlists grouped by area (smoke, interruptions, UI scaling, performance, input, network, BlueStacks), and Jira-style bug/STAR summaries suitable for review.</li>
     </ul>
 
@@ -643,13 +643,11 @@
   </li>
 
   <li>
-    <strong>Warm device &amp; scaling notes:</strong> extended play on the Moto g54 made the device feel
-    warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks
-    Portrait mode, the background and menu bar backgrounds appeared stretched and
-    buttons/text were very small (hard to read). Attempts to force a 20:9 preset were blocked
-    by the emulator, so Bluestacks was used as a visual-only oracle – all real testing stayed
-    on the physical device.
-  </li>
+  <strong>Warm device &amp; scaling notes:</strong> extended play on the Moto g54 made the device feel
+  warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks Portrait mode,
+  the background and menu bar backgrounds appeared stretched and buttons/text were very small (hard to read).
+  Attempts to force a 20:9 preset were blocked by the emulator, so checks stayed visual-only.
+</li>
 
   <li>
     <strong>Performance &amp; device feel:</strong> the Moto g54 stayed stable across all runs with no
