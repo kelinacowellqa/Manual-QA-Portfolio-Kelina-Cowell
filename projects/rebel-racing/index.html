@@ -181,38 +181,43 @@
 <h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
 
 <p class="method-note">
-  During this project I used targeted guidance from QA leaders and built the charters around their advice.
-</p>
-
-<p class="method-note">
-  <a href="https://www.linkedin.com/in/nathan-glatus/" target="_blank" rel="noopener">
-    <strong>Nathan Glatus</strong>
- <p class="method-note">
-  During this project I used targeted guidance from QA leaders and built the charters around their advice.
+  During this project I didn’t guess the scope in isolation, I treated it like a mini live-ops assignment and shaped it around advice from senior QA leads.
 </p>
 
 <p class="method-note">
   <a href="https://www.linkedin.com/in/nathan-glatus/" target="_blank" rel="noopener">
     <strong>Nathan Glatus</strong>
   </a>
-  (Senior QA / Game Integrity Analyst, Fortnite, ex Epic Games) shaped the initial scope by telling me to
-  treat Rebel Racing as what it is: a live mobile F2P racer. That means focusing on daily golden path smoke,
-  input and handling tiers, collisions and exits, UI scaling and live surfaces instead of chasing every
-  possible edge case. I turned that into focused charters for smoke runs and high risk flows on a single
-  physical device.
+  (Senior QA / Game Integrity Analyst, Fortnite, ex Epic Games) helped me set the initial scope. His advice
+  was to treat Rebel Racing as what it is: a live mobile F2P racer, not a lab toy for every possible edge
+  case. That translated into a small set of focused charters rather than a giant “test everything” list:
+  daily golden-path smoke on a single physical device, input and handling tiers, collisions / exits and race
+  flow, and UI scaling and key live surfaces (store, events, hub). He also pushed me to keep runs to realistic
+  45–60 minute sessions with clear exit criteria, and to write tighter bug reports with strong oracles, clear
+  summaries and bundled evidence (video, device/build metadata, repro steps, repro rate) instead of vague
+  “it feels off” notes. His framing around realistic coverage on an approved device list is why this case
+  study is scoped to one main phone but documented in a way that could scale to a real QA team.
 </p>
 
 <p class="method-note">
   <a href="https://www.linkedin.com/in/raduposoi/" target="_blank" rel="noopener">
     <strong>Radu Posoi</strong>
   </a>
-  (Founder, AlkoTech Labs, ex Ubisoft QA Lead) then helped me tighten the scope so it stayed realistic
-  for one phone, using a simple device and network matrix and treating interruptions, battery and heat,
-  and multi touch stress as dedicated surfaces instead of random one off tests.
+  (Founder, AlkoTech Labs, ex Ubisoft QA Lead) then helped me iterate the scope so it matched how mobile QA
+  is actually run day to day. His feedback led me to define clear performance anchors (hub, pre-race, race
+  start, mid-race, results) instead of vague “seems fine” checks; treat interruptions as a first-class surface
+  covering lock screen, app switching, app kill and recovery; and turn battery / heat / multi-touch stress
+  into dedicated charters rather than random one-off experiments. Because Rebel Racing blocks standard Android
+  Studio emulators on the Play Store, he also recommended using Bluestacks as a visual-only oracle for odd
+  aspect ratios and layout stretch while keeping all real testing and bug reproduction on my physical Moto g54.
+  That combination turned my original “nice to have” ideas into a concrete device and network approach that
+  looks like a small slice of a real mobile QA lab rather than a student project.
 </p>
 
 <p class="method-note">
-  Their insight directly shaped the scope, the charters and the final STAR summary for this case study.
+  Their insight directly shaped the final list of charters, how I recorded device and network context, how I
+  wrote and prioritised bug reports, and the STAR summary for this case study, so the project reads more like
+  a realistic live mobile QA engagement than a purely academic exercise.
 </p>
 
 <table class="table-insight">
