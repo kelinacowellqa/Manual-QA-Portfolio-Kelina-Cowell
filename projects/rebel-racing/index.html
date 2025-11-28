@@ -103,12 +103,35 @@
       One-week exploratory / edge-case pass on <em>Rebel Racing</em> (Android – Moto g54 5G, Android 15 @2400×1080/120Hz) focused on daily golden-path smoke, interruptions & recovery, device/network variation, and basic UI scaling/readability. I built a small set of charters, ran daily smoke passes across the week, and logged one high-impact soft-lock defect with full evidence and STAR summary.
     </p>
 
-    <ul>
-      <li><strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp; device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events, Wi-Fi/LTE toggles), and light BlueStacks visual-only checks for 16:9, portrait, and attempted 20:9 aspect ratios.</li>
-      <li><strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi), time-boxed to ~20–45 minutes each, with one smoke pass per day plus focused charters layered on top. High-impact issues were captured with short 1080p videos, clear repro steps, device/network context, and a simple device/network matrix to keep coverage realistic on a single physical phone.</li>
-      <li><strong>Outcome:</strong> * Outcome: all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards soft-lock after an alarm + app close (RR-1) captured with video and logged; LTE felt noticeably slower than Wi-Fi with a results-loading delay; Bluestacks Portrait mode showed stretched backgrounds and very small text; Android Studio AVD was blocked by Play Store eligibility.</li>
-      <li><strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR, daily smoke, device matrix, glossary), YouTube playlists grouped by area (smoke, interruptions, UI scaling, performance, input, network, BlueStacks), and Jira-style bug/STAR summaries suitable for review.</li>
-    </ul>
+   <ul>
+  <li>
+    <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
+    (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp;
+    device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events,
+    Wi-Fi/LTE toggles), and a light Bluestacks <strong>Portrait</strong> visual-only check with an attempted (but blocked)
+    20:9 preset.
+  </li>
+
+  <li>
+    <strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi),
+    time-boxed to ~20–45 minutes each, with one smoke pass per day plus focused charters layered on top. High-impact issues
+    were captured with short 1080p videos, clear repro steps, device/network context, and a simple device/network matrix
+    to keep coverage realistic on a single physical phone.
+  </li>
+
+  <li>
+    <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
+    soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; LTE felt noticeably
+    slower than Wi-Fi with a results-loading delay; Bluestacks <strong>Portrait</strong> mode showed stretched background
+    and very small text (visual-only check), and Android Studio AVD was blocked by Play Store eligibility.
+  </li>
+
+  <li>
+    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR,
+    daily smoke, device matrix, glossary), YouTube playlists grouped by area (smoke, interruptions, UI scaling, performance,
+    input, network, Bluestacks), and Jira-style bug/STAR summaries suitable for review.
+  </li>
+</ul>
 
       <table>
       <thead>
