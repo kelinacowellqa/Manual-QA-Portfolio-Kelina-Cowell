@@ -534,29 +534,26 @@
 
     <tr>
       <td>OBS-02</td>
-      <td>[Android][Device feel] Moto g54 warm but stable during extended LTE run (same session as OBS-01)</td>
+      <td>[Android][Device feel] Moto g54 felt warm but stable during the extended LTE run (same session as OBS-01)</td>
       <td>Device feel</td>
       <td>
-        <a href="https://www.youtube.com/watch?v=8wVeGDqdJs8" target="_blank" rel="noopener">
-          <img
-            src="https://img.youtube.com/vi/8wVeGDqdJs8/hqdefault.jpg"
-            alt="OBS-02 – Warm device feel during extended LTE run"
-            width="140"
-            loading="lazy">
-        </a>
+        <span class="evidence-na">N/A – physical device feel noted during OBS-01 run</span>
       </td>
     </tr>
 
     <tr>
       <td>OBS-03</td>
-      <td>[Bluestacks][Visual-only] 16:9 aspect ratio check – layout and text size look clean on hub &amp; menus</td>
+      <td>
+        [Bluestacks][Visual-only] Portrait mode: background and menu bar backgrounds stretched; buttons/text very small
+        (hard to read). Functional taps OK for this sweep.
+      </td>
       <td>Visual-only sanity check</td>
       <td>
         <a href="https://drive.google.com/file/d/1FywsLgig5zBSBsd7WEtnYK-QzE60-rLF/view?usp=sharing"
            target="_blank" rel="noopener">
           <img
             src="https://drive.google.com/thumbnail?id=1FywsLgig5zBSBsd7WEtnYK-QzE60-rLF"
-            alt="OBS-03 – Bluestacks 16:9 layout check screenshot"
+            alt="OBS-03 – Bluestacks Portrait mode showing stretched visuals and tiny text"
             width="140"
             loading="lazy">
         </a>
@@ -564,7 +561,6 @@
     </tr>
   </tbody>
 </table>
-
     
 <!-- break margin-collapsing + clear any floats before the next section -->
 <div style="clear:both; padding-top:8px;"></div>
@@ -586,14 +582,14 @@
   <li>
     Confirmed the core golden path (launch → race → rewards → hub) stayed stable on
     baseline Wi-Fi and across most interruption scenarios, with LTE showing slower results
-    loading compared to Wi-Fi.
+    loading compared to Wi-Fi. The exception is the RR-1 alarm + app close case described below.
   </li>
 
   <li>
     <strong>Rewards soft lock (RR-1):</strong> after finishing a race, if an OS alarm fires while the
     Rewards screen is open and the player then closes and relaunches the app, the post-race
     Rewards screen can appear with the <em>Continue</em> button unresponsive. Back, notification
-    shade, Home→Return and Wi-Fi toggle do not recover the flow; the practical workaround
+    shade, Home → Return and Wi-Fi toggle do not recover the flow; the practical workaround
     is to Pause the app from Android app info, then Unpause and relaunch so Continue works
     again. This was captured with video and documented as a high-severity soft lock.
   </li>
@@ -606,10 +602,11 @@
 
   <li>
     <strong>Warm device &amp; scaling notes:</strong> extended play on the Moto g54 made the device feel
-    warm but not dangerously hot, with no visible frame drops in core races. BlueStacks 16:9
-    runs looked clean, while Portrait mode showed stretched backgrounds and very small text
-    that would be hard to read for some players; attempts to force a 20:9 preset were blocked
-    by the emulator.
+    warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks
+    Portrait mode, the background and menu bar backgrounds appeared stretched and
+    buttons/text were very small (hard to read). Attempts to force a 20:9 preset were blocked
+    by the emulator, so Bluestacks was used as a visual-only oracle – all real testing stayed
+    on the physical device.
   </li>
 
   <li>
@@ -622,7 +619,6 @@
 <p class="method-note">
   See Metrics above for the full table of runs and references.
 </p>
-
 
  <hr>
 
