@@ -238,16 +238,17 @@
         Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)
       </td>
       <td>
-        Anchor testing in realistic, high value surfaces for a live mobile racer.
-        Prioritise golden path stability, input and handling tiers, collisions, exits,
-        UI scaling, and live surfaces over low value edge case spam.
+        Treat Rebel Racing as a live mobile F2P racer and anchor testing in a small set of
+        high-value surfaces instead of trying to “test everything”. Prioritise daily golden-path
+        stability, input and handling tiers, collisions / exits, and UI scaling / live surfaces, and
+        back this with clear charters and strong evidence bundles.
       </td>
       <td>
         <ul>
-          <li>Scoped the whole week around <strong>daily golden path smoke runs</strong> to validate launch to hub to race to rewards.</li>
-          <li>Created focused charters for <strong>interruptions</strong>, <strong>Home</strong>, <strong>app close</strong>, <strong>alarms</strong>, <strong>LTE toggles</strong> and <strong>UI scaling</strong>.</li>
-          <li>Logged RR-1 (Rewards soft lock) with context on how a real player would hit it after an alarm or app close.</li>
-          <li>Kept device coverage realistic (one physical device) and avoided low value stress tests that inflate scope.</li>
+          <li>Scoped the week around <strong>daily golden-path smoke runs</strong> from launch → hub → race → rewards on one physical device.</li>
+          <li>Wrote focused charters for <strong>input &amp; handling tiers</strong>, <strong>collisions / exits</strong>, and <strong>UI scaling + key live surfaces</strong> (hub, store, events).</li>
+          <li>Structured each session as a realistic <strong>45–60 minute run</strong> with clear exit criteria instead of open-ended “play until bored” testing.</li>
+          <li>Improved bug reports by using <strong>clear titles, strong oracles and bundled evidence</strong> (video, device/build context, repro steps, repro rate) instead of vague “feels off” notes.</li>
         </ul>
       </td>
       <td class="evidence">
@@ -266,15 +267,18 @@
         Founder, AlkoTech Labs (ex Ubisoft QA Lead)
       </td>
       <td>
-        Keep scope tight and realistic for one device. Use a simple device and network matrix.
-        Treat interruptions, battery and heat, and multi touch stress as structured surfaces.
+        Iterate the scope so it matches real mobile QA: define performance anchors, treat
+        interruptions and recovery as their own surface, structure battery / heat / multi-touch
+        stress instead of doing random “torture tests”, and use emulators as visual oracles only
+        when the store blocks standard Android Studio emulators.
       </td>
       <td>
         <ul>
-          <li>Built a <strong>simple device and network matrix</strong> (WiFi baseline, warm device run, LTE).</li>
-          <li>Turned interruptions, battery and heat and multi touch stress into <strong>dedicated surfaces</strong> instead of random checks.</li>
-          <li>Kept session lengths tight and avoided creating unrealistic device coverage that a solo tester cannot support.</li>
-          <li>Used Radu’s workflow insight to simplify the workbook and keep focus on evidence and outcomes.</li>
+          <li>Defined <strong>performance anchors</strong> at hub, pre-race, race start, mid-race and results, and used them in my charters instead of vague “seems fine” checks.</li>
+          <li>Created dedicated charters for <strong>interruptions &amp; recovery</strong> (lock screen, app switch, app kill and return to race / hub).</li>
+          <li>Turned <strong>battery / heat</strong> and <strong>multi-touch stress</strong> into structured sessions rather than ad-hoc “let’s see what happens” experiments.</li>
+          <li>Because Rebel Racing blocks standard Android Studio emulators on the Play Store, used <strong>Bluestacks as a visual-only oracle</strong> for odd aspect ratios and layout stretch, keeping all real testing and bug reproduction on my physical Moto g54.</li>
+          <li>Kept scope realistic for a solo tester by limiting device coverage and focusing the workbook on <strong>evidence and outcomes</strong> rather than padding it with low-value checks.</li>
         </ul>
       </td>
       <td class="evidence">
