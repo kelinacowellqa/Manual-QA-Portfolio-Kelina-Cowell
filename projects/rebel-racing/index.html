@@ -104,13 +104,13 @@
     </p>
 
    <ul>
-  <li>
-    <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
-    (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp;
-    device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events,
-    Wi-Fi/LTE toggles), and a light Bluestacks <strong>Portrait</strong> visual-only check with an attempted (but blocked)
-    20:9 preset.
-  </li>
+<li>
+  <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
+  (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp;
+  device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events,
+  Wi-Fi/LTE toggles), and light Bluestacks visual-only layout/aspect checks (16:9 hub baseline plus Portrait with an
+  attempted (but blocked) 20:9 preset).
+</li>
 
   <li>
     <strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi),
@@ -119,12 +119,13 @@
     to keep coverage realistic on a single physical phone.
   </li>
 
-  <li>
-    <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
-    soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; LTE felt noticeably
-    slower than Wi-Fi with a results-loading delay; Bluestacks <strong>Portrait</strong> mode showed stretched background
-    and very small text (visual-only check), and Android Studio AVD was blocked by Play Store eligibility.
-  </li>
+ <li>
+  <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
+  soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; LTE felt noticeably
+  slower than Wi-Fi with a results-loading delay; Bluestacks 16:9 (1920×1080) gave a clean hub/layout baseline as a
+  visual-only check, while <strong>Portrait</strong> mode showed stretched background and very small text (visual-only,
+  20:9 preset attempts blocked by the emulator); Android Studio AVD was blocked by Play Store eligibility.
+</li>
 
   <li>
     <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR,
@@ -162,7 +163,7 @@
   <li>Input responsiveness in menus and races</li>
   <li>Performance and device feel on WiFi, warm device, and LTE</li>
   <li>Network and live surfaces in Store and Events</li>
-  <li>Visual-only Portrait aspect ratio check in Bluestacks (attempted 20:9 preset blocked)</li>
+    <li>Visual-only layout/aspect checks in Bluestacks (16:9 baseline, Portrait stretch, 20:9 preset blocked)</li>
 </ul>
 </section>
     
