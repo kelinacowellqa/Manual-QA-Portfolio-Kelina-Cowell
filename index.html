@@ -305,33 +305,54 @@ header.hero::after{
     <h1>🧩 Project Lineup</h1>
 
     <!-- 1: Battletoads (LIVE) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/bt-poster.jpg" alt="Battletoads poster">
+ <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/bt-poster.jpg" alt="Battletoads poster">
 
-      <h2>1: Functional Testing - <em>Battletoads (PC)</em></h2>
-      <ul>
-        <li><strong>Goal:</strong> Validate core gameplay and document repeatable defects, with extra attention to keyboard ⇄ controller hand-off.</li>
-        <li><strong>Scope:</strong> Gameplay logic · UI/menus · Input parity · Audio cues · Performance sanity</li>
-        <li><strong>Focus Areas:</strong>
-          <ul>
-            <li>Pause / Join-In / Resume flows</li>
-            <li>Controller ownership and hand-off</li>
-            <li>Local co-op edge cases</li>
-            <li>Menu navigation and prompts</li>
-          </ul>
-        </li>
-        <li><strong>Tools:</strong> Jira · Google Sheets QA workbook · Xbox Game Bar / OBS</li>
-        <li><strong>Deliverables:</strong> QA workbook (Sheets + PDF) · Evidence clips (YouTube) · Jira board with verified thumbnails</li>
-        <li><strong>Result:</strong> Stable overall; surfaced <strong>4</strong> high-impact input/hand-off defects. Test cases reproduced with clear steps and media.</li>
-      
-        <li><strong>Why this game?</strong> A fast, recognisable brawler ideal for testing input ownership and local co-op edge cases.</li>
-      </ul>
+  <h2>1: Functional Testing - <em>Battletoads (PC)</em></h2>
+  <ul>
+    <li>
+      <strong>Goal:</strong> Run a short functional test pass on Battletoads (PC Game Pass) to validate the core loop
+      and surface repeatable bugs, with extra attention on keyboard ⇄ controller hand-off.
+    </li>
 
-      <p class="cta">
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads
-/index.html">Read the case study →</a>
-      </p>
-    </section>
+    <li>
+      <strong>Scope:</strong> Core gameplay flow, UI/menus, local co-op, input parity (keyboard + controller),
+      audio cues and basic performance sanity.
+    </li>
+
+    <li>
+      <strong>Focus areas:</strong> Pause / Join-In / Resume flows, controller ownership and hand-off, local co-op
+      edge cases, and menu navigation / on-screen prompts.
+    </li>
+
+    <li>
+      <strong>Tools:</strong> Jira for issues, Google Sheets QA workbook for cases / notes, and Xbox Game Bar + OBS
+      for repro clips.
+    </li>
+
+    <li>
+      <strong>Deliverables:</strong> QA workbook (Sheets + PDF export), evidence clips on YouTube, and a Jira board
+      with four verified tickets and thumbnails.
+    </li>
+
+    <li>
+      <strong>Result:</strong> Overall build felt stable but surfaced <strong>4</strong> high-impact
+      input / hand-off defects, all 100% reproducible with clear steps and video.
+    </li>
+
+    <li>
+      <strong>Why this game?</strong> A fast, recognisable brawler with drop-in local co-op, perfect for testing
+      input ownership and pause / join-in behaviour.
+    </li>
+  </ul>
+
+  <p class="cta">
+    <a class="cta-btn"
+       href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/index.html">
+      Read the case study →
+    </a>
+  </p>
+</section>
 
     <!-- 2: Rebel Racing (COMING SOON) -->
 <section markdown="1" class="project-block with-thumb">
@@ -365,207 +386,374 @@ header.hero::after{
 </section>
 
     <!-- 3: Sworn (COMING SOON) -->
-   <section markdown="1" class="project-block with-thumb">
+<section markdown="1" class="project-block with-thumb">
   <img class="thumb" src="assets/img/s-poster.png" alt="Sworn poster">
 
   <h2>3: Regression Testing - <em>Sworn (PC)</em></h2>
   <ul>
-    <li><strong>Goal:</strong> Run a focused 1–2 week solo regression pass on recent fixes, confirming they hold and catching side-effects before release.</li>
+    <li>
+      <strong>Goal:</strong> Run a focused one-week solo regression pass on a recent Sworn patch, confirming key fixes
+      hold and catching any side-effects before the next update.
+    </li>
 
-    <li><strong>Scope:</strong> Changes called out in patch notes and community reports across save/load, quest and stamina systems, UI readability, and core session flow.</li>
+    <li>
+      <strong>Scope:</strong> Patch-note changes and community-reported issues across save/load safety, quest and stamina
+      systems, session start/quit flows, and UI readability in core hubs and menus.
+    </li>
 
-    <li><strong>Focus Areas:</strong>
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-        <li>Change-driven charters mapped to updated systems and specific bug fixes.</li>
-        <li>Risk-baseline checks that always run: save/load safety, session start/quit flows, input and control mapping.</li>
-        <li>Pause / join-in / resume behaviour during interruptions.</li>
-        <li>Local co-op ownership, hand-off, and edge cases.</li>
-        <li>Menu navigation, prompts, and error states.</li>
+        <li>Change-driven charters mapped directly to specific patch-note items and known bugs.</li>
+        <li>Risk-baseline checks that always run: save/load integrity, session start/quit, and core progression.</li>
+        <li>Stamina, quests and rewards behaving correctly after fixes and across longer sessions.</li>
+        <li>UI readability and feedback around key states (low health, stamina, quest updates, errors).</li>
+        <li>Side-effect sweeps where fixes touch shared systems (combat, inventory, hub interactions).</li>
       </ul>
     </li>
 
-    <li><strong>Tools:</strong> Trello regression board · Excel/Sheets verification log · OBS before/after clips · Public patch notes and forums used as change oracles.</li>
+    <li>
+      <strong>Tools:</strong> Jira regression board, Excel/Sheets verification log, OBS before/after clips, and
+      public patch notes + community threads used as change oracles.
+    </li>
 
-    <li><strong>Deliverables:</strong> Regression log · Fixed / Not Fixed / Reopened table · Verification matrix tied to patch-note items · Before/after screenshots and short comparison videos.</li>
+    <li>
+      <strong>Deliverables:</strong> Regression log, Fixed / Not Fixed / Reopened summary, verification matrix tied to
+      patch-note items, and short before/after videos for key fixes.
+    </li>
 
-    <li><strong>Status:</strong> Scheduled - target start date to be confirmed.</li>
+    <li>
+      <strong>Status:</strong> In Progress - regression workbook, board and oracles defined; playthrough and verification
+      passes scheduled as the next portfolio project.
+    </li>
 
-    <li><strong>Why this game?</strong> Sworn is a systems-heavy, frequently updated action RPG, which makes it ideal for practising disciplined regression that is driven by real patch changes rather than a giant wall of test cases.</li>
+    <li>
+      <strong>Why this game?</strong> Sworn is a systems-heavy, frequently updated action RPG, ideal for practising
+      disciplined, patch-driven regression instead of ticking through a giant static test case list.
+    </li>
   </ul>
 
   <p><em>Case study coming soon.</em></p>
 </section>
 
+
     <!-- 4: Shadow Point (COMING SOON) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/sp-poster.png" alt="Shadow Point poster">
+   <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/sp-poster.png" alt="Shadow Point poster">
 
-      <h2>4: VR Comfort & Accessibility - <em>Shadow Point (Quest 3)</em></h2>
+  <h2>4: VR Comfort &amp; Accessibility - <em>Shadow Point (Quest 3)</em></h2>
+  <ul>
+    <li>
+      <strong>Goal:</strong> Show VR-specific QA awareness by checking comfort, tracking stability, and experience
+      parity between Quest 3 standalone and PCVR.
+    </li>
+
+    <li>
+      <strong>Scope:</strong> Frame stability, tracking accuracy, motion/rotation comfort, guardian/boundary behaviour,
+      text/UI readability, and interaction parity across platforms.
+    </li>
+
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-         <li><strong>Goal:</strong> Show VR-specific QA awareness - comfort, stable tracking, and parity between standalone and PCVR.</li>
-  <li><strong>Focus:</strong> Frame stability · Tracking accuracy · Motion/rotation comfort · Guardian/boundary behaviour · Visual/text parity · Interaction parity · Performance spikes.</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Comfort checks: micro-judder, motion sickness risk, headset fit edge cases</li>
-      <li>Guardian/boundary: warn/clip behaviour, reset logic, edge interactions</li>
-      <li>Visual parity: text legibility, UI scaling, clarity vs. performance modes</li>
-      <li>Interaction parity: hand/controller mapping, grab/use prompts, affordances</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> Session charters & test matrix · OBS/Quest capture · SteamVR/OVR frame-timing overlays · Side-by-side notes.</li>
-  <li><strong>Deliverables:</strong> Comfort checklist (ratings) · Tracking results · Parity clips/screens · Issue list with risk tags.</li>
-  <li><strong>Status:</strong> Scheduled - target start date to be confirmed.</li>
+        <li>Comfort checks: micro-judder, motion sickness risk, and headset fit edge cases.</li>
+        <li>Guardian / boundary: warning, clipping, reset logic, and “edge of play space” interactions.</li>
+        <li>Visual accessibility: text legibility, UI scaling, clarity vs performance modes.</li>
+        <li>Interaction parity: hand/controller mapping, grab/use prompts, affordances and feedback.</li>
+      </ul>
+    </li>
 
-  <li><strong>Why this game?</strong> Calm, deliberate puzzle loop—great for spotting micro-judder, text issues, and subtle interaction differences across platforms.</li>
-</ul>
+    <li>
+      <strong>Tools:</strong> Session charters and a small comfort/test matrix, Quest capture / OBS, SteamVR/OVR
+      frame-timing overlays, and side-by-side notes for standalone vs PCVR.
+    </li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li>
+      <strong>Deliverables:</strong> Comfort checklist with ratings, tracking/guardian results, parity clips and
+      screenshots, and an issue list with comfort / accessibility risk tags.
+    </li>
+
+    <li>
+      <strong>Status:</strong> Planned – test matrix and goals defined; execution scheduled as a dedicated VR comfort
+      &amp; accessibility case study.
+    </li>
+
+    <li>
+      <strong>Why this game?</strong> Shadow Point’s calm, deliberate puzzle loop is ideal for spotting micro-judder,
+      text issues, and subtle interaction differences without fast-paced combat noise.
+    </li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
 
           <!-- 2: Flock XR (COMING SOON) -->
-       <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/XR-poster.png" alt="Educational XR Lab poster">
+     <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/XR-poster.png" alt="Educational XR Lab poster">
 
-      <h2>5: Educational UX & Cognitive Load Testing - <em>Educational XR Lab (Browser-Based 3D Game-Design Tool)</em></h2>
+  <h2>5: Educational UX &amp; Cognitive Load Testing - <em>Educational XR Lab (Browser-Based 3D Game-Design Tool)</em></h2>
+  <ul>
+    <li>
+      <strong>Goal:</strong> Assess how well a browser-based 3D creation tool supports young / non-gamer learners:
+      clear instructions, manageable cognitive load, basic accessibility (text size, contrast, icon clarity), and
+      how easily kids can use it to learn structured thinking and light testing.
+    </li>
+
+    <li>
+      <strong>Scope:</strong> First-time onboarding, UI and goal visibility, learning flow and cognitive load, feedback
+      and error recovery, and basic accessibility heuristics (text, contrast, language level, hit-targets).
+    </li>
+
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-         <li><strong>Goal:</strong> Assess how well an educational, browser-based 3D creation tool supports young / non-gamer learners—clear instructions, manageable cognitive load, basic accessibility (text size, contrast, icon clarity), and how easily kids can use it to learn structured thinking and light testing.</li>
-  <li><strong>Focus:</strong> Onboarding clarity · UI & goal visibility · Learning flow & cognitive load · Feedback & error recovery · Accessibility heuristics (text, contrast, language level, hit-targets).</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Onboarding & instructions for kids: first-time clarity for non-gamers, “what do I do now?” guidance, goal and next-step visibility.</li>
-      <li>Learning flow & cognitive load: ordering and pacing of concepts (sequence, repetition, selection, variables); where learners are likely to stall, rush, or feel overwhelmed.</li>
-      <li>Feedback & error recovery: how the tool behaves when blocks are missing, mis-connected, or mis-configured; whether messaging feels encouraging and clear vs. punishing or confusing.</li>
-      <li>Accessibility & readability: text size and contrast, icon clarity, language level, mouse/trackpad targeting, and usability on low-cost / low-spec devices.</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> Session charters built around learner journeys (“make a character speak”, “trigger an animation on click”) · Heuristic checklist (onboarding + basic accessibility, lightly based on XAUR ideas) · Observation notes from a non-gamer / student test subject · Screen capture.</li>
-  <li><strong>Deliverables:</strong> First-time learner journey map · Accessibility/UX findings document with recommendations · Issue list grouped by onboarding, learning clarity, accessibility, and editor usability.</li>
-  <li><strong>Status:</strong> Scheduled — target start date to be confirmed.</li>
-
-  <li><strong>Why this game?</strong> Demonstrates applying games QA practices to a browser-based 3D game-design tool for young users—focusing on onboarding, learning flow, and accessibility for novice creators rather than only on core players.</li>
-<li><strong>Note:</strong> The specific product name is omitted by agreement; findings are shared privately with the development team, and a named public case study will only be published if they’re happy with it.</li>
+        <li>Onboarding &amp; instructions: first-time clarity for non-gamers, “what do I do now?” guidance, goal and next-step visibility.</li>
+        <li>Learning flow &amp; cognitive load: pacing and ordering of concepts (sequence, repetition, selection, variables) and where learners stall, rush, or feel overwhelmed.</li>
+        <li>Feedback &amp; error recovery: behaviour when blocks are missing, mis-connected, or mis-configured, and whether messaging feels encouraging and clear vs punishing or confusing.</li>
+        <li>Accessibility &amp; readability: text size and contrast, icon clarity, language level, mouse/trackpad targeting, and usability on low-cost / low-spec devices.</li>
       </ul>
+    </li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li>
+      <strong>Tools:</strong> Session charters built around learner journeys (“make a character speak”, “trigger an
+      animation on click”), a heuristic checklist for onboarding + basic accessibility (lightly inspired by XAUR
+      ideas), observation notes from a non-gamer / student test subject, and screen capture.
+    </li>
+
+    <li>
+      <strong>Deliverables:</strong> First-time learner journey map, an accessibility / UX findings document with
+      practical recommendations, and an issue list grouped by onboarding, learning clarity, accessibility, and
+      editor usability.
+    </li>
+
+    <li>
+      <strong>Status:</strong> Planned — goals and focus areas defined; execution scheduled as a dedicated educational
+      UX and cognitive load case study.
+    </li>
+
+    <li>
+      <strong>Why this game?</strong> Demonstrates applying games QA practices to a browser-based 3D game-design tool
+      for young users, focusing on onboarding, learning flow, and accessibility for novice creators rather than only
+      on core players.
+    </li>
+
+    <li>
+      <strong>Note:</strong> The specific product name is omitted by agreement; findings are shared privately with the
+      development team, and a named public case study will only be published if they’re happy with it.
+    </li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
  
     <!-- 5: Recompile (COMING SOON) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/rec-poster.png" alt="Recompile poster">
+   <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/rec-poster.png" alt="Recompile poster">
 
-      <h2>6: Multi-Input / Controller Parity QA - <em>Recompile (PC)</em></h2>
+  <h2>6: Multi-Input / Controller Parity QA - <em>Recompile (PC)</em></h2>
+  <ul>
+    <li>
+      <strong>Goal:</strong> Verify controller responsiveness, input-mapping clarity, and parity across two
+      Xbox-compatible controllers on Recompile (PC Game Pass).
+    </li>
+
+    <li>
+      <strong>Scope:</strong> Mapping accuracy, input latency, haptics/rumble behaviour, Xbox prompt/icon alignment,
+      hot-swap and multi-controller handling, and basic rebinding edge cases.
+    </li>
+
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-       <li><strong>Goal:</strong> Verify controller responsiveness, input-mapping clarity, and parity across two Xbox-compatible controllers on PC (Game Pass).</li>
-  <li><strong>Focus:</strong> Mapping accuracy · Input latency · Haptics/rumble behaviour · Prompt/icon alignment (Xbox) · Hot-swap & multi-controller handling · Rebinds & edge cases.</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Latency timing with video/stopwatch overlay (menu vs gameplay)</li>
-      <li>Dead zones, drift, and axis ranges per controller</li>
-      <li>Button/axis parity + on-screen Xbox icons and prompts</li>
-      <li>Hot-swap ownership, join/leave flows, and error prompts</li>
-      <li>Rebind conflicts, persistence, and reset logic</li>
-      <li>Mode changes: inventory/menus vs active gameplay consistency</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> Google Sheets test plan · 2× Diswoe X360 controllers · OBS capture + stopwatch overlay.</li>
-  <li><strong>Deliverables:</strong> Input-response matrix · Latency report (ms table) · Prompt/binding screenshot pack · STAR paragraph.</li>
-  <li><strong>Status:</strong> Scheduled - target start date to be confirmed.</li>
-        
-  <li><strong>Why this game?</strong> Fast, precise movement and frequent mode switches surface input mismatches and latency spikes quickly.</li>
-</ul>
+        <li>Latency timing with video / stopwatch overlay in menus vs active gameplay.</li>
+        <li>Dead zones, drift, and axis ranges on each controller.</li>
+        <li>Button / axis parity plus correct on-screen Xbox icons and prompts.</li>
+        <li>Hot-swap ownership, join / leave flows, and any confusing error prompts.</li>
+        <li>Rebind conflicts, persistence, and reset-to-default behaviour.</li>
+        <li>Mode changes: input consistency between inventory/menus and live gameplay.</li>
+      </ul>
+    </li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li>
+      <strong>Tools:</strong> Google Sheets test plan, 2× Diswoe X360 controllers, OBS capture with stopwatch overlay.
+    </li>
+
+    <li>
+      <strong>Deliverables:</strong> Input-response matrix, a short latency report (ms table), a prompt/binding
+      screenshot pack, and a STAR-style summary of the main findings.
+    </li>
+
+    <li>
+      <strong>Status:</strong> Planned – test plan and tools defined; execution scheduled as a dedicated controller
+      parity case study.
+    </li>
+
+    <li>
+      <strong>Why this game?</strong> Fast, precise movement and frequent mode switches make Recompile a good stress
+      test for input mismatches, latency spikes, and inconsistent prompts.
+    </li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
 
     <!-- 6: Oxenfree (COMING SOON) -->
-  <section markdown="1" class="project-block with-thumb">
+ <section markdown="1" class="project-block with-thumb">
   <img class="thumb" src="assets/img/o-poster.png" alt="Oxenfree poster">
 
   <h2>7: Narrative / Localisation QA - <em>Oxenfree (Mobile)</em></h2>
   <ul>
-    <li><strong>Goal:</strong> Evaluate subtitle timing, readability, tone consistency, and key narrative choices in a branching mobile playthrough, with issues formatted so LQA teams can search and reproduce them easily.</li>
+    <li>
+      <strong>Goal:</strong> Evaluate subtitle timing, readability, tone consistency and key narrative choices in a
+      branching mobile playthrough, with issues logged in an LQA-friendly format.
+    </li>
 
-    <li><strong>Scope:</strong> English source-language subtitles and UI text on Android (Netflix Games build). Audio quality, VO acting, and non-English localisations are out of scope for this pass.</li>
+    <li>
+      <strong>Scope:</strong> English source-language subtitles and UI text on Android (Netflix Games build).
+      Audio quality, VO performance and non-English localisations are out of scope for this pass.
+    </li>
 
-    <li><strong>Focus:</strong> Subtitle timing and pacing · Line breaks and overflow · Speaker tags and attribution · Tone and sensitive phrasing · UI legibility on mobile.</li>
+    <li>
+      <strong>Focus areas:</strong>
+      Subtitle timing and pacing, line breaks and overflow, speaker tags and attribution, tone and sensitive phrasing,
+      and UI legibility on a mobile screen.
+    </li>
 
-    <li><strong>Focus Areas:</strong>
+    <li>
+      <strong>Detailed checks:</strong>
       <ul>
-        <li>Subtitle pacing vs VO during walk-and-talk, radio tuning, and interruptions.</li>
-        <li>Line breaks, truncation, and scrolling captions in busy or fast-paced scenes.</li>
-        <li>Speaker attribution for overlapping lines and off-screen dialogue.</li>
+        <li>Subtitle pacing vs VO during walk-and-talk, radio tuning and interruptible dialogue.</li>
+        <li>Line breaks, truncation and scrolling captions in busy or fast-paced scenes.</li>
+        <li>Clear speaker attribution for overlapping lines and off-screen dialogue.</li>
         <li>Empathy and inclusion in key choices and outcomes, aiming for reflection rather than pure confrontation.</li>
-        <li>Font size, scaling, and contrast on dark scenes, UI overlays, and glitch effects.</li>
+        <li>Font size, scaling and contrast in dark scenes, glitch effects and UI overlays.</li>
       </ul>
     </li>
 
-    <li><strong>Tools:</strong> Google Sheets subtitle timing and localisation log · On-device Android recordings for VO/subtitle sync and branches · OBS / screen recorder (mirrored device) for evidence clips · Windows / Android accessibility tools for font scaling and contrast checks.</li>
+    <li>
+      <strong>Tools:</strong> Google Sheets timing / localisation log, on-device Android recordings for VO/subtitle sync
+      and branch coverage, mirrored capture (OBS / screen recorder) for evidence clips, and Android / OS accessibility
+      tools for font scaling and contrast checks.
+    </li>
 
-    <li><strong>Deliverables:</strong> Subtitle and tone QA report · Accessibility checklist (readability, scaling, contrast) · Localisation consistency log (terms, names, recurring phrases) · LQA-style bug set with full lines, context, and annotated screenshots or short clips.</li>
+    <li>
+      <strong>Deliverables:</strong> Subtitle and tone QA report, an accessibility checklist (readability, scaling,
+      contrast), a localisation consistency log (terms, names, recurring phrases), and an LQA-style bug set with full
+      lines, context and annotated screenshots or short clips.
+    </li>
 
-    <li><strong>Status:</strong> Scheduled narrative / localisation pass, to be run after the current mobile QA case study.</li>
+    <li>
+      <strong>Status:</strong> Planned – narrative / localisation pass scheduled after the current mobile QA case study.
+    </li>
 
-    <li><strong>Why this game?</strong> Oxenfree’s walk-and-talk dialogue, radio tuning, and branching supernatural story make timing, tone, and readability critical, and it is ideal for practising narrative and localisation QA on mobile.</li>
+    <li>
+      <strong>Why this game?</strong> Oxenfree’s walk-and-talk dialogue, radio tuning and branching supernatural story
+      make timing, tone and readability critical, and it’s ideal for practising narrative and localisation QA on mobile.
+    </li>
   </ul>
 
   <p><em>Case study coming soon.</em></p>
 </section>
 
     <!-- 7: PowerWash Simulator 2 (COMING SOON) -->
-    <section markdown="1" class="project-block with-thumb">
-      <img class="thumb" src="assets/img/pws-poster.png" alt="PowerWash Simulator 2 poster">
+   <section markdown="1" class="project-block with-thumb">
+  <img class="thumb" src="assets/img/pws-poster.png" alt="PowerWash Simulator 2 poster">
 
-      <h2>8: Automation Testing - <em>PowerWash Simulator 2 (PC)</em></h2>
+  <h2>8: Automation Testing - <em>PowerWash Simulator 2 (PC)</em></h2>
+  <ul>
+    <li>
+      <strong>Goal:</strong> Show early automation value by building small, repeatable checks that can quickly
+      re-validate core flows and settings after changes.
+    </li>
+
+    <li>
+      <strong>Scope:</strong> Launch → menu → job select smoke path, settings persistence, basic save/load behaviour,
+      simple input macros (keyboard/mouse/controller) and trial image-comparison checks on “clean vs baseline” states.
+    </li>
+
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-       <li><strong>Goal:</strong> Show early automation value via repeatable checks and quick regressions on core flows.</li>
-  <li><strong>Focus:</strong> Launch→menu→job select smoke · Settings persistence · Save/load state · Input macros (KB/mouse/controller) · Simple image comparisons.</li>
-  <li><strong>Focus Areas:</strong>
-    <ul>
-      <li>Smoke path: launch → main menu → job select → start/exit</li>
-      <li>Settings persistence: video/audio/input options across sessions</li>
-      <li>Save/load: clean state creation, resume, and integrity checks</li>
-      <li>Input macros: repeatable KB/mouse/controller sequences for sanity</li>
-      <li>Image-compare trials: baseline vs “clean” state snapshots</li>
-    </ul>
-  </li>
-  <li><strong>Tools:</strong> AutoHotkey/Python (light scripts) · Timed macros · OBS capture · Trial image-compare snapshots.</li>
-  <li><strong>Deliverables:</strong> Smoke scripts · Regression checklist · Short clips · Comparison snapshots.</li>
-  <li><strong>Status:</strong> Scheduled - target start date to be confirmed.</li>
-        
-  <li><strong>Why this game?</strong> Clear, repeatable loops are ideal for simple automation and fast regressions.</li>
-</ul>
+        <li>Smoke path: launch → main menu → job select → start / exit.</li>
+        <li>Settings persistence: video / audio / input options across multiple sessions.</li>
+        <li>Save / load: creating a clean state, resuming correctly and checking basic integrity.</li>
+        <li>Input macros: repeatable keyboard / mouse / controller sequences for sanity checks.</li>
+        <li>Image-compare trials: snapshots for simple “before vs after” cleanliness checks.</li>
+      </ul>
+    </li>
 
-      <p><em>Case study coming soon.</em></p>
-    </section>
+    <li>
+      <strong>Tools:</strong> Light AutoHotkey / Python scripts, timed macros, OBS capture, and trial image-compare
+      snapshots.
+    </li>
 
-      <section markdown="1" class="project-block with-thumb">
+    <li>
+      <strong>Deliverables:</strong> Simple smoke scripts, a small regression checklist, short clips of automated runs,
+      and comparison screenshots.
+    </li>
+
+    <li>
+      <strong>Status:</strong> Planned – automation scope, flows and tooling defined; implementation scheduled as the
+      first dedicated automation case study.
+    </li>
+
+    <li>
+      <strong>Why this game?</strong> Clear, repeatable cleaning loops and stable menus make PowerWash Simulator 2 a
+      good candidate for early automation and fast, low-risk regressions.
+    </li>
+  </ul>
+
+  <p><em>Case study coming soon.</em></p>
+</section>
+<section markdown="1" class="project-block with-thumb">
   <img class="thumb" src="assets/img/p9-poster.png" alt="Indie capstone project poster">
 
   <h2>9: Solo QA Workflow (Capstone) - <em>[TBD Indie PC Game]</em></h2>
   <ul>
-    <li><strong>Goal:</strong> Prove end-to-end QA capability as the only tester on a small indie title, combining everything from Projects 1–8 into one realistic workflow.</li>
+    <li>
+      <strong>Goal:</strong> Prove end-to-end QA capability as the only tester on a small indie title, combining
+      everything from Projects 1–8 into one realistic solo workflow.
+    </li>
 
-    <li><strong>Focus:</strong> Core loop stability · Menus/UI/settings · Save/load behaviour · Early–mid progression · Accessibility/UX · Narrative logic · KBM/controller parity · Config changes · Performance sanity · Peer comparison · Light automation candidates.</li>
+    <li>
+      <strong>Scope:</strong> Core loop stability, menus / UI / settings, save/load behaviour, early–mid progression,
+      accessibility / UX, narrative logic, KBM / controller parity, config changes and basic performance sanity, with
+      light automation candidates identified along the way.
+    </li>
 
-    <li><strong>Focus Areas:</strong>
+    <li>
+      <strong>Focus areas:</strong>
       <ul>
-        <li>Solo smoke path: launch → menu → new/continue → complete one loop → return/quit without crashes or blockers</li>
-        <li>Charter-based exploratory &amp; edge-case sessions across core systems (progression, inventory/shop, abilities, etc.)</li>
-        <li>Risk-based regression passes (mid-project + final) focusing on previously broken or high-impact areas</li>
-        <li>Accessibility/UX: dyslexic &amp; dyscalculic readability, colour contrast, tutorial clarity, feedback cues</li>
-        <li>Narrative &amp; content consistency (if applicable): quest/log alignment, trigger order, critical-path text quality</li>
-        <li>Multi-input &amp; config checks: KBM vs controller parity, prompt correctness, hot-swap, windowed/fullscreen, presets</li>
-        <li>Performance sanity &amp; peer comparison: loading times, stutter/crashes, and UX/quality benchmarked against 1–2 similar indie titles</li>
+        <li>Solo smoke path: launch → menu → new / continue → complete one loop → return / quit without crashes or blockers.</li>
+        <li>Charter-based exploratory and edge-case sessions across core systems (progression, inventory / shop, abilities, etc.).</li>
+        <li>Risk-based regression passes (mid-project and final) targeting previously broken or high-impact areas.</li>
+        <li>Accessibility / UX: dyslexic &amp; dyscalculic readability, colour contrast, tutorial clarity, feedback cues.</li>
+        <li>Narrative / content consistency (if applicable): quest / log alignment, trigger order, critical-path text quality.</li>
+        <li>Multi-input &amp; config checks: KBM vs controller parity, prompt correctness, hot-swap, windowed / fullscreen and presets.</li>
+        <li>Performance sanity &amp; peer comparison: loading times, stutter / crashes, and UX/quality vs 1–2 similar indie titles.</li>
       </ul>
     </li>
 
-    <li><strong>Tools:</strong> Session charters &amp; bug log (Sheets) · Jira board &amp; tickets · OBS capture &amp; screenshots · YouTube (unlisted evidence clips) · Optional AutoHotkey/Python/Postman for simple repeatable checks.</li>
+    <li>
+      <strong>Tools:</strong> Session charters and bug log in Sheets, Jira board and tickets, OBS capture and screenshots,
+      YouTube (unlisted evidence clips), plus optional AutoHotkey / Python / Postman for simple repeatable checks.
+    </li>
 
-    <li><strong>Deliverables:</strong> QA process doc (2–3 pages) · Charter set (3–5) · Bug log with IDs/severity/evidence · Jira ticket examples · Regression checklists · Peer comparison summary · Final QA recommendation (“release-style” verdict).</li>
+    <li>
+      <strong>Deliverables:</strong> A short QA process doc (2–3 pages), 3–5 charters, a bug log with IDs / severity /
+      evidence, Jira ticket examples, regression checklists, a brief peer comparison summary and a final QA
+      recommendation in a “release-style” format.
+    </li>
 
-    <li><strong>Status:</strong> Planned - to be run after Projects 1–8 as portfolio capstone.</li>
+    <li>
+      <strong>Status:</strong> Planned – to be run after Projects 1–8 as the portfolio capstone.
+    </li>
 
-    <li><strong>Why this project?</strong> Acts as the culminating project in the portfolio, showing how I operate as the sole QA on a small indie team and integrate functional, exploratory, regression, accessibility, narrative, input parity, performance, and light automation considerations into one coherent workflow.</li>
+    <li>
+      <strong>Why this project?</strong> Acts as the culmination of the portfolio, showing how I operate as the sole QA
+      on a small indie team and pull together functional, exploratory, regression, accessibility, narrative, input
+      parity, performance and light automation considerations into one coherent workflow.
+    </li>
   </ul>
 
   <p><em>Case study coming soon.</em></p>
