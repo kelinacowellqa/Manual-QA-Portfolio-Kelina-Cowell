@@ -339,50 +339,29 @@ header.hero::after{
 
   <h2>2: Charter-based Exploratory &amp; Edge-Case Testing - <em>Rebel Racing (Mobile)</em></h2>
   <ul>
-    <li>
-      <strong>Goal:</strong> Run a one-week, charter-based exploratory pass on a live F2P mobile racer using daily
-      golden-path smoke tests plus a few targeted edge-case sessions.
-    </li>
+  <p class="card-intro">
+  One-week exploratory / edge-case pass on a live F2P mobile racer, scoped to a single Android device.
+</p>
 
-    <li>
-      <strong>Scope:</strong> Daily launch→race→rewards→hub smoke on a single Android device, with focused checks for
-      interruptions &amp; recovery (calls, alarms, lock screen, app switching, app kill), LTE vs Wi-Fi performance,
-      UI scaling/readability, input responsiveness, and basic Store/Events network surfaces.
-    </li>
+<ul class="card-bullets">
+  <li>
+    <strong>Goal:</strong> Practise charter-based mobile QA with daily golden-path smoke tests plus targeted edge-case sessions.
+  </li>
+  <li>
+    <strong>Focus:</strong> Interruptions &amp; recovery, LTE vs Wi-Fi, UI scaling/readability, input responsiveness,
+    performance &amp; device feel, and basic network / live surfaces (Store &amp; Events).
+  </li>
+  <li>
+    <strong>Interesting result:</strong> Found a post-race rewards soft lock after an OS alarm + app close, plus smaller
+    risks around LTE load delays and HUD readability.
+  </li>
+  <li>
+    <strong>Evidence:</strong> Moto g54 recordings (scrcpy/OBS) and a Google Sheets workbook with charters, bug log
+    and STAR summary.
+  </li>
+</ul>
 
-    <li>
-      <strong>Focus areas:</strong> Rewards loop stability after interruptions, HUD readability under race pressure,
-      LTE results delays vs Wi-Fi, warm-device behaviour on extended runs, and Bluestacks visual-only layout/aspect
-      checks to sanity-check UI scaling.
-    </li>
-
-    <li>
-      <strong>Tools:</strong> Google Sheets workbook (charters, session notes, bug log, STAR summary), on-device
-      Android recordings via scrcpy/OBS, a simple device/network matrix (Wi-Fi vs LTE), and Bluestacks as a
-      visual-only oracle for aspect-ratio/layout checks.
-    </li>
-
-    <li>
-      <strong>Deliverables:</strong> Workbook with charters and bug log, STAR summary for the main soft-lock defect,
-      and short 1080p clips grouped by area (smoke, interruptions, performance, UI scaling, network, Bluestacks).
-    </li>
-
-    <li>
-      <strong>Status:</strong> Completed – found one high-impact rewards soft lock (RR-1) plus smaller UX/performance
-      observations on LTE load times, device warmth and HUD readability.
-    </li>
-
-    <li>
-      <strong>Why this game?</strong> Tight, repeatable races with live-ops UI made Rebel Racing a good sandbox for
-      practising realistic mobile charter design and edge-case testing on a single physical device.
-    </li>
-  </ul>
-
-  <p class="cta">
-    <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/index.html">
-      Read the case study →
-    </a>
-  </p>
+<a href="./rebel-racing/index.html" class="btn">Read the case study →</a>
 </section>
 
     <!-- 3: Sworn (COMING SOON) -->
