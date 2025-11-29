@@ -98,19 +98,19 @@
     <h1>🎮 Rebel Racing - Charter-based Exploratory & Edge-Case Testing (Mobile) - Tested: 17/11/2025 - 22/11/2025</h1>
 
     <!-- Intro -->
-       <h2>Introduction</h2>
-    <p>
-      One-week exploratory / edge-case pass on <em>Rebel Racing</em> (Android – Moto g54 5G, Android 15 @2400×1080/120Hz) focused on daily golden-path smoke, interruptions & recovery, device/network variation, and basic UI scaling/readability. I built a small set of charters, ran daily smoke passes across the week, and logged one high-impact soft-lock defect with full evidence and STAR summary.
-    </p>
+   <h2>Introduction</h2>
+<p>
+  One-week exploratory / edge-case pass on <em>Rebel Racing</em> (Android, Moto g54 5G, Android 15 @2400×1080/120Hz) focused on daily golden-path smoke, interruptions &amp; recovery, device/network variation, and basic UI scaling/readability. I built a small set of charters, ran daily smoke passes across the week, and logged one high-impact soft-lock defect plus a separate low-severity audio issue, both with full evidence and STAR summaries.
+</p>
 
-   <ul>
-<li>
-  <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
-  (alarms, notification shade, Home/Return, LTE force-close), UI scaling &amp; readability in core menus, performance &amp;
-  device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live surfaces (Store/Events,
-  Wi-Fi/LTE toggles), and light Bluestacks visual-only layout/aspect checks (16:9 hub baseline plus Portrait with an
-  attempted (but blocked) 20:9 preset).
-</li>
+<ul>
+  <li>
+    <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
+    (alarms, notification shade, Home/Return, LTE force-close, screen lock/unlock), UI scaling &amp; readability in core
+    menus, performance &amp; device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live
+    surfaces (Store/Events, Wi-Fi/LTE toggles), and light Bluestacks visual-only layout/aspect checks (16:9 hub baseline
+    plus Portrait with an attempted (but blocked) 20:9 preset).
+  </li>
 
   <li>
     <strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi),
@@ -119,13 +119,15 @@
     to keep coverage realistic on a single physical phone.
   </li>
 
- <li>
-  <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
-  soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; LTE felt noticeably
-  slower than Wi-Fi with a results-loading delay; Bluestacks 16:9 (1920×1080) gave a clean hub/layout baseline as a
-  visual-only check, while <strong>Portrait</strong> mode showed stretched background and very small text (visual-only,
-  20:9 preset attempts blocked by the emulator); Android Studio AVD was blocked by Play Store eligibility.
-</li>
+  <li>
+    <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
+    soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; an additional audio issue
+    on the Results/Rewards screen after lock/unlock (RR-37) captured with 1/1 repro and logged as a low-severity backlog
+    item; LTE felt noticeably slower than Wi-Fi with a results-loading delay; Bluestacks 16:9 (1920×1080) gave a clean
+    hub/layout baseline as a visual-only check, while <strong>Portrait</strong> mode showed stretched background and very
+    small text (visual-only, 20:9 preset attempts blocked by the emulator); Android Studio AVD was blocked by Play Store
+    eligibility.
+  </li>
 
   <li>
     <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR,
@@ -186,11 +188,11 @@
     <tr><th>Metric</th><th>Value</th></tr>
   </thead>
   <tbody>
-    <tr><td>Total Bugs Logged</td><td>1</td></tr>
+    <tr><td>Total Bugs Logged</td><td>2</td></tr>
     <tr><td>Critical</td><td>0</td></tr>
     <tr><td>Major</td><td>1</td></tr>
     <tr><td>Minor</td><td>0</td></tr>
-    <tr><td>Repro Consistency</td><td><strong>100%</strong> (across 1 issue)</td></tr>
+    <tr><td>Repro Consistency</td><td><strong>100%</strong></td></tr>
   </tbody>
 </table>
 
@@ -201,15 +203,15 @@
 
 <p><strong>Task:</strong> Keep scope realistic on a single physical device by running daily golden-path smoke checks, then pushing interruptions, UI scaling, performance and network edge cases to see where stability or player experience might break.</p>
 
-<p><strong>Action:</strong> Designed charters from the project brief and senior QA insight, ran daily smoke runs, and executed focused sessions for interruptions, scaling, performance, input and network. Captured short 1080p clips with scrcpy and OBS, and tracked results in a Google Sheets workbook with a clear bug log and STAR summary.</p>
+<p><strong>Action:</strong> Designed charters from the project brief and senior QA insight, ran daily smoke runs, and executed focused sessions for interruptions (alarms, notification shade, Home/Return, screen lock/unlock), scaling, performance, input and network. Captured short 1080p clips with scrcpy and OBS, and tracked results in a Google Sheets workbook with a clear bug log and STAR summary.</p>
 
-<p><strong>Result:</strong> All smoke runs passed with no crashes. I found and documented one soft lock in the post-race rewards flow after an alarm and app close (<strong>RR-1</strong>), captured with full video evidence, plus smaller observations on LTE load delays, warm-device feel, and Bluestacks visual-only behaviour that can inform future testing and device coverage.</p>
+<p><strong>Result:</strong> All smoke runs passed with no crashes. I found and documented one soft lock in the post-race rewards flow after an alarm and app close (<strong>RR-1</strong>), plus a separate low-severity audio issue where background music speeds up after lock/unlock on the Results/Rewards screen (<strong>RR-37</strong>), both captured with full video evidence. I also recorded smaller observations on LTE load delays, warm-device feel, and Bluestacks visual-only behaviour that can inform future testing and device coverage.</p>
 
     <hr>
 <h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
 
 <p class="method-note">
-  During this project I didn’t guess the scope in isolation, I treated it like a mini live-ops assignment and shaped it around advice from senior QA leads.
+  During this project I did not guess the scope in isolation, I treated it like a mini live-ops assignment and shaped it around advice from senior QA leads.
 </p>
 
 <p class="method-note">
@@ -234,18 +236,19 @@
   (Founder, AlkoTech Labs, ex Ubisoft QA Lead) then helped me iterate the scope so it matched how mobile QA
   is actually run day to day. His feedback led me to define clear performance anchors (hub, pre-race, race
   start, mid-race, results) instead of vague “seems fine” checks; treat interruptions as a first-class surface
-  covering lock screen, app switching, app kill and recovery; and turn battery / heat / multi-touch stress
-  into dedicated charters rather than random one-off experiments. Because Rebel Racing blocks standard Android
-  Studio emulators on the Play Store, he also recommended using Bluestacks as a visual-only oracle for odd
-  aspect ratios and layout stretch while keeping all real testing and bug reproduction on my physical Moto g54.
-  That combination turned my original “nice to have” ideas into a concrete device and network approach that
-  looks like a small slice of a real mobile QA lab rather than a student project.
+  covering lock screen, app switching, app kill and recovery, and notification shade; and turn battery, heat and
+  multi-touch stress into dedicated charters rather than random one-off experiments. Because Rebel Racing blocks
+  standard Android Studio emulators on the Play Store, he also recommended using Bluestacks as a visual-only
+  oracle for odd aspect ratios and layout stretch while keeping all real testing and bug reproduction on my
+  physical Moto g54. That combination turned my original “nice to have” ideas into a concrete device and network
+  approach that looks like a small slice of a real mobile QA lab rather than a student project.
 </p>
 
 <p class="method-note">
-  Their insight directly shaped the final list of charters, how I recorded device and network context, how I
-  wrote and prioritised bug reports, and the STAR summary for this case study, so the project reads more like
-  a realistic live mobile QA engagement than a purely academic exercise.
+  Their insight directly shaped the final list of charters, including the extra lock/unlock interruption runs
+  that revealed the audio issue on the Results/Rewards screen (RR-37). It also shaped how I recorded device and
+  network context, how I wrote and prioritised bug reports, and the STAR summary for this case study, so the
+  project reads more like a realistic live mobile QA engagement than a purely academic exercise.
 </p>
 
 <table class="table-insight">
@@ -283,7 +286,8 @@
         <a href="./media/nathan1.png" target="_blank" rel="noopener">
           <img class="thumb-sm" src="./media/nathan1.png"
                alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
-          <a href="./media/nathan2.png" target="_blank" rel="noopener">
+        </a>
+        <a href="./media/nathan2.png" target="_blank" rel="noopener">
           <img class="thumb-sm" src="./media/nathan2.png"
                alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
         </a>
@@ -299,14 +303,15 @@
       </td>
       <td>
         Iterate the scope so it matches real mobile QA: define performance anchors, treat
-        interruptions and recovery as their own surface, structure battery / heat / multi-touch
-        stress instead of doing random “torture tests”, and use emulators as visual oracles only
-        when the store blocks standard Android Studio emulators.
+        interruptions and recovery as their own surface (including screen lock/unlock and audio
+        recovery), structure battery / heat / multi-touch stress instead of doing random “torture
+        tests”, and use emulators as visual oracles only when the store blocks standard Android
+        Studio emulators.
       </td>
       <td>
         <ul>
           <li>Defined <strong>performance anchors</strong> at hub, pre-race, race start, mid-race and results, and used them in my charters instead of vague “seems fine” checks.</li>
-          <li>Created dedicated charters for <strong>interruptions &amp; recovery</strong> (lock screen, app switch, app kill and return to race / hub).</li>
+          <li>Created dedicated charters for <strong>interruptions &amp; recovery</strong> (notification shade, Home/Return, lock screen and unlock, app switch, app kill and return to race / hub), including the extra lock/unlock runs that later revealed the Rewards BGM tempo issue (<strong>RR-37</strong>).</li>
           <li>Turned <strong>battery / heat</strong> and <strong>multi-touch stress</strong> into structured sessions rather than ad-hoc “let’s see what happens” experiments.</li>
           <li>Because Rebel Racing blocks standard Android Studio emulators on the Play Store, used <strong>Bluestacks as a visual-only oracle</strong> for odd aspect ratios and layout stretch, keeping all real testing and bug reproduction on my physical Moto g54.</li>
           <li>Kept scope realistic for a solo tester by limiting device coverage and focusing the workbook on <strong>evidence and outcomes</strong> rather than padding it with low-value checks.</li>
@@ -453,8 +458,9 @@
 <p class="method-note">
   All planned charters and daily smoke runs were completed on the Moto g54 with no crashes. The build
   stayed stable across the week, but one high-impact soft lock in the post-race rewards flow was found
-  and logged with full evidence. I also captured smaller observations around LTE load delays, warm-device
-  performance feel, and UI scaling in Bluestacks.
+  and logged with full evidence, along with a separate low-severity audio issue where background music
+  speeds up after lock/unlock on the Results/Rewards screen. I also captured smaller observations around
+  LTE load delays, warm-device performance feel, and UI scaling in Bluestacks.
 </p>
     
    <h3>📁 Jira Board Screenshot - Overview</h3>
@@ -513,7 +519,7 @@
 <!-- safety: break any float/margin-collapsing before next section -->
 <div style="clear:both; padding-top:8px;"></div>
 
-  <h3>🐞 Bugs - Summary + Videos</h3>
+ <h3>🐞 Bugs - Summary + Videos</h3>
 <table>
   <thead>
     <tr>
@@ -534,7 +540,23 @@
         <a href="https://www.youtube.com/watch?v=GTT35TmskNI" target="_blank" rel="noopener">
           <img
             src="https://img.youtube.com/vi/GTT35TmskNI/hqdefault.jpg"
-            alt="RR-1 – Rewards Continue unresponsive after alarm + app close"
+            alt="RR-1 - Rewards Continue unresponsive after alarm + app close"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>RR-37</td>
+      <td>[Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen</td>
+      <td>Low</td>
+      <td>1/1</td>
+      <td>
+        <a href="https://youtu.be/bvM8tPTJAqs" target="_blank" rel="noopener">
+          <img
+            src="https://img.youtube.com/vi/bvM8tPTJAqs/hqdefault.jpg"
+            alt="RR-37 - BGM tempo increases after lock/unlock on race results screen"
             width="140"
             loading="lazy">
         </a>
@@ -547,7 +569,7 @@
   <summary><span class="details-btn">Show inline video</span></summary>
   <p>
     <em>
-      If you’re viewing this on github.com, embeds may not display. Use the thumbnail/link above
+      If you are viewing this on github.com, embeds may not display. Use the thumbnails/links above
       or open this page on the published site (GitHub Pages) to watch inline.
     </em>
   </p>
@@ -555,7 +577,18 @@
   <div class="embed">
     <iframe
       src="https://www.youtube.com/embed/GTT35TmskNI?modestbranding=1&rel=0"
-      title="RR-1 — [Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close"
+      title="RR-1 - [Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="embed">
+    <iframe
+      src="https://www.youtube.com/embed/bvM8tPTJAqs?modestbranding=1&rel=0"
+      title="RR-37 - [Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen"
       loading="lazy"
       referrerpolicy="strict-origin-when-cross-origin"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -564,69 +597,10 @@
   </div>
 </details>
 
-<h3>🔍 Other observations (non-blocking)</h3>
-<p class="method-note">
-  Smaller UX and performance findings taken from two key runs: an extended LTE race/results run on the
-  Moto g54, and a Bluestacks Portrait visual-only check. These didn’t meet the bar for full bug tickets
-  but are still useful for future tuning or device coverage.
-</p>
+<h3>🔍 Other observations (non-blocking)</h3> <p class="method-note"> Smaller UX and performance findings taken from an extended LTE race/results run on the
+  Moto g54 and a Bluestacks Portrait visual-only check. These did not meet the bar for full
+  bug tickets but are still useful for future tuning or device coverage. </p> <table> <thead> <tr> <th>ID</th> <th>Observation</th> <th>Category</th> <th>Evidence</th> </tr> </thead> <tbody> <tr> <td>OBS-01</td> <td>[Android][Network][Results] Longer load spinner before Rewards on LTE compared to Wi-Fi</td> <td>Performance / UX</td> <td> <a href="https://www.youtube.com/watch?v=8wVeGDqdJs8" target="_blank" rel="noopener"> <img src="https://img.youtube.com/vi/8wVeGDqdJs8/hqdefault.jpg" alt="OBS-01 – LTE results delay vs Wi-Fi" width="140" loading="lazy"> </a> </td> </tr> <tr> <td>OBS-02</td> <td>[Android][Device feel] Moto g54 felt warm but stable during the extended LTE run (same session as OBS-01)</td> <td>Device feel</td> <td> <br> <small>Same run as OBS-01; device warmth noted during this session.</small> </td> </tr> <tr> <td>OBS-03</td> <td> [Bluestacks][Visual-only] Portrait mode: background and menu bar backgrounds stretched; buttons/text very small (hard to read). Functional taps OK for this sweep. </td> <td>Visual-only sanity check</td> <td> <a href="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" target="_blank" rel="noopener"> <img src="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" alt="OBS-03 – Bluestacks Portrait mode showing stretched visuals and tiny text" width="140" loading="lazy"> </a> </td> </tr> </tbody> </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Observation</th>
-      <th>Category</th>
-      <th>Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>OBS-01</td>
-      <td>[Android][Network][Results] Longer load spinner before Rewards on LTE compared to Wi-Fi</td>
-      <td>Performance / UX</td>
-      <td>
-        <a href="https://www.youtube.com/watch?v=8wVeGDqdJs8" target="_blank" rel="noopener">
-          <img
-            src="https://img.youtube.com/vi/8wVeGDqdJs8/hqdefault.jpg"
-            alt="OBS-01 – LTE results delay vs Wi-Fi"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <tr>
-      <td>OBS-02</td>
-      <td>[Android][Device feel] Moto g54 felt warm but stable during the extended LTE run (same session as OBS-01)</td>
-      <td>Device feel</td>
-      <td>
-        <br>
-        <small>Same run as OBS-01; device warmth noted during this session.</small>
-      </td>
-    </tr>
-
-    <tr>
-      <td>OBS-03</td>
-      <td>
-        [Bluestacks][Visual-only] Portrait mode: background and menu bar backgrounds stretched; buttons/text very small
-        (hard to read). Functional taps OK for this sweep.
-      </td>
-      <td>Visual-only sanity check</td>
-      <td>
-        <a href="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png"
-           target="_blank" rel="noopener">
-          <img
-            src="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png"
-            alt="OBS-03 – Bluestacks Portrait mode showing stretched visuals and tiny text"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-    
 <!-- break margin-collapsing + clear any floats before the next section -->
 <div style="clear:both; padding-top:8px;"></div>
 
