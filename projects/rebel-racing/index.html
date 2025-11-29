@@ -614,14 +614,16 @@
 
   <li>
     Logged <strong>one major defect</strong> (RR-1 Rewards soft lock) with clear 1080p evidence and
-    a full bug entry, plus a set of smaller UX and performance observations for future
-    device / network coverage.
+    a full bug entry, plus <strong>one low-severity audio defect</strong> (RR-37 BGM tempo increase after
+    lock/unlock on the Results/Rewards screen). Captured additional smaller UX and performance
+    observations for future device and network coverage.
   </li>
 
   <li>
     Confirmed the core golden path (launch → race → rewards → hub) stayed stable on
-    baseline Wi-Fi and across most interruption scenarios, with LTE showing slower results
-    loading compared to Wi-Fi. The exception is the RR-1 alarm + app close case described below.
+    baseline Wi-Fi and across most interruption scenarios, including lock/unlock on race
+    and hub. LTE showed slower results loading compared to Wi-Fi. The main exception is
+    the RR-1 alarm plus app close case described below.
   </li>
 
   <li>
@@ -634,20 +636,27 @@
   </li>
 
   <li>
-    <strong>LTE results delay:</strong> on LTE, the results screen shows a noticeably longer loading
-    spinner before rewards appear compared to the much quicker transition on Wi-Fi. This
-    did not reproduce as a hard failure but is worth tracking as a performance / UX risk.
+    <strong>Rewards audio tempo issue (RR-37):</strong> when locking the device on the Results/Rewards
+    screen and then unlocking back into the game, the background music resumes at a noticeably
+    faster tempo and feels off beat compared to pre-lock playback. UI and progression are not
+    impacted, so this is logged as a low-severity audio defect rather than a blocking issue.
   </li>
 
   <li>
-  <strong>Warm device &amp; scaling notes:</strong> extended play on the Moto g54 made the device feel
-  warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks Portrait mode,
-  the background and menu bar backgrounds appeared stretched and buttons/text were very small (hard to read).
-  Attempts to force a 20:9 preset were blocked by the emulator, so checks stayed visual-only.
-</li>
+    <strong>LTE results delay:</strong> on LTE, the results screen shows a noticeably longer loading
+    spinner before rewards appear compared to the much quicker transition on Wi-Fi. This
+    did not reproduce as a hard failure but is worth tracking as a performance and UX risk.
+  </li>
 
   <li>
-    <strong>Performance &amp; device feel:</strong> the Moto g54 stayed stable across all runs with no
+    <strong>Warm device and scaling notes:</strong> extended play on the Moto g54 made the device feel
+    warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks Portrait mode,
+    the background and menu bar backgrounds appeared stretched and buttons and text were very small (hard to read).
+    Attempts to force a 20:9 preset were blocked by the emulator, so checks stayed visual-only.
+  </li>
+
+  <li>
+    <strong>Performance and device feel:</strong> the Moto g54 stayed stable across all runs with no
     visible stutters or visual hitches during races. LTE produced slower results loading
     compared to Wi-Fi but did not cause crashes or hard failures.
   </li>
@@ -793,8 +802,8 @@
   </li>
   <li>
     <strong>Evidence must be fast to review.</strong>
-    Short 10–30s clips of each run told the story better than long recordings and made RR-1
-    (Rewards soft lock) immediately clear.
+    Short 10–30 second clips of each run told the story better than long recordings and made RR-1
+    (Rewards soft lock) and RR-37 (Rewards BGM tempo issue after lock/unlock) immediately clear during review.
   </li>
   <li>
     <strong>Baseline numbers matter.</strong>
@@ -816,6 +825,12 @@
     why small unboxed HUD text or pale UI labels are real accessibility risks.
   </li>
   <li>
+    <strong>Interruptions are more than just “does it crash”.</strong>
+    Testing alarms, notification shade, Home/Return and screen lock/unlock showed that even when the flow
+    survives, small audio issues can still slip through, so it is worth treating audio recovery as part of
+    the interruption surface.
+  </li>
+  <li>
     <strong>Keep admin light.</strong>
     The project worked best when the workbook supported the testing, not the other way round. Clear tables,
     simple IDs and a single source of truth kept everything easy to maintain.
@@ -827,22 +842,24 @@
 <h2 id="conclusion">🔚 Conclusion</h2>
 
 <p>
-  Exploratory and edge-case pass complete on <em>Rebel Racing</em> (Android – Moto g54 5G). I kept device coverage
+  Exploratory and edge-case pass complete on <em>Rebel Racing</em> (Android, Moto g54 5G). I kept device coverage
   realistic on a single phone, ran daily golden-path smoke checks, pushed interruptions, network changes and basic
-  scaling, and documented one high-impact rewards soft lock with clear repro and short 1080p evidence.
+  scaling, and documented one high-impact rewards soft lock plus one low-severity audio issue, both with clear repro
+  and short 1080p evidence.
 </p>
 
 <ul>
   <li>
     <strong>Coverage delivered:</strong> launch → hub → race → rewards golden path, daily smoke runs, alarms and
-    notification interruptions, Home and app-close behaviour, LTE and Wi-Fi switching, light performance and
-    device-feel checks, UI scaling and readability, a visual-only Bluestacks layout/aspect check, and a peer-style
-    UX benchmark against Asphalt 9.
+    notification interruptions, Home, app-close behaviour and screen lock/unlock, LTE and Wi-Fi switching, light
+    performance and device-feel checks, UI scaling and readability, a visual-only Bluestacks layout/aspect check,
+    and a peer-style UX benchmark against Asphalt 9.
   </li>
   <li>
     <strong>Highest-impact finding:</strong> rewards soft lock after an alarm and app close that leaves the
-    <em>Continue</em> button unresponsive and effectively forces a kill / pause of the app (RR-1), plus smaller UX
-    risks around LTE load delays and HUD readability.
+    <em>Continue</em> button unresponsive and effectively forces a kill or pause of the app (RR-1), plus a separate
+    low-severity audio issue where rewards BGM speeds up after lock/unlock (RR-37), and smaller UX risks around LTE
+    load delays and HUD readability.
   </li>
   <li>
     <strong>Evidence maturity:</strong> every key finding is backed by short clips, workbook entries, and a simple
@@ -851,7 +868,7 @@
 </ul>
 
 <p>
-  <strong>Up next:</strong> I’m moving on to a one-week <em>Regression Testing</em> project on <em>Sworn</em> (PC).
+  <strong>Up next:</strong> I am moving on to a one week <em>Regression Testing</em> project on <em>Sworn</em> (PC).
   This one is focused on verifying recent fixes against patch notes, checking save/load safety, session start/quit
   flows, stamina and quest systems, UI readability, and catching any side effects introduced by the latest update.
 </p>
