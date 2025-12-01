@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rebel Racing - Charter-based Exploratory & Edge-Case Testing Case Study</title>
+
+  <!-- global styles -->
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+  <!-- page-scoped spacing fix (goes AFTER site.css) -->
+  <style>
+    body h2{ margin:32px 0 12px !important; }
+    body hr{ margin:28px 0 !important; }
+    body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+    body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+    body li{ line-height:1.7 !important; margin:8px 0 !important; }
+    details + *{ margin-top:16px !important; }
+    .embed{ margin:12px 0 18px !important; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rebel Racing - Charter-based Exploratory & Edge-Case Testing Case Study</title>
+  <link rel="stylesheet" href="../../assets/css/site.css?v=4">
+
+  <!-- Page-scoped helpers for this case study only -->
+  <style>
+    /* simple 3-up grid used in this page */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0}
+    .grid-3 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    /* tables in this page adopt the “metrics” look */
+    table{width:100%;border-collapse:collapse;background:#0f1215;border:1px solid rgba(255,255,255,.08);margin:12px 0;border-radius:8px}
+    thead th{background:rgba(0,255,240,.08);color:#00fff0;text-align:left;font-weight:700;font-size:14px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+    tbody td, tbody th{color:#cfd6dd;padding:12px 14px;vertical-align:top}
+    thead th+th, tbody td+td, tbody th+td{border-left:1px solid rgba(255,255,255,.08)}
+    tbody tr+tr td, tbody tr+tr th{border-top:1px solid rgba(255,255,255,.08)}
+
+    /* comparison table thumbs */
+    .table-compare td:last-child{width:190px}
+    .table-compare td:last-child a,
+    .table-compare td:last-child img{display:block}
+    .table-compare td:last-child img{
+      width:160px;height:90px;object-fit:cover;border-radius:10px;
+      border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(0,0,0,.35)
+    }
+    .table-compare td:last-child img.square{width:120px;height:120px}
+
+    /* inline video toggles */
+    .details-btn{display:inline-block;padding:12px 18px;border-radius:12px;background:#0d1117;border:1px solid #2b2f36;color:#14b8a6;font-weight:700;letter-spacing:.2px;box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;transition:background .15s ease,color .15s ease}
+    .details-btn:hover{background:#14b8a6;color:#0b0f14}
+    details summary{list-style:none}
+    details summary::-webkit-details-marker{display:none}
+    .details-btn::before{content:"▶ "}
+    details[open] .details-btn::before{content:"▼ "}
+    .embed{position:relative;padding-top:56.25%;margin:12px 0}
+    .embed>iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* small helper */
+    .method-note{ margin:-6px 0 10px; font-size:.95rem; color:#a9b3bd; opacity:.9; }
+    .cta-row .cta-btn { margin: 6px 8px; }
+    @media (max-width:560px){ .cta-row .cta-btn{display:block;margin:8px auto;width:fit-content} }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+  /* Normalize .method-note to match body text without breaking JS hooks */
+  .method-note,
+  .method-note a {
+    color: inherit !important;     /* same white as the body */
+    font-size: inherit !important; /* same size as the body */
+    line-height: inherit !important;
+    opacity: 1 !important;
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- Hero -->
+  <header class="hero">
+  <img src="./media/RR_header.jpg" alt="Rebel Racing Banner">
+</header>
+    
+       <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <h1>🎮 Rebel Racing - Charter-based Exploratory & Edge-Case Testing (Mobile) - Tested: 17/11/2025 - 22/11/2025</h1>
+
+    <!-- Intro -->
+   <h2>Introduction</h2>
+<p>
+  One-week exploratory / edge-case pass on <em>Rebel Racing</em> (Android, Moto g54 5G, Android 15 @2400×1080/120Hz) focused on daily golden-path smoke, interruptions &amp; recovery, device/network variation, and basic UI scaling/readability. I built a small set of charters, ran daily smoke passes across the week, and logged one high-impact soft-lock defect plus a separate low-severity audio issue, both with full evidence and STAR summaries.
+</p>
+
+<ul>
+  <li>
+    <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
+    (alarms, notification shade, Home/Return, LTE force-close, screen lock/unlock), UI scaling &amp; readability in core
+    menus, performance &amp; device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live
+    surfaces (Store/Events, Wi-Fi/LTE toggles), and light Bluestacks visual-only layout/aspect checks (16:9 hub baseline
+    plus Portrait with an attempted (but blocked) 20:9 preset).
+  </li>
+
+  <li>
+    <strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi),
+    time-boxed to ~20–45 minutes each, with one smoke pass per day plus focused charters layered on top. High-impact issues
+    were captured with short 1080p videos, clear repro steps, device/network context, and a simple device/network matrix
+    to keep coverage realistic on a single physical phone.
+  </li>
+
+  <li>
+    <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
+    soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; an additional audio issue
+    on the Results/Rewards screen after lock/unlock (RR-37) captured with 1/1 repro and logged as a low-severity backlog
+    item; LTE felt noticeably slower than Wi-Fi with a results-loading delay; Bluestacks 16:9 (1920×1080) gave a clean
+    hub/layout baseline as a visual-only check, while <strong>Portrait</strong> mode showed stretched background and very
+    small text (visual-only, 20:9 preset attempts blocked by the emulator); Android Studio AVD was blocked by Play Store
+    eligibility.
+  </li>
+
+  <li>
+    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR,
+    daily smoke, device matrix, glossary), YouTube playlists grouped by area (smoke, interruptions, UI scaling, performance,
+    input, network, Bluestacks), and Jira-style bug/STAR summaries suitable for review.
+  </li>
+</ul>
+
+      <table>
+      <thead>
+        <tr><th>Studio</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hutch Games</td>
+          <td>Android (Moto g54 5G - Android 15)</td>
+          <td>Exploratory &amp; edge-case: smoke runs • interruptions &amp; recovery • UI scaling/readability • performance &amp; device feel • input responsiveness • network &amp; live surfaces</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Three-up feature grid -->
+  <div class="grid-3">
+  <section class="card">
+    <h3>🎯 Goal</h3>
+    <p>Show how I approach exploratory and edge case testing on a live mobile F2P racer by scoping realistic charters, running daily smoke checks, and capturing any high impact issues with clear repro steps, evidence, and context.</p>
+  </section>
+
+   <section class="card">
+  <h3>🧭 Focus Areas</h3>
+ <ul>
+  <li>Daily smoke runs</li>
+  <li>Interruptions and recovery</li>
+  <li>UI scaling and readability</li>
+  <li>Input responsiveness in menus and races</li>
+  <li>Performance and device feel on WiFi, warm device, and LTE</li>
+  <li>Network and live surfaces in Store and Events</li>
+  <li>Visual-only layout/aspect checks in Bluestacks (16:9 hub baseline, Portrait stretch, 20:9 preset blocked)</li>
+</ul>
+</section>
+    
+  <section class="card">
+  <h3>📄 Deliverables</h3>
+  <ul>
+    <li>Exploratory and edge case workbook (Google Sheets)</li>
+    <li>Bug log and STAR summary (PDF export)</li>
+    <li>Evidence videos grouped by area (YouTube playlists)</li>
+    <li>Jira style bug and summary examples</li>
+    <li>Networking and applied insight notes from senior QA leads</li>
+  </ul>
+</section>
+</div>
+    <!-- /grid -->
+<hr>
+<h2 id="metrics">📊 Metrics</h2>
+<table>
+  <thead>
+    <tr><th>Metric</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Total Bugs Logged</td><td>2</td></tr>
+    <tr><td>Critical</td><td>0</td></tr>
+    <tr><td>Major</td><td>1</td></tr>
+    <tr><td>Minor</td><td>1</td></tr>
+    <tr><td>Repro Consistency</td><td><strong>100%</strong></td></tr>
+  </tbody>
+</table>
+
+    <hr>
+<h2 id="star-summary">⭐ STAR SUMMARY - Rebel Racing QA (Android)</h2>
+
+<p><strong>Situation:</strong> One week of exploratory and edge-case testing on <strong>Rebel Racing</strong> on a Moto g54 5G running Android 15, build 27.01.18975, captured via scrcpy at 1080p on Wi-Fi and LTE.</p>
+
+<p><strong>Task:</strong> Keep scope realistic on a single physical device by running daily golden-path smoke checks, then pushing interruptions, UI scaling, performance and network edge cases to see where stability or player experience might break.</p>
+
+<p><strong>Action:</strong> Designed charters from the project brief and senior QA insight, ran daily smoke runs, and executed focused sessions for interruptions (alarms, notification shade, Home/Return, screen lock/unlock), scaling, performance, input and network. Captured short 1080p clips with scrcpy and OBS, and tracked results in a Google Sheets workbook with a clear bug log and STAR summary.</p>
+
+<p><strong>Result:</strong> All smoke runs passed with no crashes. I found and documented one soft lock in the post-race rewards flow after an alarm and app close (<strong>RR-1</strong>), plus a separate low-severity audio issue where background music speeds up after lock/unlock on the Results/Rewards screen (<strong>RR-37</strong>), both captured with full video evidence. I also recorded smaller observations on LTE load delays, warm-device feel, and Bluestacks visual-only behaviour that can inform future testing and device coverage.</p>
+
+    <hr>
+<h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
+
+<p class="method-note">
+  During this project I did not guess the scope in isolation, I treated it like a mini live-ops assignment and shaped it around advice from senior QA leads.
+</p>
+
+<p class="method-note">
+  <a href="https://www.linkedin.com/in/nathan-glatus/" target="_blank" rel="noopener">
+    <strong>Nathan Glatus</strong>
+  </a>
+  (ex Senior QA / Game Integrity Analyst, Fortnite, Epic Games) helped me set the initial scope. His advice
+  was to treat Rebel Racing as what it is: a live mobile F2P racer, not a lab toy for every possible edge
+  case. That translated into a small set of focused charters rather than a giant “test everything” list:
+  daily golden-path smoke on a single physical device, input and handling tiers, collisions / exits and race
+  flow, and UI scaling and key live surfaces (store, events, hub). He also pushed me to keep runs to realistic
+  45–60 minute sessions with clear exit criteria, and to write tighter bug reports with strong oracles, clear
+  summaries and bundled evidence (video, device/build metadata, repro steps, repro rate) instead of vague
+  “it feels off” notes. His framing around realistic coverage on an approved device list is why this case
+  study is scoped to one main phone but documented in a way that could scale to a real QA team.
+</p>
+
+<p class="method-note">
+  <a href="https://www.linkedin.com/in/raduposoi/" target="_blank" rel="noopener">
+    <strong>Radu Posoi</strong>
+  </a>
+  (Founder, AlkoTech Labs, ex Ubisoft QA Lead) then helped me iterate the scope so it matched how mobile QA
+  is actually run day to day. His feedback led me to define clear performance anchors (hub, pre-race, race
+  start, mid-race, results) instead of vague “seems fine” checks; treat interruptions as a first-class surface
+  covering lock screen, app switching, app kill and recovery, and notification shade; and turn battery, heat and
+  multi-touch stress into dedicated charters rather than random one-off experiments. Because Rebel Racing blocks
+  standard Android Studio emulators on the Play Store, he also recommended using Bluestacks as a visual-only
+  oracle for odd aspect ratios and layout stretch while keeping all real testing and bug reproduction on my
+  physical Moto g54. That combination turned my original “nice to have” ideas into a concrete device and network
+  approach that looks like a small slice of a real mobile QA lab rather than a student project.
+</p>
+
+<p class="method-note">
+  Their insight directly shaped the final list of charters, including the extra lock/unlock interruption runs
+  that revealed the audio issue on the Results/Rewards screen (RR-37). It also shaped how I recorded device and
+  network context, how I wrote and prioritised bug reports, and the STAR summary for this case study, so the
+  project reads more like a realistic live mobile QA engagement than a purely academic exercise.
+</p>
+
+<table class="table-insight">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Key takeaway</th>
+      <th>How I applied it in this project</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- Nathan -->
+    <tr>
+      <td>
+        <strong>Nathan Glatus</strong><br>
+        ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)
+      </td>
+      <td>
+        Treat Rebel Racing as a live mobile F2P racer and anchor testing in a small set of
+        high-value surfaces instead of trying to “test everything”. Prioritise daily golden-path
+        stability, input and handling tiers, collisions / exits, and UI scaling / live surfaces, and
+        back this with clear charters and strong evidence bundles.
+      </td>
+      <td>
+        <ul>
+          <li>Scoped the week around <strong>daily golden-path smoke runs</strong> from launch → hub → race → rewards on one physical device.</li>
+          <li>Wrote focused charters for <strong>input &amp; handling tiers</strong>, <strong>collisions / exits</strong>, and <strong>UI scaling + key live surfaces</strong> (hub, store, events).</li>
+          <li>Structured each session as a realistic <strong>45–60 minute run</strong> with clear exit criteria instead of open-ended “play until bored” testing.</li>
+          <li>Improved bug reports by using <strong>clear titles, strong oracles and bundled evidence</strong> (video, device/build context, repro steps, repro rate) instead of vague “feels off” notes.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="./media/nathan1.png" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="./media/nathan1.png"
+               alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
+        </a>
+        <a href="./media/nathan2.png" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="./media/nathan2.png"
+               alt="LinkedIn conversation with Nathan Glatus shaping Rebel Racing scope" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+    <!-- Radu -->
+    <tr>
+      <td>
+        <strong>Radu Posoi</strong><br>
+        Founder, AlkoTech Labs (ex Ubisoft QA Lead)
+      </td>
+      <td>
+        Iterate the scope so it matches real mobile QA: define performance anchors, treat
+        interruptions and recovery as their own surface (including screen lock/unlock and audio
+        recovery), structure battery / heat / multi-touch stress instead of doing random “torture
+        tests”, and use emulators as visual oracles only when the store blocks standard Android
+        Studio emulators.
+      </td>
+      <td>
+        <ul>
+          <li>Defined <strong>performance anchors</strong> at hub, pre-race, race start, mid-race and results, and used them in my charters instead of vague “seems fine” checks.</li>
+          <li>Created dedicated charters for <strong>interruptions &amp; recovery</strong> (notification shade, Home/Return, lock screen and unlock, app switch, app kill and return to race / hub), including the extra lock/unlock runs that later revealed the Rewards BGM tempo issue (<strong>RR-37</strong>).</li>
+          <li>Turned <strong>battery / heat</strong> and <strong>multi-touch stress</strong> into structured sessions rather than ad-hoc “let’s see what happens” experiments.</li>
+          <li>Because Rebel Racing blocks standard Android Studio emulators on the Play Store, used <strong>Bluestacks as a visual-only oracle</strong> for odd aspect ratios and layout stretch, keeping all real testing and bug reproduction on my physical Moto g54.</li>
+          <li>Kept scope realistic for a solo tester by limiting device coverage and focusing the workbook on <strong>evidence and outcomes</strong> rather than padding it with low-value checks.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="./media/radu1.png" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="./media/radu1.png"
+               alt="LinkedIn conversation with Radu Posoi about realistic solo QA scope" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+    
+    <hr>
+   <h2 id="jira-courses">📚 JIRA Courses &amp; Application</h2>
+
+<p class="method-note">
+  After my first case study (Battletoads) where I used two beginner Jira courses to learn the basics,
+  I wanted this project to focus more on how work is modelled and organised in Jira day to day. For
+  Rebel Racing I took two short Coursera projects that go deeper into user stories and simple Scrum setups.
+</p>
+
+<p class="method-note">
+  <strong>Courses completed for this project:</strong>
+</p>
+
+<ul class="method-note">
+  <li>
+    <a href="https://www.coursera.org/projects/create-user-stories-in-jira" target="_blank" rel="noopener">
+      <strong>Create User Stories in Jira (Coursera)</strong>
+    </a> –
+    Practised breaking work into epics, user stories and sub-tasks with clear acceptance criteria. This helped
+    me think about Rebel Racing work in terms of “player goals + expected behaviour” instead of just a list of tests.
+  </li>
+  <li>
+    <a href="https://www.coursera.org/projects/how-to-create-a-jira-scrum-project" target="_blank" rel="noopener">
+      <strong>How to Create a Jira Scrum Project (Coursera)</strong>
+    </a> –
+    Set up a basic Scrum project from scratch with a backlog, a simple sprint board, and clear status
+    transitions (To&nbsp;Do → In&nbsp;Progress → Blocked → Done). Reinforced keeping the workflow lightweight and readable.
+  </li>
+</ul>
+
+<p class="method-note">
+  <strong>Practice in this project:</strong>
+</p>
+
+<ul class="method-note">
+  <li>
+    Framed test ideas and charters as short “stories” (e.g. interruptions, LTE vs Wi-Fi, Bluestacks visual
+    check) with a clear player goal and expected outcome, then linked the RR-1 and RR-37 defects back to the relevant charter.
+  </li>
+  <li>
+    Used a simple Jira-style workflow (To&nbsp;Do / In&nbsp;Progress / Done / Deferred) so each issue told a
+    clear status story without extra admin.
+  </li>
+  <li>
+    Logged RR-1 and RR-37 and key observations with consistent titles, short descriptions, and direct links to 1080p
+    evidence clips, mirroring how they’d sit on a real Jira board.
+  </li>
+  <li>
+    Kept the issue list small but focused, favouring a few well-written tickets with strong evidence over a
+    noisy backlog of half-baked notes.
+  </li>
+</ul>
+    
+  <h3 id="certs">🎓 Certificates</h3>
+
+<table class="table-certs">
+  <thead>
+    <tr>
+      <th>Certificate</th>
+      <th>Provider</th>
+      <th>Issued</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create User Stories in Jira</td>
+      <td>Coursera</td>
+      <td>2025</td>
+      <td class="evidence">
+        <a href="./jira_workflow/create-user-stories-in-jira_coursera_cert.jpg"
+           target="_blank" rel="noopener">
+          <img class="pdf-thumb"
+               src="./jira_workflow/create-user-stories-in-jira_coursera_cert.jpg"
+               alt="Create User Stories in Jira – Coursera certificate"
+               loading="lazy">
+        </a>
+      </td>
+    </tr>
+  <tr>
+  <td>How to Create a Jira SCRUM Project</td>
+  <td>Coursera</td>
+  <td>2025</td>
+  <td class="evidence">
+    <a href="./jira_workflow/how-to-create-a-Jira-SCRUM-project_coursera_cert_.jpg"
+       target="_blank" rel="noopener">
+      <img class="pdf-thumb"
+           src="./jira_workflow/how-to-create-a-Jira-SCRUM-project_coursera_cert_.jpg"
+           alt="How to Create a Jira SCRUM Project – Coursera certificate"
+           loading="lazy">
+    </a>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+    <hr>
+<h2>📷 Evidence &amp; Media</h2>
+
+<p class="method-note">These links are the <strong>complete artefacts</strong> for this project. They contain:</p>
+<ul class="method-note">
+  <li>Overview and scope</li>
+  <li>Charters and session notes</li>
+  <li>Bug log and STAR summary</li>
+  <li>Daily smoke runs and outcomes</li>
+  <li>Device and network matrix</li>
+  <li>Glossary and methodology notes</li>
+</ul>
+
+    <table>
+      <thead><tr><th>Type</th><th>File / Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1t8ygM7So4BDj-dJcvd9GC-uyEmycDUg8/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true">Open Workbook</a></td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td><a href="./media/Rebel_Racing_QA_Exploritoray_Workbook_Android_Kelina_Cowell_PORTFOLIO.pdf">Open PDF</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+<h2 id="core-findings">📌 Core Project Findings - Sessions and Bugs</h2>
+
+<p class="method-note">
+  All planned charters and daily smoke runs were completed on the Moto g54 with no crashes. The build
+  stayed stable across the week, but one high-impact soft lock in the post-race rewards flow was found
+  and logged with full evidence, along with a separate low-severity audio issue where background music
+  speeds up after lock/unlock on the Results/Rewards screen. I also captured smaller observations around
+  LTE load delays, warm-device performance feel, and UI scaling in Bluestacks.
+</p>
+    
+   <h3>📁 Jira Board Screenshot - Overview</h3>
+<p>
+  <a href="./media/jira-board1.png" target="_blank" rel="noopener">
+    <img
+      src="./media/jira-board1.png"
+      alt="Rebel Racing QA board overview — To Do, Blocked, In Progress, Verified"
+      loading="lazy"
+      style="max-width:100%; width:900px; height:auto; border-radius:8px;">
+  </a>
+</p>
+
+<!-- make sure the previous block is closed -->
+</p>
+
+<!-- hard break to avoid any float/overlap -->
+<div style="clear:both;"></div>
+
+<!-- force a visible, teal-styled heading -->
+<h3 id="jira-verified">🗂️ Jira Board - Verified Screenshots (thumbnails)</h3>
+<table>
+  <tr>
+    <td>
+      <a href="./media/jira-board2.png" target="_blank" rel="noopener">
+        <img src="./media/jira-board2.png"
+             alt="Jira board — Verified set 1" width="160" height="160" loading="lazy"
+             style="border-radius:8px; object-fit:cover;">
+      </a>
+    </td>
+    <td>
+      <a href="./media/jira-board3.png" target="_blank" rel="noopener">
+        <img src="./media/jira-board3.png"
+             alt="Jira board — Verified set 2" width="160" height="160" loading="lazy"
+             style="border-radius:8px; object-fit:cover;">
+      </a>
+    </td>
+  </tr>
+</table>
+<p class="method-note" style="margin-top:8px;">Click any thumbnail to view the full-size image.</p>
+
+<h3 id="jira-bug">🗂️ Jira - Bug Ticket Layout</h3>
+<table>
+  <tr>
+    <td>
+      <a href="./media/bug-ticket.png" target="_blank" rel="noopener">
+        <img src="./media/bug-ticket.png"
+             alt="Jira - Bug Ticket Layout 1" width="160" height="160" loading="lazy"
+             style="border-radius:8px; object-fit:cover;">
+      </a>
+    </td>
+    <td>
+      <a href="./media/bug-ticket2.png" target="_blank" rel="noopener">
+        <img src="./media/bug-ticket2.png"
+             alt="Jira - Bug Ticket Layout 2" width="160" height="160" loading="lazy"
+             style="border-radius:8px; object-fit:cover;">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p class="method-note" style="margin-top:8px;">Click thumbnail to view the full-size image.</p>
+
+<!-- safety: break any float/margin-collapsing before next section -->
+<div style="clear:both; padding-top:8px;"></div>
+
+ <h3>🐞 Bugs - Summary + Videos</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Sev</th>
+      <th>Repro</th>
+      <th>Video</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RR-1</td>
+      <td>[Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close</td>
+      <td>High</td>
+      <td>1/1</td>
+      <td>
+        <a href="https://www.youtube.com/watch?v=GTT35TmskNI" target="_blank" rel="noopener">
+          <img
+            src="https://img.youtube.com/vi/GTT35TmskNI/hqdefault.jpg"
+            alt="RR-1 - Rewards Continue unresponsive after alarm + app close"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+</td>    
+  </tr>
+    <tr>
+      <td>RR-37</td>
+      <td>[Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen</td>
+      <td>Low</td>
+      <td>3/3</td>
+      <td>
+        <a href="https://youtu.be/bvM8tPTJAqs" target="_blank" rel="noopener">
+          <img
+            src="https://img.youtube.com/vi/bvM8tPTJAqs/hqdefault.jpg"
+            alt="RR-37 - BGM tempo increases after lock/unlock on race results screen"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details id="inline-videos">
+  <summary><span class="details-btn">Show inline video</span></summary>
+  <p>
+    <em>
+      If you are viewing this on github.com, embeds may not display. Use the thumbnails/links above
+      or open this page on the published site (GitHub Pages) to watch inline.
+    </em>
+  </p>
+
+  <div class="embed">
+    <iframe
+      src="https://www.youtube.com/embed/GTT35TmskNI?modestbranding=1&rel=0"
+      title="RR-1 - [Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="embed">
+    <iframe
+      src="https://www.youtube.com/embed/bvM8tPTJAqs?modestbranding=1&rel=0"
+      title="RR-37 - [Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</details>
+
+<h3>🔍 Other observations (non-blocking)</h3> <p class="method-note"> Smaller UX and performance findings taken from an extended LTE race/results run on the
+  Moto g54 and a Bluestacks Portrait visual-only check. These did not meet the bar for full
+  bug tickets but are still useful for future tuning or device coverage. </p> <table> <thead> <tr> <th>ID</th> <th>Observation</th> <th>Category</th> <th>Evidence</th> </tr> </thead> <tbody> <tr> <td>OBS-01</td> <td>[Android][Network][Results] Longer load spinner before Rewards on LTE compared to Wi-Fi</td> <td>Performance / UX</td> <td> <a href="https://www.youtube.com/watch?v=8wVeGDqdJs8" target="_blank" rel="noopener"> <img src="https://img.youtube.com/vi/8wVeGDqdJs8/hqdefault.jpg" alt="OBS-01 – LTE results delay vs Wi-Fi" width="140" loading="lazy"> </a> </td> </tr> <tr> <td>OBS-02</td> <td>[Android][Device feel] Moto g54 felt warm but stable during the extended LTE run (same session as OBS-01)</td> <td>Device feel</td> <td> <br> <small>Same run as OBS-01; device warmth noted during this session.</small> </td> </tr> <tr> <td>OBS-03</td> <td> [Bluestacks][Visual-only] Portrait mode: background and menu bar backgrounds stretched; buttons/text very small (hard to read). Functional taps OK for this sweep. </td> <td>Visual-only sanity check</td> <td> <a href="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" target="_blank" rel="noopener"> <img src="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" alt="OBS-03 – Bluestacks Portrait mode showing stretched visuals and tiny text" width="140" loading="lazy"> </a> </td> </tr> </tbody> </table>
+
+<!-- break margin-collapsing + clear any floats before the next section -->
+<div style="clear:both; padding-top:8px;"></div>
+
+<h2 id="results">📈 Results</h2>
+
+<ul>
+  <li>
+    Completed all planned daily smoke runs and exploratory charters on the Moto g54 without
+    any crashes or hard failures.
+  </li>
+
+  <li>
+    Logged <strong>one major defect</strong> (RR-1 Rewards soft lock) with clear 1080p evidence and
+    a full bug entry, plus <strong>one low-severity audio defect</strong> (RR-37 BGM tempo increase after
+    lock/unlock on the Results/Rewards screen). Captured additional smaller UX and performance
+    observations for future device and network coverage.
+  </li>
+
+  <li>
+    Confirmed the core golden path (launch → race → rewards → hub) stayed stable on
+    baseline Wi-Fi and across most interruption scenarios, including lock/unlock on race
+    and hub. LTE showed slower results loading compared to Wi-Fi. The main exception is
+    the RR-1 alarm plus app close case described below.
+  </li>
+
+  <li>
+    <strong>Rewards soft lock (RR-1):</strong> after finishing a race, if an OS alarm fires while the
+    Rewards screen is open and the player then closes and relaunches the app, the post-race
+    Rewards screen can appear with the <em>Continue</em> button unresponsive. Back, notification
+    shade, Home → Return and Wi-Fi toggle do not recover the flow; the practical workaround
+    is to Pause the app from Android app info, then Unpause and relaunch so Continue works
+    again. This was captured with video and documented as a high-severity soft lock.
+  </li>
+
+  <li>
+    <strong>Rewards audio tempo issue (RR-37):</strong> when locking the device on the Results/Rewards
+    screen and then unlocking back into the game, the background music resumes at a noticeably
+    faster tempo and feels off beat compared to pre-lock playback. UI and progression are not
+    impacted, so this is logged as a low-severity audio defect rather than a blocking issue.
+  </li>
+
+  <li>
+    <strong>LTE results delay:</strong> on LTE, the results screen shows a noticeably longer loading
+    spinner before rewards appear compared to the much quicker transition on Wi-Fi. This
+    did not reproduce as a hard failure but is worth tracking as a performance and UX risk.
+  </li>
+
+  <li>
+    <strong>Warm device and scaling notes:</strong> extended play on the Moto g54 made the device feel
+    warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks Portrait mode,
+    the background and menu bar backgrounds appeared stretched and buttons and text were very small (hard to read).
+    Attempts to force a 20:9 preset were blocked by the emulator, so checks stayed visual-only.
+  </li>
+
+  <li>
+    <strong>Performance and device feel:</strong> the Moto g54 stayed stable across all runs with no
+    visible stutters or visual hitches during races. LTE produced slower results loading
+    compared to Wi-Fi but did not cause crashes or hard failures.
+  </li>
+</ul>
+
+<p class="method-note">
+  See Metrics above for the full table of runs and references.
+</p>
+
+ <hr>
+
+<h2 id="peer-comparison">🎮 Peer-style UX benchmark (Rebel Racing vs Asphalt 9)</h2>
+
+<p class="method-note">
+  As a small add on to the main Rebel Racing work, I ran a quick visual only peer benchmark against
+  <em>Asphalt 9</em> (Gameloft). The goal was not to file bugs, but to see how two mobile racers from the same space
+  handle menu clarity, taps to driving, HUD readability and reward pacing, using my own dyslexic and
+  dyscalculic perspective as a lens. The findings below helped me frame Rebel Racing’s UX strengths and
+  risks in a way that is easier to explain to designers and producers.
+</p>
+
+<h3 id="addon-comparative">⭐ MICRO-STAR SUMMARY – Comparative Findings</h3>
+
+<p><strong>Situation:</strong> During the Rebel Racing project I ran a short visual UX benchmark against <em>Asphalt 9</em> to understand how similar mobile racers handle menu clarity, taps-to-driving, HUD readability, reward pacing, and return-to-hub flow.</p>
+
+<p><strong>Task:</strong> Compare the first-minute path, HUD readability, clarity of labels, reward pacing, and any hiccups or friction points in the standard race loop.</p>
+
+<p><strong>Action:</strong> Opened both apps, timed taps-to-driving, reviewed HUD readability, checked clarity of results and reward steps, and noted anything that slowed the player down or was easy to miss (from a dyslexic and dyscalculic tester’s perspective).</p>
+
+<p><strong>Result:</strong> <em>Rebel Racing</em> reached driving quicker (4 taps) than <em>Asphalt 9</em> (6 taps). Asphalt 9 had clearer HUD labels overall, while Rebel Racing contained several readability risks in white-on-bright UI elements.</p>
+
+<h3>📊 Summary Metrics</h3>
+<ul>
+  <li><strong>Taps to driving:</strong> Rebel Racing: 4 • Asphalt 9: 6</li>
+  <li><strong>Menu clarity:</strong> Both strong, but Asphalt 9’s large yellow Play button was clearer</li>
+  <li><strong>HUD readability:</strong> Asphalt 9: clearer labels • Rebel Racing: some hard-to-read small text and unboxed labels</li>
+  <li><strong>Reward pacing:</strong> Both smooth; Asphalt 9 had slight friction due to “Next” changing into “Miss Out”</li>
+  <li><strong>Hiccups:</strong> None observed in either title</li>
+</ul>
+
+<table class="table-compare">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Area / Feature</th>
+      <th>What happened</th>
+      <th>Why it matters</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody> 
+
+    <!-- Asphalt 9 -->
+    <tr>
+      <td><strong>Asphalt 9</strong></td>
+      <td>Taps to driving</td>
+      <td>6 taps to reach the race</td>
+      <td>Clear Play CTA; onboarding friction slightly higher than Rebel Racing.</td>
+      <td class="evidence">
+        <a href="https://www.youtube.com/watch?v=uIAmwJwtvKE" target="_blank" rel="noopener">
+          <img
+            src="https://img.youtube.com/vi/uIAmwJwtvKE/hqdefault.jpg"
+            alt="Asphalt 9 – taps to driving and HUD"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>HUD readability</td>
+      <td>Large readable labels: “POS”, “DIST”, timer; MPH clearly visible.</td>
+      <td>High clarity helps dyslexic and dyscalculic players track race state.</td>
+      <td class="evidence">
+        <small>Same video as above (visual-only).</small>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Rewards flow</td>
+      <td>“Next” CTA changes to “Miss Out”, requiring a second tap.</td>
+      <td>CTA change can confuse players and increase mis-taps.</td>
+      <td class="evidence">
+        <small>Same video as above (visual-only).</small>
+      </td>
+    </tr>
+
+    <!-- Rebel Racing -->
+    <tr>
+      <td><strong>Rebel Racing</strong></td>
+      <td>Taps to driving</td>
+      <td>4 taps to reach driving, faster than Asphalt 9.</td>
+      <td>Lower friction; faster access to gameplay.</td>
+      <td class="evidence">
+        <a href="https://www.youtube.com/watch?v=cRpxCHEElDk" target="_blank" rel="noopener">
+          <img
+            src="https://img.youtube.com/vi/cRpxCHEElDk/hqdefault.jpg"
+            alt="Rebel Racing – taps to driving and HUD"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>HUD readability</td>
+      <td>
+        Small POS label (no box), small white timer (hard to read), rival name in small unboxed white text.
+        “BEAT JASMINE” not bold and easy to miss.
+      </td>
+      <td>Readability risks for players with dyslexia or dyscalculia, especially mid-race.</td>
+      <td class="evidence">
+        <small>Same video as above (visual-only).</small>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Rewards flow</td>
+      <td>Snappy; no ads; consistent taps.</td>
+      <td>Strong UX with a quick return to hub.</td>
+      <td class="evidence">
+        <small>Same video as above (visual-only).</small>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p><h3>🏁 Result and takeaway</h3></p>
+<p><strong>Result:</strong> Rebel Racing reaches driving fastest (<strong>4 taps</strong>). Asphalt 9’s HUD readability was stronger due to clearer labels and boxed text.</p>
+
+<p><strong>Takeaway:</strong> Rebel Racing’s core loop is faster but could benefit from improved readability in HUD elements, especially small unboxed text.</p>
+
+    <hr>
+
+<h2 id="what-i-learned">🧠 What I learned</h2>
+
+<ul>
+  <li>
+    <strong>Keep charters tight and scoped to one behaviour.</strong>
+    Splitting interruptions, network flips, heat and UI scaling into separate surfaces made each run cleaner,
+    easier to repeat and simpler to compare.
+  </li>
+  <li>
+    <strong>Evidence must be fast to review.</strong>
+    Short 10–30 second clips of each run told the story better than long recordings and made RR-1
+    (Rewards soft lock) and RR-37 (Rewards BGM tempo issue after lock/unlock) immediately clear during review.
+  </li>
+  <li>
+    <strong>Baseline numbers matter.</strong>
+    Simple metrics like “four taps to driving” and timing the reward loop gave me guardrails that made
+    comparison and later regression checks trivial.
+  </li>
+  <li>
+    <strong>Visual-only peer benchmarks are surprisingly effective.</strong>
+    Comparing Rebel Racing with Asphalt 9 helped me talk about HUD readability risks and pacing strengths
+    with much more confidence.
+  </li>
+  <li>
+    <strong>Write notes for “future me”.</strong>
+    Clear, plain-language steps meant I could pick the project up the next day without re-learning the flow.
+  </li>
+  <li>
+    <strong>Tester context matters.</strong>
+    As someone who is dyslexic and dyscalculic, documenting readability issues explicitly helped me explain
+    why small unboxed HUD text or pale UI labels are real accessibility risks.
+  </li>
+  <li>
+    <strong>Interruptions are more than just “does it crash”.</strong>
+    Testing alarms, notification shade, Home/Return and screen lock/unlock showed that even when the flow
+    survives, small audio issues can still slip through, so it is worth treating audio recovery as part of
+    the interruption surface.
+  </li>
+  <li>
+    <strong>Keep admin light.</strong>
+    The project worked best when the workbook supported the testing, not the other way round. Clear tables,
+    simple IDs and a single source of truth kept everything easy to maintain.
+  </li>
+</ul>
+
+    <hr>
+
+<h2 id="conclusion">🔚 Conclusion</h2>
+
+<p>
+  Exploratory and edge-case pass complete on <em>Rebel Racing</em> (Android, Moto g54 5G). I kept device coverage
+  realistic on a single phone, ran daily golden-path smoke checks, pushed interruptions, network changes and basic
+  scaling, and documented one high-impact rewards soft lock plus one low-severity audio issue, both with clear repro
+  and short 1080p evidence.
+</p>
+
+<ul>
+  <li>
+    <strong>Coverage delivered:</strong> launch → hub → race → rewards golden path, daily smoke runs, alarms and
+    notification interruptions, Home, app-close behaviour and screen lock/unlock, LTE and Wi-Fi switching, light
+    performance and device-feel checks, UI scaling and readability, a visual-only Bluestacks layout/aspect check,
+    and a peer-style UX benchmark against Asphalt 9.
+  </li>
+  <li>
+    <strong>Highest-impact finding:</strong> rewards soft lock after an alarm and app close that leaves the
+    <em>Continue</em> button unresponsive and effectively forces a kill or pause of the app (RR-1), plus a separate
+    low-severity audio issue where rewards BGM speeds up after lock/unlock (RR-37), and smaller UX risks around LTE
+    load delays and HUD readability.
+  </li>
+  <li>
+    <strong>Evidence maturity:</strong> every key finding is backed by short clips, workbook entries, and a simple
+    device and network matrix, with bug and STAR-style summaries that could be lifted straight into Jira.
+  </li>
+</ul>
+
+<p>
+  <strong>Up next:</strong> I am moving on to a one week <em>Regression Testing</em> project on <em>Sworn</em> (PC).
+  This one is focused on verifying recent fixes against patch notes, checking save/load safety, session start/quit
+  flows, stamina and quest systems, UI readability, and catching any side effects introduced by the latest update.
+</p>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+  
+<footer>
+  <!-- keep your existing footer content here; or if you already have a <footer> earlier, remove this block -->
+  <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+</footer>
+
+</body>
+</html>
