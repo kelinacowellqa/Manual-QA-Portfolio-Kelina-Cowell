@@ -95,90 +95,78 @@
       <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
     </p>
 
-    <h1>🎮 Sworn - Regression Testing Case Study (PC Game Pass) - Tested: 17/11/2025 - 22/11/2025</h1>
+ <h1>🎮 Sworn – Regression Testing Case Study (PC Game Pass Edition, Team17) – Tested: 22/11/2025 – 03/12/2025</h1>
 
-    <!-- Intro -->
-   <h2>Introduction</h2>
+<!-- Intro -->
+<h2>Introduction</h2>
 <p>
-  One-week exploratory / edge-case pass on <em>Rebel Racing</em> (Android, Moto g54 5G, Android 15 @2400×1080/120Hz) focused on daily golden-path smoke, interruptions &amp; recovery, device/network variation, and basic UI scaling/readability. I built a small set of charters, ran daily smoke passes across the week, and logged one high-impact soft-lock defect plus a separate low-severity audio issue, both with full evidence and STAR summaries.
+  One-week, change-driven regression pass on <em>Sworn</em> (PC Game Pass, Windows, build 1.01.0.1039) focused on golden-path stability (launch → play → quit → relaunch), save/load integrity, core menus, audio sanity, input handover, and items plausibly touched by the latest public Steam patch notes. This was a solo, portfolio-only project using SteamDB patch notes as an external oracle, without claiming parity with the Steam build.
 </p>
 
 <ul>
   <li>
-    <strong>Scope:</strong> daily golden-path smoke (launch → hub → 1 race → rewards → hub), interruptions &amp; recovery
-    (alarms, notification shade, Home/Return, LTE force-close, screen lock/unlock), UI scaling &amp; readability in core
-    menus, performance &amp; device feel (Wi-Fi vs warm vs LTE), input responsiveness (race + menus), network &amp; live
-    surfaces (Store/Events, Wi-Fi/LTE toggles), and light Bluestacks visual-only layout/aspect checks (16:9 hub baseline
-    plus Portrait with an attempted (but blocked) 20:9 preset).
+    <strong>Scope:</strong> change-driven, risk-based regression against the current PC Game Pass build, covering golden-path flow (launch → main menu → run → quit → relaunch), autosave <em>Continue</em> behaviour, settings navigation and persistence, death → Stats → hub flow, audio continuity and settings, Enhancements/Codex readability and persistence, power-up next-room behaviour, pause/Alt+Tab sanity, and controller ↔ mouse/keyboard handover with one hot plug. Onboarding accessibility issues from Day 0 were tracked as a known A11y cluster and not retested because no newer build was available.
   </li>
 
   <li>
-    <strong>Approach:</strong> charter-based sessions designed from senior QA insight (Nathan Glatus &amp; Radu Posoi),
-    time-boxed to ~20–45 minutes each, with one smoke pass per day plus focused charters layered on top. High-impact issues
-    were captured with short 1080p videos, clear repro steps, device/network context, and a simple device/network matrix
-    to keep coverage realistic on a single physical phone.
+    <strong>Approach:</strong> one-week solo pass built around a Regression Matrix and time-boxed Session Log, with each check mapped to a specific patch-note item or baseline risk area. SteamDB patch notes for SWORN 1.0 Patch #3 (v1.0.3.1111, 13 Nov 2025) were used as an upstream oracle, but only as guidance. Each session captured clear anchors, expected outcomes, and results (Pass, Fail, Not applicable, Known issue), with focused rechecks where needed (for example reconfirming the death-flow defect in S6).
   </li>
 
   <li>
-    <strong>Outcome:</strong> all planned smoke and charter runs completed on Moto g54 with no crashes; one Rewards
-    soft-lock after an alarm + app close (RR-1) captured with 1/1 repro and documented to backlog; an additional audio issue
-    on the Results/Rewards screen after lock/unlock (RR-37) captured with 1/1 repro and logged as a low-severity backlog
-    item; LTE felt noticeably slower than Wi-Fi with a results-loading delay; Bluestacks 16:9 (1920×1080) gave a clean
-    hub/layout baseline as a visual-only check, while <strong>Portrait</strong> mode showed stretched background and very
-    small text (visual-only, 20:9 preset attempts blocked by the emulator); Android Studio AVD was blocked by Play Store
-    eligibility.
+    <strong>Outcome:</strong> overall result was 8 passes, 1 fail, 1 not applicable, and 1 known A11y cluster. Baseline launch → play → quit → relaunch, settings persistence, autosave <em>Continue</em>, music continuity, Enhancements/Codex behaviour, power-up next-room effect, pause/Alt+Tab, and input handover/hot plug all passed on PC Game Pass. Dialogue Volume was not present on this build, so that item was marked not applicable. A medium-severity defect was found in the death flow (<strong>SWOR-6</strong>: Defeat overlay blocks Stats and <em>Continue</em> starts a new run) and reconfirmed later in the week. Onboarding A11y issues (<strong>SWOR-1</strong> to <strong>SWOR-4</strong>) and a blessing choice readability issue (<strong>SWOR-15</strong>) are documented as accessibility findings awaiting a newer build.
   </li>
 
   <li>
-    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, charters, session notes, bug log, STAR,
-    daily smoke, device matrix, glossary), YouTube playlists grouped by area (smoke, interruptions, UI scaling, performance,
-    input, network, Bluestacks), and Jira-style bug/STAR summaries suitable for review.
+    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded to YouTube, grouped by area (baseline flow, settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy). All checks and bugs are cross-linked from the Matrix and Session Log so reviewers can jump straight from the portfolio page into the exact clip or log entry.
   </li>
 </ul>
 
-      <table>
-      <thead>
-        <tr><th>Studio</th><th>Platform</th><th>Scope</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Hutch Games</td>
-          <td>Android (Moto g54 5G - Android 15)</td>
-          <td>Exploratory &amp; edge-case: smoke runs • interruptions &amp; recovery • UI scaling/readability • performance &amp; device feel • input responsiveness • network &amp; live surfaces</td>
-        </tr>
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr><th>Studio</th><th>Platform</th><th>Scope</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Team17</td>
+      <td>PC Game Pass (Windows)</td>
+      <td>One-week, change-driven regression: golden-path stability • save/load integrity • settings navigation & persistence • audio sanity • death-flow logic • Enhancements/Codex readability • power-up behaviour • pause/Alt+Tab • controller ↔ KBM handover • hot plug</td>
+    </tr>
+  </tbody>
+</table>
 
-    <!-- Three-up feature grid -->
-  <div class="grid-3">
+<!-- Three-up feature grid -->
+<div class="grid-3">
   <section class="card">
     <h3>🎯 Goal</h3>
-    <p>Show how I approach exploratory and edge case testing on a live mobile F2P racer by scoping realistic charters, running daily smoke checks, and capturing any high impact issues with clear repro steps, evidence, and context.</p>
+    <p>Show how I approach a realistic one-week regression pass by mapping SteamDB patch notes to targeted checks, validating high-risk systems on the PC Game Pass build, confirming stability across the golden path, and documenting any defects with concise repro steps, STAR summaries, and clear evidence.</p>
   </section>
 
-   <section class="card">
-  <h3>🧭 Focus Areas</h3>
- <ul>
-  <li>Daily smoke runs</li>
-  <li>Interruptions and recovery</li>
-  <li>UI scaling and readability</li>
-  <li>Input responsiveness in menus and races</li>
-  <li>Performance and device feel on WiFi, warm device, and LTE</li>
-  <li>Network and live surfaces in Store and Events</li>
-  <li>Visual-only layout/aspect checks in Bluestacks (16:9 hub baseline, Portrait stretch, 20:9 preset blocked)</li>
-</ul>
-</section>
-    
   <section class="card">
-  <h3>📄 Deliverables</h3>
-  <ul>
-    <li>Exploratory and edge case workbook (Google Sheets)</li>
-    <li>Bug log and STAR summary (PDF export)</li>
-    <li>Evidence videos grouped by area (YouTube playlists)</li>
-    <li>Jira style bug and summary examples</li>
-    <li>Networking and applied insight notes from senior QA leads</li>
-  </ul>
-</section>
+    <h3>🧭 Focus Areas</h3>
+    <ul>
+      <li>Golden-path flow (launch → play → quit → relaunch)</li>
+      <li>Autosave <em>Continue</em> and basic save/load integrity</li>
+      <li>Settings navigation and persistence</li>
+      <li>Audio checks and music continuity</li>
+      <li>Death → Stats → hub behaviour (defect SWOR-6)</li>
+      <li>Enhancements & Codex readability and behaviour</li>
+      <li>Power-ups and next-room effects</li>
+      <li>Pause menu, Alt+Tab sanity, windowed/fullscreen</li>
+      <li>Controller ↔ mouse/keyboard handover and one hot plug</li>
+      <li>Known A11y onboarding issues tracked but not retested (no new build)</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h3>📄 Deliverables</h3>
+    <ul>
+      <li>Regression workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary)</li>
+      <li>Bug log and STAR summaries (PDF export)</li>
+      <li>Evidence videos grouped by area (YouTube playlist)</li>
+      <li>Jira-style defect summaries matched to workbook IDs</li>
+      <li>Clear traceability linking each check to SteamDB patch notes and risk areas</li>
+    </ul>
+  </section>
 </div>
     <!-- /grid -->
 <hr>
@@ -190,22 +178,22 @@
   <tbody>
     <tr><td>Total Bugs Logged</td><td>2</td></tr>
     <tr><td>Critical</td><td>0</td></tr>
-    <tr><td>Major</td><td>1</td></tr>
-    <tr><td>Minor</td><td>1</td></tr>
+    <tr><td>Major / Medium</td><td>1 (SWOR-6)</td></tr>
+    <tr><td>Minor / Low</td><td>1 (SWOR-15)</td></tr>
     <tr><td>Repro Consistency</td><td><strong>100%</strong></td></tr>
   </tbody>
 </table>
 
     <hr>
-<h2 id="star-summary">⭐ STAR SUMMARY - Rebel Racing QA (Android)</h2>
+<h2 id="star-summary">⭐ STAR SUMMARY – Sworn Regression QA (PC Game Pass)</h2>
 
-<p><strong>Situation:</strong> One week of exploratory and edge-case testing on <strong>Rebel Racing</strong> on a Moto g54 5G running Android 15, build 27.01.18975, captured via scrcpy at 1080p on Wi-Fi and LTE.</p>
+<p><strong>Situation:</strong> One-week, change-driven regression pass on <strong>Sworn</strong> (PC Game Pass, Windows, build 1.01.0.1039). The SteamDB patch notes for v1.0.3.1111 were used as an external oracle to guide what areas might reasonably need rechecking, without claiming parity between platforms.</p>
 
-<p><strong>Task:</strong> Keep scope realistic on a single physical device by running daily golden-path smoke checks, then pushing interruptions, UI scaling, performance and network edge cases to see where stability or player experience might break.</p>
+<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes – golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and confirm whether any previously known issues remained unchanged.</p>
 
-<p><strong>Action:</strong> Designed charters from the project brief and senior QA insight, ran daily smoke runs, and executed focused sessions for interruptions (alarms, notification shade, Home/Return, screen lock/unlock), scaling, performance, input and network. Captured short 1080p clips with scrcpy and OBS, and tracked results in a Google Sheets workbook with a clear bug log and STAR summary.</p>
+<p><strong>Action:</strong> Built a Regression Matrix mapped to patch-note items and baseline risks, then executed targeted sessions across the week. Each check was time-boxed with clear anchors and expected outcomes. All evidence was captured using OBS/Xbox Game Bar and logged into a structured Google Sheets workbook with a Bug Log, STAR Summary and fully linked Session Log.</p>
 
-<p><strong>Result:</strong> All smoke runs passed with no crashes. I found and documented one soft lock in the post-race rewards flow after an alarm and app close (<strong>RR-1</strong>), plus a separate low-severity audio issue where background music speeds up after lock/unlock on the Results/Rewards screen (<strong>RR-37</strong>), both captured with full video evidence. I also recorded smaller observations on LTE load delays, warm-device feel, and Bluestacks visual-only behaviour that can inform future testing and device coverage.</p>
+<p><strong>Result:</strong> Most areas passed as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings navigation/persistence, audio continuity, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover with one hot plug. One regression-relevant defect was confirmed: <strong>SWOR-6</strong> (Defeat overlay remains foregrounded, blocking Stats, and <em>Continue</em> starts a new run). A small visual-readability issue in the Blessing choice screen (<strong>SWOR-15</strong>) was also documented. Onboarding accessibility issues (SWOR-1 to SWOR-4) were already known and not retested due to no new build.</p>
 
     <hr>
 <h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
@@ -453,14 +441,10 @@
     </table>
 
     <hr>
-<h2 id="core-findings">📌 Core Project Findings - Sessions and Bugs</h2>
+<h2 id="core-findings">📌 Core Project Findings – Sessions and Bugs</h2>
 
 <p class="method-note">
-  All planned charters and daily smoke runs were completed on the Moto g54 with no crashes. The build
-  stayed stable across the week, but one high-impact soft lock in the post-race rewards flow was found
-  and logged with full evidence, along with a separate low-severity audio issue where background music
-  speeds up after lock/unlock on the Results/Rewards screen. I also captured smaller observations around
-  LTE load delays, warm-device performance feel, and UI scaling in Bluestacks.
+  All planned regression checks were completed on the PC Game Pass build with no crashes or instability across the golden path. Most systems behaved as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings persistence, audio, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover. One medium-severity defect was confirmed in the death-flow sequence (<strong>SWOR-6</strong>), where the Defeat overlay remains foregrounded and blocks full Stats access. A separate low-severity issue was documented in the Blessing choice screen (<strong>SWOR-15</strong>) for small, low-contrast key prompts. Onboarding accessibility issues (SWOR-1 to SWOR-4) were tracked as known issues and not retested due to no new build.
 </p>
     
    <h3>📁 Jira Board Screenshot - Overview</h3>
@@ -527,7 +511,7 @@
 <!-- safety: break any float/margin-collapsing before next section -->
 <div style="clear:both; padding-top:8px;"></div>
 
- <h3>🐞 Bugs - Summary + Videos</h3>
+<h3>🐞 Bugs – Summary + Videos</h3>
 <table>
   <thead>
     <tr>
@@ -539,38 +523,41 @@
     </tr>
   </thead>
   <tbody>
+
+    <!-- SWOR-6 -->
     <tr>
-      <td>RR-1</td>
-      <td>[Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close</td>
-      <td>High</td>
+      <td>SWOR-6</td>
+      <td>[PC][Death Flow][UI] Defeat overlay remains foregrounded and blocks Stats; Continue starts new run</td>
+      <td>Medium</td>
       <td>1/1</td>
       <td>
-        <a href="https://www.youtube.com/watch?v=GTT35TmskNI" target="_blank" rel="noopener">
+        <a href="YOUR_VIDEO_URL_HERE" target="_blank" rel="noopener">
           <img
-            src="https://img.youtube.com/vi/GTT35TmskNI/hqdefault.jpg"
-            alt="RR-1 - Rewards Continue unresponsive after alarm + app close"
+            src="YOUR_THUMB_URL_HERE"
+            alt="SWOR-6 – Defeat overlay remains foregrounded and blocks Stats"
             width="140"
             loading="lazy">
         </a>
       </td>
     </tr>
-</td>    
-  </tr>
+
+    <!-- SWOR-15 -->
     <tr>
-      <td>RR-37</td>
-      <td>[Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen</td>
+      <td>SWOR-15</td>
+      <td>[PC][UI][Accessibility] Blessing choice key prompts small and low-contrast</td>
       <td>Low</td>
-      <td>3/3</td>
+      <td>1/1</td>
       <td>
-        <a href="https://youtu.be/bvM8tPTJAqs" target="_blank" rel="noopener">
+        <a href="YOUR_VIDEO_URL_HERE" target="_blank" rel="noopener">
           <img
-            src="https://img.youtube.com/vi/bvM8tPTJAqs/hqdefault.jpg"
-            alt="RR-37 - BGM tempo increases after lock/unlock on race results screen"
+            src="YOUR_THUMB_URL_HERE"
+            alt="SWOR-15 – Blessing choice key prompts small and low-contrast"
             width="140"
             loading="lazy">
         </a>
       </td>
     </tr>
+
   </tbody>
 </table>
 
@@ -583,10 +570,11 @@
     </em>
   </p>
 
+  <!-- SWOR-6 -->
   <div class="embed">
     <iframe
-      src="https://www.youtube.com/embed/GTT35TmskNI?modestbranding=1&rel=0"
-      title="RR-1 - [Android][Interruptions][Rewards] Continue button unresponsive after OS alarm + app close"
+      src="YOUR_SWOR6_EMBED_URL"
+      title="SWOR-6 – Defeat overlay remains foregrounded and blocks Stats"
       loading="lazy"
       referrerpolicy="strict-origin-when-cross-origin"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -594,10 +582,11 @@
     </iframe>
   </div>
 
+  <!-- SWOR-15 -->
   <div class="embed">
     <iframe
-      src="https://www.youtube.com/embed/bvM8tPTJAqs?modestbranding=1&rel=0"
-      title="RR-37 - [Android][Interruptions][Audio][Rewards] BGM tempo increases after lock/unlock on race results screen"
+      src="YOUR_SWOR15_EMBED_URL"
+      title="SWOR-15 – Blessing choice key prompts small and low-contrast"
       loading="lazy"
       referrerpolicy="strict-origin-when-cross-origin"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -606,9 +595,66 @@
   </div>
 </details>
 
-<h3>🔍 Other observations (non-blocking)</h3> <p class="method-note"> Smaller UX and performance findings taken from an extended LTE race/results run on the
-  Moto g54 and a Bluestacks Portrait visual-only check. These did not meet the bar for full
-  bug tickets but are still useful for future tuning or device coverage. </p> <table> <thead> <tr> <th>ID</th> <th>Observation</th> <th>Category</th> <th>Evidence</th> </tr> </thead> <tbody> <tr> <td>OBS-01</td> <td>[Android][Network][Results] Longer load spinner before Rewards on LTE compared to Wi-Fi</td> <td>Performance / UX</td> <td> <a href="https://www.youtube.com/watch?v=8wVeGDqdJs8" target="_blank" rel="noopener"> <img src="https://img.youtube.com/vi/8wVeGDqdJs8/hqdefault.jpg" alt="OBS-01 – LTE results delay vs Wi-Fi" width="140" loading="lazy"> </a> </td> </tr> <tr> <td>OBS-02</td> <td>[Android][Device feel] Moto g54 felt warm but stable during the extended LTE run (same session as OBS-01)</td> <td>Device feel</td> <td> <br> <small>Same run as OBS-01; device warmth noted during this session.</small> </td> </tr> <tr> <td>OBS-03</td> <td> [Bluestacks][Visual-only] Portrait mode: background and menu bar backgrounds stretched; buttons/text very small (hard to read). Functional taps OK for this sweep. </td> <td>Visual-only sanity check</td> <td> <a href="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" target="_blank" rel="noopener"> <img src="./media/RR_BlueStacks_Portrait_StretchedBG_Hub_2025-11-21.png" alt="OBS-03 – Bluestacks Portrait mode showing stretched visuals and tiny text" width="140" loading="lazy"> </a> </td> </tr> </tbody> </table>
+<h3>🔍 Other observations (non-blocking)</h3>
+
+<p class="method-note">
+  Minor UX and readability notes captured during regression. These did not meet the bar for standalone bug tickets but
+  remain useful for future tuning or accessibility review.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Observation</th>
+      <th>Category</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- OBS-01 -->
+    <tr>
+      <td>OBS-01</td>
+      <td>[PC][Enhancements] Some Enhancement descriptions feel dense and could benefit from clearer spacing or contrast for easier at-a-glance reading.</td>
+      <td>UX / Readability</td>
+      <td>
+        <a href="YOUR_EVIDENCE_URL" target="_blank" rel="noopener">
+          <img src="YOUR_THUMB_URL"
+               alt="OBS-01 – Enhancement descriptions readability"
+               width="140"
+               loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <!-- OBS-02 -->
+    <tr>
+      <td>OBS-02</td>
+      <td>[PC][Codex] Certain Codex entries contain long text blocks that feel cramped in the current layout, making scanning slower for players.</td>
+      <td>UX / Readability</td>
+      <td>
+        <a href="YOUR_EVIDENCE_URL" target="_blank" rel="noopener">
+          <img src="YOUR_THUMB_URL"
+               alt="OBS-02 – Codex long-text readability"
+               width="140"
+               loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <!-- OBS-03 -->
+    <tr>
+      <td>OBS-03</td>
+      <td>[PC][Audio] Dialogue Volume slider referenced in patch notes is not present on this build. Marked as observation only (no parity claim).</td>
+      <td>Feature presence / UX</td>
+      <td>
+        <small>No video required. Documented in Regression Matrix.</small>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
 
 <!-- break margin-collapsing + clear any floats before the next section -->
 <div style="clear:both; padding-top:8px;"></div>
@@ -617,57 +663,47 @@
 
 <ul>
   <li>
-    Completed all planned daily smoke runs and exploratory charters on the Moto g54 without
-    any crashes or hard failures.
+    Completed all planned regression checks on the PC Game Pass build with no crashes or instability
+    across the golden path (launch → play → quit → relaunch).
   </li>
 
   <li>
-    Logged <strong>one major defect</strong> (RR-1 Rewards soft lock) with clear 1080p evidence and
-    a full bug entry, plus <strong>one low-severity audio defect</strong> (RR-37 BGM tempo increase after
-    lock/unlock on the Results/Rewards screen). Captured additional smaller UX and performance
-    observations for future device and network coverage.
+    Logged <strong>one medium-severity defect</strong> (<strong>SWOR-6</strong> – Defeat overlay remains foregrounded
+    and blocks Stats; Continue starts a new run) with full video evidence and STAR summary, plus
+    <strong>one low-severity accessibility/UI issue</strong> (<strong>SWOR-15</strong> – Blessing choice key prompts small and
+    low contrast).
   </li>
 
   <li>
-    Confirmed the core golden path (launch → race → rewards → hub) stayed stable on
-    baseline Wi-Fi and across most interruption scenarios, including lock/unlock on race
-    and hub. LTE showed slower results loading compared to Wi-Fi. The main exception is
-    the RR-1 alarm plus app close case described below.
+    Confirmed core systems behaved as expected: autosave <em>Continue</em>, settings navigation and
+    persistence, audio continuity, Enhancements and Codex behaviour, power-up effects, pause menu,
+    Alt+Tab, and controller↔KBM handover with one hot plug.
   </li>
 
   <li>
-    <strong>Rewards soft lock (RR-1):</strong> after finishing a race, if an OS alarm fires while the
-    Rewards screen is open and the player then closes and relaunches the app, the post-race
-    Rewards screen can appear with the <em>Continue</em> button unresponsive. Back, notification
-    shade, Home → Return and Wi-Fi toggle do not recover the flow; the practical workaround
-    is to Pause the app from Android app info, then Unpause and relaunch so Continue works
-    again. This was captured with video and documented as a high-severity soft lock.
+    <strong>Death-flow defect (SWOR-6):</strong> after dying, the Defeat overlay remains in the foreground and prevents
+    the player from accessing the Stats breakdown. Selecting <em>Continue</em> immediately starts a new run.
+    This was reproducible and captured on video.
   </li>
 
   <li>
-    <strong>Rewards audio tempo issue (RR-37):</strong> when locking the device on the Results/Rewards
-    screen and then unlocking back into the game, the background music resumes at a noticeably
-    faster tempo and feels off beat compared to pre-lock playback. UI and progression are not
-    impacted, so this is logged as a low-severity audio defect rather than a blocking issue.
+    <strong>Blessing prompt readability (SWOR-15):</strong> Blessing choice key prompts appear very small with low
+    contrast, making them hard to read. Logged as a low-severity A11y/UI issue.
   </li>
 
   <li>
-    <strong>LTE results delay:</strong> on LTE, the results screen shows a noticeably longer loading
-    spinner before rewards appear compared to the much quicker transition on Wi-Fi. This
-    did not reproduce as a hard failure but is worth tracking as a performance and UX risk.
+    <strong>A11y onboarding issues (SWOR-1 to SWOR-4):</strong> previously identified accessibility concerns in the
+    onboarding/tutorial flow remain in the build. They were not retested because no new build was available.
   </li>
 
   <li>
-    <strong>Warm device and scaling notes:</strong> extended play on the Moto g54 made the device feel
-    warm but not dangerously hot, with no visible frame drops in core races. In Bluestacks Portrait mode,
-    the background and menu bar backgrounds appeared stretched and buttons and text were very small (hard to read).
-    Attempts to force a 20:9 preset were blocked by the emulator, so checks stayed visual-only.
+    <strong>Dialogue Volume setting:</strong> referenced upstream in patch notes, but <em>not present</em> on this build.
+    Marked as a non-blocking observation rather than a defect, as platform parity was not expected.
   </li>
 
   <li>
-    <strong>Performance and device feel:</strong> the Moto g54 stayed stable across all runs with no
-    visible stutters or visual hitches during races. LTE produced slower results loading
-    compared to Wi-Fi but did not cause crashes or hard failures.
+    <strong>General stability:</strong> no stutters, hitches or progression blockers encountered during the full
+    regression week. All completed runs cleanly returned to the main menu and relaunched without issue.
   </li>
 </ul>
 
@@ -805,44 +841,51 @@
 
 <ul>
   <li>
-    <strong>Keep charters tight and scoped to one behaviour.</strong>
-    Splitting interruptions, network flips, heat and UI scaling into separate surfaces made each run cleaner,
-    easier to repeat and simpler to compare.
+    <strong>Regression only works if the scope is controlled.</strong>
+    Mapping each check to a patch-note item or a clear risk area stopped the project from turning into
+    a full re-test of the entire game and kept the week focused and realistic.
   </li>
+
   <li>
-    <strong>Evidence must be fast to review.</strong>
-    Short 10–30 second clips of each run told the story better than long recordings and made RR-1
-    (Rewards soft lock) and RR-37 (Rewards BGM tempo issue after lock/unlock) immediately clear during review.
+    <strong>Short, purposeful evidence is king.</strong>
+    Small clips of the golden path, settings passes and the death-flow defect (SWOR-6) made review easy and
+    kept the workbook tight. Long, rambling recordings would have buried the signal.
   </li>
+
   <li>
-    <strong>Baseline numbers matter.</strong>
-    Simple metrics like “four taps to driving” and timing the reward loop gave me guardrails that made
-    comparison and later regression checks trivial.
+    <strong>Your Regression Matrix must tell a story.</strong>
+    Laying out the expected outcome, actual outcome and reasoning for each check helped the STAR summary
+    write itself and made the project feel structured rather than chaotic.
   </li>
+
   <li>
-    <strong>Visual-only peer benchmarks are surprisingly effective.</strong>
-    Comparing Rebel Racing with Asphalt 9 helped me talk about HUD readability risks and pacing strengths
-    with much more confidence.
+    <strong>Readability issues are not “cosmetic”.</strong>
+    The Blessing choice prompts (SWOR-15) reinforced how small text and low contrast genuinely affect
+    decision-making speed, especially for players who rely on clear visual cues.
   </li>
+
   <li>
-    <strong>Write notes for “future me”.</strong>
-    Clear, plain-language steps meant I could pick the project up the next day without re-learning the flow.
+    <strong>Audio continuity matters more than expected.</strong>
+    Even when everything else works, inconsistent audio cues or missing settings (for example the
+    Dialogue Volume slider referenced upstream but not present on this build) can undermine polish.
   </li>
+
   <li>
-    <strong>Tester context matters.</strong>
-    As someone who is dyslexic and dyscalculic, documenting readability issues explicitly helped me explain
-    why small unboxed HUD text or pale UI labels are real accessibility risks.
+    <strong>Document for future-me, not present-me.</strong>
+    Clear notes in the Session Log made it easy to resume the project the next day without retracing my steps,
+    and kept the checks consistent across the whole week.
   </li>
+
   <li>
-    <strong>Interruptions are more than just “does it crash”.</strong>
-    Testing alarms, notification shade, Home/Return and screen lock/unlock showed that even when the flow
-    survives, small audio issues can still slip through, so it is worth treating audio recovery as part of
-    the interruption surface.
+    <strong>Dyslexia makes certain UX issues immediately obvious.</strong>
+    Dense text blocks in Enhancements and Codex entries jumped out as readability risks, and calling them out
+    explicitly helped justify why they matter from an accessibility perspective.
   </li>
+
   <li>
-    <strong>Keep admin light.</strong>
-    The project worked best when the workbook supported the testing, not the other way round. Clear tables,
-    simple IDs and a single source of truth kept everything easy to maintain.
+    <strong>Admin should never overshadow testing.</strong>
+    Keeping IDs simple, avoiding unnecessary duplication and letting the workbook support the work made it
+    fast to maintain and easy to audit.
   </li>
 </ul>
 
@@ -851,35 +894,41 @@
 <h2 id="conclusion">🔚 Conclusion</h2>
 
 <p>
-  Exploratory and edge-case pass complete on <em>Rebel Racing</em> (Android, Moto g54 5G). I kept device coverage
-  realistic on a single phone, ran daily golden-path smoke checks, pushed interruptions, network changes and basic
-  scaling, and documented one high-impact rewards soft lock plus one low-severity audio issue, both with clear repro
-  and short 1080p evidence.
+  One-week, change-driven regression pass completed on <em>Sworn</em> (PC Game Pass). The project remained tightly scoped to
+  systems plausibly affected by upstream patch-note changes and to baseline stability checks on the current build. All
+  regression sessions were completed with no crashes, and the overall golden path remained stable throughout.
 </p>
 
 <ul>
   <li>
-    <strong>Coverage delivered:</strong> launch → hub → race → rewards golden path, daily smoke runs, alarms and
-    notification interruptions, Home, app-close behaviour and screen lock/unlock, LTE and Wi-Fi switching, light
-    performance and device-feel checks, UI scaling and readability, a visual-only Bluestacks layout/aspect check,
-    and a peer-style UX benchmark against Asphalt 9.
+    <strong>Coverage delivered:</strong>
+    launch → play → quit → relaunch golden path, autosave <em>Continue</em> behaviour, settings navigation and persistence,
+    audio continuity, Enhancements and Codex readability, power-up behaviour, death-flow logic, pause and Alt+Tab checks,
+    and controller ↔ keyboard/mouse handover including one hot plug. Previously known onboarding accessibility issues were
+    tracked but not retested due to no new build.
   </li>
+
   <li>
-    <strong>Highest-impact finding:</strong> rewards soft lock after an alarm and app close that leaves the
-    <em>Continue</em> button unresponsive and effectively forces a kill or pause of the app (RR-1), plus a separate
-    low-severity audio issue where rewards BGM speeds up after lock/unlock (RR-37), and smaller UX risks around LTE
-    load delays and HUD readability.
+    <strong>Highest-impact finding:</strong>
+    <em>SWOR-6</em> — Defeat overlay remains foregrounded after death, blocking the Stats breakdown and causing
+    <em>Continue</em> to start a new run. Also documented <em>SWOR-15</em>, a low-severity UI/accessibility issue where
+    Blessing choice key prompts are very small and low-contrast. Both were captured clearly with supporting evidence.
   </li>
+
   <li>
-    <strong>Evidence maturity:</strong> every key finding is backed by short clips, workbook entries, and a simple
-    device and network matrix, with bug and STAR-style summaries that could be lifted straight into Jira.
+    <strong>Evidence maturity:</strong>
+    Every check is supported by a Regression Matrix entry, Session Log, short focused video clips, and clean bug/STAR
+    summaries suitable for Jira-style reporting. The workbook provides a single, audit-friendly source of truth for the
+    entire regression week.
   </li>
 </ul>
 
 <p>
-  <strong>Up next:</strong> I am moving on to a one week <em>Regression Testing</em> project on <em>Sworn</em> (PC).
-  This one is focused on verifying recent fixes against patch notes, checking save/load safety, session start/quit
-  flows, stamina and quest systems, UI readability, and catching any side effects introduced by the latest update.
+  <strong>Up next:</strong> I am moving on to my dedicated VR Comfort & Accessibility case study on 
+  <em>Shadow Point</em> (Quest 3). This project focuses on micro-judder and comfort checks, tracking stability, 
+  guardian/boundary behaviour, text and UI readability in VR, and interaction-mapping parity between standalone Quest 3 
+  and PCVR. It will use a comfort/test matrix, OBS/Quest capture, and parity clips to document comfort ratings, 
+  accessibility risks, and subtle interaction differences that only appear in VR.
 </p>
 
     <p class="cta-row" style="text-align:center;">
