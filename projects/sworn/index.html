@@ -237,14 +237,15 @@
 
 <p class="method-note">
   A QA Manager at a major game studio emphasised four principles for realistic regression work:
-  (1) map regression to where the game actually changed using multiple oracles such as patch notes, changelogs and 
-  community reports; (2) prioritise systems that are non-negotiable “must not break” surfaces, such as save/load, 
-  session flow, input ownership and menu stability; (3) match the test approach to the problem, using scripted test 
-  cases for critical flows, exploratory charters for large spaces, and lightweight matrices where breadth matters; 
-  and (4) keep the suite maintainable so each check traces directly back to either a patch-note change or a genuine 
-  risk area.  
+  (1) map regression to where the game actually changed using multiple oracles such as patch notes, changelogs,
+  community reports and, where useful, historical behaviour from earlier builds or fandom wikis;  
+  (2) prioritise systems that are non-negotiable “must not break” surfaces, such as save/load, session flow, input
+  ownership and menu stability; (3) match the test approach to the problem, using scripted test cases for critical
+  flows, exploratory charters for large spaces, and lightweight matrices where breadth matters; and (4) keep the suite
+  maintainable so each check traces directly back to either a patch-note change or a genuine risk area.  
   I applied this by redesigning my Regression Matrix so that every entry ties to a specific change, a stability 
-  requirement, or a coverage slice rather than retesting the entire game.
+  requirement or a coverage slice rather than retesting the entire game. For Sworn, historical-oracle references were
+  not required, because the SteamDB patch notes already provided sufficient clarity on what had changed.
 </p>
 
 <p class="method-note">
@@ -257,7 +258,8 @@
 
 <p class="method-note">
   Their combined insight directly shaped how I scoped the project, the way I structured my Regression Matrix, how I 
-  prioritised checks like death-flow logic and UI readability, and how I presented evidence. It ensured the final case study reads like a focused, change-driven regression effort rather than a wide, undefined testing sweep.
+  prioritised checks like death-flow logic and UI readability, and how I presented evidence. It ensured the final case
+  study reads like a focused, change-driven regression effort rather than a wide, undefined testing sweep.
 </p>
 
 <table class="table-insight">
@@ -279,16 +281,17 @@
       </td>
       <td>
         Regression should be <strong>change-driven, risk-based and traceable</strong>.  
-        Match each check to an oracle (patch notes, changelogs, known issues) and avoid falling into 
-        full re-test mode. Prioritise hard must-not-break systems: save/load, golden path, settings, 
-        input ownership, and session-start/session-exit flows.
+        Use multiple oracles appropriately: patch notes, changelogs, known issues, and—when relevant—historical
+        behaviour from earlier builds or fandom wikis, while understanding their fallibility.  
+        Choose the right test method for the surface: test cases for non-negotiable flows, exploratory charters for
+        complex behaviour, and matrices for broad variable spaces.
       </td>
       <td>
         <ul>
           <li>Mapped every regression check to either a <strong>patch-note item</strong> or a <strong>baseline stability risk</strong> in my Regression Matrix.</li>
           <li>Focused on the <strong>golden path</strong>, <strong>death-flow logic</strong>, <strong>autosave Continue</strong>, <strong>settings persistence</strong> and <strong>input handover</strong>.</li>
           <li>Kept scope intentionally limited to avoid accidental full re-testing of the game.</li>
-          <li>Used oracles correctly: SteamDB patch notes where applicable, but avoided claiming platform parity with Steam.</li>
+          <li>Used oracles correctly: SteamDB patch notes were sufficient, so historical-oracle checks (e.g., fandom wikis) were not needed for this build.</li>
         </ul>
       </td>
       <td class="evidence">
@@ -304,7 +307,7 @@
     <tr>
       <td>
         <strong>Steph McStea</strong><br>
-        Senior QA Professional
+        QA Lead, Double Eleven
       </td>
       <td>
         Focus regression on <strong>what players hit most often</strong> and areas known to cause repeated issues.  
@@ -316,7 +319,7 @@
           <li>Centred the week around <strong>launch → play → quit → relaunch</strong> and <strong>death-flow stability</strong>.</li>
           <li>Gave extra attention to <strong>UI readability</strong> and <strong>onboarding prompts</strong>, because they were already known weak points.</li>
           <li>Documented the <strong>A11y onboarding cluster (SWOR-1 → SWOR-4)</strong> as known issues instead of burning time re-testing them without a new build.</li>
-          <li>Kept regression targeted, not broad - the approach reads like a small slice of a real internal QA sprint.</li>
+          <li>Kept regression targeted, not broad — the approach reads like a small slice of a real internal QA sprint.</li>
         </ul>
       </td>
       <td class="evidence">
