@@ -237,15 +237,34 @@
 
 <p class="method-note">
   A QA Manager at a major game studio emphasised four principles for realistic regression work:
-  (1) map regression to where the game actually changed using multiple oracles such as patch notes, changelogs,
-  community reports and, where useful, historical behaviour from earlier builds or fandom wikis;  
-  (2) prioritise systems that are non-negotiable “must not break” surfaces, such as save/load, session flow, input
-  ownership and menu stability; (3) match the test approach to the problem, using scripted test cases for critical
-  flows, exploratory charters for large spaces, and lightweight matrices where breadth matters; and (4) keep the suite
-  maintainable so each check traces directly back to either a patch-note change or a genuine risk area.  
-  I applied this by redesigning my Regression Matrix so that every entry ties to a specific change, a stability 
-  requirement or a coverage slice rather than retesting the entire game. For Sworn, historical-oracle references were
-  not required, because the SteamDB patch notes already provided sufficient clarity on what had changed.
+</p>
+
+<ol class="method-note">
+  <li>
+    <strong>Map regression to where the game actually changed</strong> using multiple oracles such as patch notes,
+    changelogs, community reports and—where useful—historical behaviour from earlier builds or fandom wikis.
+  </li>
+
+  <li>
+    <strong>Prioritise must-not-break systems</strong> such as save/load, session flow, input ownership and menu stability.
+  </li>
+
+  <li>
+    <strong>Match the test approach to the surface:</strong>
+    scripted test cases for critical flows, exploratory charters for large or complex spaces, and lightweight matrices
+    for broad variable sets that don't need deep test-case detail.
+  </li>
+
+  <li>
+    <strong>Keep the suite maintainable</strong> so each check traces directly back to either a patch-note change or a
+    genuine risk area instead of becoming a full re-test of the entire game.
+  </li>
+</ol>
+
+<p class="method-note">
+  I applied this by redesigning my Regression Matrix so that every entry ties to a specific change, a stability
+  requirement or a coverage slice. For Sworn, historical-oracle references were not required because the SteamDB patch
+  notes already provided sufficient clarity on what had changed.
 </p>
 
 <p class="method-note">
