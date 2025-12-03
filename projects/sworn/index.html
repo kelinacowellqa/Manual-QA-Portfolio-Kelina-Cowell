@@ -100,24 +100,45 @@
 <!-- Intro -->
 <h2>Introduction</h2>
 <p>
-  One-week, change-driven regression pass on <em>Sworn</em> (PC Game Pass, Windows, build 1.01.0.1039) focused on golden-path stability (launch → play → quit → relaunch), save/load integrity, core menus, audio sanity, input handover, and items plausibly touched by the latest public Steam patch notes. This was a solo, portfolio-only project using SteamDB patch notes as an external oracle, without claiming parity with the Steam build.
+  One-week, change-driven regression pass on <em>Sworn</em> (PC Game Pass, Windows, build 1.01.0.1039) focused on golden-path
+  stability (launch → play → quit → relaunch), save/load integrity, core menus, audio sanity, input handover, and areas
+  plausibly touched by the latest public Steam patch notes. This was a solo, portfolio-only project using SteamDB patch notes
+  as an external oracle, without claiming parity with the Steam build.
 </p>
 
 <ul>
   <li>
-    <strong>Scope:</strong> change-driven, risk-based regression against the current PC Game Pass build, covering golden-path flow (launch → main menu → run → quit → relaunch), autosave <em>Continue</em> behaviour, settings navigation and persistence, death → Stats → hub flow, audio continuity and settings, Enhancements/Codex readability and persistence, power-up next-room behaviour, pause/Alt+Tab sanity, and controller ↔ mouse/keyboard handover with one hot plug. Onboarding accessibility issues from Day 0 were tracked as a known A11y cluster and not retested because no newer build was available.
+    <strong>Scope:</strong> change-driven, risk-based regression against the current PC Game Pass build, covering golden-path
+    flow (launch → main menu → run → quit → relaunch), autosave <em>Continue</em> behaviour, settings navigation and
+    persistence, death → Stats → hub flow, audio continuity and settings, Enhancements/Codex readability and persistence,
+    power-up next-room behaviour, pause/Alt+Tab sanity, and controller ↔ mouse/keyboard handover with one hot plug.
+    Onboarding accessibility issues first found on Day 0 (<strong>SWOR-1</strong> to <strong>SWOR-4</strong>) are still logged as
+    full bugs, but in the Regression Matrix they are treated as a single known A11y cluster because there was no newer build
+    to re-test.
   </li>
 
   <li>
-    <strong>Approach:</strong> one-week solo pass built around a Regression Matrix and time-boxed Session Log, with each check mapped to a specific patch-note item or baseline risk area. SteamDB patch notes for SWORN 1.0 Patch #3 (v1.0.3.1111, 13 Nov 2025) were used as an upstream oracle, but only as guidance. Each session captured clear anchors, expected outcomes, and results (Pass, Fail, Not applicable, Known issue), with focused rechecks where needed (for example reconfirming the death-flow defect in S6).
+    <strong>Approach:</strong> one-week solo pass built around a Regression Matrix and time-boxed Session Log, with each check
+    mapped to a specific patch-note item or baseline risk area. SteamDB patch notes for SWORN 1.0 Patch #3 (v1.0.3.1111,
+    13 Nov 2025) were used as an upstream oracle, but only as guidance. Each session captured clear anchors, expected
+    outcomes, and results (Pass, Fail, Not applicable, Known issue), with focused rechecks where needed (for example
+    reconfirming the death-flow defect in <strong>SWOR-6</strong>).
   </li>
 
   <li>
-    <strong>Outcome:</strong> overall result was 8 passes, 1 fail, 1 not applicable, and 1 known A11y cluster. Baseline launch → play → quit → relaunch, settings persistence, autosave <em>Continue</em>, music continuity, Enhancements/Codex behaviour, power-up next-room effect, pause/Alt+Tab, and input handover/hot plug all passed on PC Game Pass. Dialogue Volume was not present on this build, so that item was marked not applicable. A medium-severity defect was found in the death flow (<strong>SWOR-6</strong>: Defeat overlay blocks Stats and <em>Continue</em> starts a new run) and reconfirmed later in the week. Onboarding A11y issues (<strong>SWOR-1</strong> to <strong>SWOR-4</strong>) and a blessing choice readability issue (<strong>SWOR-15</strong>) are documented as accessibility findings awaiting a newer build.
+    <strong>Outcome:</strong> Regression Matrix result: 8 passes, 1 fail, 1 not applicable, and 1 known A11y cluster. Across the
+    whole project I tracked six defects in the bug log: four onboarding accessibility prompt issues
+    (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>), one post-death flow defect where the Defeat overlay blocks Stats and
+    <em>Continue</em> starts a new run (<strong>SWOR-6</strong>), and one Blessing choice readability issue
+    (<strong>SWOR-15</strong>). Together they describe the current A11y and flow risks on this build.
   </li>
 
   <li>
-    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded to YouTube, grouped by area (baseline flow, settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy). All checks and bugs are cross-linked from the Matrix and Session Log so reviewers can jump straight from the portfolio page into the exact clip or log entry.
+    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log,
+    STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded to YouTube, grouped by area (baseline flow,
+    settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy). All checks and bugs
+    are cross-linked from the Matrix and Session Log so reviewers can jump straight from the portfolio page into the exact
+    clip or log entry.
   </li>
 </ul>
 
@@ -129,7 +150,12 @@
     <tr>
       <td>Team17</td>
       <td>PC Game Pass (Windows)</td>
-      <td>One-week, change-driven regression: golden-path stability • save/load integrity • settings navigation & persistence • audio sanity • death-flow logic • Enhancements/Codex readability • power-up behaviour • pause/Alt+Tab • controller ↔ KBM handover • hot plug</td>
+      <td>
+        One-week, change-driven regression: golden-path stability • autosave <em>Continue</em> &amp; save/load integrity •
+        settings navigation &amp; persistence • death → Stats → hub flow • audio continuity/settings •
+        Enhancements/Codex readability • power-up next-room behaviour • pause/Alt+Tab • controller ↔ KBM handover &amp; hot plug •
+        onboarding A11y prompt cluster tracked as known issues (SWOR-1–4).
+      </td>
     </tr>
   </tbody>
 </table>
@@ -138,35 +164,40 @@
 <div class="grid-3">
   <section class="card">
     <h3>🎯 Goal</h3>
-    <p>Show how I approach a realistic one-week regression pass by mapping SteamDB patch notes to targeted checks, validating high-risk systems on the PC Game Pass build, confirming stability across the golden path, and documenting any defects with concise repro steps, STAR summaries, and clear evidence.</p>
+    <p>
+      Show how I run a realistic one-week, change-driven regression pass: using SteamDB patch notes to target checks,
+      validating high-risk systems on the PC Game Pass build, keeping the golden path stable, and documenting six bugs
+      (including an onboarding A11y prompt cluster and a death-flow defect) with concise repro steps, STAR summaries,
+      and clear evidence.
+    </p>
   </section>
 
   <section class="card">
-    <h3>🧭 Focus Areas</h3>
-    <ul>
-      <li>Golden-path flow (launch → play → quit → relaunch)</li>
-      <li>Autosave <em>Continue</em> and basic save/load integrity</li>
-      <li>Settings navigation and persistence</li>
-      <li>Audio checks and music continuity</li>
-      <li>Death → Stats → hub behaviour (defect SWOR-6)</li>
-      <li>Enhancements & Codex readability and behaviour</li>
-      <li>Power-ups and next-room effects</li>
-      <li>Pause menu, Alt+Tab sanity, windowed/fullscreen</li>
-      <li>Controller ↔ mouse/keyboard handover and one hot plug</li>
-      <li>Known A11y onboarding issues tracked but not retested (no new build)</li>
-    </ul>
-  </section>
+  <h3>🧭 Focus Areas</h3>
+  <ul>
+    <li>Golden-path flow (launch → play → quit → relaunch)</li>
+    <li>Autosave <em>Continue</em> and basic save/load integrity</li>
+    <li>Settings navigation and persistence</li>
+    <li>Audio checks and music continuity</li>
+    <li>Death → Stats → hub behaviour (defect <strong>SWOR-6</strong>)</li>
+    <li>Enhancements &amp; Codex readability and behaviour</li>
+    <li>Power-ups and next-room effects</li>
+    <li>Pause menu, Alt+Tab sanity, windowed/fullscreen</li>
+    <li>Controller ↔ mouse/keyboard handover and one hot plug</li>
+    <li>Onboarding A11y prompt cluster (<strong>SWOR-1–4</strong>) tracked as known issues on this build (no new build to re-test)</li>
+  </ul>
+</section>
 
-  <section class="card">
-    <h3>📄 Deliverables</h3>
-    <ul>
-      <li>Regression workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary)</li>
-      <li>Bug log and STAR summaries (PDF export)</li>
-      <li>Evidence videos grouped by area (YouTube playlist)</li>
-      <li>Jira-style defect summaries matched to workbook IDs</li>
-      <li>Clear traceability linking each check to SteamDB patch notes and risk areas</li>
-    </ul>
-  </section>
+<section class="card">
+  <h3>📄 Deliverables</h3>
+  <ul>
+    <li>Regression workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary)</li>
+    <li>Bug log and STAR summaries for six defects (SWOR-1–SWOR-4, SWOR-6, SWOR-15)</li>
+    <li>Evidence videos grouped by area (YouTube playlist)</li>
+    <li>Jira-style defect summaries matched to workbook IDs</li>
+    <li>Clear traceability linking each check to SteamDB patch notes and risk areas</li>
+  </ul>
+</section>
 </div>
     <!-- /grid -->
 <hr>
@@ -176,10 +207,11 @@
     <tr><th>Metric</th><th>Value</th></tr>
   </thead>
   <tbody>
-    <tr><td>Total Bugs Logged</td><td>2</td></tr>
+    <tr><td>Total Bugs Logged</td><td>6</td></tr>
     <tr><td>Critical</td><td>0</td></tr>
-    <tr><td>Major / Medium</td><td>1 (SWOR-6)</td></tr>
-    <tr><td>Minor / Low</td><td>1 (SWOR-15)</td></tr>
+    <tr><td>High</td><td>0</td></tr>
+    <tr><td>Medium</td><td>5</td></tr>
+    <tr><td>Low</td><td>1</td></tr>
     <tr><td>Repro Consistency</td><td><strong>100%</strong></td></tr>
   </tbody>
 </table>
@@ -189,11 +221,11 @@
 
 <p><strong>Situation:</strong> One-week, change-driven regression pass on <strong>Sworn</strong> (PC Game Pass, Windows, build 1.01.0.1039). The SteamDB patch notes for v1.0.3.1111 were used as an external oracle to guide what areas might reasonably need rechecking, without claiming parity between platforms.</p>
 
-<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes – golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and confirm whether any previously known issues remained unchanged.</p>
+<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes – golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and keep previously identified onboarding accessibility issues visible as a known risk cluster on this build.</p>
 
-<p><strong>Action:</strong> Built a Regression Matrix mapped to patch-note items and baseline risks, then executed targeted sessions across the week. Each check was time-boxed with clear anchors and expected outcomes. All evidence was captured using OBS/Xbox Game Bar and logged into a structured Google Sheets workbook with a Bug Log, STAR Summary and fully linked Session Log.</p>
+<p><strong>Action:</strong> Built a Regression Matrix mapped to patch-note items and baseline risks, then executed targeted sessions across the week. Each check was time-boxed with clear anchors and expected outcomes, and marked as Pass, Fail, Not applicable or Known issue. All evidence was captured using OBS/Xbox Game Bar and logged into a structured Google Sheets workbook with a Bug Log (six defects: SWOR-1–SWOR-4, SWOR-6, SWOR-15), STAR Summary and fully linked Session Log.</p>
 
-<p><strong>Result:</strong> Most areas passed as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings navigation/persistence, audio continuity, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover with one hot plug. One regression-relevant defect was confirmed: <strong>SWOR-6</strong> (Defeat overlay remains foregrounded, blocking Stats, and <em>Continue</em> starts a new run). A small visual-readability issue in the Blessing choice screen (<strong>SWOR-15</strong>) was also documented. Onboarding accessibility issues (SWOR-1 to SWOR-4) were already known and not retested due to no new build.</p>
+<p><strong>Result:</strong> The Regression Matrix outcome was <strong>8 passes, 1 fail, 1 not applicable and 1 known A11y cluster</strong>. Most areas passed as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings navigation/persistence, audio continuity, Enhancements/Codex behaviour, power-up behaviour, Alt+Tab, and controller↔KBM handover with one hot plug. One regression-relevant defect was confirmed: <strong>SWOR-6</strong> (Defeat overlay remains foregrounded, blocking Stats, and <em>Continue</em> starts a new run). A small visual-readability issue in the Blessing choice screen (<strong>SWOR-15</strong>) was also documented. Onboarding accessibility prompt issues (<strong>SWOR-1</strong> to <strong>SWOR-4</strong>) are tracked in the bug log as a single A11y cluster on this build, but were not re-run in new sessions because no newer build was available.</p>
 
     <hr>
 <h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
@@ -348,7 +380,15 @@
 <h2 id="core-findings">📌 Core Project Findings – Sessions and Bugs</h2>
 
 <p class="method-note">
-  All planned regression checks were completed on the PC Game Pass build with no crashes or instability across the golden path. Most systems behaved as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings persistence, audio, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover. One medium-severity defect was confirmed in the death-flow sequence (<strong>SWOR-6</strong>), where the Defeat overlay remains foregrounded and blocks full Stats access. A separate low-severity issue was documented in the Blessing choice screen (<strong>SWOR-15</strong>) for small, low-contrast key prompts. Onboarding accessibility issues (SWOR-1 to SWOR-4) were tracked as known issues and not retested due to no new build.
+  All planned regression checks were completed on the PC Game Pass build with no crashes or instability across the golden
+  path. Most systems behaved as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings
+  persistence, audio, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover. Across the project I
+  logged six issues in the bug log: four onboarding accessibility prompt problems (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>),
+  one medium-severity defect in the death-flow sequence (<strong>SWOR-6</strong>, where the Defeat overlay remains
+  foregrounded and blocks full Stats access while <em>Continue</em> starts a new run), and one low-severity issue in the
+  Blessing choice screen (<strong>SWOR-15</strong>) for small, low-contrast key prompts. The onboarding A11y bugs were
+  originally found on Day 0 and are tracked here as a known cluster on this build; they were not re-run in new sessions
+  because there was no newer build to verify against.
 </p>
     
    <h3>📁 Jira Board Screenshot - Overview</h3>
@@ -451,21 +491,99 @@
       <th>Title</th>
       <th>Sev</th>
       <th>Repro</th>
-      <th>Video</th>
+      <th>Video / Screenshot</th>
     </tr>
   </thead>
   <tbody>
+
+    <!-- SWOR-1 -->
+    <tr>
+      <td>SWOR-1</td>
+      <td>[PC][UI][Accessibility] First tutorial prompt small and top left</td>
+      <td>Low</td>
+      <td>3/3</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-02_tutorial_prompt_small_top_left_0044.png" target="_blank" rel="noopener">
+          <img
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-02_tutorial_prompt_small_top_left_0044.png"
+            alt="SWOR-1 – First tutorial prompt small and top left"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <!-- SWOR-2 -->
+    <tr>
+      <td>SWOR-2</td>
+      <td>[PC][UI][Accessibility] X prompt bottom center has weak cue and was missed</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-03_prompt_X_bottom_center_no_cue_0059.png" target="_blank" rel="noopener">
+          <img
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-03_prompt_X_bottom_center_no_cue_0059.png"
+            alt="SWOR-2 – X prompt bottom center has weak cue and was missed"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <!-- SWOR-3 -->
+    <tr>
+      <td>SWOR-3</td>
+      <td>[PC][UI][Accessibility] Three combat prompts top left small and hard to read under SFX</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-04_prompts_small_top_left_in_combat_0114.png" target="_blank" rel="noopener">
+          <img
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-04_prompts_small_top_left_in_combat_0114.png"
+            alt="SWOR-3 – Three combat prompts top left small and hard to read under SFX"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <!-- SWOR-4 -->
+    <tr>
+      <td>SWOR-4</td>
+      <td>[PC][UI][Accessibility] X prompt bottom center repeated without cue and was missed</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-05_prompt_X_bottom_center_missed_0141.png" target="_blank" rel="noopener">
+          <img
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/B-A11Y-05_prompt_X_bottom_center_missed_0141.png"
+            alt="SWOR-4 – X prompt bottom center repeated without cue and was missed"
+            width="140"
+            loading="lazy">
+        </a>
+      </td>
+    </tr>
 
     <!-- SWOR-6 -->
     <tr>
       <td>SWOR-6</td>
       <td>[PC][Death Flow][UI] Defeat overlay remains foregrounded and blocks Stats; Continue starts new run</td>
       <td>Medium</td>
-      <td>1/1</td>
+      <td>3/3</td>
       <td>
-        <a href="https://youtu.be/Gx8rmeesAdQ" target="_blank" rel="noopener">
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/S01_Sworn_PCXGP_1.01039.0_S2_2025-11-24_DefeatOverlay_StatsUnderneath_00m20s.png" target="_blank" rel="noopener">
           <img
-            src="https://img.youtube.com/vi/Gx8rmeesAdQ/hqdefault.jpg"
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
+/S01_Sworn_PCXGP_1.01039.0_S2_2025-11-24_DefeatOverlay_StatsUnderneath_00m20s.png"
             alt="SWOR-6 – Defeat overlay remains foregrounded and blocks Stats"
             width="140"
             loading="lazy">
@@ -477,101 +595,17 @@
     <tr>
       <td>SWOR-15</td>
       <td>[PC][UI][Accessibility] Blessing choice key prompts small and low-contrast</td>
-      <td>Low</td>
-      <td>1/1</td>
+      <td>Medium</td>
+      <td>3/3</td>
       <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/BlessingChoice_KeyPrompts_LowContrast.png" target="_blank" rel="noopener">
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/BlessingChoice_KeyPrompts_LowContrast.png"
+           target="_blank" rel="noopener">
           <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/BlessingChoice_KeyPrompts_LowContrast.png"
+            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/BlessingChoice_KeyPrompts_LowContrast.png"
             alt="SWOR-15 – Blessing choice key prompts small and low-contrast"
             width="140"
             loading="lazy">
         </a>
-      </td>
-    </tr>
-
-  </tbody>
-</table>
-
-<details id="inline-videos">
-  <summary><span class="details-btn">Show inline video</span></summary>
-  <p>
-    <em>
-      If you are viewing this on github.com, embeds may not display. Use the thumbnails/links above
-      or open this page on the published site (GitHub Pages) to watch inline.
-    </em>
-  </p>
-
-  <!-- SWOR-6 -->
-  <div class="embed">
-    <iframe
-      src="https://youtu.be/Gx8rmeesAdQ"
-      title="SWOR-6 – Defeat overlay remains foregrounded and blocks Stats"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-      </iframe>
-  </div>
-</details>
-
-<h3>🔍 Other observations (non-blocking)</h3>
-
-<p class="method-note">
-  Minor UX and readability notes captured during regression. These did not meet the bar for standalone bug tickets but
-  remain useful for future tuning or accessibility review.
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Observation</th>
-      <th>Category</th>
-      <th>Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <!-- OBS-01 -->
-    <tr>
-      <td>OBS-01</td>
-      <td>[PC][Enhancements] Some Enhancement descriptions feel dense and could benefit from clearer spacing or contrast for easier at-a-glance reading.</td>
-      <td>UX / Readability</td>
-      <td>
-        <a href="YOUR_EVIDENCE_URL" target="_blank" rel="noopener">
-          <img src="YOUR_THUMB_URL"
-               alt="OBS-01 – Enhancement descriptions readability"
-               width="140"
-               loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- OBS-02 -->
-    <tr>
-      <td>OBS-02</td>
-      <td>[PC][Codex] Certain Codex entries contain long text blocks that feel cramped in the current layout, making scanning slower for players.</td>
-      <td>UX / Readability</td>
-      <td>
-        <a href="YOUR_EVIDENCE_URL" target="_blank" rel="noopener">
-          <img src="YOUR_THUMB_URL"
-               alt="OBS-02 – Codex long-text readability"
-               width="140"
-               loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- OBS-03 -->
-    <tr>
-      <td>OBS-03</td>
-      <td>[PC][Audio] Dialogue Volume slider referenced in patch notes is not present on this build. Marked as observation only (no parity claim).</td>
-      <td>Feature presence / UX</td>
-      <td>
-        <small>No video required. Documented in Regression Matrix.</small>
       </td>
     </tr>
 
@@ -590,10 +624,11 @@
   </li>
 
   <li>
-    Logged <strong>one medium-severity defect</strong> (<strong>SWOR-6</strong> – Defeat overlay remains foregrounded
-    and blocks Stats; Continue starts a new run) with full video evidence and STAR summary, plus
-    <strong>one low-severity accessibility/UI issue</strong> (<strong>SWOR-15</strong> – Blessing choice key prompts small and
-    low contrast).
+    Logged <strong>six defects in total</strong>:
+    four onboarding A11y prompt issues (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>),
+    one medium-severity death-flow defect (<strong>SWOR-6</strong>),
+    and one medium-severity Blessing choice readability issue (<strong>SWOR-15</strong>).
+    All six reproduced consistently (3/3) and are documented with screenshots or video.
   </li>
 
   <li>
@@ -603,29 +638,31 @@
   </li>
 
   <li>
-    <strong>Death-flow defect (SWOR-6):</strong> after dying, the Defeat overlay remains in the foreground and prevents
-    the player from accessing the Stats breakdown. Selecting <em>Continue</em> immediately starts a new run.
-    This was reproducible and captured on video.
+    <strong>Death-flow defect (SWOR-6):</strong> the Defeat overlay remains foregrounded after death, blocking
+    the Stats panel. Pressing <em>Continue</em> immediately starts a new run. Reproduced reliably
+    and captured on video.
   </li>
 
   <li>
-    <strong>Blessing prompt readability (SWOR-15):</strong> Blessing choice key prompts appear very small with low
-    contrast, making them hard to read. Logged as a low-severity A11y/UI issue.
+    <strong>Blessing prompt readability (SWOR-15):</strong> Blessing choice key prompts appear extremely small
+    with low contrast. Logged as a medium-severity A11y/UI issue due to readability impact.
   </li>
 
   <li>
-    <strong>A11y onboarding issues (SWOR-1 to SWOR-4):</strong> previously identified accessibility concerns in the
-    onboarding/tutorial flow remain in the build. They were not retested because no new build was available.
+    <strong>Onboarding A11y prompt cluster (SWOR-1 → SWOR-4):</strong>
+    small, low-cue, and easy-to-miss tutorial prompts were still present. These were originally
+    identified on Day 0 and are treated as a known cluster on this build because no newer build
+    was available for re-testing.
   </li>
 
   <li>
-    <strong>Dialogue Volume setting:</strong> referenced upstream in patch notes, but <em>not present</em> on this build.
-    Marked as a non-blocking observation rather than a defect, as platform parity was not expected.
+    <strong>Dialogue Volume setting:</strong> this setting appears in upstream patch notes but is <em>not present</em>
+    on the PC Game Pass build. Marked as “Not applicable” rather than a defect.
   </li>
 
   <li>
-    <strong>General stability:</strong> no stutters, hitches or progression blockers encountered during the full
-    regression week. All completed runs cleanly returned to the main menu and relaunched without issue.
+    <strong>General stability:</strong> no stutters, hitches or progression blockers occurred during any run.
+    All sessions cleanly returned to main menu and relaunched without issue.
   </li>
 </ul>
 
@@ -634,11 +671,11 @@
 </p>
 
  <hr>
-
 <p><h3>🏁 Result and takeaway</h3></p>
-<p><strong>Result:</strong> Rebel Racing reaches driving fastest (<strong>4 taps</strong>). Asphalt 9’s HUD readability was stronger due to clearer labels and boxed text.</p>
 
-<p><strong>Takeaway:</strong> Rebel Racing’s core loop is faster but could benefit from improved readability in HUD elements, especially small unboxed text.</p>
+<p><strong>Result:</strong> The PC Game Pass build of <em>Sworn</em> remained stable across all golden-path and targeted regression checks. Six defects were logged in total: four onboarding accessibility prompt issues (SWOR-1–SWOR-4), one medium-severity death-flow defect (SWOR-6), and one medium-severity Blessing choice readability issue (SWOR-15). All reproduced consistently and are fully documented with evidence.</p>
+
+<p><strong>Takeaway:</strong> Sworn’s core systems are generally robust, but UI readability and onboarding prompt visibility need attention, especially for accessibility. The death-flow defect (SWOR-6) is the highest-impact issue and should be prioritised, while the A11y cluster highlights the need for clearer tutorial cueing in early game moments.</p>
 
     <hr>
 
@@ -646,51 +683,51 @@
 
 <ul>
   <li>
-    <strong>Regression only works if the scope is controlled.</strong>
-    Mapping each check to a patch-note item or a clear risk area stopped the project from turning into
-    a full re-test of the entire game and kept the week focused and realistic.
+    <strong>Controlled scope is the only way regression stays meaningful.</strong>
+    Mapping each check to a patch-note item or a clear risk area prevented the week from turning into an unfocused
+    re-test of the whole game and kept every session intentional.
   </li>
 
   <li>
-    <strong>Short, purposeful evidence is king.</strong>
-    Small clips of the golden path, settings passes and the death-flow defect (SWOR-6) made review easy and
-    kept the workbook tight. Long, rambling recordings would have buried the signal.
+    <strong>Short, purposeful evidence beats long recordings.</strong>
+    Tight clips of the golden path, menu flows and the death-flow defect (SWOR-6) made review fast and kept the workbook
+    clean. Anything longer would have buried the signal.
   </li>
 
   <li>
-    <strong>Your Regression Matrix must tell a story.</strong>
-    Laying out the expected outcome, actual outcome and reasoning for each check helped the STAR summary
-    write itself and made the project feel structured rather than chaotic.
+    <strong>The Regression Matrix should do the heavy lifting.</strong>
+    Being explicit about expected vs actual outcomes made the STAR summary almost automatic and turned the project into a
+    coherent story instead of a pile of notes.
   </li>
 
   <li>
-    <strong>Readability issues are not “cosmetic”.</strong>
-    The Blessing choice prompts (SWOR-15) reinforced how small text and low contrast genuinely affect
-    decision-making speed, especially for players who rely on clear visual cues.
+    <strong>Readability issues aren’t cosmetic.</strong>
+    The Blessing choice prompts (SWOR-15) highlighted how small, low-contrast UI genuinely slows decision-making and can
+    exclude players who rely on clear visual cues.
   </li>
 
   <li>
-    <strong>Audio continuity matters more than expected.</strong>
-    Even when everything else works, inconsistent audio cues or missing settings (for example the
-    Dialogue Volume slider referenced upstream but not present on this build) can undermine polish.
+    <strong>Audio continuity matters to perceived polish.</strong>
+    Missing or inconsistent settings — like the Dialogue Volume slider referenced upstream but absent here — still affect
+    player trust even if the game “works”.
   </li>
 
   <li>
-    <strong>Document for future-me, not present-me.</strong>
-    Clear notes in the Session Log made it easy to resume the project the next day without retracing my steps,
-    and kept the checks consistent across the whole week.
+    <strong>Good notes pay you back immediately.</strong>
+    Clear Session Log entries meant I could pick up the project the next day without relearning anything, which kept the
+    week efficient and consistent.
   </li>
 
   <li>
-    <strong>Dyslexia makes certain UX issues immediately obvious.</strong>
-    Dense text blocks in Enhancements and Codex entries jumped out as readability risks, and calling them out
-    explicitly helped justify why they matter from an accessibility perspective.
+    <strong>Dyslexia surfaces UX problems early.</strong>
+    Dense text and cramped layouts in Enhancements and the Codex stood out instantly, which helped justify why these
+    readability issues matter from an accessibility perspective.
   </li>
 
   <li>
-    <strong>Admin should never overshadow testing.</strong>
-    Keeping IDs simple, avoiding unnecessary duplication and letting the workbook support the work made it
-    fast to maintain and easy to audit.
+    <strong>Admin should help, not hinder.</strong>
+    Keeping IDs simple, avoiding duplication and letting the workbook be the single source of truth made the project easy
+    to maintain and easy to audit.
   </li>
 </ul>
 
@@ -700,8 +737,8 @@
 
 <p>
   One-week, change-driven regression pass completed on <em>Sworn</em> (PC Game Pass). The project remained tightly scoped to
-  systems plausibly affected by upstream patch-note changes and to baseline stability checks on the current build. All
-  regression sessions were completed with no crashes, and the overall golden path remained stable throughout.
+  patch-note-driven checks and baseline stability on the current build. All regression sessions were completed without
+  crashes, and the core golden path remained stable throughout the week.
 </p>
 
 <ul>
@@ -709,31 +746,34 @@
     <strong>Coverage delivered:</strong>
     launch → play → quit → relaunch golden path, autosave <em>Continue</em> behaviour, settings navigation and persistence,
     audio continuity, Enhancements and Codex readability, power-up behaviour, death-flow logic, pause and Alt+Tab checks,
-    and controller ↔ keyboard/mouse handover including one hot plug. Previously known onboarding accessibility issues were
-    tracked but not retested due to no new build.
+    and controller ↔ keyboard/mouse handover including one hot plug. Four onboarding accessibility prompt issues
+    (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>) were tracked as a known A11y cluster on this build because no updates
+    were available to verify fixes.
   </li>
 
   <li>
-    <strong>Highest-impact finding:</strong>
+    <strong>Highest-impact findings:</strong>
     <em>SWOR-6</em> — Defeat overlay remains foregrounded after death, blocking the Stats breakdown and causing
-    <em>Continue</em> to start a new run. Also documented <em>SWOR-15</em>, a low-severity UI/accessibility issue where
-    Blessing choice key prompts are very small and low-contrast. Both were captured clearly with supporting evidence.
+    <em>Continue</em> to start a new run.  
+    <em>SWOR-15</em> — Blessing choice key prompts are very small and low-contrast, creating an accessibility risk.
+    Together with the onboarding A11y cluster, these findings highlight that readability and prompt visibility are the
+    main UX concerns on this build.
   </li>
 
   <li>
     <strong>Evidence maturity:</strong>
-    Every check is supported by a Regression Matrix entry, Session Log, short focused video clips, and clean bug/STAR
-    summaries suitable for Jira-style reporting. The workbook provides a single, audit-friendly source of truth for the
-    entire regression week.
+    Every check is backed by a Regression Matrix entry, Session Log, short focused video or screenshot evidence, and clear
+    Jira-style bug and STAR summaries. The workbook forms a single, fully traceable source of truth for the entire
+    regression week, showing how each conclusion was reached.
   </li>
 </ul>
 
 <p>
-  <strong>Up next:</strong> I am moving on to my dedicated VR Comfort & Accessibility case study on 
-  <em>Shadow Point</em> (Quest 3). This project focuses on micro-judder and comfort checks, tracking stability, 
-  guardian/boundary behaviour, text and UI readability in VR, and interaction-mapping parity between standalone Quest 3 
-  and PCVR. It will use a comfort/test matrix, OBS/Quest capture, and parity clips to document comfort ratings, 
-  accessibility risks, and subtle interaction differences that only appear in VR.
+  <strong>Up next:</strong> I am moving on to my dedicated VR Comfort & Accessibility case study on
+  <em>Shadow Point</em> (Quest 3). This project focuses on micro-judder and comfort checks, tracking stability,
+  guardian/boundary behaviour, text and UI readability in VR, and how comfortable it feels to play on a standalone
+  Quest 3 over longer sessions. I’ll be using a simple comfort/test matrix and Quest capture to document comfort
+  ratings, accessibility risks, and any interaction or readability issues that only show up in-headset.
 </p>
 
     <p class="cta-row" style="text-align:center;">
