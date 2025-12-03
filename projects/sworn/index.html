@@ -95,7 +95,7 @@
       <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
     </p>
 
- <h1>🎮 Sworn – Regression Testing Case Study (PC Game Pass Edition, Team17) – Tested: 22/11/2025 – 03/12/2025</h1>
+ <h1>🎮 Sworn - Regression Testing Case Study (PC Game Pass Edition, Team17) - Tested: 22/11/2025 - 03/12/2025</h1>
 
 <!-- Intro -->
 <h2>Introduction</h2>
@@ -221,7 +221,7 @@
 
 <p><strong>Situation:</strong> One-week, change-driven regression pass on <strong>Sworn</strong> (PC Game Pass, Windows, build 1.01.0.1039). The SteamDB patch notes for v1.0.3.1111 were used as an external oracle to guide what areas might reasonably need rechecking, without claiming parity between platforms.</p>
 
-<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes – golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and keep previously identified onboarding accessibility issues visible as a known risk cluster on this build.</p>
+<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes - golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and keep previously identified onboarding accessibility issues visible as a known risk cluster on this build.</p>
 
 <p><strong>Action:</strong> Built a Regression Matrix mapped to patch-note items and baseline risks, then executed targeted sessions across the week. Each check was time-boxed with clear anchors and expected outcomes, and marked as Pass, Fail, Not applicable or Known issue. All evidence was captured using OBS/Xbox Game Bar and logged into a structured Google Sheets workbook with a Bug Log (six defects: SWOR-1–SWOR-4, SWOR-6, SWOR-15), STAR Summary and fully linked Session Log.</p>
 
@@ -244,8 +244,7 @@
   and (4) keep the suite maintainable so each check traces directly back to either a patch-note change or a genuine 
   risk area.  
   I applied this by redesigning my Regression Matrix so that every entry ties to a specific change, a stability 
-  requirement, or a coverage slice rather than retesting the entire game. 
-  :contentReference[oaicite:1]{index=1}
+  requirement, or a coverage slice rather than retesting the entire game.
 </p>
 
 <p class="method-note">
@@ -253,8 +252,7 @@
   known “repeat offender” areas when time is limited. Instead of touching every system in Sworn, I centred the 
   regression on what most players hit every session and gave extra attention to clusters already known to be fragile 
   from earlier testing. This kept the plan achievable for a one-week solo regression while still mirroring how real 
-  studios prioritise player-impacting surfaces.  
-  :contentReference[oaicite:2]{index=2}
+  studios prioritise player-impacting surfaces.
 </p>
 
 <p class="method-note">
@@ -319,7 +317,7 @@
           <li>Centred the week around <strong>launch → play → quit → relaunch</strong> and <strong>death-flow stability</strong>.</li>
           <li>Gave extra attention to <strong>UI readability</strong> and <strong>onboarding prompts</strong>, because they were already known weak points.</li>
           <li>Documented the <strong>A11y onboarding cluster (SWOR-1 → SWOR-4)</strong> as known issues instead of burning time re-testing them without a new build.</li>
-          <li>Kept regression targeted, not broad — the approach reads like a small slice of a real internal QA sprint.</li>
+          <li>Kept regression targeted, not broad - the approach reads like a small slice of a real internal QA sprint.</li>
         </ul>
       </td>
       <td class="evidence">
@@ -362,7 +360,7 @@
     </table>
 
     <hr>
-<h2 id="core-findings">📌 Core Project Findings – Sessions and Bugs</h2>
+<h2 id="core-findings">📌 Core Project Findings - Sessions and Bugs</h2>
 
 <p class="method-note">
   All planned regression checks were completed on the PC Game Pass build with no crashes or instability across the golden
@@ -693,7 +691,7 @@
 
   <li>
     <strong>Audio continuity matters to perceived polish.</strong>
-    Missing or inconsistent settings — like the Dialogue Volume slider referenced upstream but absent here — still affect
+    Missing or inconsistent settings - like the Dialogue Volume slider referenced upstream but absent here — still affect
     player trust even if the game “works”.
   </li>
 
@@ -738,9 +736,9 @@
 
   <li>
     <strong>Highest-impact findings:</strong>
-    <em>SWOR-6</em> — Defeat overlay remains foregrounded after death, blocking the Stats breakdown and causing
+    <em>SWOR-6</em> - Defeat overlay remains foregrounded after death, blocking the Stats breakdown and causing
     <em>Continue</em> to start a new run.  
-    <em>SWOR-15</em> — Blessing choice key prompts are very small and low-contrast, creating an accessibility risk.
+    <em>SWOR-15</em> - Blessing choice key prompts are very small and low-contrast, creating an accessibility risk.
     Together with the onboarding A11y cluster, these findings highlight that readability and prompt visibility are the
     main UX concerns on this build.
   </li>
