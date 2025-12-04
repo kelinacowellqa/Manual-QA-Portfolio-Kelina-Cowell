@@ -305,44 +305,40 @@ header.hero::after{
     <h1>🧩 Project Lineup</h1>
 
     <!-- 1: Battletoads (LIVE) -->
- <section markdown="1" class="project-block with-thumb">
+<section markdown="1" class="project-block with-thumb">
   <img class="thumb" src="assets/img/bt-poster.jpg" alt="Battletoads poster">
 
-  <h2>1: Functional Testing - <em>Battletoads (PC)</em></h2>
-  <ul>
+  <h2>1: Functional Testing – <em>Battletoads (PC)</em></h2>
+
+  <p class="card-intro">
+    Short functional test pass on Battletoads (PC Game Pass) to validate the core loop and surface repeatable bugs,
+    with extra attention on keyboard to controller hand-off.
+  </p>
+
+  <ul class="card-bullets">
     <li>
-      <strong>Goal:</strong> Run a short functional test pass on Battletoads (PC Game Pass) to validate the core loop
-      and surface repeatable bugs, with extra attention on keyboard ⇄ controller hand-off.
+      <strong>Goal:</strong> Practise structured functional QA by checking core gameplay, menus and local co-op,
+      and catching clear, reproducible defects.
     </li>
 
     <li>
-      <strong>Scope:</strong> Core gameplay flow, UI/menus, local co-op, input parity (keyboard + controller),
-      audio cues and basic performance sanity.
+      <strong>Focus:</strong> Pause / Join-In / Resume flows, controller ownership and hand-off, local co-op edge cases,
+      menu navigation, on-screen prompts, and basic audio/performance sanity.
     </li>
 
     <li>
-      <strong>Focus areas:</strong> Pause / Join-In / Resume flows, controller ownership and hand-off, local co-op
-      edge cases, and menu navigation / on-screen prompts.
+      <strong>Interesting result:</strong> Overall build felt stable but surfaced four high-impact input and hand-off
+      defects, all 100% reproducible with clear steps and video.
     </li>
 
     <li>
-      <strong>Tools:</strong> Jira for issues, Google Sheets QA workbook for cases / notes, and Xbox Game Bar + OBS
-      for repro clips.
-    </li>
-
-    <li>
-      <strong>Deliverables:</strong> QA workbook (Sheets + PDF export), evidence clips on YouTube, and a Jira board
-      with four verified tickets and thumbnails.
-    </li>
-
-    <li>
-      <strong>Result:</strong> Overall build felt stable but surfaced <strong>4</strong> high-impact
-      input / hand-off defects, all 100% reproducible with clear steps and video.
+      <strong>Evidence:</strong> Google Sheets QA workbook (cases, notes and PDF export), Jira-style issue tracking,
+      and Xbox Game Bar plus OBS repro clips uploaded to YouTube.
     </li>
 
     <li>
       <strong>Why this game?</strong> A fast, recognisable brawler with drop-in local co-op, perfect for testing
-      input ownership and pause / join-in behaviour.
+      input ownership, pause behaviour and join-in flows under pressure.
     </li>
   </ul>
 
@@ -358,34 +354,38 @@ header.hero::after{
 <section markdown="1" class="project-block with-thumb">
   <img class="thumb" src="assets/img/rr-poster.png" alt="Rebel Racing poster">
 
-  <h2>2: Charter-based Exploratory &amp; Edge-Case Testing - <em>Rebel Racing (Mobile)</em></h2>
-  <ul>
-  <p class="card-intro">
-  One-week exploratory / edge-case pass on a live F2P mobile racer, scoped to a single Android device.
-</p>
+  <h2>2: Charter-based Exploratory &amp; Edge-Case Testing – <em>Rebel Racing (Mobile)</em></h2>
 
-<ul class="card-bullets">
-  <li>
-    <strong>Goal:</strong> Practise charter-based mobile QA with daily golden-path smoke tests plus targeted edge-case sessions.
-  </li>
-  <li>
-    <strong>Focus:</strong> Interruptions &amp; recovery, LTE vs Wi-Fi, UI scaling/readability, input responsiveness,
-    performance &amp; device feel, and basic network / live surfaces (Store &amp; Events).
-  </li>
-  <li>
-    <strong>Interesting result:</strong> Found a post-race rewards soft lock after an OS alarm + app close, plus smaller
-    risks around LTE load delays and HUD readability.
-  </li>
-  <li>
-    <strong>Evidence:</strong> Moto g54 recordings (scrcpy/OBS) and a Google Sheets workbook with charters, bug log
-    and STAR summary.
-  </li>
-</ul>
-    
+  <p class="card-intro">
+    One-week exploratory / edge-case pass on a live F2P mobile racer, scoped to a single Android device.
+  </p>
+
+  <ul class="card-bullets">
+    <li>
+      <strong>Goal:</strong> Practise charter-based mobile QA with daily golden-path smoke tests plus targeted edge-case sessions.
+    </li>
+    <li>
+      <strong>Focus:</strong> Interruptions and recovery, LTE vs Wi-Fi, UI scaling and readability, input responsiveness,
+      performance and device feel, and basic network / live surfaces (Store and Events).
+    </li>
+    <li>
+      <strong>Interesting result:</strong> Found a post-race rewards soft lock after an OS alarm plus app close, plus smaller
+      risks around LTE load delays and HUD readability.
+    </li>
+    <li>
+      <strong>Evidence:</strong> Moto g54 recordings (scrcpy/OBS) and a Google Sheets workbook with charters, bug log
+      and STAR summary.
+    </li>
+    <li>
+      <strong>Why this game?</strong> A busy, live-service mobile racer with timers, pop-ups and network calls, ideal
+      for practising interruption handling and real-world device edge cases.
+    </li>
+  </ul>
+
   <p class="cta">
     <a class="cta-btn"
        href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/index.html">
-Read the case study →
+      Read the case study →
     </a>
   </p>
 </section>
