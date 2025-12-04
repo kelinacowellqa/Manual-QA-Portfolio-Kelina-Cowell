@@ -108,33 +108,33 @@
 
 <ul>
   <li>
-    <strong>Scope:</strong> Change-driven, risk-based regression against the current PC Game Pass build. Focus on golden-path stability (launch → play → quit → relaunch), 
-save/load integrity, core menus, audio sanity, input handover, and items plausibly touched by the latest public patch notes. No parity claim with Steam. 
-SteamDB notes used as an external oracle only.
+    <strong>Scope:</strong> Change-driven, risk-based regression on the current PC Game Pass build. Coverage focused on
+    golden-path stability (launch → play → quit → relaunch), save/load integrity, core menus, audio continuity, input
+    handover, and any areas plausibly touched by the latest public patch notes. SteamDB notes were treated purely as an
+    external oracle for context, not as a source of parity requirements.
   </li>
 
   <li>
-    <strong>Approach:</strong> one-week solo pass built around a Regression Matrix and time-boxed Session Log, with each check
-    mapped to a specific patch-note item or baseline risk area. SteamDB patch notes for SWORN 1.0 Patch #3 (v1.0.3.1111,
-    13 Nov 2025) were used as an upstream oracle, but only as guidance. Each session captured clear anchors, expected
-    outcomes, and results (Pass, Fail, Not applicable, Known issue), with focused rechecks where needed (for example
-    reconfirming the death-flow defect in <strong>SWOR-6</strong>).
+    <strong>Approach:</strong> One-week solo pass executed through a Regression Matrix and a time-boxed Session Log.
+    Each check was mapped to either a patch-note reference or a baseline risk area. Sessions documented clear anchors and
+    expected outcomes, with targeted rechecks only where additional clarification was needed. Accessibility findings from
+    Day 0 (SWOR-1 to SWOR-4) were consolidated into a single A11y cluster in the Matrix because no newer build existed to
+    re-test them.
   </li>
 
   <li>
-    <strong>Outcome:</strong> Regression Matrix result: 8 passes, 1 fail, 1 not applicable, and 1 known A11y cluster. Across the
-    whole project I tracked six defects in the bug log: four onboarding accessibility prompt issues
-    (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>), one post-death flow defect where the Defeat overlay blocks Stats and
-    <em>Continue</em> starts a new run (<strong>SWOR-6</strong>), and one Blessing choice readability issue
-    (<strong>SWOR-15</strong>). Together they describe the current A11y and flow risks on this build.
+    <strong>Outcome:</strong> The Regression Matrix produced a balanced view of this build’s stability: 8 passes, 1 fail,
+    1 not applicable, and 1 known A11y cluster. Six total defects were logged: four onboarding accessibility-prompt issues
+    (SWOR-1 to SWOR-4), one post-death flow defect where the Defeat overlay blocks Stats and <em>Continue</em> begins a new
+    run (SWOR-6), and one low-contrast Blessing choice prompt (SWOR-15). Together they outline the key flow and A11y risks
+    on the current build.
   </li>
 
   <li>
     <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log,
-    STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded to YouTube, grouped by area (baseline flow,
-    settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy). All checks and bugs
-    are cross-linked from the Matrix and Session Log so reviewers can jump straight from the portfolio page into the exact
-    clip or log entry.
+    STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded privately to YouTube. Evidence is grouped by area
+    (baseline flow, settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy),
+    with the Matrix and Session Log cross-linked so reviewers can jump directly to the exact clip or log entry.
   </li>
 </ul>
 
