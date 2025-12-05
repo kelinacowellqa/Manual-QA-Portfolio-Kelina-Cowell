@@ -9,7 +9,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="About — Kelina Cowell | QA Portfolio">
-  <meta property="og:description" content="Manual & early Automation QA — clear repros, disciplined testing, player-impact bug reports.">
+  <meta property="og:description" content="Manual and early Automation QA, clear repros, disciplined testing, player-impact bug reports.">
   <meta property="og:image" content="https://kelinacowellqa.github.io/assets/img/profile-banner.webp">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">
@@ -24,51 +24,114 @@
       --thumb-w:240px; --thumb-gap:18px;
       --s-1:8px; --s-2:12px; --s-3:16px; --s-4:20px; --s-5:28px; --s-6:36px;
     }
-    html,body{background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0;line-height:1.55}
-    a{color:var(--teal);text-decoration:none} a:hover{color:var(--teal-soft)}
-    h1,h2,h3,h4,h5,h6{color:var(--teal)} strong{color:inherit}
+    html,body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin:0;
+      line-height:1.55;
+    }
+    a{color:var(--teal);text-decoration:none}
+    a:hover{color:var(--teal-soft)}
+    h1,h2,h3,h4,h5,h6{color:var(--teal)}
+    strong{color:inherit}
     hr{border:0;border-top:1px solid var(--teal);opacity:.35;margin-block:var(--s-5)}
     .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
     .hero{max-width:1100px;margin:30px auto 20px;padding:0 18px;text-align:center}
     .hero img{display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:14px}
-    .cta-btn{display:inline-block;padding:12px 18px;border-radius:12px;background:#0d1117;border:1px solid #2b2f36;color:var(--teal);font-weight:700;text-decoration:none}
+    .cta-btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:12px;
+      background:#0d1117;
+      border:1px solid #2b2f36;
+      color:var(--teal);
+      font-weight:700;
+      text-decoration:none;
+    }
     .cta-btn:hover{background:var(--teal);color:var(--bg)}
-    .project-block{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.25);margin:22px 0;padding:16px 18px;transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;filter:drop-shadow(0 0 0 rgba(15,181,201,0))}
-    .project-block:hover,.project-block:focus-within{transform:translateY(-2px);filter:drop-shadow(0 0 28px rgba(15,181,201,.38))}
-    .intro,.project-block,header.hero,footer{display:flow-root;padding-block:.5px}
-    h1{margin-block:var(--s-5) var(--s-3)} h2{margin-block:var(--s-5) var(--s-2)} h3{margin-block:var(--s-4) var(--s-2)} p,ul,ol{margin-block:var(--s-2) var(--s-3)} li+li{margin-top:var(--s-1)}
-    .banner-pulse{display:block;width:100%;height:auto;border-radius:16px;animation:imgOutPulse 4s ease-in-out infinite}
-    @keyframes imgOutPulse{0%,100%{filter:drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1)}50%{filter:drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04)}}
-    @media (prefers-reduced-motion:reduce){.banner-pulse{animation:none !important;filter:none !important}}
-    .metrics-look table{width:100%;border-collapse:collapse;background:transparent;border:1px solid var(--line);margin:12px 0}
-    .metrics-look thead th{background:rgba(0,255,240,.08);color:var(--teal);text-align:left;font-weight:700;font-size:14px;padding:12px 14px;border-bottom:1px solid var(--line)}
-    .metrics-look tbody th,.metrics-look tbody td{padding:12px 14px;vertical-align:top;color:var(--text);background:transparent}
-    .metrics-look thead th+th,.metrics-look tbody td+td,.metrics-look tbody th+td{border-left:1px solid var(--line)}
-    .metrics-look tbody tr+tr td,.metrics-look tbody tr+tr th{border-top:1px solid var(--line)}
-    footer{max-width:980px;margin:40px auto 0;padding:20px 18px 0;text-align:center;font-size:.85em;opacity:.8;border-top:1px solid rgba(255,255,255,.05)}
- 
-  /* About: thumbnail layout */
-.about-media{
-  display:flex; gap:16px; align-items:flex-start;
-}
-.about-media .headshot{
-  width:128px; height:128px; object-fit:cover;
-  border-radius:12px;
-  border:1px solid var(--line);
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
-  flex:0 0 auto;
-}
-@media (max-width:560px){
-  .about-media{ flex-direction:column; }
-  .about-media .headshot{ width:120px; height:120px; }
-}
+    .project-block{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,.25);
+      margin:22px 0;
+      padding:16px 18px;
+      transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;
+      filter:drop-shadow(0 0 0 rgba(15,181,201,0));
+    }
+    .project-block:hover,
+    .project-block:focus-within{
+      transform:translateY(-2px);
+      filter:drop-shadow(0 0 28px rgba(15,181,201,.38));
+    }
+    .intro,
+    .project-block,
+    header.hero,
+    footer{
+      display:flow-root;
+      padding-block:.5px;
+    }
+    h1{margin-block:var(--s-5) var(--s-3)}
+    h2{margin-block:var(--s-5) var(--s-2)}
+    h3{margin-block:var(--s-4) var(--s-2)}
+    p,ul,ol{margin-block:var(--s-2) var(--s-3)}
+    li+li{margin-top:var(--s-1)}
+    .banner-pulse{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:16px;
+      animation:imgOutPulse 4s ease-in-out infinite;
+    }
+    @keyframes imgOutPulse{
+      0%,100%{filter:drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1)}
+      50%{filter:drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .banner-pulse{animation:none !important;filter:none !important}
+    }
+
+    /* About: thumbnail layout */
+    .about-media{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+    }
+    .about-media .headshot{
+      width:128px;
+      height:128px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+    @media (max-width:560px){
+      .about-media{flex-direction:column;}
+      .about-media .headshot{width:120px;height:120px;}
+    }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   <!-- JSON-LD: Person -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Kelina Cowell","jobTitle":"Manual & Automation QA Engineer","description":"Aspiring Game QA / QA Tester — clear repros, disciplined manual testing, player-impact-focused bug reports.","url":"https://kelinacowellqa.github.io/","sameAs":["https://github.com/kelinacowellqa","https://www.linkedin.com/in/kelina-cowell-qa-tester/"],"image":"https://kelinacowellqa.github.io/assets/img/profile-banner.webp"}
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Kelina Cowell",
+    "jobTitle":"Manual & Automation QA Engineer",
+    "description":"Aspiring Game QA / QA Tester, clear repros, disciplined manual testing, player-impact-focused bug reports.",
+    "url":"https://kelinacowellqa.github.io/",
+    "sameAs":[
+      "https://github.com/kelinacowellqa",
+      "https://www.linkedin.com/in/kelina-cowell-qa-tester/"
+    ],
+    "image":"https://kelinacowellqa.github.io/assets/img/profile-banner.webp"
+  }
   </script>
 </head>
 <body>
@@ -76,9 +139,11 @@
     <div class="wrap">
       <!-- Hero -->
       <header class="hero">
-        <img class="banner-pulse"
-             src="assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
-             alt="QA tester across PC, console, VR and mobile platforms — cinematic banner.">
+        <img
+          class="banner-pulse"
+          src="assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
+          alt="QA tester across PC, console, VR and mobile platforms, cinematic banner."
+        >
       </header>
 
       <!-- Nav -->
@@ -93,76 +158,78 @@
 
       <hr>
 
-      <!-- About -->
-     <section class="intro" aria-labelledby="about-title">
-  <h1 id="about-title">About Me - Kelina Cowell</h1>
+      <!-- About intro -->
+      <section class="intro" aria-labelledby="about-title">
+        <h1 id="about-title">About Me - Kelina Cowell</h1>
 
-  <div class="about-media">
-    <img
-      class="headshot"
-      src="assets/img/kelina_cowell_qa.jpg"
-      alt="Portrait of Kelina Cowell, Manual & Automation QA Engineer"
-      width="128" height="128"
-      loading="lazy" decoding="async"
-    >
+        <div class="about-media">
+          <img
+            class="headshot"
+            src="assets/img/kelina_cowell_qa.jpg"
+            alt="Portrait of Kelina Cowell, Manual and Automation QA Engineer"
+            width="128" height="128"
+            loading="lazy" decoding="async"
+          >
 
-  <section class="about-intro">
-  <div>
-    <p>I am an aspiring Game QA / QA Tester in the UK, building experience through self directed portfolio projects on shipped games for PC Game Pass and mobile. I enjoy the practical side of QA: planning sessions, running focused tests, and writing bug reports that are clear enough for a developer to pick up and act on.</p>
+          <section class="about-intro">
+            <div>
+              <p>I am an aspiring Game QA / QA Tester in the UK, building experience through self directed portfolio projects on shipped games for PC Game Pass and mobile. I enjoy the practical side of QA: planning sessions, running focused tests, and writing bug reports that are clear enough for a developer to pick up and act on.</p>
 
-    <p>I have not worked in a studio yet. Most of my hands on experience comes from my Game Academy bootcamp projects and my own portfolio work. Before that I worked in emergency control, logistics and contact centres. Those roles trained me to stay calm when things break, follow procedures accurately, and keep clean written records. All of that transfers nicely into QA.</p>
+              <p>I have not worked in a studio yet. Most of my hands on experience comes from my Game Academy bootcamp projects and my own portfolio work. Before that I worked in emergency control, logistics and contact centres. Those roles trained me to stay calm when things break, follow procedures accurately, and keep clean written records. All of that transfers nicely into QA.</p>
 
-    <p>In my projects I define scope and environment, design simple test plans or exploratory charters, capture video or screenshots for every significant run, and log issues in Jira style boards. My bug reports always include a short summary, exact repro steps, expected vs actual result, environment, repro rate, and why the issue matters to the player.</p>
+              <p>In my projects I define scope and environment, design simple test plans or exploratory charters, capture video or screenshots for every significant run, and log issues in Jira style boards. My bug reports always include a short summary, exact repro steps, expected vs actual result, environment, repro rate, and why the issue matters to the player.</p>
 
-    <p>I am currently building a portfolio that covers different testing focuses such as functional checks, light regression on live builds, exploratory and edge case testing, basic accessibility and comfort checks, and cross platform work that includes VR. Each case study is small on purpose so that a hiring manager can see my thought process without needing an hour to read it.</p>
-  </div>
-</section>
+              <p>I am currently building a portfolio that covers different testing focuses such as functional checks, light regression on live builds, exploratory and edge case testing, basic accessibility and comfort checks, and cross platform work that includes VR. Each case study is small on purpose so that a hiring manager can see my thought process without needing an hour to read it.</p>
+            </div>
+          </section>
+        </div>
+      </section>
 
       <!-- Project lineup summary -->
       <section class="project-block" aria-labelledby="lineup">
         <h2 id="lineup">Project Lineup</h2>
         <ul>
-          <li> <strong>Battletoads</strong> — Functional testing — <em>Live</em></li>
-          <li> <strong>Rebel Racing</strong> — Exploratory & edge-case testing — <em>Live</em></li>
-          <li> <strong>Sworn</strong> — Regression testing — <em>Live</em></li>
-          <li> <strong>Shadow Point</strong> — Cross-platform testing (VR & PCVR) — <em>In progress</em></li>
-          <li> <strong>Recompile</strong> — Cross-platform input / controller testing — <em>Coming soon</em></li>
-          <li> <strong>Oxenfree</strong> — Narrative & localisation testing — <em>Coming soon</em></li>
-          <li> <strong>PowerWash Simulator 2</strong> — Test automation — <em>Coming soon</em></li>
-          <li> <strong>Solo QA Workflow (Capstone)</strong> — End-to-end QA capability — <em>Coming soon</em></li>
+          <li><strong>Battletoads</strong> — Functional testing — <em>Live</em></li>
+          <li><strong>Rebel Racing</strong> — Exploratory and edge-case testing — <em>Live</em></li>
+          <li><strong>Sworn</strong> — Regression testing — <em>Live</em></li>
+          <li><strong>Shadow Point</strong> — Cross-platform testing (VR and PCVR) — <em>In progress</em></li>
+          <li><strong>Recompile</strong> — Cross-platform input and controller testing — <em>Coming soon</em></li>
+          <li><strong>Oxenfree</strong> — Narrative and localisation testing — <em>Coming soon</em></li>
+          <li><strong>PowerWash Simulator 2</strong> — Test automation — <em>Coming soon</em></li>
+          <li><strong>Solo QA Workflow (Capstone)</strong> — End to end QA capability — <em>Coming soon</em></li>
         </ul>
       </section>
 
       <!-- How I work -->
-     <section class="project-block" aria-labelledby="how">
-  <h2 id="how">Across these projects I…</h2>
-  <ul>
-    <li>Define scope, environment and a clear test approach using simple test cases or exploratory charters.</li>
-    <li>Use Jira style boards and workflows that mirror how studio teams organise work.</li>
-    <li>Write clear bug reports with steps, captures, expected and actual results, repro rate and why the issue matters.</li>
-    <li>Check basic accessibility, UX, localisation points and edge cases when they are relevant to the feature.</li>
-    <li>Apply advice from senior QA, accessibility and UX professionals to improve how I plan tests and report issues.</li>
-  </ul>
-</section>
+      <section class="project-block" aria-labelledby="how">
+        <h2 id="how">Across these projects I…</h2>
+        <ul>
+          <li>Define scope, environment and a clear test approach using simple test cases or exploratory charters.</li>
+          <li>Use Jira style boards and workflows that mirror how studio teams organise work.</li>
+          <li>Write clear bug reports with steps, captures, expected and actual results, repro rate and why the issue matters.</li>
+          <li>Check basic accessibility, UX, localisation points and edge cases when they are relevant to the feature.</li>
+          <li>Apply advice from senior QA, accessibility and UX professionals to improve how I plan tests and report issues.</li>
+        </ul>
+      </section>
 
       <!-- Training -->
-  <section class="project-block" aria-labelledby="training">
-  <h2 id="training">🎓 Training</h2>
-  <p>
-    I have completed the Game Academy Bootcamp plus focused training on Jira (Scrum and Kanban) and writing clear user stories and acceptance criteria. I have also completed Microsoft Game Dev: Gaming Accessibility Fundamentals and I am starting to fold that thinking into my testing on PC, mobile and VR.
-  </p>
-</section>
+      <section class="project-block" aria-labelledby="training">
+        <h2 id="training">🎓 Training</h2>
+        <p>
+          I have completed the Game Academy Bootcamp plus focused training on Jira (Scrum and Kanban) and writing clear user stories and acceptance criteria. I have also completed Microsoft Game Dev: Gaming Accessibility Fundamentals and I am starting to fold that thinking into my testing on PC, mobile and VR.
+        </p>
+      </section>
 
       <!-- Roles sought -->
-  <section class="project-block" aria-labelledby="roles">
-  <h2 id="roles">🤝 What I’m Looking For</h2>
-  <p>
-    I am looking for junior or entry level roles such as Game QA Tester or QA Analyst. I want to join a team that treats QA as part of player advocacy and game design, not just as people who count bugs.
-  </p>
-  <p>
-    I do my best work in teams that communicate openly, give clear expectations, and are happy to share context so I understand why a feature matters. In that kind of environment I am keen to learn fast, take ownership of my tasks, and grow with the team over the long term.
-  </p>
-</section>
+      <section class="project-block" aria-labelledby="roles">
+        <h2 id="roles">🤝 What I’m Looking For</h2>
+        <p>
+          I am looking for junior or entry level roles such as Game QA Tester or QA Analyst. I want to join a team that treats QA as part of player advocacy and game design, not just as people who count bugs.
+        </p>
+        <p>
+          I do my best work in teams that communicate openly, give clear expectations, and are happy to share context so I understand why a feature matters. In that kind of environment I am keen to learn fast, take ownership of my tasks, and grow with the team over the long term.
+        </p>
+      </section>
 
       <!-- CTAs -->
       <p class="cta-row" style="text-align:center;">
@@ -175,6 +242,8 @@
       <hr>
     </div>
   </main>
+</body>
+</html>
 
   <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio
     <br>📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.
