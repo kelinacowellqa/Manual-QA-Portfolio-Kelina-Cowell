@@ -683,51 +683,38 @@
 
 <ul>
   <li>
-    <strong>Controlled scope is the only way regression stays meaningful.</strong>
-    Mapping each check to a patch-note item or a clear risk area prevented the week from turning into an unfocused
-    re-test of the whole game and kept every session intentional.
-  </li>
-
-  <li>
-    <strong>Short, purposeful evidence beats long recordings.</strong>
-    Tight clips of the golden path, menu flows and the death-flow defect (SWOR-6) made review fast and kept the workbook
-    clean. Anything longer would have buried the signal.
+    <strong>Controlled scope keeps regression useful.</strong>
+    Mapping checks to patch-note items or clear risk areas stopped this from becoming a blurry re-test of the whole game.
   </li>
 
   <li>
     <strong>The Regression Matrix should do the heavy lifting.</strong>
-    Being explicit about expected vs actual outcomes made the STAR summary almost automatic and turned the project into a
-    coherent story instead of a pile of notes.
+    Being explicit about expected vs actual outcomes turned the STAR summary into simple reporting instead of reconstruction.
+  </li>
+
+  <li>
+    <strong>Patches don’t live in isolation.</strong>
+    Feedback from a senior QA manager reinforced that regression shouldn’t stop at confirming patch-note items. In this project I focused on patch-note coverage and baseline risks; in future passes I’ll expand the matrix with planned adjacency sweeps to look for side effects in neighbouring systems.
+  </li>
+
+  <li>
+    <strong>Short, purposeful evidence beats long recordings.</strong>
+    Tight clips of the golden path, key menus and the death-flow defect (SWOR-6) made review quick and kept the workbook readable.
   </li>
 
   <li>
     <strong>Readability issues aren’t cosmetic.</strong>
-    The Blessing choice prompts (SWOR-15) highlighted how small, low-contrast UI genuinely slows decision-making and can
-    exclude players who rely on clear visual cues.
-  </li>
-
-  <li>
-    <strong>Audio continuity matters to perceived polish.</strong>
-    Missing or inconsistent settings - like the Dialogue Volume slider referenced upstream but absent here — still affect
-    player trust even if the game “works”.
-  </li>
-
-  <li>
-    <strong>Good notes pay you back immediately.</strong>
-    Clear Session Log entries meant I could pick up the project the next day without relearning anything, which kept the
-    week efficient and consistent.
+    The Blessing choice prompts (SWOR-15) showed how low-contrast, cramped UI slows decision-making and can exclude players who need clear visual cues.
   </li>
 
   <li>
     <strong>Dyslexia surfaces UX problems early.</strong>
-    Dense text and cramped layouts in Enhancements and the Codex stood out instantly, which helped justify why these
-    readability issues matter from an accessibility perspective.
+    Dense text and cramped layouts in Enhancements and the Codex stood out immediately, which helped frame these issues as accessibility risks, not just “polish”.
   </li>
 
   <li>
     <strong>Admin should help, not hinder.</strong>
-    Keeping IDs simple, avoiding duplication and letting the workbook be the single source of truth made the project easy
-    to maintain and easy to audit.
+    Simple IDs and a single source of truth in the workbook made the project easy to pick up, maintain and audit.
   </li>
 </ul>
 
