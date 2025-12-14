@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sworn - Regression Testing Case Study</title>
+  <title>Shadow Point - Accessibility & VR Comfort Testing Case Study</title>
 
   <!-- global styles -->
   <link rel="stylesheet" href="../../assets/css/site.css?v=5">
@@ -25,7 +25,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sworn - Regression Testing Case Study</title>
+  <title>Shadow Point - Accessibility & VR Comfort Testing Case Study</title>
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
 
   <!-- Page-scoped helpers for this case study only -->
@@ -95,46 +95,53 @@
       <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
     </p>
 
- <h1>🎮 Sworn - Regression Testing Case Study (PC Game Pass Edition) - Tested: 22/11/2025 - 03/12/2025</h1>
+ <h1>🎮 Shadow Point - Accessibility & VR Comfort Testing Case Study (Quest 3) - Tested: 08/12/2025 - 13/12/2025</h1>
 
 <!-- Intro -->
 <h2>Introduction</h2>
 <p>
-  One-week, change-driven regression pass on <em>Sworn</em> (PC Game Pass, Windows, build 1.01.0.1039) focused on golden-path
-  stability (launch → play → quit → relaunch), save/load integrity, core menus, audio sanity, input handover, and areas
-  plausibly touched by the latest public Steam patch notes. This was a solo, portfolio-only project using SteamDB patch notes
-  as an external oracle, without claiming parity with the Steam build.
+  One-week, solo, self directed QA portfolio project on <em>Shadow Point</em> (Meta Quest 3, standalone), tested from
+  8 to 13 December 2025. The project focused on accessibility, comfort, and seated VR play, with particular attention to
+  early-game onboarding, locomotion, camera behaviour, text readability, audio cues, and cognitive load during puzzle interaction.
+</p>
+<p>
+  Testing was exploratory and charter driven, using structured comfort, accessibility, and cognitive heuristics rather than
+  full functional or content coverage. The scope did not aim to replicate studio QA or full regression, but to evaluate access
+  and comfort risks that could affect usability, retention, and first-time VR experience.
+</p>
+<p>
+  Charters and checks were informed by established XR accessibility guidance and applied insight from industry practitioners,
+  including Ian Hamilton’s VR comfort principles, BBC XR cognitive barriers, W3C XR Accessibility User Requirements, Game
+  Accessibility Guidelines, and practitioner feedback from Dr Tracy Gardner on cybersickness and movement risk. These
+  frameworks were used to shape charter design, session focus, and how findings were framed and prioritised.
 </p>
 
 <ul>
   <li>
-    <strong>Scope:</strong> Change-driven, risk-based regression on the current PC Game Pass build. Coverage focused on
-    golden-path stability (launch → play → quit → relaunch), save/load integrity, core menus, audio continuity, input
-    handover, and any areas plausibly touched by the latest public patch notes. SteamDB notes were treated purely as an
-    external oracle for context, not as a source of parity requirements.
+    <strong>Scope:</strong> Solo, self directed one-week portfolio pass on <em>Shadow Point</em> using Meta Quest standalone
+    (build 1.4). Coverage focused on VR accessibility, comfort, and seated usability in the early rooms, including subtitles,
+    non-audio cue redundancy, input flexibility, comprehension and expectation checks, and comfort stability during locomotion
+    and the cable car sequence. No claim of studio coverage or full regression.
   </li>
 
   <li>
-    <strong>Approach:</strong> One-week solo pass executed through a Regression Matrix and a time-boxed Session Log.
-    Each check was mapped to either a patch-note reference or a baseline risk area. Sessions documented clear anchors and
-    expected outcomes, with targeted rechecks only where additional clarification was needed. Accessibility findings from
-    Day 0 (SWOR-1 to SWOR-4) were consolidated into a single A11y cluster in the Matrix because no newer build existed to
-    re-test them.
+    <strong>Approach:</strong> Risk-based charter testing executed through a Charter Matrix and time-boxed Session Log.
+    Charters were marked complete or consolidated where coverage overlapped, with follow-up checks only when new risks surfaced
+    (for example, subtitle behaviour triggering deeper subtitle-specific coverage). Applied Insight notes were used to shape
+    charters and expectations for accessibility and comfort checks.
   </li>
 
   <li>
-    <strong>Outcome:</strong> The Regression Matrix produced a balanced view of this build’s stability: 8 passes, 1 fail,
-    1 not applicable, and 1 known A11y cluster. Six total defects were logged: four onboarding accessibility-prompt issues
-    (SWOR-1 to SWOR-4), one post-death flow defect where the Defeat overlay blocks Stats and <em>Continue</em> begins a new
-    run (SWOR-6), and one low-contrast Blessing choice prompt (SWOR-15). Together they outline the key flow and A11y risks
-    on the current build.
+    <strong>Outcome:</strong> 20 logged sessions (S-001 to S-020) produced 11 tracked issues. Key themes included subtitle
+    readability and occlusion (SP-12, SP-17, SP-24, SP-25), clarity and confirmation gaps when audio cues were removed
+    (SP-27, SP-28), and Room 3 seated interaction and UI clarity issues (SP-18 to SP-21). One additional low priority visual
+    issue was logged for hand alignment during move plus look (SP-4).
   </li>
 
   <li>
-    <strong>Evidence:</strong> Google Sheets workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log,
-    STAR Summary, Glossary) plus OBS/Xbox Game Bar recordings uploaded privately to YouTube. Evidence is grouped by area
-    (baseline flow, settings, save/load, death flow, audio, Enhancements, power-ups, Alt+Tab, input handover, economy),
-    with the Matrix and Session Log cross-linked so reviewers can jump directly to the exact clip or log entry.
+    <strong>Evidence:</strong> Workbook tabs exported as PDF (Session Log, Charter Matrix, Bug Log) supported by video and
+    screenshot evidence per session and per issue. Sessions include timestamp anchors for key observations, and Bug Log entries
+    record the matching media type (video, screenshot, or both).
   </li>
 </ul>
 
@@ -144,13 +151,11 @@
   </thead>
   <tbody>
     <tr>
-      <td>Windwalk Games/Team17</td>
-      <td>PC Game Pass (Windows)</td>
+      <td>Coatsink</td>
+      <td>Meta Quest standalone (Quest 3), build 1.4</td>
       <td>
-        One-week, change-driven regression: golden-path stability • autosave <em>Continue</em> &amp; save/load integrity •
-        settings navigation &amp; persistence • death → Stats → hub flow • audio continuity/settings •
-        Enhancements/Codex readability • power-up next-room behaviour • pause/Alt+Tab • controller ↔ KBM handover &amp; hot plug •
-        onboarding A11y prompt cluster tracked as known issues (SWOR-1–4).
+        One-week, charter-driven accessibility and comfort pass for seated VR play (8 to 13 December 2025). Coverage included:
+        camera predictability and horizon stability (CAM01) • locomotion and rotation comfort (LOC01) • comfort checks during the moving vehicle sequence (cable car) • seated reach and motor strain risk (SEAT01, INPUT02) • subtitle availability, legibility and occlusion risks (SUB01) • non-audio cue parity at volume 0 (AUDIO01) • cognitive barrier checks for comprehension, expectation, and wayfinding in early rooms (COG01 to COG03). Findings were logged in a Bug Log with linked sessions and evidence.
       </td>
     </tr>
   </tbody>
@@ -161,40 +166,36 @@
   <section class="card">
     <h3>🎯 Goal</h3>
     <p>
-      Show how I run a realistic one-week, change-driven regression pass: using SteamDB patch notes to target checks,
-      validating high-risk systems on the PC Game Pass build, keeping the golden path stable, and documenting six bugs
-      (including an onboarding A11y prompt cluster and a death-flow defect) with concise repro steps, STAR summaries,
-      and clear evidence.
+      Show how I run a realistic one-week VR accessibility and comfort pass on <em>Shadow Point</em> (Meta Quest 3, standalone),
+      using charter-driven sessions to evaluate seated play, comfort stability, subtitle accessibility, non-audio cue redundancy,
+      and early-game cognitive barriers. Findings were documented as 11 tracked issues (SP-4, SP-12, SP-17, SP-18, SP-19,
+      SP-20, SP-21, SP-24, SP-25, SP-27, SP-28) with clear repro steps and linked evidence.
     </p>
   </section>
 
   <section class="card">
-  <h3>🧭 Focus Areas</h3>
-  <ul>
-    <li>Golden-path flow (launch → play → quit → relaunch)</li>
-    <li>Autosave <em>Continue</em> and basic save/load integrity</li>
-    <li>Settings navigation and persistence</li>
-    <li>Audio checks and music continuity</li>
-    <li>Death → Stats → hub behaviour (defect <strong>SWOR-6</strong>)</li>
-    <li>Enhancements &amp; Codex readability and behaviour</li>
-    <li>Power-ups and next-room effects</li>
-    <li>Pause menu, Alt+Tab sanity, windowed/fullscreen</li>
-    <li>Controller ↔ mouse/keyboard handover and one hot plug</li>
-    <li>Onboarding A11y prompt cluster (<strong>SWOR-1–4</strong>) tracked as known issues on this build (no new build to re-test)</li>
-  </ul>
-</section>
+    <h3>🧭 Focus Areas</h3>
+    <ul>
+      <li>Camera behaviour and horizon stability, including the cable car sequence</li>
+      <li>Locomotion and turning comfort options (seated controller play)</li>
+      <li>Subtitles: availability, legibility, and occlusion</li>
+      <li>Non-audio confirmation at volume 0 (visual and haptic cues)</li>
+      <li>Seated reach and input strain checks (including trigger and grip interactions)</li>
+      <li>Cognitive barriers in early rooms: comprehension, expectation, and wayfinding</li>
+    </ul>
+  </section>
 
-<section class="card">
-  <h3>📄 Deliverables</h3>
-  <ul>
-    <li>Regression workbook (README, 1-liner summary, Regression Matrix, Session Log, Bug Log, STAR Summary, Glossary)</li>
-    <li>Bug log and STAR summaries for six defects (SWOR-1–SWOR-4, SWOR-6, SWOR-15)</li>
-    <li>Evidence videos grouped by area (YouTube playlist)</li>
-    <li>Jira-style defect summaries matched to workbook IDs</li>
-    <li>Clear traceability linking each check to SteamDB patch notes and risk areas</li>
-  </ul>
-</section>
+  <section class="card">
+    <h3>📄 Deliverables</h3>
+    <ul>
+      <li>Session Log with time-boxed runs, results summaries, and evidence type per session (S-001 to S-020)</li>
+      <li>Charter Matrix showing planned coverage, what was completed, and where checks were consolidated</li>
+      <li>Bug Log with severity, reproducibility, and media type (video and screenshots) per issue</li>
+      <li>Applied Insight document showing the accessibility frameworks used to shape charters and checks</li>
+    </ul>
+  </section>
 </div>
+
     <!-- /grid -->
 <hr>
 <h2 id="metrics">📊 Metrics</h2>
@@ -203,78 +204,69 @@
     <tr><th>Metric</th><th>Value</th></tr>
   </thead>
   <tbody>
-    <tr><td>Total Bugs Logged</td><td>6</td></tr>
+    <tr><td>Total Bugs Logged</td><td>11</td></tr>
     <tr><td>Critical</td><td>0</td></tr>
     <tr><td>High</td><td>0</td></tr>
-    <tr><td>Medium</td><td>5</td></tr>
-    <tr><td>Low</td><td>1</td></tr>
-    <tr><td>Repro Consistency</td><td><strong>100%</strong></td></tr>
+    <tr><td>Medium</td><td>7</td></tr>
+    <tr><td>Low</td><td>4</td></tr>
+    <tr><td>Repro Rate</td><td><strong>6× 3/3</strong>, <strong>1× 2/2</strong>, <strong>4× 1/1</strong></td></tr>
   </tbody>
 </table>
 
     <hr>
-<h2 id="star-summary">⭐ STAR SUMMARY – Sworn Regression QA (PC Game Pass)</h2>
+<h2 id="star-summary">⭐ STAR SUMMARY – Shadow Point VR Accessibility and Comfort QA (Meta Quest 3)</h2>
 
-<p><strong>Situation:</strong> One-week, change-driven regression pass on <strong>Sworn</strong> (PC Game Pass, Windows, build 1.01.0.1039). The SteamDB patch notes for v1.0.3.1111 were used as an external oracle to guide what areas might reasonably need rechecking, without claiming parity between platforms.</p>
+<p><strong>Situation:</strong> One-week, solo, self directed QA portfolio project on <strong>Shadow Point</strong> on Meta Quest 3 standalone (build <strong>1.4</strong>), tested from <strong>8 to 13 December 2025</strong>. Testing focused on early game play in seated VR, where comfort, readability, and clarity issues can quickly become access barriers.</p>
 
-<p><strong>Task:</strong> Validate that key systems on the PC Game Pass build behaved correctly after upstream changes - golden-path stability, save/load, settings persistence, audio, death-flow logic, Enhancements/Codex behaviour, power-ups, Alt+Tab, and input handover – and keep previously identified onboarding accessibility issues visible as a known risk cluster on this build.</p>
+<p><strong>Task:</strong> Run a realistic charter-driven accessibility and comfort pass for seated VR play. Prioritise high-risk areas including locomotion and turning comfort, horizon stability, camera predictability, subtitle legibility, non-audio cue redundancy (especially at volume 0), input flexibility and fatigue, and cognitive barriers during puzzle interaction (comprehension, expectation, and wayfinding).</p>
 
-<p><strong>Action:</strong> Built a Regression Matrix mapped to patch-note items and baseline risks, then executed targeted sessions across the week. Each check was time-boxed with clear anchors and expected outcomes, and marked as Pass, Fail, Not applicable or Known issue. All evidence was captured using OBS/Xbox Game Bar and logged into a structured Google Sheets workbook with a Bug Log (six defects: SWOR-1–SWOR-4, SWOR-6, SWOR-15), STAR Summary and fully linked Session Log.</p>
+<p><strong>Action:</strong> Created a charter set informed by applied XR accessibility guidance (comfort fundamentals, cognitive barriers, and XR accessibility requirements), then executed <strong>20</strong> time-boxed sessions (S-001 to S-020) with timestamp anchors and evidence capture. Coverage and decisions were tracked through a Charter Matrix, with outcomes summarised in a 1-Liner Summary for fast review. Issues were logged in a structured Bug Log with severity, reproducibility, and linked evidence, and high-impact themes were followed up in targeted rechecks (for example, subtitle behaviour driving deeper subtitle-specific coverage).</p>
 
-<p><strong>Result:</strong> The Regression Matrix outcome was <strong>8 passes, 1 fail, 1 not applicable and 1 known A11y cluster</strong>. Most areas passed as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings navigation/persistence, audio continuity, Enhancements/Codex behaviour, power-up behaviour, Alt+Tab, and controller↔KBM handover with one hot plug. One regression-relevant defect was confirmed: <strong>SWOR-6</strong> (Defeat overlay remains foregrounded, blocking Stats, and <em>Continue</em> starts a new run). A small visual-readability issue in the Blessing choice screen (<strong>SWOR-15</strong>) was also documented. Onboarding accessibility prompt issues (<strong>SWOR-1</strong> to <strong>SWOR-4</strong>) are tracked in the bug log as a single A11y cluster on this build, but were not re-run in new sessions because no newer build was available.</p>
+<p><strong>Result:</strong> Logged <strong>11</strong> issues in total (<strong>7 medium</strong>, <strong>4 low</strong>), with reproducibility recorded per issue (1/1, 2/2, or 3/3). The main risk areas identified were subtitle accessibility (readability and occlusion), early-game clarity and confirmation gaps when audio cues were removed, and seated interaction and UI clarity issues in Room 3. Comfort checks for movement, turning, and stability were also exercised across multiple sessions, with findings recorded against the relevant charters.</p>
 
     <hr>
-<h2 id="applied-insight">🤝 Networking & Applied Insight</h2>
+<h2 id="applied-insight">🤝 Networking &amp; Applied Insight</h2>
 
 <p class="method-note">
-  During this project I didn’t guess the scope in isolation. I shaped the regression plan around targeted guidance
-  from senior QA professionals, treating this as a miniature live-ops assignment instead of a theoretical exercise.
+  For this project, I did not rely on personal preference or gut feel. I built the charters and checks on top of
+  established XR accessibility guidance, plus targeted input from people actively working in VR and XR accessibility.
 </p>
 
 <p class="method-note">
-  <strong>Conrad Bettmann</strong> (QA Manager at Rovio Entertainment) emphasised four principles for realistic regression work:
-</p>
-
-<ol class="method-note">
-  <li>
-    <strong>Map regression to where the game actually changed</strong> using multiple oracles such as patch notes,
-    changelogs, community reports and, where useful, historical behaviour from earlier builds or fandom wikis.
-  </li>
-
-  <li>
-    <strong>Prioritise must-not-break systems</strong> such as save/load, session flow, input ownership and menu stability.
-  </li>
-
-  <li>
-    <strong>Match the test approach to the surface:</strong>
-    scripted test cases for critical flows, exploratory charters for large or complex spaces, and lightweight matrices
-    for broad variable sets that don't need deep test-case detail.
-  </li>
-
-  <li>
-    <strong>Keep the suite maintainable</strong> so each check traces directly back to either a patch-note change or a
-    genuine risk area instead of becoming a full re-test of the entire game.
-  </li>
-</ol>
-
-<p class="method-note">
-  I applied this by redesigning my Regression Matrix so that every entry ties to a specific change, a stability
-  requirement or a coverage slice. For Sworn, historical-oracle references were not required because the SteamDB patch
-  notes already provided sufficient clarity on what had changed.
+  <strong>Ian Hamilton</strong> (VR accessibility guidance) formed the comfort foundation of the project. I used his comfort
+  fundamentals to shape the “spine” charters for camera behaviour, locomotion, vignettes, horizon stability, seated play, and
+  VR text readability. :contentReference[oaicite:0]{index=0}
 </p>
 
 <p class="method-note">
-  <strong>Steph McStea</strong> (QA Lead at Double Eleven) reinforced the importance of focusing on the golden path and 
-  known “repeat offender” areas when time is limited. Instead of touching every system in Sworn, I centred the 
-  regression on what most players hit every session and gave extra attention to clusters already known to be fragile 
-  from earlier testing. This kept the plan achievable for a one-week solo regression while still mirroring how real 
-  studios prioritise player-impacting surfaces.
+  <strong>Jamie Knight</strong> (BBC XR Barriers, cognitive accessibility) influenced the cognitive layer of the pass.
+  Based on his direction, I used the BBC XR Barriers framework as a set of heuristics and built COG01 to COG05 around
+  comprehension, expectation, wayfinding, timing, and focus and memory. This was treated as a heuristic accessibility review,
+  not a user study. :contentReference[oaicite:1]{index=1}
 </p>
 
 <p class="method-note">
-  Their combined insight directly shaped how I scoped the project, the way I structured my Regression Matrix, how I 
-  prioritised checks like death-flow logic and UI readability, and how I presented evidence. It ensured the final case
-  study reads like a focused, change-driven regression effort rather than a wide, undefined testing sweep.
+  <strong>Dr Tracy Gardner</strong> (Flip Computing, Flock XR) reinforced that movement design is one of the highest risk areas
+  for VR accessibility because poor locomotion can trigger nausea and put players off VR entirely. Her feedback helped frame
+  locomotion and rotation checks as access barriers and retention risks, not just “comfort preferences”, and it pushed me to
+  strengthen checks around text controls and multi-modal communication. :contentReference[oaicite:2]{index=2}
+</p>
+
+<p class="method-note">
+  I also used <strong>W3C XR Accessibility User Requirements (XAUR)</strong> as the standards layer to keep checks aligned with
+  formal XR accessibility expectations. This supported charters around seated posture, alternative input paths, reduced motor
+  strain, multi-sensory communication, and UI clarity. :contentReference[oaicite:3]{index=3}
+</p>
+
+<p class="method-note">
+  Finally, I used <strong>Game Accessibility Guidelines</strong> as the practical pattern layer. This strengthened expectations
+  around text size and contrast, subtitle and audio cue patterns, and cognitive load reduction (chunking, re-readable
+  instructions, and reducing multi-task overload). :contentReference[oaicite:4]{index=4}
+</p>
+
+<p class="method-note">
+  Together, these layers shaped how I wrote the charters, what I prioritised in sessions, and how I described player impact
+  in the final write-up. :contentReference[oaicite:5]{index=5}
 </p>
 
 <table class="table-insight">
@@ -288,71 +280,118 @@
   </thead>
   <tbody>
 
-    <!-- QA Manager (name withheld until approval) -->
     <tr>
       <td>
-        <strong>Conrad Bettmann</strong><br>
-        QA Manager, Rovio Entertainment
+        <strong>Ian Hamilton</strong><br>
+        VR accessibility and comfort guidance
       </td>
       <td>
-        Regression should be <strong>change-driven, risk-based and traceable</strong>.  
-        Use multiple oracles appropriately: patch notes, changelogs, known issues, and—when relevant—historical
-        behaviour from earlier builds or fandom wikis, while understanding their fallibility.  
-        Choose the right test method for the surface: test cases for non-negotiable flows, exploratory charters for
-        complex behaviour, and matrices for broad variable spaces.
+        VR comfort fundamentals should be treated as an accessibility baseline, not a preference. Focus on stable camera
+        behaviour, predictable movement, horizon stability, seated play considerations, and readable text at real VR distance.
       </td>
       <td>
         <ul>
-          <li>Mapped every regression check to either a <strong>patch-note item</strong> or a <strong>baseline stability risk</strong> in my Regression Matrix.</li>
-          <li>Focused on the <strong>golden path</strong>, <strong>death-flow logic</strong>, <strong>autosave Continue</strong>, <strong>settings persistence</strong> and <strong>input handover</strong>.</li>
-          <li>Kept scope intentionally limited to avoid accidental full re-testing of the game.</li>
-          <li>Used oracles correctly: SteamDB patch notes were sufficient, so historical-oracle checks (e.g., fandom wikis) were not needed for this build.</li>
+          <li>Used as the comfort spine for charter design, including CAM01, LOC01, FOV01, HZ01, and SEAT01.</li>
+          <li>Strengthened text checks by treating readability as a VR distance and comfort problem, not a flat UI problem.</li>
         </ul>
       </td>
       <td class="evidence">
-        <a href="./media/conrad-brettman-insight1.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/conrad-brettman-insight1.png"
-               alt="conrad-brettman-insight1" loading="lazy">
-          <a href="./media/conrad-brettman-insight2.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/conrad-brettman-insight1.png"
-               alt="conrad-brettman-insight2" loading="lazy">
-              <a href="./media/conrad-brettman-insight3.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/conrad-brettman-insight1.png"
-               alt="conrad-brettman-insight3" loading="lazy">
-                 <a href="./media/conrad-brettman-insight4.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/conrad-brettman-insight4.png"
-               alt="conrad-brettman-insight4" loading="lazy">
-                    <a href="./media/conrad-brettman-insight5.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="./media/conrad-brettman-insight5.png"
-               alt="conrad-brettman-insight5" loading="lazy">
+        <a href="[ADD_MEDIA_PATH_HERE]" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="[ADD_THUMB_PATH_HERE]" alt="Applied Insight – Ian Hamilton reference" loading="lazy">
         </a>
         <small>Click to enlarge</small>
       </td>
     </tr>
 
-    <!-- Steph McStea -->
     <tr>
       <td>
-        <strong>Steph McStea</strong><br>
-        QA Lead, Double Eleven
+        <strong>Jamie Knight</strong><br>
+        BBC XR Barriers (cognitive accessibility)
       </td>
       <td>
-        Focus regression on <strong>what players hit most often</strong> and areas known to cause repeated issues.  
-        Keep the plan realistic for a one-week assignment by prioritising golden-path behaviour and known 
-        fragile surfaces rather than wide exploratory testing.
+        Puzzle based VR needs targeted cognitive accessibility checks. The BBC XR Barriers give practical categories for
+        where players get blocked, especially neurodivergent players.
       </td>
       <td>
         <ul>
-          <li>Centred the week around <strong>launch → play → quit → relaunch</strong> and <strong>death-flow stability</strong>.</li>
-          <li>Gave extra attention to <strong>UI readability</strong> and <strong>onboarding prompts</strong>, because they were already known weak points.</li>
-          <li>Documented the <strong>A11y onboarding cluster (SWOR-1 → SWOR-4)</strong> as known issues instead of burning time re-testing them without a new build.</li>
-          <li>Kept regression targeted, not broad — the approach reads like a small slice of a real internal QA sprint.</li>
+          <li>Used the five BBC cognitive barriers as the framework: comprehension, expectation, wayfinding, timing, focus and memory.</li>
+          <li>Built COG01 to COG05 directly from these barriers as a heuristic accessibility review, not a user study.</li>
         </ul>
       </td>
       <td class="evidence">
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/steph_mcstea-insight.png" target="_blank" rel="noopener">
-          <img class="thumb-sm" src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/steph_mcstea-insight.png"
-               alt="steph_mcstea-insight" loading="lazy">
+        <a href="[ADD_MEDIA_PATH_HERE]" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="[ADD_THUMB_PATH_HERE]" alt="Applied Insight – BBC XR Barriers reference" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Dr Tracy Gardner</strong><br>
+        Flip Computing, Flock XR
+      </td>
+      <td>
+        Locomotion is a high risk accessibility surface in VR. Poor movement design can trigger nausea quickly and can be a
+        retention barrier, not just a comfort issue. Multi-modal communication matters, especially when audio is reduced or removed.
+      </td>
+      <td>
+        <ul>
+          <li>Treated locomotion and rotation checks as high risk accessibility areas, not optional comfort polish.</li>
+          <li>Strengthened checks for text control and multi-modal cues (audio plus visual, and where applicable haptics).</li>
+          <li>Framed severe cybersickness triggers as access barriers and retention risks.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="[ADD_MEDIA_PATH_HERE]" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="[ADD_THUMB_PATH_HERE]" alt="Applied Insight – Tracy Gardner reference" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>W3C XAUR</strong><br>
+        XR Accessibility User Requirements
+      </td>
+      <td>
+        Use standards-level requirements to validate accessibility expectations in XR, including neutral posture, alternative
+        input paths, reduced motor strain, and multi-sensory communication.
+      </td>
+      <td>
+        <ul>
+          <li>Supported SEAT01 and INPUT checks around neutral posture and reduced strain.</li>
+          <li>Supported TEXT and HEAR work by reinforcing multi-sensory communication and UI clarity expectations.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="[ADD_MEDIA_PATH_HERE]" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="[ADD_THUMB_PATH_HERE]" alt="Applied Insight – W3C XAUR reference" loading="lazy">
+        </a>
+        <small>Click to enlarge</small>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Game Accessibility Guidelines</strong><br>
+        Practical accessibility patterns
+      </td>
+      <td>
+        Use concrete design patterns for text, subtitles, audio cues, and cognitive load reduction (chunking, re-readable
+        instructions, reduced multitasking).
+      </td>
+      <td>
+        <ul>
+          <li>Strengthened TEXT and subtitle expectations around minimum readability and stability.</li>
+          <li>Supported HEAR and cue redundancy checks, including situations where audio is unavailable.</li>
+          <li>Reinforced cognitive checks around clarity, pacing, and reducing overload.</li>
+        </ul>
+      </td>
+      <td class="evidence">
+        <a href="[ADD_MEDIA_PATH_HERE]" target="_blank" rel="noopener">
+          <img class="thumb-sm" src="[ADD_THUMB_PATH_HERE]" alt="Applied Insight – Game Accessibility Guidelines reference" loading="lazy">
         </a>
         <small>Click to enlarge</small>
       </td>
@@ -367,10 +406,9 @@
 <p class="method-note">These links are the <strong>complete artefacts</strong> for this project. They contain:</p>
 <ul class="method-note">
   <li>Overview and scope</li>
-  <li>Charters and session notes</li>
-  <li>Bug log and STAR summary</li>
-  <li>Daily smoke runs and outcomes</li>
-  <li>Device and network matrix</li>
+  <li>Charters and session notes (Charter Matrix and Session Log)</li>
+  <li>Bug Log</li>
+  <li>Applied Insight and frameworks used to shape the charters</li>
   <li>Glossary and methodology notes</li>
 </ul>
 
@@ -392,15 +430,17 @@
 <h2 id="core-findings">📌 Core Project Findings - Sessions and Bugs</h2>
 
 <p class="method-note">
-  All planned regression checks were completed on the PC Game Pass build with no crashes or instability across the golden
-  path. Most systems behaved as expected, including launch→play→quit→relaunch, autosave <em>Continue</em>, settings
-  persistence, audio, Enhancements/Codex, power-up behaviour, Alt+Tab, and controller↔KBM handover. Across the project I
-  logged six issues in the bug log: four onboarding accessibility prompt problems (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>),
-  one medium-severity defect in the death-flow sequence (<strong>SWOR-6</strong>, where the Defeat overlay remains
-  foregrounded and blocks full Stats access while <em>Continue</em> starts a new run), and one low-severity issue in the
-  Blessing choice screen (<strong>SWOR-15</strong>) for small, low-contrast key prompts. The onboarding A11y bugs were
-  originally found on Day 0 and are tracked here as a known cluster on this build; they were not re-run in new sessions
-  because there was no newer build to verify against.
+  This project was a charter-driven accessibility and comfort pass for seated VR play on <em>Shadow Point</em> (Meta Quest 3,
+  standalone, build 1.4), tested from 8 to 13 December 2025. Across 20 logged sessions (S-001 to S-020), I focused on comfort
+  stability (camera behaviour, locomotion, horizon reference points), subtitle accessibility, non-audio cue redundancy, seated
+  reach and input strain, and cognitive barriers during early puzzle interaction.
+</p>
+
+<p class="method-note">
+  Across the project I logged 11 issues in the Bug Log. The main themes were subtitle accessibility problems, including
+  readability and occlusion (SP-12, SP-17, SP-24, SP-25), clarity and confirmation gaps when audio cues were removed or volume
+  was set to 0 (SP-27, SP-28), and Room 3 seated interaction and UI clarity issues (SP-18 to SP-21). One additional low
+  priority visual issue was logged for hand alignment during move plus look (SP-4).
 </p>
     
    <h3>📁 Jira Board Screenshot - Overview</h3>
@@ -495,7 +535,7 @@
 <!-- safety: break any float/margin-collapsing before next section -->
 <div style="clear:both; padding-top:8px;"></div>
 
-<h3>🐞 Bugs – Summary + Screenshots</h3>
+<h3>🐞 Bugs – Summary + Screenshots/Videos</h3>
 <table>
   <thead>
     <tr>
@@ -508,121 +548,121 @@
   </thead>
   <tbody>
 
-    <!-- SWOR-1 -->
     <tr>
-      <td>SWOR-1</td>
-      <td>[PC][UI][Accessibility] First tutorial prompt small and top left</td>
+      <td>SP-4</td>
+      <td>[Quest][Hands][Comfort] Left hand appears in front of menu during move plus look + looking at hands snaps back</td>
+      <td>Low</td>
+      <td>1/1</td>
+      <td>
+        <a href="[ADD_SP-4_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-4_SCREENSHOT_URL]" alt="SP-4 - Left hand appears in front of menu during move plus look" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-12</td>
+      <td>[Quest][Subtitles][Accessibility] Backpack popup occludes subtitles for ~2s after picking up book</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="[ADD_SP-12_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-12_SCREENSHOT_URL]" alt="SP-12 - Backpack popup occludes subtitles after picking up book" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-17</td>
+      <td>[Quest][Subtitles][Accessibility] Subtitles hide near cable car windows/sides and show ellipsis bubble (no text)</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="[ADD_SP-17_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-17_SCREENSHOT_URL]" alt="SP-17 - Subtitles hide near cable car windows and show ellipsis bubble" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-18</td>
+      <td>[Quest][Grab][A11y] Highlighted floor item shows grab icon but won't grab at normal seated reach</td>
+      <td>Medium</td>
+      <td>1/1</td>
+      <td><span class="muted">No screenshot (video evidence)</span></td>
+    </tr>
+
+    <tr>
+      <td>SP-19</td>
+      <td>[Quest][Grab][A11y] Highlighted floor item shows grab icon but won't grab at normal seated reach</td>
+      <td>Medium</td>
+      <td>2/2</td>
+      <td><span class="muted">No screenshot (video evidence)</span></td>
+    </tr>
+
+    <tr>
+      <td>SP-20</td>
+      <td>[Quest][UX][A11y] Highlight colour inconsistency/low salience in green room</td>
+      <td>Low</td>
+      <td>1/1</td>
+      <td>
+        <a href="[ADD_SP-20_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-20_SCREENSHOT_URL]" alt="SP-20 - Highlight colour inconsistency/low salience in green room" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-21</td>
+      <td>[Quest][UI][Clarity] Backpack popup appears after inserting battery, implying item came from backpack</td>
+      <td>Low</td>
+      <td>1/1</td>
+      <td><span class="muted">No screenshot (video evidence)</span></td>
+    </tr>
+
+    <tr>
+      <td>SP-24</td>
+      <td>[Quest][Subtitles][A11y] Subtitles are occluded by held book in start room</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="[ADD_SP-24_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-24_SCREENSHOT_URL]" alt="SP-24 - Subtitles occluded by held book in start room" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-25</td>
+      <td>[Quest][Subtitles][A11y] Backpack UI and loading icon appear over subtitles</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td>
+        <a href="[ADD_SP-25_SCREENSHOT_URL]" target="_blank" rel="noopener">
+          <img src="[ADD_SP-25_SCREENSHOT_URL]" alt="SP-25 - Backpack UI and loading icon appear over subtitles" width="140" loading="lazy">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>SP-27</td>
+      <td>[Quest][A11y][Non-audio cues] Tutorial steps lack visual or haptic completion feedback at volume 0</td>
+      <td>Medium</td>
+      <td>3/3</td>
+      <td><span class="muted">No screenshot (video evidence)</span></td>
+    </tr>
+
+    <tr>
+      <td>SP28</td>
+      <td>[Quest][Tutorial][Clarity] Tutorial whiteboard does not follow player and appears blank when behind it</td>
       <td>Low</td>
       <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-02_tutorial_prompt_small_top_left_0044.png" target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-02_tutorial_prompt_small_top_left_0044.png"
-            alt="SWOR-1 – First tutorial prompt small and top left"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- SWOR-2 -->
-    <tr>
-      <td>SWOR-2</td>
-      <td>[PC][UI][Accessibility] X prompt bottom center has weak cue and was missed</td>
-      <td>Medium</td>
-      <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-03_prompt_X_bottom_center_no_cue_0059.png" target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-03_prompt_X_bottom_center_no_cue_0059.png"
-            alt="SWOR-2 – X prompt bottom center has weak cue and was missed"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- SWOR-3 -->
-    <tr>
-      <td>SWOR-3</td>
-      <td>[PC][UI][Accessibility] Three combat prompts top left small and hard to read under SFX</td>
-      <td>Medium</td>
-      <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-04_prompts_small_top_left_in_combat_0114.png" target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-04_prompts_small_top_left_in_combat_0114.png"
-            alt="SWOR-3 – Three combat prompts top left small and hard to read under SFX"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- SWOR-4 -->
-    <tr>
-      <td>SWOR-4</td>
-      <td>[PC][UI][Accessibility] X prompt bottom center repeated without cue and was missed</td>
-      <td>Medium</td>
-      <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-05_prompt_X_bottom_center_missed_0141.png" target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/B-A11Y-05_prompt_X_bottom_center_missed_0141.png"
-            alt="SWOR-4 – X prompt bottom center repeated without cue and was missed"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- SWOR-6 -->
-    <tr>
-      <td>SWOR-6</td>
-      <td>[PC][Death Flow][UI] Defeat overlay remains foregrounded and blocks Stats; Continue starts new run</td>
-      <td>Medium</td>
-      <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/S01_Sworn_PCXGP_1.01039.0_S2_2025-11-24_DefeatOverlay_StatsUnderneath_00m20s.png" target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media
-/S01_Sworn_PCXGP_1.01039.0_S2_2025-11-24_DefeatOverlay_StatsUnderneath_00m20s.png"
-            alt="SWOR-6 – Defeat overlay remains foregrounded and blocks Stats"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
-    </tr>
-
-    <!-- SWOR-15 -->
-    <tr>
-      <td>SWOR-15</td>
-      <td>[PC][UI][Accessibility] Blessing choice key prompts small and low-contrast</td>
-      <td>Medium</td>
-      <td>3/3</td>
-      <td>
-        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/BlessingChoice_KeyPrompts_LowContrast.png"
-           target="_blank" rel="noopener">
-          <img
-            src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/media/BlessingChoice_KeyPrompts_LowContrast.png"
-            alt="SWOR-15 – Blessing choice key prompts small and low-contrast"
-            width="140"
-            loading="lazy">
-        </a>
-      </td>
+      <td><span class="muted">No screenshot (video evidence)</span></td>
     </tr>
 
   </tbody>
 </table>
+
 
 <!-- break margin-collapsing + clear any floats before the next section -->
 <div style="clear:both; padding-top:8px;"></div>
@@ -631,50 +671,37 @@
 
 <ul>
   <li>
-    Completed all planned regression checks on the PC Game Pass build with no crashes or instability
-    across the golden path (launch → play → quit → relaunch).
+    Completed a one-week, charter-driven accessibility and comfort pass for seated VR play on Meta Quest 3 standalone
+    (build 1.4), across 20 logged sessions (S-001 to S-020).
   </li>
 
   <li>
-    Logged <strong>six defects in total</strong>:
-    four onboarding A11y prompt issues (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>),
-    one medium-severity death-flow defect (<strong>SWOR-6</strong>),
-    and one medium-severity Blessing choice readability issue (<strong>SWOR-15</strong>).
-    All six reproduced consistently (3/3) and are documented with screenshots or video.
+    Logged <strong>11 issues in total</strong> in the Bug Log: <strong>7 medium</strong> and <strong>4 low</strong>.
   </li>
 
   <li>
-    Confirmed core systems behaved as expected: autosave <em>Continue</em>, settings navigation and
-    persistence, audio continuity, Enhancements and Codex behaviour, power-up effects, pause menu,
-    Alt+Tab, and controller↔KBM handover with one hot plug.
+    Repro evidence was recorded per issue, with a mix of <strong>3/3</strong>, <strong>2/2</strong>, and <strong>1/1</strong> depending on how many rechecks were run.
   </li>
 
   <li>
-    <strong>Death-flow defect (SWOR-6):</strong> the Defeat overlay remains foregrounded after death, blocking
-    the Stats panel. Pressing <em>Continue</em> immediately starts a new run. Reproduced reliably
-    and captured on video.
+    <strong>Primary theme: subtitles (accessibility and readability).</strong> Multiple issues centred on subtitle legibility and occlusion,
+    including UI overlays and held objects obscuring subtitles, and subtitle behaviour during the cable car sequence
+    (SP-12, SP-17, SP-24, SP-25).
   </li>
 
   <li>
-    <strong>Blessing prompt readability (SWOR-15):</strong> Blessing choice key prompts appear extremely small
-    with low contrast. Logged as a medium-severity A11y/UI issue due to readability impact.
+    <strong>Audio removed: confirmation gaps.</strong> When volume was set to 0, tutorial steps relied on audio without sufficient
+    visual or haptic confirmation, creating a non-audio cue redundancy risk (SP-27, SP-28).
   </li>
 
   <li>
-    <strong>Onboarding A11y prompt cluster (SWOR-1 → SWOR-4):</strong>
-    small, low-cue, and easy-to-miss tutorial prompts were still present. These were originally
-    identified on Day 0 and are treated as a known cluster on this build because no newer build
-    was available for re-testing.
+    <strong>Seated interaction and UI clarity.</strong> Room 3 testing surfaced seated reach and clarity issues, including interactables
+    that present as grabbable but fail at normal seated reach and UI signalling that can mislead the player (SP-18 to SP-21).
   </li>
 
   <li>
-    <strong>Dialogue Volume setting:</strong> this setting appears in upstream patch notes but is <em>not present</em>
-    on the PC Game Pass build. Marked as “Not applicable” rather than a defect.
-  </li>
-
-  <li>
-    <strong>General stability:</strong> no stutters, hitches or progression blockers occurred during any run.
-    All sessions cleanly returned to main menu and relaunched without issue.
+    <strong>Comfort and movement surfaces were exercised.</strong> Camera and locomotion comfort checks were run across sessions
+    (including the cable car sequence), with outcomes captured against the relevant charters and any issues logged where found.
   </li>
 </ul>
 
@@ -683,11 +710,19 @@
 </p>
 
  <hr>
-<p><h3>🏁 Result and takeaway</h3></p>
+<h3>🏁 Result and takeaway</h3>
 
-<p><strong>Result:</strong> The PC Game Pass build of <em>Sworn</em> remained stable across all golden-path and targeted regression checks. Six defects were logged in total: four onboarding accessibility prompt issues (SWOR-1–SWOR-4), one medium-severity death-flow defect (SWOR-6), and one medium-severity Blessing choice readability issue (SWOR-15). All reproduced consistently and are fully documented with evidence.</p>
+<p>
+  <strong>Result:</strong> Across a one-week, charter-driven accessibility and comfort pass on <em>Shadow Point</em> (Meta Quest 3, standalone, build 1.4),
+  I completed 20 logged sessions and recorded 11 issues in the Bug Log (7 medium, 4 low), each with captured evidence and a recorded repro rate.
+</p>
 
-<p><strong>Takeaway:</strong> Sworn’s core systems are generally robust, but UI readability and onboarding prompt visibility need attention, especially for accessibility. The death-flow defect (SWOR-6) is the highest-impact issue and should be prioritised, while the A11y cluster highlights the need for clearer tutorial cueing in early game moments.</p>
+<p>
+  <strong>Takeaway:</strong> The highest-impact risks were concentrated in subtitle accessibility and clarity when audio cues were removed.
+  Subtitle occlusion and behaviour issues can block comprehension for players who rely on subtitles, and non-audio confirmation gaps at volume 0
+  create avoidable barriers for Deaf and hard of hearing players or anyone playing with reduced audio. Seated interaction and UI clarity issues in Room 3
+  also show how small reach and signalling problems can turn into friction and frustration in puzzle progression.
+</p>
 
     <hr>
 
@@ -695,38 +730,38 @@
 
 <ul>
   <li>
-    <strong>Controlled scope keeps regression useful.</strong>
-    Mapping checks to patch-note items or clear risk areas stopped this from becoming a blurry re-test of the whole game.
+    <strong>Charters stop VR testing from becoming chaos.</strong>
+    A clear Charter Matrix kept the week focused and made it obvious what had been covered, what was consolidated, and what still needed a follow up.
   </li>
 
   <li>
-    <strong>The Regression Matrix should do the heavy lifting.</strong>
-    Being explicit about expected vs actual outcomes turned the STAR summary into simple reporting instead of reconstruction.
+    <strong>Comfort is an accessibility baseline, not a preference.</strong>
+    Treating locomotion, turning, horizon stability and predictable camera behaviour as access surfaces helped me prioritise checks that directly affect whether someone can keep playing.
   </li>
 
   <li>
-    <strong>Patches don’t live in isolation.</strong>
-    Feedback from a senior QA manager reinforced that regression shouldn’t stop at confirming patch-note items. In this project I focused on patch-note coverage and baseline risks; in future passes I’ll expand the matrix with planned adjacency sweeps to look for side effects in neighbouring systems.
+    <strong>Subtitles are a core UX surface in VR.</strong>
+    Occlusion and readability issues were not minor. When subtitles are blocked by UI or held objects, comprehension can fail instantly for players who rely on them.
   </li>
 
   <li>
-    <strong>Short, purposeful evidence beats long recordings.</strong>
-    Tight clips of the golden path, key menus and the death-flow defect (SWOR-6) made review quick and kept the workbook readable.
+    <strong>Audio-off testing exposes missing redundancy fast.</strong>
+    Setting volume to 0 is a simple way to reveal where the game depends on audio without providing equivalent visual or haptic confirmation.
   </li>
 
   <li>
-    <strong>Readability issues aren’t cosmetic.</strong>
-    The Blessing choice prompts (SWOR-15) showed how low-contrast, cramped UI slows decision-making and can exclude players who need clear visual cues.
+    <strong>Seated reach needs to match what the UI promises.</strong>
+    If an interactable highlights and shows a grab icon but cannot be grabbed at normal seated reach, the game is effectively misleading the player and creating unnecessary friction.
   </li>
 
   <li>
-    <strong>Dyslexia surfaces UX problems early.</strong>
-    Dense text and cramped layouts in Enhancements and the Codex stood out immediately, which helped frame these issues as accessibility risks, not just “polish”.
+    <strong>Cognitive checks belong in puzzle VR.</strong>
+    Using the BBC XR Barriers as heuristics helped me frame confusion, missing expectation setting, and unclear wayfinding as accessibility issues rather than player error.
   </li>
 
   <li>
-    <strong>Admin should help, not hinder.</strong>
-    Simple IDs and a single source of truth in the workbook made the project easy to pick up, maintain and audit.
+    <strong>Good admin makes the work easy to audit.</strong>
+    Session IDs, clear repro notes, and consistent evidence logging kept the project easy to review and reduced time wasted trying to reconstruct what happened.
   </li>
 </ul>
 
@@ -735,45 +770,42 @@
 <h2 id="conclusion">🔚 Conclusion</h2>
 
 <p>
-  One-week, change-driven regression pass completed on <em>Sworn</em> (PC Game Pass). The project remained tightly scoped to
-  patch-note-driven checks and baseline stability on the current build. All regression sessions were completed without
-  crashes, and the core golden path remained stable throughout the week.
+  One-week, charter-driven accessibility and comfort pass completed on <em>Shadow Point</em> (Meta Quest 3, standalone, build 1.4),
+  tested from 8 to 13 December 2025. The project was tightly scoped to seated VR play and high-risk accessibility surfaces,
+  using structured charters rather than broad, unbounded exploration.
 </p>
 
 <ul>
   <li>
     <strong>Coverage delivered:</strong>
-    launch → play → quit → relaunch golden path, autosave <em>Continue</em> behaviour, settings navigation and persistence,
-    audio continuity, Enhancements and Codex readability, power-up behaviour, death-flow logic, pause and Alt+Tab checks,
-    and controller ↔ keyboard/mouse handover including one hot plug. Four onboarding accessibility prompt issues
-    (<strong>SWOR-1</strong>–<strong>SWOR-4</strong>) were tracked as a known A11y cluster on this build because no updates
-    were available to verify fixes.
+    comfort stability checks for camera behaviour and horizon reference points, locomotion and turning options, and the cable car sequence,
+    plus seated reach and input strain checks, subtitle availability and readability, non-audio cue redundancy at volume 0,
+    and early-room cognitive barrier checks (comprehension, expectation, and wayfinding).
   </li>
 
   <li>
     <strong>Highest-impact findings:</strong>
-    <em>SWOR-6</em> - Defeat overlay remains foregrounded after death, blocking the Stats breakdown and causing
-    <em>Continue</em> to start a new run.  
-    <em>SWOR-15</em> - Blessing choice key prompts are very small and low-contrast, creating an accessibility risk.
-    Together with the onboarding A11y cluster, these findings highlight that readability and prompt visibility are the
-    main UX concerns on this build.
+    subtitle accessibility issues, including occlusion and behaviour problems (SP-12, SP-17, SP-24, SP-25),
+    and confirmation gaps when audio was removed or reduced (SP-27, SP-28). These risks can block comprehension and increase friction,
+    especially for players who rely on subtitles or non-audio cues.
   </li>
 
   <li>
     <strong>Evidence maturity:</strong>
-    Every check is backed by a Regression Matrix entry, Session Log, short focused video or screenshot evidence, and clear
-    Jira-style bug and STAR summaries. The workbook forms a single, fully traceable source of truth for the entire
-    regression week, showing how each conclusion was reached.
+    Coverage and outcomes are traceable through the Charter Matrix and Session Log, with 11 logged issues recorded in the Bug Log.
+    Each issue includes severity, repro rate, and the matching evidence type (video, screenshot, or both), providing a clear audit trail
+    from session observations to final conclusions.
   </li>
 </ul>
 
 <p>
-  <strong>Up next:</strong> I am moving on to my dedicated VR Comfort & Accessibility case study on
-  <em>Shadow Point</em> (Quest 3). This project focuses on micro-judder and comfort checks, tracking stability,
-  guardian/boundary behaviour, text and UI readability in VR, and how comfortable it feels to play on a standalone
-  Quest 3 over longer sessions. I’ll be using a simple comfort/test matrix and Quest capture to document comfort
-  ratings, accessibility risks, and any interaction or readability issues that only show up in-headset.
+  <strong>Up next:</strong> Educational UX and cognitive load testing on a browser-based 3D game design tool for young learners. This planned case study focuses on first-time onboarding and the “what do I do now?” moment, learning
+  flow and pacing of concepts, feedback and error recovery, and lightweight accessibility checks for text, contrast, icons, and
+  hit targets. Planned deliverables include a first-time learner journey map, a short set of UX and accessibility findings with
+  practical recommendations, and an issue list grouped by onboarding, learning flow, and editor usability. The product name will
+  remain anonymous by agreement, and findings will be shared privately unless I have approval to publish a named case study.
 </p>
+
 
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
