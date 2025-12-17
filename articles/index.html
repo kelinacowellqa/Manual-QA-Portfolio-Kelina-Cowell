@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Articles - Kelina Cowell</title>
+  <title>QA Articles (Functional, Exploratory, Regression) | Kelina Cowell</title>
 
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="Short articles and what-I-learned writeups from my QA portfolio projects.">
+  <meta name="description" content="Practical QA articles based on real portfolio work: functional testing, exploratory testing, and regression testing. Methods, risks, evidence, and bug reporting." />
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
 
-  <meta property="og:title" content="Articles - Kelina Cowell">
-  <meta property="og:description" content="Short QA articles and what-I-learned notes from portfolio projects.">
+  <meta property="og:title" content="QA Articles (Functional, Exploratory, Regression) | Kelina Cowell">
+  <meta property="og:description" content="Practical QA articles based on real portfolio work: methods, risks, evidence, and bug reporting (functional, exploratory, regression).">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
   <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
@@ -27,7 +27,24 @@
       margin:14px 0 18px;
     }
     .hero-mini h1{ margin:0 0 8px; }
-    .muted{ opacity:.9; }
+    .muted{ opacity:.92; }
+
+    .kicker{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .kicker li{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.92rem;
+      opacity:.95;
+    }
 
     .grid{
       display:grid;
@@ -47,6 +64,7 @@
       opacity:.9;
       margin:0 0 10px;
     }
+    .meta strong{ font-weight:600; }
     .tagrow{
       display:flex;
       flex-wrap:wrap;
@@ -62,6 +80,7 @@
       font-size:.9rem;
       opacity:.95;
     }
+    .card p{ margin:0 0 10px; }
 
     @media (max-width:980px){ .grid{ grid-template-columns:1fr 1fr; } }
     @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
@@ -70,20 +89,48 @@
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
+  <!-- CollectionPage + ItemList schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"CollectionPage",
-    "name":"Articles — Kelina Cowell",
+    "name":"QA Articles — Kelina Cowell",
     "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/",
-    "description":"Short articles and what-I-learned writeups from my QA portfolio projects.",
-    "author":{"@type":"Person","name":"Kelina Cowell"}
+    "description":"Practical QA articles based on real portfolio work: functional testing, exploratory testing, and regression testing. Methods, risks, evidence, and bug reporting.",
+    "author":{"@type":"Person","name":"Kelina Cowell"},
+    "mainEntity":{
+      "@type":"ItemList",
+      "itemListOrder":"https://schema.org/ItemListOrderDescending",
+      "numberOfItems":3,
+      "itemListElement":[
+        {
+          "@type":"ListItem",
+          "position":1,
+          "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html",
+          "name":"Functional testing: the boring basics that catch real bugs"
+        },
+        {
+          "@type":"ListItem",
+          "position":2,
+          "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
+          "name":"Exploratory testing on mobile: how it works in practice"
+        },
+        {
+          "@type":"ListItem",
+          "position":3,
+          "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
+          "name":"Regression testing in practice: how it works on real builds"
+        }
+      ]
+    }
   }
   </script>
 </head>
 
 <body>
-  <main class="wrap">
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
 
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
@@ -92,12 +139,28 @@
     </p>
 
     <header class="hero-mini">
-      <h1>📝 Articles</h1>
+      <h1>QA Articles</h1>
       <p class="muted">
-        Short “what I learned” writeups, patterns I keep seeing, and small QA lessons pulled from real project work.
-        No fluff. Just the useful bits.
+        Practical QA articles written from real portfolio work. Each page focuses on the method: risk, approach,
+        evidence, and what “good” looks like in a timeboxed pass.
       </p>
+
+      <ul class="kicker" aria-label="TL;DR">
+        <li><strong>Topics:</strong> functional, exploratory, regression</li>
+        <li><strong>Format:</strong> applied workflows, not definitions</li>
+        <li><strong>Signals:</strong> risks, outcomes, evidence</li>
+        <li><strong>Audience:</strong> QA leads, recruiters, and testers</li>
+      </ul>
     </header>
+
+    <section class="section" aria-labelledby="what-youll-find">
+      <h2 id="what-youll-find">What you’ll find here</h2>
+      <ul>
+        <li><strong>How I test:</strong> timeboxes, charters, and verification patterns.</li>
+        <li><strong>Why it matters:</strong> risks that actually break real user flows.</li>
+        <li><strong>What “evidence” means:</strong> recordings, notes, and reproducible steps.</li>
+      </ul>
+    </section>
 
     <section aria-label="Articles list">
       <div class="grid">
@@ -105,42 +168,75 @@
         <!-- Article 1 -->
         <article class="card">
           <h2><a href="./functional-testing.html">Functional testing: the boring basics that catch real bugs</a></h2>
-          <p class="meta">Published: <time datetime="2025-12-17">17 Dec 2025</time> • Read time: ~4 min</p>
-          <p>
-            What I actually mean by “functional testing”, how I timebox it, and why “start → first control” and “Pause/Resume” are
-            the first two flows I validate every time.
+          <p class="meta">
+            <strong>Topic:</strong> Functional testing •
+            <strong>Context:</strong> Battletoads (portfolio pass) •
+            <time datetime="2025-12-17">17 Dec 2025</time>
           </p>
-          <div class="tagrow" aria-label="Tags">
+          <p>
+            What I mean by functional testing in practice, how I structure a fast pass,
+            and the first flows I validate to catch blockers early.
+          </p>
+          <div class="tagrow" aria-label="Keywords and skills">
             <span class="tag">Manual QA</span>
             <span class="tag">Functional testing</span>
-            <span class="tag">Evidence</span>
-            <span class="tag">Input ownership</span>
+            <span class="tag">Golden path</span>
+            <span class="tag">Bug reporting</span>
+            <span class="tag">Test evidence</span>
           </div>
         </article>
 
-        <!-- Placeholder cards (optional, keep or delete) -->
+        <!-- Article 2 -->
         <article class="card">
-           <h2><a href="./exploratory-testing.html">Exploratory testing: the boring basics that catch real bugs</a></h2>
-          <p class="meta">Published: <time datetime="2025-12-17">17 Dec 2025</time> • Read time: ~4 min</p>
-          <div class="tagrow" aria-label="Tags">
-            <span class="tag">Exploratory</span>
-            <span class="tag">Regression</span>
-            <span class="tag">Accessibility</span>
+          <h2><a href="./exploratory-testing.html">Exploratory testing on mobile: how it works in practice</a></h2>
+          <p class="meta">
+            <strong>Topic:</strong> Exploratory testing •
+            <strong>Context:</strong> Rebel Racing (Android) •
+            <time datetime="2025-12-17">17 Dec 2025</time>
+          </p>
+          <p>
+            How exploratory testing actually works on mobile: charters, timeboxing, controlled variation,
+            and why interruptions and recovery find issues scripted checks miss.
+          </p>
+          <div class="tagrow" aria-label="Keywords and skills">
+            <span class="tag">Exploratory testing</span>
+            <span class="tag">Mobile QA</span>
+            <span class="tag">Interruptions</span>
+            <span class="tag">Recovery</span>
+            <span class="tag">Repro steps</span>
           </div>
         </article>
 
+        <!-- Article 3 -->
         <article class="card">
-          <h2 class="muted">More coming</h2>
-          <p class="meta">—</p>
-          <p class="muted">Next: quick writeups linked directly from each project page.</p>
-          <div class="tagrow" aria-label="Tags">
-            <span class="tag">Case studies</span>
-            <span class="tag">Workbooks</span>
-            <span class="tag">Video evidence</span>
+          <h2><a href="./regression-testing.html">Regression testing in practice: how it works on real builds</a></h2>
+          <p class="meta">
+            <strong>Topic:</strong> Regression testing •
+            <strong>Context:</strong> Sworn (PC Game Pass) •
+            <time datetime="2025-12-17">17 Dec 2025</time>
+          </p>
+          <p>
+            Regression testing as change-driven verification: golden-path baseline, targeted probes,
+            and evidence-led pass/fail decisions within a tight timebox.
+          </p>
+          <div class="tagrow" aria-label="Keywords and skills">
+            <span class="tag">Regression testing</span>
+            <span class="tag">Smoke testing</span>
+            <span class="tag">Risk-based testing</span>
+            <span class="tag">Verification</span>
+            <span class="tag">Change impact</span>
           </div>
         </article>
 
       </div>
+    </section>
+
+    <section class="section" aria-labelledby="next-up">
+      <h2 id="next-up">Next up</h2>
+      <p class="muted">
+        This section will expand as each portfolio project adds a testing type article (examples: smoke testing,
+        accessibility checks, VR comfort testing, and test evidence workflows).
+      </p>
     </section>
 
   </main>
