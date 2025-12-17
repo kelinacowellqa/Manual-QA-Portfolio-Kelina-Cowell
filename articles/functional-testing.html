@@ -27,6 +27,27 @@
   <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
 
   <style>
+/* Article header diagram sizing */
+.article-figure{
+  margin: 14px auto 10px;
+  max-width: 860px;        /* controls how wide it can get */
+}
+
+.article-figure img{
+  width: 100%;
+  height: auto;
+  max-height: 320px;       /* controls how tall it can get */
+  object-fit: contain;     /* keeps the whole diagram visible */
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.article-figure figcaption{
+  margin-top: 8px;
+  opacity: .9;
+}
     .article-hero,
     .toc,
     .callout{
@@ -166,12 +187,16 @@
       </p>
 
       <figure class="article-figure">
-      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing-workflow-manual-qa.webp"
-      alt="Functional testing workflow for manual QA showing start to control, pause and resume, mixed input handling, evidence capture, and one-week timebox">
-      <figcaption class="small">
-      Functional testing workflow used during a one-week Battletoads (PC) pass.
-      </figcaption>
-      </figure>
+  <img
+    src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/articles/functional-testing-workflow-manual-qa.webp"
+    alt="Functional testing workflow for manual QA showing start to control, pause and resume, mixed input ownership, evidence capture, and one-week timebox."
+    loading="eager"
+    decoding="async"
+  >
+  <figcaption class="small">
+    Functional testing workflow used during a one-week Battletoads (PC) pass.
+  </figcaption>
+</figure>
 
       <section class="callout" aria-label="TL;DR">
         <h2 style="margin-top:0;">TL;DR</h2>
