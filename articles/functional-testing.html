@@ -7,18 +7,17 @@
 
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="A practical breakdown of functional testing in a timeboxed portfolio project: what I test first, why, and how I capture evidence.">
+  <meta name="description" content="A Battletoads (PC) case study showing how basic functional testing exposed high-impact input and Pause defects during a one-week solo QA pass.">
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
 
   <meta property="og:title" content="Functional testing: the boring basics that catch real bugs">
-  <meta property="og:description" content="What I test first, why it matters, and how I capture evidence in a timeboxed functional pass.">
+  <meta property="og:description" content="How a one-week functional pass on Battletoads (PC) exposed high-impact Pause and input ownership defects.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
   <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
   <meta name="twitter:card" content="summary_large_image">
 
   <style>
-    /* Page-specific cleanup: flat article, no boxes */
     .article-hero,
     .toc,
     .callout{
@@ -68,7 +67,7 @@
     "@context":"https://schema.org",
     "@type":"Article",
     "headline":"Functional testing: the boring basics that catch real bugs",
-    "description":"A practical breakdown of functional testing in a timeboxed portfolio project: what I test first, why, and how I capture evidence.",
+    "description":"A Battletoads (PC) case study showing how basic functional testing exposed high-impact input and Pause defects during a one-week solo QA pass.",
     "author":{"@type":"Person","name":"Kelina Cowell"},
     "publisher":{"@type":"Person","name":"Kelina Cowell"},
     "datePublished":"2025-12-17",
@@ -92,102 +91,103 @@
         <strong>Kelina Cowell</strong> • <time datetime="2025-12-17">17 Dec 2025</time> • ~4 min read
       </p>
       <p class="small">
-        This is the exact style of functional testing I run in a timeboxed solo pass.
-        If it sounds basic, that’s because it is. Basic is where the breakage lives.
+        This article is based on a one-week solo functional pass on <strong>Battletoads (PC, Game Pass)</strong>.
+        If the testing sounds basic, that is intentional. In this project, the highest-impact defects lived in the fundamentals.
       </p>
     </header>
 
     <nav class="toc" aria-label="On this page">
       <strong>On this page</strong>
       <ul>
-        <li><a href="#what-it-is">What functional testing is (in practice)</a></li>
-        <li><a href="#two-flows">The two flows I test first</a></li>
-        <li><a href="#input">Why input ownership deserves its own mini-suite</a></li>
-        <li><a href="#evidence">Evidence: what I capture and why</a></li>
-        <li><a href="#timebox">How I timebox a functional pass</a></li>
+        <li><a href="#what-it-is">What functional testing was in this project</a></li>
+        <li><a href="#two-flows">The two flows I tested first</a></li>
+        <li><a href="#input">Why input ownership became its own mini-suite</a></li>
+        <li><a href="#evidence">Evidence: what I captured and why</a></li>
+        <li><a href="#timebox">How this functional pass was timeboxed</a></li>
       </ul>
     </nav>
 
-    <h2 id="what-it-is">What functional testing is (in practice)</h2>
+    <h2 id="what-it-is">What functional testing was in this project</h2>
     <p>
-      For me, functional testing is simple: does the product do what it claims to do,
-      end-to-end, without excuses or interpretation?
-      I validate core flows, confirm expected behaviour, and write issues so a developer
-      can reproduce them without guessing.
+      In this Battletoads pass, functional testing meant validating whether the game behaved as expected
+      end-to-end under realistic player conditions, using both controller and keyboard on PC.
+      Core flows were validated first, followed by focused checks where risk appeared.
     </p>
     <p>
-      The mistake is treating functional testing as “easy” and therefore less valuable.
-      It is the foundation. If the foundation is cracked, everything built on top of it
-      fails in more complicated ways.
+      Scope was deliberately constrained to expose defects early:
+      <strong>Battletoads (PC, Game Pass), Build 1.1F.42718</strong>,
+      tested on Windows 11 at 1920×1080 @144Hz with VRR and V-Sync enabled.
     </p>
 
     <section class="callout">
       <h3>The main output</h3>
       <p>
-        Clear outcomes: pass or fail, with evidence and reproducible steps.
-        Not vibes. Not opinions.
+        Clear pass or fail outcomes, backed by short evidence clips and reproducible steps.
+        No interpretation, no assumptions, no opinion-based reporting.
       </p>
     </section>
 
-    <h2 id="two-flows">The two flows I test first</h2>
+    <h2 id="two-flows">The two flows I tested first</h2>
     <ol>
       <li>
         <strong>Start → first control</strong><br>
-        The first minute determines whether the product feels broken.
-        If “New Game” does not reliably get you playing, nothing else matters.
+        From Title into Level 1 (L1-A1), the player must reliably gain control and progress
+        through the first arena. In Battletoads, early progression includes an arena exit
+        with no explicit UI cue, making this a high-risk flow to validate first.
       </li>
       <li>
         <strong>Pause / Resume</strong><br>
-        Pause stresses state, focus, input context, UI navigation and overlays.
-        If Pause is unstable, you get a stream of bugs that look random but are not.
+        Pause interacts with input routing, UI focus, audio muting, HUD state, and co-op joins.
+        In this project, Pause testing surfaced the majority of functional defects.
       </li>
     </ol>
 
-    <h2 id="input">Why input ownership deserves its own mini-suite</h2>
+    <h2 id="input">Why input ownership became its own mini-suite</h2>
     <p>
-      Mixed input is a feature, not an edge case.
-      When a controller is connected and a keyboard is used, behaviour must remain predictable.
+      Battletoads on PC supports both controller and keyboard.
+      That makes mixed input the default state, not an edge case.
     </p>
     <ul>
-      <li>Pause must open consistently.</li>
-      <li>Navigation must respect the active input method.</li>
-      <li>Confirm and back must not silently stop responding.</li>
-      <li>Hand-off must not route to the wrong UI or disable input.</li>
+      <li>Pause must respond consistently to the active input method.</li>
+      <li>Navigation focus must not silently switch or become trapped.</li>
+      <li>Confirm and back actions must not misroute to unrelated UI.</li>
+      <li>Disconnecting or reconnecting input devices must not break control.</li>
     </ul>
     <p>
-      I treat keyboard ↔ controller hand-off as a dedicated test area because it produces
-      high-impact, easily reproducible defects.
+      During this pass, keyboard ↔ controller hand-off produced
+      multiple high-severity defects involving Pause and the Join In overlay,
+      all reproducible within the first level.
     </p>
 
     <section class="callout">
-      <h3>Common pattern</h3>
+      <h3>Observed pattern</h3>
       <p>
-        Controller connected + keyboard input + menu open = focus bugs.
-        Easy to reproduce. Easy to prove. Easy to fix once isolated.
+        Controller connected + keyboard input + Pause or Join In = focus and routing failures.
+        These issues were consistent, repeatable, and isolated without late-game complexity.
       </p>
     </section>
 
-    <h2 id="evidence">Evidence: what I capture and why</h2>
+    <h2 id="evidence">Evidence: what I captured and why</h2>
     <p>
-      I favour short video clips (10–30 seconds) and only use screenshots when they add clarity.
-      The goal is to make the defect obvious without forcing someone to scrub a long recording.
+      Short video clips (10–30 seconds) were the primary evidence format.
+      These issues depended on timing, input, and focus state, which screenshots could not capture reliably.
     </p>
     <ul>
-      <li><strong>Video:</strong> shows timing, input, and incorrect outcome together.</li>
-      <li><strong>Screenshot:</strong> supports UI state, text, or configuration.</li>
-      <li><strong>Environment:</strong> platform, build/version, input device, display mode.</li>
+      <li><strong>Video:</strong> shows input, timing, and incorrect outcome together.</li>
+      <li><strong>Screenshot:</strong> supports static UI state or control bindings.</li>
+      <li><strong>Environment:</strong> build, platform, input devices, and display configuration.</li>
     </ul>
     <p class="small">
-      If the evidence cannot answer what was pressed, what happened, and what should have happened,
-      it is not evidence.
+      If the evidence could not immediately show what was pressed, what happened,
+      and what should have happened, it was replaced.
     </p>
 
-    <h2 id="timebox">How I timebox a functional pass</h2>
+    <h2 id="timebox">How this functional pass was timeboxed</h2>
     <ul>
-      <li><strong>Day 1:</strong> Smoke testing and baseline flow validation.</li>
-      <li><strong>Days 2–4:</strong> Execute runs, expand where risk appears, log defects immediately.</li>
-      <li><strong>Days 5–6:</strong> Retest, tighten repro steps, confirm consistency.</li>
-      <li><strong>Day 7:</strong> Summarise outcomes and document learnings.</li>
+      <li><strong>Early runs:</strong> Smoke testing and baseline validation (start flow, Pause open/close).</li>
+      <li><strong>Mid-pass:</strong> Expanded testing around Pause, input ownership, HUD, and audio.</li>
+      <li><strong>Late runs:</strong> Repetition, confirmation, and isolation of mixed-input defects.</li>
+      <li><strong>Final day:</strong> Outcome summary and documentation.</li>
     </ul>
 
     <hr>
