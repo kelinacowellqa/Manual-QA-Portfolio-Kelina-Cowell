@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/sitemap.xml
