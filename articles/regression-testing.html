@@ -1,1 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Regression testing in practice - how I apply it on real builds | Kelina Cowell</title>
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta name="description" content="A practical article on regression testing in real QA work: how I design regression passes, choose risk areas, and verify stability, using a one-week PC Game Pass project as context." />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html">
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="wrap">
+    <main id="content">
+
+      <header class="page-header">
+        <h1>Regression testing in practice: how it works on real builds</h1>
+        <p class="hint">An applied QA article about verification and risk, not a definition page.</p>
+      </header>
+
+      <!-- Intro -->
+      <section class="section">
+        <p>
+          Regression testing is often reduced to a checklist of “things to re-test”.
+          In real QA work, that framing is misleading.
+        </p>
+        <p>
+          This article explains <strong>regression testing in practice</strong>:
+          how regression passes are designed, how risk determines coverage,
+          and how testers decide what <em>must</em> be verified after a change.
+          Examples are drawn from a one-week PC Game Pass project, but the focus is
+          the <em>method</em>, not the game.
+        </p>
+
+        <div class="callout">
+          <p><strong>TL;DR</strong></p>
+          <ul>
+            <li><strong>What it is:</strong> change-driven verification of existing functionality.</li>
+            <li><strong>Platform context:</strong> PC Game Pass (Windows).</li>
+            <li><strong>Timebox:</strong> one-week solo regression pass.</li>
+            <li><strong>Approach:</strong> risk-based scope, golden-path smoke, targeted probes.</li>
+            <li><strong>Outputs:</strong> verified passes, confirmed failures, reproducible defects, recorded evidence.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- What regression testing means -->
+      <section class="section">
+        <h2>What regression testing actually means</h2>
+        <p>
+          In practice, regression testing answers a simple question:
+          <strong>what could this change have broken?</strong>
+        </p>
+        <p>
+          It is not about re-testing everything.
+          It is about identifying systems that are plausibly affected by recent changes,
+          and then verifying that previously working behaviour still holds.
+        </p>
+        <p>
+          This makes regression testing inherently selective.
+          Coverage is driven by risk, not by feature count.
+        </p>
+      </section>
+
+      <!-- Why it mattered -->
+      <section class="section">
+        <h2>Why regression testing mattered on this project</h2>
+        <p>
+          The project used for context was a PC Game Pass build that had recently received
+          public patch updates on another platform.
+          There was no guarantee of platform parity, but the changes provided useful signals.
+        </p>
+        <p>
+          Regression risk focused on:
+        </p>
+        <ul>
+          <li>Golden-path stability (launch → play → quit → relaunch).</li>
+          <li>Save and continue integrity.</li>
+          <li>Menus, settings persistence, and input handover.</li>
+          <li>Audio continuity across pause, loading, and focus changes.</li>
+          <li>UI and accessibility behaviour previously observed to be fragile.</li>
+        </ul>
+      </section>
+
+      <!-- How regression was applied -->
+      <section class="section">
+        <h2>How I applied regression testing</h2>
+
+        <h3>Change-driven scope</h3>
+        <p>
+          Regression scope was defined using public patch notes as an external oracle.
+          The goal was not to confirm feature parity, but to identify systems likely
+          touched by recent changes and verify adjacent behaviour.
+        </p>
+
+        <h3>Golden-path smoke as a baseline</h3>
+        <p>
+          Each regression cycle began with a golden-path smoke:
+          launch, reach gameplay, quit, relaunch, and resume.
+          If the baseline fails, deeper testing is blocked.
+        </p>
+
+        <h3>Targeted verification passes</h3>
+        <p>
+          After baseline confirmation, focused checks were layered on top:
+          settings persistence, save/load anchors, audio continuity,
+          input swaps, and post-death flow.
+          Each check had a clear pass/fail outcome.
+        </p>
+      </section>
+
+      <!-- What was found -->
+      <section class="section">
+        <h2>What regression testing uncovered</h2>
+        <p>
+          Regression testing is most valuable when it confirms both stability
+          <em>and</em> breakage.
+        </p>
+        <p>
+          In this pass:
+        </p>
+        <ul>
+          <li>Multiple high-risk flows were verified as stable across relaunch.</li>
+          <li>Previously observed accessibility issues were confirmed as unchanged due to no new build.</li>
+          <li>A post-death flow defect was uncovered where Stats could not be reviewed before a new run began.</li>
+        </ul>
+        <p>
+          That defect was not the result of a new test idea.
+          It was found because a regression check expected an existing flow to remain intact.
+        </p>
+      </section>
+
+      <!-- Evidence -->
+      <section class="section">
+        <h2>Evidence and verification</h2>
+        <p>
+          Regression testing depends on credibility.
+          Pass results matter just as much as failures.
+        </p>
+        <ul>
+          <li>Screen recordings captured live during verification runs.</li>
+          <li>Anchored observations (room name, state, UI order) to prove consistency.</li>
+          <li>Clear expected vs actual descriptions for failed checks.</li>
+        </ul>
+        <p>
+          This allows regression outcomes to be reviewed, trusted, and repeated.
+        </p>
+      </section>
+
+      <!-- Skills -->
+      <section class="section">
+        <h2>Skills demonstrated through regression testing</h2>
+        <ul>
+          <li>Risk-based regression strategy</li>
+          <li>Golden-path smoke testing</li>
+          <li>Change-impact analysis</li>
+          <li>Verification of fixes and failures</li>
+          <li>Bug reproduction and severity assessment</li>
+          <li>Use of external oracles (patch notes)</li>
+          <li>Evidence-led QA communication</li>
+        </ul>
+      </section>
+
+      <!-- Takeaways -->
+      <section class="section">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Regression testing is driven by change, not checklists.</li>
+          <li>Golden-path stability is the foundation of every pass.</li>
+          <li>Selective coverage produces clearer results than broad re-testing.</li>
+          <li>Regression failures are often discovered incidentally, but never accidentally.</li>
+        </ul>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section">
+        <h2>Mini FAQ</h2>
+
+        <h3>Is regression testing only about re-testing old bugs?</h3>
+        <p>No. It is about verifying existing behaviour after change, whether or not bugs were previously logged.</p>
+
+        <h3>How much regression testing is enough?</h3>
+        <p>Enough to confidently answer what could have broken, within the available timebox.</p>
+
+        <h3>Does regression testing replace exploratory testing?</h3>
+        <p>No. Regression verifies known behaviour; exploratory testing discovers unknown risk.</p>
+      </section>
+
+      <p class="cta-row" style="text-align:center;">
+        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+        <a class="cta-btn" href="./">Back to Articles</a>
+      </p>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
 
