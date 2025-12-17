@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Battletoads — Functional Testing Case Study</title>
+  <title>Battletoads - Functional Testing Case Study</title>
 
   <!-- global styles -->
   <link rel="stylesheet" href="../../assets/css/site.css?v=5">
@@ -25,7 +25,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Battletoads — Functional Testing Case Study</title>
+  <title>Battletoads - Functional Testing Case Study</title>
   <link rel="stylesheet" href="../../assets/css/site.css?v=4">
 
   <!-- Page-scoped helpers for this case study only -->
@@ -95,7 +95,80 @@
       <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
     </p>
 
-    <h1>🎮 Battletoads — Functional Testing (PC Game Pass) - Tested: 27 Oct–1 Nov 2025</h1>
+<h1>🎮 Battletoads — Functional Testing (PC Game Pass)</h1>
+<p class="meta">Tested: 27 Oct–1 Nov 2025</p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/#case-study",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/",
+  "name": "Battletoads: Functional Testing (PC Game Pass)",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Battletoads" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Functional testing" },
+    { "@type": "Thing", "name": "Bug reporting" },
+    { "@type": "Thing", "name": "Evidence capture" },
+    { "@type": "Thing", "name": "Input ownership" }
+  ],
+  "timeRequired": "P7D",
+  "keywords": [
+    "manual testing",
+    "functional testing",
+    "input ownership",
+    "keyboard controller hand-off",
+    "test documentation",
+    "bug reporting",
+    "repro steps",
+    "expected vs actual",
+    "video evidence",
+    "QA workbook",
+    "Jira"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Game Pass)" },
+    { "@type": "PropertyValue", "name": "OS", "value": "Windows 11" },
+    { "@type": "PropertyValue", "name": "Display", "value": "1920×1080 @ 144Hz" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "1 week (solo)" },
+    { "@type": "PropertyValue", "name": "Tested dates", "value": "2025-10-27 to 2025-11-01" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Manual functional testing focused on core gameplay flows and input ownership" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "Short video clips with timestamps, screenshots, workbook traceability" },
+    { "@type": "PropertyValue", "name": "Defects logged", "value": "4 (High: 4)" },
+    { "@type": "PropertyValue", "name": "Repro consistency", "value": "100% (across 4 issues)" }
+  ],
+  "workExample": [
+    { "@type": "CreativeWork", "name": "QA workbook (Google Sheets)", "url": "https://docs.google.com/spreadsheets/d/17_BCpZrtCTItn-ieGcG1PExIGnlLe1Bg/edit?usp=sharing" },
+    { "@type": "CreativeWork", "name": "QA workbook (PDF export)", "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/bug_reports/Battletoads_QA_Functional_TestPlan_PCGamePass_Kelina_Cowell_PORTFOLIO.pdf" },
+    { "@type": "CreativeWork", "name": "Evidence & Media section", "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/#evidence" },
+    { "@type": "CreativeWork", "name": "Workbook links", "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/#workbook" },
+    { "@type": "CreativeWork", "name": "Bugs table", "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/#bugs" }
+  ],
+  "hasPart": [
+    {
+      "@type": "ItemList",
+      "name": "Skills demonstrated",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Manual functional testing" },
+        { "@type": "ListItem", "position": 2, "name": "Test planning and structured coverage" },
+        { "@type": "ListItem", "position": 3, "name": "Bug reporting with reproducible steps" },
+        { "@type": "ListItem", "position": 4, "name": "Expected vs actual documentation" },
+        { "@type": "ListItem", "position": 5, "name": "Evidence capture (video and screenshots)" },
+        { "@type": "ListItem", "position": 6, "name": "Traceability using a QA workbook" },
+        { "@type": "ListItem", "position": 7, "name": "Timeboxed execution and prioritisation" },
+        { "@type": "ListItem", "position": 8, "name": "Clear written communication for developers" }
+      ]
+    }
+  ]
+}
+</script>
 
     <!-- Intro -->
     <h2>Introduction</h2>
@@ -110,6 +183,8 @@
       <li><strong>Outcome:</strong> <strong>4 input-ownership issues</strong> with <strong>100% repro</strong>, each with a 10–30s video thumbnail below.</li>
       <li><strong>Evidence:</strong> comparison snapshots, bugs table with YouTube thumbnails, and Jira board screenshots.</li>
     </ul>
+    
+<p class="method-note">Accessibility note: readability observations include a dyslexic tester perspective.</p>
 
     <table>
       <thead>
@@ -161,9 +236,10 @@
       <thead><tr><th>Metric</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Total Bugs Logged</td><td>4</td></tr>
-        <tr><td>Critical</td><td>0</td></tr>
-        <tr><td>Major</td><td>4</td></tr>
-        <tr><td>Minor</td><td>0</td></tr>
+        <tr><td>High</td><td>4</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Test Runs Executed</td><td>18</td></tr>
         <tr><td>Repro Consistency</td><td><strong>100%</strong> (across 4 issues)</td></tr>
       </tbody>
     </table>
@@ -235,7 +311,7 @@
 </table>
 
     <hr>
-    <h2>📷 Evidence &amp; Media</h2>
+    <h2 id="evidence">📷 Evidence &amp; Media</h2>
 
     <p class="method-note">These links are the <strong>complete artefacts</strong> for this project. They contain:</p>
 <ul class="method-note">
@@ -246,6 +322,7 @@
   <li>Glossary</li>
 </ul>
 
+    <div id="workbook"></div>
     <table>
       <thead><tr><th>Type</th><th>File / Link</th></tr></thead>
       <tbody>
@@ -275,9 +352,6 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
       loading="lazy"
       style="max-width:100%; width:900px; height:auto; border-radius:8px;">
   </a>
-</p>
-
-<!-- make sure the previous block is closed -->
 </p>
 
 <!-- hard break to avoid any float/overlap -->
@@ -322,7 +396,7 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
 <!-- safety: break any float/margin-collapsing before next section -->
 <div style="clear:both; padding-top:8px;"></div>
 
-    <h3>🐞 Bugs - Summary + Videos</h3>
+    <h3 id="bugs">🐞 Bugs - Summary + Videos</h3>
     <table>
       <thead><tr><th>ID</th><th>Title</th><th>Sev</th><th>Repro</th><th>Video</th></tr></thead>
       <tbody>
@@ -383,8 +457,9 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
 
 <h2 id="results">📈 Results</h2>
 <ul>
-  <li>Executed 18 test cases (total designed: 11); <strong>78.00% pass rate</strong> — 14 passed, 4 failed, 0 blocked.</li>
-  <li><strong>4 defects</strong> logged (Critical: 0, High: 4, Medium: 0, Low: 0).</li>
+  <li>Executed <strong>18 test runs</strong> across <strong>11 test cases</strong>; <strong>78.00%</strong> pass rate - 14 passed, 4 failed, 0 blocked.</li>
+
+  <li><strong>4 defects</strong> logged (High: 4, Medium: 0, Low: 0).</li>
 
   <!-- Key risks from your “Key Risks” field, written plainly with evidence -->
   <li><strong>Mixed-input focus:</strong> using the keyboard after the controller can leave the controller unresponsive on Join In and Pause. Evidence: <code>RUN-20251101-004</code> (TC-008 — Fail).</li>
@@ -427,7 +502,6 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
     <tr>
       <td>
           Radu Posoi — Founder, Alkotech Labs (ex-Ubisoft QA Lead)
-        </a>
       </td>
       <td>
         Be deliberate — compare <em>same-dev</em> and <em>same-genre</em> titles, and write down
@@ -451,7 +525,6 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
   <tr>
   <td>
       Donna Chin — QA Engineer, Peacock/NBCU
-    </a>
   </td>
   <td>
     Train your eye for accessibility in client UI — check readability, contrast, focus order, and non-colour cues.
@@ -652,6 +725,31 @@ Executed test cases and logged 4 High-severity input-ownership defects, all cons
       <li><strong>Highest-impact finding:</strong> Pause/Join-In hand-off issues that can confuse or block input ownership.</li>
       <li><strong>Evidence maturity:</strong> Every finding has a video thumbnail in the bugs table plus clear repro steps and severity in Jira.</li>
     </ul>
+
+    <section class="section" aria-labelledby="faq">
+  <h2 id="faq">❓ FAQ</h2>
+
+  <h3>What was the goal of this project?</h3>
+  <p>To demonstrate a structured manual QA workflow, clear bug reporting, and evidence-led communication in a timeboxed solo project.</p>
+
+  <h3>What exactly did you deliver?</h3>
+  <p>A bug log with reproduction steps and expected vs actual results, supporting video/screenshot evidence, and a structured QA workbook showing coverage and outcomes.</p>
+
+  <h3>How did you decide what to test first?</h3>
+  <p>I started with start→first control and Pause/Resume flows, then prioritised keyboard↔controller hand-off scenarios once input ownership issues appeared.</p>
+
+  <h3>Is this representative of how you would work in a team?</h3>
+  <p>Yes. The workflow, artefacts, and Jira usage mirror how I would operate within a small QA team, with the difference that this project was executed solo.</p>
+
+  <h3>How do you ensure your bugs are actionable for developers?</h3>
+  <p>Each issue includes clear repro steps, expected vs actual behaviour, environment details, and evidence that shows the defect and context.</p>
+
+  <h3>How do you handle duplicate findings or “same symptom, different cause” issues?</h3>
+  <p>I group related observations, reference existing entries, and only create separate issues when the reproduction conditions or impact are clearly different.</p>
+
+ <h3>What would you do next if this project continued?</h3>
+<p>Run a retest pass on logged issues, deepen functional coverage around input ownership scenarios, and create a small regression checklist for the highest-impact flows.</p>
+</section>
 
     <p><strong>Up next:</strong> I’m moving on to an <em>Exploratory &amp; Edge-Case Testing</em> project on <em>Rebel Racing</em> (Mobile) focused on <strong>device compatibility</strong>, <strong>input latency</strong>, <strong>UI scaling</strong>, and <strong>crash handling</strong>.</p>
 
