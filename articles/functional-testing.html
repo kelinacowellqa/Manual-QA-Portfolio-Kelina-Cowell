@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Functional testing: the boring basics that catch real bugs — Kelina Cowell</title>
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta name="description" content="A practical breakdown of functional testing in a timeboxed portfolio project: what I test first, why, and how I capture evidence.">
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
+
+  <meta property="og:title" content="Functional testing: the boring basics that catch real bugs">
+  <meta property="og:description" content="What I test first, why it matters, and how I capture evidence in a timeboxed functional pass.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* page-scoped */
+    .article-hero{
+      background:linear-gradient(180deg, rgba(15,181,201,.10), rgba(0,0,0,0));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:18px;
+      margin:14px 0 18px;
+    }
+    .article-hero h1{ margin:0 0 8px; }
+    .meta{
+      margin:0;
+      opacity:.9;
+    }
+    .callout{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      margin:14px 0;
+    }
+    .callout h2{ margin-top:0; }
+    .k{
+      font-weight:700;
+      color:#00fff0;
+    }
+    .toc{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:14px;
+      margin:14px 0;
+    }
+    .toc ul{ margin:8px 0 0 18px; }
+    .small{ font-size:.95rem; opacity:.95; }
+    code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Functional testing: the boring basics that catch real bugs",
+    "description":"A practical breakdown of functional testing in a timeboxed portfolio project: what I test first, why, and how I capture evidence.",
+    "author":{"@type":"Person","name":"Kelina Cowell"},
+    "publisher":{"@type":"Person","name":"Kelina Cowell"},
+    "datePublished":"2025-12-17",
+    "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html"
+  }
+  </script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="./">Back to Articles</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/" target="_blank" rel="noopener">Manual Portfolio hub</a>
+      <a class="cta-btn" href="/QA-Chronicles-Kelina-Cowell/" target="_blank" rel="noopener">QA Chronicles</a>
+    </p>
+
+    <header class="article-hero">
+      <h1>Functional testing: the boring basics that catch real bugs</h1>
+      <p class="meta">
+        <strong>Kelina Cowell</strong> • <time datetime="2025-12-17">17 Dec 2025</time> • ~4 min read
+      </p>
+      <p class="small">
+        This is the exact style of “functional testing” I run in a timeboxed solo pass.
+        If it sounds basic, that’s because it is. Basic is where the breakage lives.
+      </p>
+    </header>
+
+    <section class="toc" aria-label="Table of contents">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#what-it-is">What functional testing is (in practice)</a></li>
+        <li><a href="#two-flows">The two flows I test first</a></li>
+        <li><a href="#input">Why input ownership deserves its own mini-suite</a></li>
+        <li><a href="#evidence">Evidence: what I capture and why</a></li>
+        <li><a href="#timebox">How I timebox a functional pass</a></li>
+      </ul>
+    </section>
+
+    <h2 id="what-it-is">What functional testing is (in practice)</h2>
+    <p>
+      For me, functional testing is: “Does the product do what it says it does, end-to-end, without me having to invent excuses for it?”
+      I’m validating core flows, confirming expected behaviour, and writing issues in a way that a developer can reproduce without guessing.
+    </p>
+    <p>
+      The trap is thinking functional testing is “easy” and therefore “less valuable”. It’s not. It’s the foundation. If the foundation is cracked,
+      everything built on top of it is just more complicated failure.
+    </p>
+
+    <div class="callout">
+      <h2>The main output</h2>
+      <p>
+        A clean set of outcomes you can point at:
+        <span class="k">Pass/Fail</span>, plus evidence, plus clear steps.
+        Not vibes.
+      </p>
+    </div>
+
+    <h2 id="two-flows">The two flows I test first</h2>
+    <ol>
+      <li>
+        <strong>Start → first control</strong><br>
+        The first minute is where people decide whether the product “feels broken”. If “New Game” doesn’t reliably get you playing,
+        nothing else matters.
+      </li>
+      <li>
+        <strong>Pause/Resume</strong><br>
+        Pause is a stress point for state, focus, input context, overlays, audio, and UI navigation. If Pause is flaky, you get a constant stream
+        of “random” bugs that are actually state issues.
+      </li>
+    </ol>
+
+    <h2 id="input">Why input ownership deserves its own mini-suite</h2>
+    <p>
+      Mixed input is not a “nice-to-have”. It’s a feature. If a controller is connected and a user touches the keyboard,
+      the product should behave predictably. That means:
+    </p>
+    <ul>
+      <li>Pause should open consistently.</li>
+      <li>Navigation should respect the active input method.</li>
+      <li>Confirm/back should not silently stop working.</li>
+      <li>Hand-off should not route you into the wrong overlay or disable the other input.</li>
+    </ul>
+    <p>
+      This is why I treat keyboard ↔ controller hand-off like a dedicated test area. It produces high-impact defects quickly,
+      and they are usually very reproducible when you isolate the conditions.
+    </p>
+
+    <div class="callout">
+      <h2>Example pattern</h2>
+      <p>
+        “Controller connected” + “keyboard key pressed” + “menu open” = focus bugs.
+        <br>
+        Easy to reproduce. Easy to prove. Easy to fix once you can see it.
+      </p>
+    </div>
+
+    <h2 id="evidence">Evidence: what I capture and why</h2>
+    <p>
+      I prefer short clips (10–30 seconds) and a screenshot only if it adds clarity.
+      The goal is to make the defect obvious without forcing someone to watch a 6-minute recording.
+    </p>
+    <ul>
+      <li><strong>Video:</strong> shows input, timing, and the wrong outcome in one go.</li>
+      <li><strong>Screenshot:</strong> supports UI text, state, or configuration.</li>
+      <li><strong>Environment details:</strong> platform, build/version, input device, display mode.</li>
+    </ul>
+    <p class="small">
+      If your evidence can’t answer “what did you press, what happened, what should have happened?”, it’s not evidence. It’s decoration.
+    </p>
+
+    <h2 id="timebox">How I timebox a functional pass</h2>
+    <p>
+      In a one-week solo project, I keep it simple:
+    </p>
+    <ul>
+      <li><strong>Day 1:</strong> smoke + baseline flows + build a compact suite.</li>
+      <li><strong>Days 2–4:</strong> execute runs, expand where risk appears, log defects immediately with evidence.</li>
+      <li><strong>Days 5–6:</strong> retest, tighten repro, confirm consistency, clean up wording.</li>
+      <li><strong>Day 7:</strong> summarise outcomes (metrics, what I learned, next steps).</li>
+    </ul>
+
+    <hr>
+
+    <section class="callout" aria-label="Related links">
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/QA-Chronicles-Kelina-Cowell/issues/issue-01-battletoads.html">QA Chronicles Issue 1 (Battletoads)</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">Battletoads functional case study</a></li>
+      </ul>
+    </section>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Back to Articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
