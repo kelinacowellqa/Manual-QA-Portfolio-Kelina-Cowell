@@ -310,6 +310,15 @@ details + * { margin-top: 16px !important; }
 
 /* Optional: tiny “clickable” cue without being tacky */
 .article-figure .hint{
+
+  /* Remove site frame */
+.article-figure{
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
   opacity:.7;
   font-size:.95em;
 }
