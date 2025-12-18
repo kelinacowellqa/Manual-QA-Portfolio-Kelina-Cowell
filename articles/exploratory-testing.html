@@ -3,12 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Exploratory testing on mobile - how it works in practice | Kelina Cowell</title>
+  <title>Exploratory testing on mobile: how it works in practice | Kelina Cowell</title>
 
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="An applied article on exploratory testing on mobile: how it works in practice, why it matters, and what it uncovers, with examples from a real Android QA pass." />
+  <meta name="description" content="Applied manual QA article on exploratory testing for mobile: session structure, risk focus, interruptions and recovery, and how this approach finds issues scripted checks miss." />
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
+
+  <meta property="og:title" content="Exploratory testing on mobile: how it works in practice | Kelina Cowell">
+  <meta property="og:description" content="Applied manual QA article on exploratory testing for mobile: session structure, risk focus, interruptions and recovery, and what it uncovers on real builds.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    /* Page-scoped: match the tighter, cleaner feel of the functional article */
+    .meta-line{
+      margin: 10px 0 0;
+      font-size: .95rem;
+      opacity: .75;
+    }
+
+    .hero-media{
+      margin: 14px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .hero-media img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+    .hero-media figcaption{
+      padding: 10px 12px;
+      font-size: .92rem;
+      opacity: .78;
+      border-top: 1px solid var(--line);
+    }
+
+    .callout ul{ margin-top: 8px; }
+    .callout li{ margin: 6px 0; }
+
+    .divider{
+      height: 1px;
+      background: var(--line);
+      margin: 22px 0;
+      opacity: .9;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .mini{
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .mini h3{
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+    .mini ul{
+      margin: 0;
+      padding-left: 18px;
+    }
+    .mini li{ margin: 6px 0; }
+
+    .example{
+      border-left: 3px solid rgba(0,242,201,.75);
+      padding: 10px 12px;
+      background: rgba(0,242,201,.06);
+      border-radius: 10px;
+    }
+    .example p{ margin: 0 0 8px; }
+    .example p:last-child{ margin: 0; }
+
+    .toc{
+      margin: 14px 0 0;
+      padding: 12px 12px 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .toc strong{
+      display:block;
+      margin-bottom: 8px;
+      opacity: .9;
+    }
+    .toc ul{
+      margin: 0;
+      padding-left: 18px;
+      columns: 2;
+      column-gap: 18px;
+    }
+    .toc li{ margin: 6px 0; }
+    @media (max-width: 700px){
+      .toc ul{ columns: 1; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Exploratory testing on mobile: how it works in practice",
+    "author":{"@type":"Person","name":"Kelina Cowell"},
+    "datePublished":"2025-12-17",
+    "dateModified":"2025-12-17",
+    "mainEntityOfPage":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
+    "description":"Applied manual QA article on exploratory testing for mobile: session structure, risk focus, interruptions and recovery, and what it uncovers on real builds."
+  }
+  </script>
 </head>
 
 <body>
@@ -19,159 +138,212 @@
 
       <header class="page-header">
         <h1>Exploratory testing on mobile: how it works in practice</h1>
-        <p class="hint">An applied QA article, not a definition or a case study.</p>
+        <p class="hint">An applied QA article, not a definition page and not a case study.</p>
+
+        <p class="meta-line">
+          Kelina Cowell • <time datetime="2025-12-17">17 Dec 2025</time> • Manual QA • Mobile (Android)
+        </p>
+
+        <nav class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <ul>
+            <li><a href="#about">About this article</a></li>
+            <li><a href="#meaning">What exploratory testing means</a></li>
+            <li><a href="#mobile">Why it matters on mobile</a></li>
+            <li><a href="#practice">How I apply it</a></li>
+            <li><a href="#findings">What it tends to uncover</a></li>
+            <li><a href="#example">Example from a real pass</a></li>
+            <li><a href="#reporting">Notes, evidence, bug reports</a></li>
+            <li><a href="#skills">Skills demonstrated</a></li>
+            <li><a href="#takeaways">Key takeaways</a></li>
+            <li><a href="#faq">Mini FAQ</a></li>
+          </ul>
+        </nav>
       </header>
 
-      <section class="section">
+      <section class="section" id="about">
         <p>
-          Exploratory testing is often described vaguely as “testing without scripts”.
+          Exploratory testing is often summarised as “testing without scripts”.
           In real mobile QA work, that description is incomplete.
         </p>
         <p>
-          This article explains <strong>exploratory testing on mobile</strong> as it is actually applied:
-          how sessions are structured, how risk guides exploration, and why this approach
-          consistently finds issues that scripted testing does not.
-          Examples are drawn from a real Android mobile game pass, but the focus here is
-          the <em>method</em>, not the project.
+          This article explains <strong>exploratory testing on mobile</strong> as it is actually applied in a practical workflow:
+          <strong>session structure</strong>, <strong>risk focus</strong>, <strong>interruptions and recovery</strong>, and how this approach
+          consistently finds issues that scripted checks often miss.
+          Examples are drawn from a real Android mobile game pass, but the focus here is the <em>method</em>.
         </p>
+
+        <figure class="hero-media">
+          <img src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/articles/exploratory-testing-workflow.webp" alt="Exploratory testing workflow on mobile: charter, timebox, variation, notes, and bug reporting outputs.">
+          <figcaption>
+            Suggested visual: a simple workflow diagram. If you do not have one yet, export a quick diagram as
+            <code>exploratory-testing-workflow.webp</code> and drop it in <code>/assets/img/articles/</code>.
+          </figcaption>
+        </figure>
 
         <div class="callout">
           <p><strong>TL;DR</strong></p>
           <ul>
-            <li><strong>What it is:</strong> risk-driven exploratory testing applied to mobile products.</li>
-            <li><strong>Platform context:</strong> Android mobile applications and games.</li>
-            <li><strong>Timebox:</strong> short, focused sessions rather than long scripted passes.</li>
-            <li><strong>Approach:</strong> test charters, controlled variation, observation-led decisions.</li>
-            <li><strong>Outputs:</strong> defects, observations, and evidence that explain <em>why</em> something failed.</li>
+            <li><strong>What it is:</strong> risk-driven exploratory sessions where design, execution, and analysis happen together.</li>
+            <li><strong>Platform context:</strong> mobile (Android), where interruptions and device state changes are normal.</li>
+            <li><strong>Timebox:</strong> short focused sessions, not long wandering playthroughs.</li>
+            <li><strong>Approach:</strong> charters, controlled variation, observation-led decisions.</li>
+            <li><strong>Outputs:</strong> defects and observations that explain behaviour, with enough context to reproduce.</li>
           </ul>
         </div>
       </section>
 
-      <section class="section">
+      <div class="divider" role="separator" aria-hidden="true"></div>
+
+      <section class="section" id="meaning">
         <h2>What exploratory testing actually means</h2>
         <p>
           In practice, exploratory testing is a way of working where test design,
           execution, and analysis happen together.
-          The tester is not following a pre-written script.
-          They are actively observing behaviour and choosing the next action based on risk.
+          You are not following a pre-written script.
+          You are observing behaviour and choosing the next action based on risk, evidence, and what the product is doing right now.
         </p>
         <p>
-          On mobile, this matters because many failure modes are contextual:
-          interruptions, backgrounding, network changes, and device state all influence behaviour.
-          These conditions are difficult to model exhaustively with scripted test cases.
+          That does not mean “random testing”.
+          It means structured freedom: you keep a clear intent, and you keep your changes controlled so outcomes remain interpretable.
         </p>
       </section>
 
-      <section class="section">
+      <section class="section" id="mobile">
         <h2>Why exploratory testing matters on mobile</h2>
         <p>
-          Mobile products rarely fail under perfect conditions.
-          They fail when something changes unexpectedly.
+          Mobile products rarely fail under perfect conditions. They fail when something changes unexpectedly.
+          On Android especially, many failure modes are contextual and lifecycle-driven.
         </p>
         <ul>
-          <li>Players receive alarms, calls, and notifications mid-session.</li>
-          <li>Apps are backgrounded and resumed frequently.</li>
-          <li>Network quality changes during critical flows.</li>
+          <li>Alarms, calls, and notifications interrupt active flows.</li>
+          <li>Apps are backgrounded and resumed repeatedly.</li>
+          <li>Network quality changes during critical moments (login, purchase, reward claim).</li>
           <li>UI must remain usable on small screens and unusual aspect ratios.</li>
         </ul>
         <p>
-          Exploratory testing focuses directly on these risks, instead of assuming
-          a clean, uninterrupted user journey.
+          Exploratory sessions target these risks directly instead of assuming a clean uninterrupted journey.
         </p>
       </section>
 
-      <section class="section">
+      <section class="section" id="practice">
         <h2>How exploratory testing is applied in practice</h2>
 
-        <h3>Test charters, not scripts</h3>
-        <p>
-          Sessions start with a charter: a short statement of intent.
-          For example, exploring how a product behaves when interrupted,
-          or how it recovers after losing connectivity.
-          The charter defines <em>focus</em>, not steps.
-        </p>
+        <div class="two-col">
+          <div>
+            <h3>Test charters, not scripts</h3>
+            <p>
+              Sessions start with a charter: a short statement of intent.
+              For example, “Explore reward claim behaviour under interruptions” or “Explore recovery after network loss”.
+              The charter defines <em>focus</em>, not steps.
+            </p>
 
-        <h3>Timeboxed sessions</h3>
-        <p>
-          Exploratory testing works best in short sessions.
-          Timeboxing forces prioritisation and prevents unfocused wandering.
-          Typical sessions range from 20 to 45 minutes.
-        </p>
+            <h3>Timeboxed sessions</h3>
+            <p>
+              Exploratory testing works best in short sessions.
+              Timeboxing forces prioritisation and prevents unfocused wandering.
+              Typical sessions range from 20 to 45 minutes.
+            </p>
 
-        <h3>Controlled variation</h3>
-        <p>
-          Rather than changing everything at once, one variable is altered at a time:
-          lock state, network type, app lifecycle state.
-          This keeps outcomes interpretable and defects reproducible.
-        </p>
+            <h3>Controlled variation</h3>
+            <p>
+              Rather than changing everything at once, one variable is altered at a time: lock state, network type, lifecycle state.
+              This keeps results interpretable and defects reproducible.
+            </p>
+          </div>
+
+          <aside class="mini" aria-label="Session checklist">
+            <h3>Session checklist</h3>
+            <ul>
+              <li>Charter chosen (risk and focus)</li>
+              <li>Timebox set (20 to 45 mins)</li>
+              <li>Variables defined (one at a time)</li>
+              <li>Notes captured live</li>
+              <li>Evidence captured when it happens</li>
+              <li>Bug report drafted while context is fresh</li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="findings">
         <h2>What exploratory testing tends to uncover</h2>
         <p>
-          Exploratory testing is particularly effective at surfacing issues that
-          are low-frequency but high-impact.
+          Exploratory testing is effective at surfacing issues that are low-frequency but high-impact, especially on mobile.
         </p>
         <ul>
-          <li>Soft locks where the UI appears functional but progression is blocked.</li>
+          <li>Soft locks where the UI appears responsive but progression is blocked.</li>
           <li>State inconsistencies after backgrounding or relaunch.</li>
           <li>Audio or visual desynchronisation after OS-level events.</li>
           <li>UI scaling or readability problems that only appear in specific contexts.</li>
         </ul>
-        <p>
-          In the mobile pass referenced for this article, exploratory sessions uncovered
-          a rewards soft lock and an audio timing defect that did not appear during clean,
-          uninterrupted smoke testing.
+      </section>
+
+      <section class="section" id="example">
+        <h2>Example from a real Android pass</h2>
+        <div class="example">
+          <p><strong>Scenario:</strong> reward claim flow under interruptions (Android).</p>
+          <p>
+            During an exploratory session, repeatedly backgrounding and resuming the app while a reward flow was mid-animation
+            triggered a soft lock: the UI stayed visible, but the claim state never completed, blocking progression.
+            This did not appear during clean uninterrupted smoke testing because the trigger was lifecycle timing and state recovery.
+          </p>
+          <p>
+            <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not an edge case. Exploratory sessions hit it because they are designed to.
+          </p>
+        </div>
+        <p style="margin-top: 10px; opacity: .85;">
+          If you have a screenshot or short clip for the above, add it directly under this section.
         </p>
       </section>
 
-      <section class="section">
-        <h2>Evidence and bug reporting</h2>
+      <section class="section" id="reporting">
+        <h2>Notes, evidence, and bug reporting</h2>
         <p>
-          Because exploratory testing is adaptive, evidence is critical.
-          Findings must be supported with clear reproduction steps and recordings.
+          Because exploratory testing is adaptive, notes and evidence matter more than usual.
+          Findings must be supported with enough context to reproduce and diagnose.
         </p>
         <ul>
           <li>Screen recordings captured during the session, not recreated later.</li>
-          <li>Notes that describe context, not just actions.</li>
-          <li>Bug reports that explain expected versus actual behaviour.</li>
+          <li>Notes that include context, not just actions (device state, network, lifecycle transitions).</li>
+          <li>Bug reports that clearly separate expected behaviour from actual behaviour.</li>
         </ul>
         <p>
-          This ensures exploratory findings are actionable, not anecdotal.
+          The goal is to make exploratory findings actionable, not anecdotal.
         </p>
       </section>
 
-      <section class="section">
+      <section class="section" id="skills">
         <h2>Skills demonstrated through exploratory testing</h2>
         <ul>
-          <li>Risk-based QA thinking</li>
+          <li>Risk-based testing decisions</li>
           <li>Test charter creation and execution</li>
-          <li>Defect analysis and bug reporting</li>
-          <li>Reproduction step clarity</li>
+          <li>Defect analysis and clear bug reporting</li>
+          <li>Reproduction step clarity under variable conditions</li>
           <li>Evidence-led communication</li>
           <li>Mobile UI and interaction awareness</li>
           <li>Device and network variation testing</li>
         </ul>
       </section>
 
-      <section class="section">
+      <section class="section" id="takeaways">
         <h2>Key takeaways</h2>
         <ul>
           <li>Exploratory testing is structured, not random.</li>
           <li>Mobile risk is contextual, not purely functional.</li>
           <li>Interruptions and recovery deserve dedicated exploration.</li>
-          <li>Evidence is what makes exploratory testing credible.</li>
+          <li>Good notes and evidence make exploratory work credible and actionable.</li>
         </ul>
       </section>
 
-      <section class="section">
+      <section class="section" id="faq">
         <h2>Mini FAQ</h2>
 
         <h3>Is exploratory testing unstructured?</h3>
-        <p>No. It is structured around charters, timeboxes, and risk.</p>
+        <p>No. It is structured around charters, timeboxes, and controlled variation.</p>
 
         <h3>Can exploratory testing replace scripted testing?</h3>
-        <p>No. It complements scripted testing by covering unknown risks.</p>
+        <p>No. It complements scripted checks by covering unknown risks and contextual failure modes.</p>
 
         <h3>Is exploratory testing suitable outside games?</h3>
         <p>Yes. It is widely used in mobile apps, web products, and software platforms.</p>
