@@ -34,39 +34,43 @@
     .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
 
     /* Lower-page layout: content left + character on the right (fills empty space) */
-    .contact-grid{
-      display:grid;
-      grid-template-columns: 1fr 380px;
-      gap: 28px;
-      align-items:start;
-      margin-top: 10px;
-    }
-    .contact-side{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-    }
-    .contact-side img{
-      width:100%;
-      height:auto;
-      display:block;
-      opacity:0.95;
-    }
-    @media (min-width: 900px){
-      .contact-side{
-        position: sticky;
-        top: 120px;
-      }
-    }
-    @media (max-width: 900px){
-      .contact-grid{
-        grid-template-columns: 1fr;
-      }
-      .contact-side{
-        max-width: 320px;
-      }
-    }
-  </style>
+  /* Lower block: gives us a "floor" to anchor the character to */
+.contact-lower{
+  padding-bottom: 0; /* keep tight to the hr below */
+}
+
+/* Two columns */
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: stretch; /* IMPORTANT: makes both columns same height */
+  margin-top: 10px;
+}
+
+/* Right column becomes a stage; image pinned to the bottom */
+.contact-side{
+  display:flex;
+  align-items:flex-end;     /* pin to bottom */
+  justify-content:center;
+  padding: 0;               /* no padding so feet can hit the "floor" */
+}
+
+/* Make the image sit on the bottom edge */
+.contact-side img{
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display:block;
+  margin: 0;                /* no gap */
+}
+
+/* Mobile: stack, image goes below and stays grounded */
+@media (max-width: 900px){
+  .contact-grid{ grid-template-columns: 1fr; }
+  .contact-side{ justify-content:flex-start; }
+  .contact-side img{ max-width: 320px; }
+}
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -113,8 +117,9 @@
     </section>
 
     <!-- Lower content + right-side character image -->
-    <div class="contact-grid">
-      <div class="contact-main">
+    <section class="contact-lower">
+  <div class="contact-grid">
+    <div class="contact-main">
         <section aria-labelledby="help-title">
           <h2 id="help-title">What I can help with</h2>
           <ul>
@@ -138,14 +143,15 @@
       </div>
 
       <aside class="contact-side" aria-hidden="true">
-        <img
-          src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
-          alt=""
-          loading="lazy"
-          decoding="async"
-        >
-      </aside>
-    </div>
+      <img
+        src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      >
+    </aside>
+  </div>
+</section>
 
     <hr>
 
