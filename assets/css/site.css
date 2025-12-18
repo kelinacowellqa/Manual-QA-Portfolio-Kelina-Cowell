@@ -361,3 +361,6 @@ details + * { margin-top: 16px !important; }
     0 18px 60px rgba(0,0,0,.35) !important;
   transform: translateY(-1px) !important;
 }
+
+.intro .headshot{ margin:0 !important; }
+
