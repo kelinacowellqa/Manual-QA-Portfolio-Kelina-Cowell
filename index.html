@@ -11,6 +11,33 @@
 <meta name="twitter:description" content="Games QA portfolio with nine timeboxed case studies across PC, mobile, and VR. Covers functional, exploratory, and regression testing plus VR comfort and accessibility, XR learning and recovery workflows, cross-platform input/controller parity, narrative/localisation QA, and early automation. Includes Jira bug reports, QA workbooks, and evidence clips." />
 
   <style>
+
+    /* Intro: image left, text right */
+.intro{
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  margin-top: 12px;
+}
+
+.intro .headshot{
+  flex: 0 0 264px;   /* keep it fixed */
+  width: 264px;
+  height: auto;
+  display:block;
+}
+
+/* Let the text column take the remaining space */
+.intro > div{
+  flex: 1;
+  min-width: 0;
+}
+
+/* Mobile: stack */
+@media (max-width: 760px){
+  .intro{ flex-direction:column; }
+  .intro .headshot{ width: 220px; flex-basis:auto; }
+}
     
     /* === House palette (single source of truth) === */
     :root{
