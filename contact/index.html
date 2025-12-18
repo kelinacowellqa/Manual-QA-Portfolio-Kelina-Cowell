@@ -3,85 +3,108 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Kelina Cowell</title>
+  <title>Contact | Kelina Cowell</title>
+  <meta name="description" content="Contact Kelina Cowell. UK-based Manual Game QA Tester. Roles, freelance testing, and portfolio feedback." />
 
-  <!-- same global stylesheet as your other pages -->
+  <!-- Global stylesheet -->
   <link rel="stylesheet" href="../assets/css/site.css?v=5">
 
-  <!-- page-scoped spacing (kept light and consistent) -->
   <style>
-    body h2{ margin:32px 0 12px !important; }
-    body p{ line-height:1.7 !important; margin:0 0 14px !important; }
-    .cta-row .cta-btn { margin: 6px 8px; }
-    @media (max-width:560px){ .cta-row .cta-btn{display:block;margin:8px auto;width:fit-content} }
-    .contact-cards{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0 6px; }
-    .contact-card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
-    @media (max-width:720px){ .contact-cards{ grid-template-columns:1fr; } }
+    /* Keep page simple and readable */
+    .wrap{ max-width:980px; }
+    h1{ margin:22px 0 10px; }
+    h2{ margin:26px 0 10px; }
+    p{ line-height:1.7; margin:0 0 14px; }
+    ul{ margin:0 0 14px; padding-left:18px; }
+    li{ margin:8px 0; }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px 12px;
+      margin:14px 0 6px;
+      text-align:center;
+    }
+    .cta-row .cta-btn{ margin:0; }
+    @media (max-width:560px){
+      .cta-row .cta-btn{ display:block; width:fit-content; margin:8px auto; }
+    }
+
+    .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
+
 <body>
   <main class="wrap">
 
-    <!-- Optional hero (can remove if you prefer) -->
+    <!-- Optional hero -->
     <header class="hero">
-      <img class="banner" src="../assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
-           alt="QA tester across PC, console, VR, mobile">
+      <img class="banner"
+           src="../assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
+           alt="QA tester across PC, console, VR and mobile platforms">
     </header>
 
- <nav class="site-nav cta-row"
-     style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
-  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
-</nav>
+    <!-- Nav -->
+    <nav class="site-nav cta-row" style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/" aria-current="page">Contact</a>
+    </nav>
 
     <hr>
 
-    <section class="project-block">
-      <h1>Contact</h1>
-      <p>I’m a UK-based Manual Game QA Tester. For roles, freelance testing, or portfolio feedback, use the links below.</p>
-      <p class="cta-row" style="text-align:center;">
-        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20QA%20Enquiry">Email Me</a>
-        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
-        <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub Profile</a>
-        <!-- Optional CV link -->
-        <!-- <a class="cta-btn" href="../assets/Kelina-Cowell-CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a> -->
+    <!-- Page content -->
+    <section aria-labelledby="contact-title">
+      <h1 id="contact-title">Contact</h1>
+      <p>
+        I am a UK-based <strong>Manual Game QA Tester</strong>. For roles, freelance testing, or portfolio feedback, use the links below.
+      </p>
+
+      <p class="cta-row">
+        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=QA%20Enquiry">Email me</a>
+        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub</a>
+      </p>
+
+      <p class="muted" style="text-align:center;opacity:.85;margin-top:8px;">
+        Email is best for roles and enquiries. LinkedIn is best for networking and quick questions.
       </p>
     </section>
 
-  <section class="contact-cards">
-  <div class="contact-card">
-    <h2>What I can help with</h2>
-    <ul>
-      <li>Manual functional and UI testing on PC, mobile, and VR.</li>
-      <li>Light regression passes on live or recently patched builds.</li>
-      <li>Accessibility and comfort checks, including subtitles, readability, input flexibility, and VR usability.</li>
-      <li>Clear, reproducible bug reports with concise evidence.</li>
-      <li>Simple Jira board setup and tidy workflows for small teams.</li>
-    </ul>
-  </div>
-</section>
-
-      <div class="contact-card">
-        <h2>Links & quick routes</h2>
-        <ul>
-          <li><a href="../">Home</a> — overview & highlights</li>
-          <li><a href="../projects/">Projects</a> — the case studies</li>
-          <li><a href="../education/">Education & Certifications</a></li>
-        </ul>
-      </div>
+    <section aria-labelledby="help-title">
+      <h2 id="help-title">What I can help with</h2>
+      <ul>
+        <li>Manual functional and UI testing on PC, mobile, and VR.</li>
+        <li>Focused regression passes on live or recently patched builds.</li>
+        <li>Accessibility and comfort checks (readability, subtitles, input flexibility, VR usability).</li>
+        <li>Clear bug reports with exact repro steps and concise evidence.</li>
+        <li>Simple Jira setup and tidy workflows for small teams.</li>
+      </ul>
     </section>
+
+    <section aria-labelledby="routes-title">
+      <h2 id="routes-title">Quick routes</h2>
+      <ul>
+        <li><a href="https://kelinacowellqa.github.io/">Home</a> – overview and highlights</li>
+        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a> – full case study index</li>
+        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a> – training and certificates</li>
+        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a> – testing write-ups</li>
+      </ul>
+    </section>
+
+    <hr>
 
   </main>
 
-  <footer>
-    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  <footer style="max-width:980px;margin:40px auto 0;padding:20px 18px 26px;text-align:center;font-size:0.9em;opacity:0.85;border-top:1px solid rgba(255,255,255,0.08);">
+    © <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio
   </footer>
 </body>
 </html>
