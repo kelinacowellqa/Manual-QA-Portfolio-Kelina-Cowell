@@ -33,30 +33,38 @@
 
     .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
 
-    /* Contact hero: left image + right content */
-    .contact-hero{
+    /* Lower-page layout: content left + character on the right (fills empty space) */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+      align-items:start;
+      margin-top: 10px;
+    }
+    .contact-side{
       display:flex;
-      gap:28px;
+      justify-content:center;
       align-items:flex-start;
-      margin: 18px 0 10px;
     }
-    .contact-hero__media{
-      flex:0 0 260px;
-      max-width:260px;
-    }
-    .contact-hero__media img{
+    .contact-side img{
       width:100%;
       height:auto;
       display:block;
+      opacity:0.95;
     }
-    .contact-hero__content{
-      flex:1;
-      min-width:0;
+    @media (min-width: 900px){
+      .contact-side{
+        position: sticky;
+        top: 120px;
+      }
     }
-    @media (max-width:780px){
-      .contact-hero{ flex-direction:column; align-items:center; }
-      .contact-hero__media{ max-width:320px; width:100%; }
-      .contact-hero__content{ width:100%; }
+    @media (max-width: 900px){
+      .contact-grid{
+        grid-template-columns: 1fr;
+      }
+      .contact-side{
+        max-width: 320px;
+      }
     }
   </style>
 
@@ -86,57 +94,58 @@
 
     <hr>
 
-    <!-- Page content -->
+    <!-- Top contact area (no character here) -->
     <section aria-labelledby="contact-title">
-      <div class="contact-hero">
-        <div class="contact-hero__media">
-          <img
-            src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
-            alt="Illustration of Kelina waving hello"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
+      <h1 id="contact-title">Contact</h1>
+      <p>
+        I am a UK-based <strong>Manual Game QA Tester</strong>. For roles, freelance testing, or portfolio feedback, use the links below.
+      </p>
 
-        <div class="contact-hero__content">
-          <h1 id="contact-title">Contact</h1>
-          <p>
-            I am a UK-based <strong>Manual Game QA Tester</strong>. For roles, freelance testing, or portfolio feedback, use the links below.
-          </p>
+      <p class="cta-row">
+        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=QA%20Enquiry">Email me</a>
+        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub</a>
+      </p>
 
-          <p class="cta-row" style="justify-content:flex-start;text-align:left;">
-            <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=QA%20Enquiry">Email me</a>
-            <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub</a>
-          </p>
+      <p class="muted" style="text-align:center;opacity:.85;margin-top:8px;">
+        Email is best for roles and enquiries. LinkedIn is best for networking and quick questions.
+      </p>
+    </section>
 
-          <p class="muted" style="opacity:.85;margin-top:8px;">
-            Email is best for roles and enquiries. LinkedIn is best for networking and quick questions.
-          </p>
-        </div>
+    <!-- Lower content + right-side character image -->
+    <div class="contact-grid">
+      <div class="contact-main">
+        <section aria-labelledby="help-title">
+          <h2 id="help-title">What I can help with</h2>
+          <ul>
+            <li>Manual functional and UI testing on PC, mobile, and VR.</li>
+            <li>Focused regression passes on live or recently patched builds.</li>
+            <li>Accessibility and comfort checks (readability, subtitles, input flexibility, VR usability).</li>
+            <li>Clear bug reports with exact repro steps and concise evidence.</li>
+            <li>Simple Jira setup and tidy workflows for small teams.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="routes-title">
+          <h2 id="routes-title">Quick routes</h2>
+          <ul>
+            <li><a href="https://kelinacowellqa.github.io/">Home</a> – overview and highlights</li>
+            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a> – full case study index</li>
+            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a> – training and certificates</li>
+            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a> – testing write-ups</li>
+          </ul>
+        </section>
       </div>
-    </section>
 
-    <section aria-labelledby="help-title">
-      <h2 id="help-title">What I can help with</h2>
-      <ul>
-        <li>Manual functional and UI testing on PC, mobile, and VR.</li>
-        <li>Focused regression passes on live or recently patched builds.</li>
-        <li>Accessibility and comfort checks (readability, subtitles, input flexibility, VR usability).</li>
-        <li>Clear bug reports with exact repro steps and concise evidence.</li>
-        <li>Simple Jira setup and tidy workflows for small teams.</li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="routes-title">
-      <h2 id="routes-title">Quick routes</h2>
-      <ul>
-        <li><a href="https://kelinacowellqa.github.io/">Home</a> – overview and highlights</li>
-        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a> – full case study index</li>
-        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a> – training and certificates</li>
-        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a> – testing write-ups</li>
-      </ul>
-    </section>
+      <aside class="contact-side" aria-hidden="true">
+        <img
+          src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        >
+      </aside>
+    </div>
 
     <hr>
 
