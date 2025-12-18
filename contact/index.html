@@ -32,6 +32,32 @@
     }
 
     .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
+
+    /* Contact hero: left image + right content */
+    .contact-hero{
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      margin: 18px 0 10px;
+    }
+    .contact-hero__media{
+      flex:0 0 260px;
+      max-width:260px;
+    }
+    .contact-hero__media img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .contact-hero__content{
+      flex:1;
+      min-width:0;
+    }
+    @media (max-width:780px){
+      .contact-hero{ flex-direction:column; align-items:center; }
+      .contact-hero__media{ max-width:320px; width:100%; }
+      .contact-hero__content{ width:100%; }
+    }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -62,20 +88,33 @@
 
     <!-- Page content -->
     <section aria-labelledby="contact-title">
-      <h1 id="contact-title">Contact</h1>
-      <p>
-        I am a UK-based <strong>Manual Game QA Tester</strong>. For roles, freelance testing, or portfolio feedback, use the links below.
-      </p>
+      <div class="contact-hero">
+        <div class="contact-hero__media">
+          <img
+            src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
+            alt="Illustration of Kelina waving hello"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
 
-      <p class="cta-row">
-        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=QA%20Enquiry">Email me</a>
-        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub</a>
-      </p>
+        <div class="contact-hero__content">
+          <h1 id="contact-title">Contact</h1>
+          <p>
+            I am a UK-based <strong>Manual Game QA Tester</strong>. For roles, freelance testing, or portfolio feedback, use the links below.
+          </p>
 
-      <p class="muted" style="text-align:center;opacity:.85;margin-top:8px;">
-        Email is best for roles and enquiries. LinkedIn is best for networking and quick questions.
-      </p>
+          <p class="cta-row" style="justify-content:flex-start;text-align:left;">
+            <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=QA%20Enquiry">Email me</a>
+            <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="cta-btn" href="https://github.com/kelinacowellqa" target="_blank" rel="noopener">GitHub</a>
+          </p>
+
+          <p class="muted" style="opacity:.85;margin-top:8px;">
+            Email is best for roles and enquiries. LinkedIn is best for networking and quick questions.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section aria-labelledby="help-title">
