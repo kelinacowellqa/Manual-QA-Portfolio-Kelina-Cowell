@@ -33,43 +33,44 @@
 
     .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
 
-    /* Lower block: gives us a "floor" to anchor the character to */
-    .contact-lower{
-      padding-bottom: 0; /* keep tight to the hr below */
-    }
+   /* Two columns: wider right column + no bottom gap */
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 460px;   /* bigger right column */
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 10px;
+  margin-bottom: -2px;               /* pulls content onto the hr */
+}
 
-    /* Two columns */
-    .contact-grid{
-      display:grid;
-      grid-template-columns: 1fr 380px;
-      gap: 28px;
-      align-items: stretch; /* makes both columns same height */
-      margin-top: 10px;
-    }
+/* Right column stage */
+.contact-side{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding: 0;
+}
 
-    /* Right column becomes a stage; image pinned to the bottom */
-    .contact-side{
-      display:flex;
-      align-items:flex-end;     /* pin to bottom */
-      justify-content:center;
-      padding: 0;               /* no padding so feet can hit the "floor" */
-    }
+/* Bigger character + force it to kiss the hr */
+.contact-side img{
+  width: 100%;
+  max-width: 420px;                  /* bigger image */
+  height: auto;
+  display:block;
+  margin: 0 0 -3px 0;                /* pushes feet onto the hr */
+}
 
-    /* Make the image sit on the bottom edge */
-    .contact-side img{
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      display:block;
-      margin: 0;
-    }
+/* Make sure the hr isn't adding extra spacing */
+hr{
+  margin-top: 0;
+}
 
-    /* Mobile: stack, image goes below and stays grounded */
-    @media (max-width: 900px){
-      .contact-grid{ grid-template-columns: 1fr; }
-      .contact-side{ justify-content:flex-start; }
-      .contact-side img{ max-width: 320px; }
-    }
+/* Mobile: stack */
+@media (max-width: 900px){
+  .contact-grid{ grid-template-columns: 1fr; margin-bottom: 0; }
+  .contact-side{ justify-content:flex-start; }
+  .contact-side img{ max-width: 340px; margin-bottom: 0; }
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
