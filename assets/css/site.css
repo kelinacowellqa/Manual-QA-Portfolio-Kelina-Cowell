@@ -300,14 +300,12 @@ details + * { margin-top: 16px !important; }
 }
 
 /* Image: clean, and glow happens on hover */
+.article-figure{ text-align:center; }
+
 .article-figure img{
-  display:block;
-  width:100%;
-  height:auto;
-  border: 0 !important;
-  border-radius: 12px; /* set to 0 if you want square */
-  box-shadow: none !important;
-  transition: box-shadow .15s ease, transform .15s ease;
+  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Teal glow ON THE IMAGE (not a box) */
