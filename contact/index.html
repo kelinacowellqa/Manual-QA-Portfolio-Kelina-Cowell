@@ -33,44 +33,44 @@
 
     .banner{ display:block; max-width:100%; height:auto; border-radius:16px; margin:18px auto 0; }
 
-    /* Lower-page layout: content left + character on the right (fills empty space) */
-  /* Lower block: gives us a "floor" to anchor the character to */
-.contact-lower{
-  padding-bottom: 0; /* keep tight to the hr below */
-}
+    /* Lower block: gives us a "floor" to anchor the character to */
+    .contact-lower{
+      padding-bottom: 0; /* keep tight to the hr below */
+    }
 
-/* Two columns */
-.contact-grid{
-  display:grid;
-  grid-template-columns: 1fr 380px;
-  gap: 28px;
-  align-items: stretch; /* IMPORTANT: makes both columns same height */
-  margin-top: 10px;
-}
+    /* Two columns */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+      align-items: stretch; /* makes both columns same height */
+      margin-top: 10px;
+    }
 
-/* Right column becomes a stage; image pinned to the bottom */
-.contact-side{
-  display:flex;
-  align-items:flex-end;     /* pin to bottom */
-  justify-content:center;
-  padding: 0;               /* no padding so feet can hit the "floor" */
-}
+    /* Right column becomes a stage; image pinned to the bottom */
+    .contact-side{
+      display:flex;
+      align-items:flex-end;     /* pin to bottom */
+      justify-content:center;
+      padding: 0;               /* no padding so feet can hit the "floor" */
+    }
 
-/* Make the image sit on the bottom edge */
-.contact-side img{
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  display:block;
-  margin: 0;                /* no gap */
-}
+    /* Make the image sit on the bottom edge */
+    .contact-side img{
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      display:block;
+      margin: 0;
+    }
 
-/* Mobile: stack, image goes below and stays grounded */
-@media (max-width: 900px){
-  .contact-grid{ grid-template-columns: 1fr; }
-  .contact-side{ justify-content:flex-start; }
-  .contact-side img{ max-width: 320px; }
-}
+    /* Mobile: stack, image goes below and stays grounded */
+    @media (max-width: 900px){
+      .contact-grid{ grid-template-columns: 1fr; }
+      .contact-side{ justify-content:flex-start; }
+      .contact-side img{ max-width: 320px; }
+    }
+  </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -98,7 +98,7 @@
 
     <hr>
 
-    <!-- Top contact area (no character here) -->
+    <!-- Top contact area -->
     <section aria-labelledby="contact-title">
       <h1 id="contact-title">Contact</h1>
       <p>
@@ -118,40 +118,42 @@
 
     <!-- Lower content + right-side character image -->
     <section class="contact-lower">
-  <div class="contact-grid">
-    <div class="contact-main">
-        <section aria-labelledby="help-title">
-          <h2 id="help-title">What I can help with</h2>
-          <ul>
-            <li>Manual functional and UI testing on PC, mobile, and VR.</li>
-            <li>Focused regression passes on live or recently patched builds.</li>
-            <li>Accessibility and comfort checks (readability, subtitles, input flexibility, VR usability).</li>
-            <li>Clear bug reports with exact repro steps and concise evidence.</li>
-            <li>Simple Jira setup and tidy workflows for small teams.</li>
-          </ul>
-        </section>
+      <div class="contact-grid">
+        <div class="contact-main">
 
-        <section aria-labelledby="routes-title">
-          <h2 id="routes-title">Quick routes</h2>
-          <ul>
-            <li><a href="https://kelinacowellqa.github.io/">Home</a> – overview and highlights</li>
-            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a> – full case study index</li>
-            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a> – training and certificates</li>
-            <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a> – testing write-ups</li>
-          </ul>
-        </section>
+          <section aria-labelledby="help-title">
+            <h2 id="help-title">What I can help with</h2>
+            <ul>
+              <li>Manual functional and UI testing on PC, mobile, and VR.</li>
+              <li>Focused regression passes on live or recently patched builds.</li>
+              <li>Accessibility and comfort checks (readability, subtitles, input flexibility, VR usability).</li>
+              <li>Clear bug reports with exact repro steps and concise evidence.</li>
+              <li>Simple Jira setup and tidy workflows for small teams.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="routes-title">
+            <h2 id="routes-title">Quick routes</h2>
+            <ul>
+              <li><a href="https://kelinacowellqa.github.io/">Home</a> – overview and highlights</li>
+              <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a> – full case study index</li>
+              <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a> – training and certificates</li>
+              <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a> – testing write-ups</li>
+            </ul>
+          </section>
+
+        </div>
+
+        <aside class="contact-side" aria-hidden="true">
+          <img
+            src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </aside>
       </div>
-
-      <aside class="contact-side" aria-hidden="true">
-      <img
-        src="../assets/img/kelina-cowell-qa-tester-goodbye-hello.png"
-        alt=""
-        loading="lazy"
-        decoding="async"
-      >
-    </aside>
-  </div>
-</section>
+    </section>
 
     <hr>
 
