@@ -23,10 +23,6 @@
 
   <style>
     /* page-scoped */
-    .page-intro{ margin: 18px 0 14px; max-width: 78ch; }
-    .page-intro h1{ margin: 0 0 10px; }
-    .page-intro p{ margin: 0 0 10px; opacity: .92; }
-
     .grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -100,8 +96,70 @@
       opacity:.85;
     }
 
+    /* Banner */
+    .banner{
+      margin: 14px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(5,8,12,.55), rgba(5,8,12,.82)),
+        url("/Manual-QA-Portfolio-Kelina-Cowell/assets/img/pc-game-screen-glitch-qa-banner.webp") center / cover no-repeat;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    .banner-inner{
+      padding: 22px 22px 20px;
+      min-height: 220px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .banner h1{
+      margin: 0 0 8px;
+      font-size: clamp(34px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: .5px;
+      text-shadow: 0 8px 24px rgba(0,0,0,.65);
+    }
+
+    .banner .banner-sub{
+      margin: 0;
+      max-width: 80ch;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.90);
+      text-shadow: 0 6px 18px rgba(0,0,0,.70);
+    }
+
+    .banner .banner-sub strong{
+      color: var(--accent, #00f2c9);
+      font-weight: 700;
+    }
+
+    .banner .banner-tags{
+      margin: 10px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .banner .banner-tags li{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.88);
+      font-size: .95rem;
+      backdrop-filter: blur(2px);
+    }
+
     @media (max-width:980px){ .grid{ grid-template-columns:1fr 1fr; } }
-    @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+    @media (max-width:640px){
+      .grid{ grid-template-columns:1fr; }
+      .banner-inner{ min-height: 200px; padding: 18px; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -132,13 +190,13 @@
         "@type": "ListItem",
         "position": 2,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
-        "name": "Exploratory testing on mobile: how it works in practice"
+        "name": "Exploratory testing on mobile: how I actually break games on purpose"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
-        "name": "Regression testing in practice: how it works on real builds"
+        "name": "Regression testing in practice: patch notes, risk, and ruthless retesting"
       }
     ]
   }
@@ -154,16 +212,30 @@
       <a class="cta-btn" href="/QA-Chronicles-Kelina-Cowell/" target="_blank" rel="noopener">QA Chronicles</a>
     </p>
 
-    <header class="page-intro">
-      <h1>QA Articles</h1>
-      <p>
-        Applied writeups pulled from real portfolio passes. These are not definition pages.
-        Each article focuses on method: scope, risk, workflow, evidence, and outcomes.
-      </p>
-      <p class="kicker">
-        Topics include functional testing, exploratory testing, and regression testing across mobile and PC builds.
-      </p>
+    <!-- Banner -->
+    <header class="banner" aria-labelledby="articles-title">
+      <div class="banner-inner">
+        <div>
+          <h1 id="articles-title">QA Articles</h1>
+
+          <p class="banner-sub">
+            Real writeups pulled from my portfolio passes. <strong>Not definition pages.</strong>
+          </p>
+
+          <ul class="banner-tags" role="list" aria-label="Article focus areas">
+            <li>Scope</li>
+            <li>Risk</li>
+            <li>Workflow</li>
+            <li>Evidence</li>
+            <li>Outcomes</li>
+          </ul>
+        </div>
+      </div>
     </header>
+
+    <p class="kicker" style="margin: 0 0 14px; opacity: .78;">
+      Topics include functional testing, exploratory testing, and regression testing across mobile and PC builds.
+    </p>
 
     <section aria-label="Articles list">
       <div class="grid">
@@ -180,42 +252,36 @@
           </p>
           <div class="actions">
             <a class="btn-mini" href="./functional-testing.html">Functional testing workflow</a>
-            <!-- Optional: link to the project page if you want it -->
-            <!-- <a class="btn-mini secondary" href="../projects/battletoads/" rel="noopener">Battletoads project</a> -->
           </div>
         </article>
 
         <!-- Article 2 -->
         <article class="card">
-          <h2><a href="./exploratory-testing.html">Exploratory testing on mobile: how it works in practice</a></h2>
+          <h2><a href="./exploratory-testing.html">Exploratory testing on mobile: how I actually break games on purpose</a></h2>
           <p class="meta">
             Topic: Exploratory testing • Context: Rebel Racing (Android) •
             <time datetime="2025-12-17">17 Dec 2025</time>
           </p>
           <p class="desc">
-            How exploratory testing actually works on mobile: charters, timeboxing, controlled variation, and why interruptions and recovery find issues scripted checks miss.
+            Exactly how I run a timeboxed chaos pass on Android: charters, controlled variation, interruptions, and the kind of weird failures scripted checks never see.
           </p>
           <div class="actions">
             <a class="btn-mini" href="./exploratory-testing.html">Exploratory testing method</a>
-            <!-- Optional -->
-            <!-- <a class="btn-mini secondary" href="../projects/rebel-racing/" rel="noopener">Rebel Racing project</a> -->
           </div>
         </article>
 
         <!-- Article 3 -->
         <article class="card">
-          <h2><a href="./regression-testing.html">Regression testing in practice: how it works on real builds</a></h2>
+          <h2><a href="./regression-testing.html">Regression testing in practice: patch notes, risk, and ruthless retesting</a></h2>
           <p class="meta">
             Topic: Regression testing • Context: Sworn (PC Game Pass) •
             <time datetime="2025-12-17">17 Dec 2025</time>
           </p>
           <p class="desc">
-            Regression testing as change-driven verification: baseline checks, targeted probes, and evidence-led pass/fail decisions inside a one-week timebox.
+            How I turn patch notes into a targeted retest plan, what I sanity-check first, and how I make clean pass or fail calls with evidence inside a one week window.
           </p>
           <div class="actions">
             <a class="btn-mini" href="./regression-testing.html">Regression testing workflow</a>
-            <!-- Optional -->
-            <!-- <a class="btn-mini secondary" href="../projects/sworn/" rel="noopener">Sworn project</a> -->
           </div>
         </article>
 
