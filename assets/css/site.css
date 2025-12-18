@@ -322,3 +322,42 @@ details + * { margin-top: 16px !important; }
   opacity:.7;
   font-size:.95em;
 }
+/* FORCE: center + hover glow, no clipping, no boxes */
+.article-figure.plain-figure{
+  padding: 0 !important;
+  margin: 18px 0 22px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  text-align: center !important;
+}
+
+.article-figure.plain-figure a.zoomable{
+  display: inline-block !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important; /* stops glow being clipped */
+  text-decoration: none !important;
+}
+
+.article-figure.plain-figure a.zoomable img{
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  transition: box-shadow .15s ease, transform .15s ease !important;
+}
+
+.article-figure.plain-figure a.zoomable:hover img{
+  box-shadow:
+    0 0 0 1px rgba(0,242,201,.45),
+    0 0 34px rgba(0,242,201,.28),
+    0 18px 60px rgba(0,0,0,.35) !important;
+  transform: translateY(-1px) !important;
+}
