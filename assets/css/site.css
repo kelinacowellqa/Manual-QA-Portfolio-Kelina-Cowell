@@ -281,10 +281,20 @@ details + * { margin-top: 16px !important; }
 }
 .site-nav.cta-row .cta-btn{ margin:0; } /* remove any leftover per-button margins */
 
+/* FIGURE spacing */
 .article-figure{
   margin: 18px 0 22px;
 }
 
+/* Remove the OUTER frame (site default) */
+.article-figure{
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep ONE frame: the clickable inner frame */
 .article-figure .zoomable{
   display:block;
   border: 1px solid var(--line);
@@ -305,20 +315,10 @@ details + * { margin-top: 16px !important; }
   display:block;
   width:100%;
   height:auto;
-  object-fit: cover;
 }
 
-/* Optional: tiny “clickable” cue without being tacky */
+/* Caption hint */
 .article-figure .hint{
-
-  /* Remove site frame */
-.article-figure{
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
   opacity:.7;
   font-size:.95em;
 }
