@@ -377,18 +377,30 @@
 
       <hr>
 
-      <section class="section" id="faq">
-        <h2>Exploratory testing FAQ (mobile QA)</h2>
+    <h3>How do you stop exploratory testing becoming random wandering?</h3>
+<p>
+  By using a clear charter, a strict timebox, and controlled variation.
+  If you can’t explain what you were trying to learn in that session, the charter is too vague.
+</p>
 
-        <h3>Is exploratory testing unstructured?</h3>
-        <p>No. It is structured around charters, timeboxes, and controlled variation.</p>
+<h3>What do you write down during an exploratory session?</h3>
+<p>
+  The variables that matter for reproduction: device state, network, lifecycle transitions, and what changed between attempts.
+  Notes should capture context, not just button presses.
+</p>
 
-        <h3>Can exploratory testing replace scripted testing?</h3>
-        <p>No. It complements scripted checks by covering unknown risks and contextual failure modes.</p>
+<h3>How do you reproduce a bug found through exploration?</h3>
+<p>
+  First, reduce the scenario to the smallest set of steps that still triggers the issue.
+  Then rerun it while changing one variable at a time until the trigger conditions are clear.
+</p>
 
-        <h3>Is exploratory testing suitable outside games?</h3>
-        <p>Yes. It is widely used in mobile apps, web products, and software platforms.</p>
-      </section>
+<h3>What makes mobile exploratory testing different from PC or console?</h3>
+<p>
+  Mobile failure modes are often lifecycle and OS-driven: backgrounding, notifications, lock/unlock, network switching,
+  permissions, battery and performance constraints.
+  Normal user behaviour creates timing and recovery issues that clean runs will miss.
+</p>
 
       <hr>
 
