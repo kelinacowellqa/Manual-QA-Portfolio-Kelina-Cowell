@@ -72,6 +72,38 @@
       opacity: .95;
     }
     .author-row a{ text-decoration: underline; }
+
+      .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -243,14 +275,13 @@
       I also include a quick sanity listen for audio cutouts during this flow.
     </p>
 
-    <section class="callout">
-  <h3>Applied insight: baseline checks before depth</h3>
-  <p class="small">
-    “Some systems absolutely cannot break.
-    Those are the ones you want to verify on every build before spending time on deeper testing.”
-    <br><span class="hint">— Conrad Bettmann, QA Manager (Rovio Entertainment)</span>
-  </p>
-</section>
+    <aside class="pullquote" aria-label="Applied insight">
+  <blockquote>
+    <p>Some systems absolutely cannot break.
+    Those are the ones you want to verify on every build before spending time on deeper testing.</p>
+    <cite>— Conrad Bettmann, QA Manager (Rovio Entertainment)</cite>
+  </blockquote>
+</aside>
 
     <section class="callout">
       <h3>Why baseline stability matters in regression testing</h3>
@@ -274,15 +305,12 @@
       This is especially useful when you have no internal access, no studio data, and no changelog for your platform.
     </p>
 
-    <section class="callout">
-  <h3>Applied insight: scoping regression from change signals</h3>
-  <p class="small">
-    “Knowing what changed and where allows you to focus regression on affected areas,
-    rather than running very wide high-level checks that probably won’t find anything valuable.
-    It’s usually best to mix multiple oracles instead of relying on one source.”
-    <br><span class="hint">— Conrad Bettmann, QA Manager (Rovio Entertainment)</span>
-  </p>
-</section>
+  <aside class="pullquote" aria-label="Applied insight">
+  <blockquote>
+    <p>Knowing what changed and where helps you focus regression on affected areas, rather than running very wide checks that probably won’t find anything valuable. It’s usually best to mix multiple oracles instead of relying on one source.</p>
+    <cite>— Conrad Bettmann, QA Manager (Rovio Entertainment)</cite>
+  </blockquote>
+</aside>
 
     <section class="callout">
       <h3>Regression outcomes: pass vs not applicable (with evidence)</h3>
