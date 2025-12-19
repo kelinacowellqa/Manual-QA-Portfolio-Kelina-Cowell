@@ -114,6 +114,37 @@
     @media (max-width: 700px){
       .toc ul{ columns: 1; }
     }
+       .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
   </style>
 
   <script type="application/ld+json">
@@ -249,6 +280,17 @@
           <li>Network quality changes during critical moments (login, purchase, reward claim).</li>
           <li>UI must remain usable on small screens and unusual aspect ratios.</li>
         </ul>
+
+<aside class="pullquote" aria-label="Applied insight">
+  <blockquote>
+    <p>
+      For mobile exploration, compare performance across devices where possible and probe interruptions:
+      lock screen, phone calls, network drops, switching Wi-Fi/data, rotation, and kill/restart recovery.
+    </p>
+    <cite>- Radu Posoi, Founder, AlkoTech Labs (ex Ubisoft QA Lead)</cite>
+  </blockquote>
+</aside>
+        
         <p>
           Exploratory sessions target these risks directly instead of assuming a clean uninterrupted journey.
         </p>
@@ -274,6 +316,16 @@
               Timeboxing forces prioritisation and prevents unfocused wandering.
               Typical sessions range from 20 to 45 minutes.
             </p>
+
+            <aside class="pullquote" aria-label="Applied insight">
+  <blockquote>
+    <p>
+      Before you go deep, verify the basics first. A short daily smoke test protects the golden path,
+      so deeper exploratory work is not wasted rediscovering obvious breakage.
+    </p>
+    <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
+  </blockquote>
+</aside>
 
             <h3>Controlled variation: one variable at a time</h3>
             <p>
@@ -339,6 +391,17 @@
           Because exploratory testing is adaptive, notes and evidence matter more than in scripted runs.
           Findings must be supported with enough context to reproduce and diagnose.
         </p>
+
+<aside class="pullquote" aria-label="Applied insight">
+  <blockquote>
+    <p>
+      High impact exploratory bugs live or die by their evidence. Capture context (client and device state),
+      include frequency (for example 3/3 or 10/13), and attach a clear repro so the issue is actionable.
+    </p>
+    <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
+  </blockquote>
+</aside>
+        
         <ul>
           <li>Screen recordings captured during the session, not recreated later.</li>
           <li>Notes that include context, not just actions (device state, network, lifecycle transitions).</li>
