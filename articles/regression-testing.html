@@ -244,6 +244,15 @@
     </p>
 
     <section class="callout">
+  <h3>Applied insight: baseline checks before depth</h3>
+  <p class="small">
+    “Some systems absolutely cannot break.
+    Those are the ones you want to verify on every build before spending time on deeper testing.”
+    <br><span class="hint">— Conrad Bettmann, QA Manager (Rovio Entertainment)</span>
+  </p>
+</section>
+
+    <section class="callout">
       <h3>Why baseline stability matters in regression testing</h3>
       <p class="small">
         The golden path includes the most common player actions (launch, play, quit, resume).
@@ -259,10 +268,21 @@
       <strong>SWORN 1.0 Patch #3 (v1.0.3.1111), 13 Nov 2025</strong>.
       That does not mean I assumed those changes were present on PC Game Pass.
     </p>
+    
     <p>
       Instead, I used the patch notes as a change signal to decide where to probe for side effects on the Game Pass build.
       This is especially useful when you have no internal access, no studio data, and no changelog for your platform.
     </p>
+
+    <section class="callout">
+  <h3>Applied insight: scoping regression from change signals</h3>
+  <p class="small">
+    “Knowing what changed and where allows you to focus regression on affected areas,
+    rather than running very wide high-level checks that probably won’t find anything valuable.
+    It’s usually best to mix multiple oracles instead of relying on one source.”
+    <br><span class="hint">— Conrad Bettmann, QA Manager (Rovio Entertainment)</span>
+  </p>
+</section>
 
     <section class="callout">
       <h3>Regression outcomes: pass vs not applicable (with evidence)</h3>
