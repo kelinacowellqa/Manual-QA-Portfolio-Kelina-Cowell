@@ -176,7 +176,7 @@
 <hr>
     
     <header class="article-hero">
-      <h1>Functional testing workflow (Battletoads, PC)</h1>
+      <h1>Functional testing: the boring basics that catch real bugs</h1>
       <p class="meta">
         <strong>Kelina Cowell</strong> • <time datetime="2025-12-17">17 Dec 2025</time> • ~4 min read
       </p>
@@ -223,7 +223,7 @@
 
       <!-- About this work (kept article-appropriate, not a project page dump) -->
       <section class="callout" aria-label="About this work">
-        <h2 style="margin-top:0;">About this work</h2>
+        <h2 style="margin-top:0;">Functional testing workflow context and scope</h2>
         <p class="small">
           This article is grounded in a self-directed portfolio pass on Battletoads (PC, Game Pass), build <code>1.1F.42718</code>,
           run in a one-week timebox. Test focus was core functional flows and mixed input ownership (controller plus keyboard),
@@ -262,7 +262,7 @@
     </p>
 
     <section class="callout">
-      <h3>The main output</h3>
+      <h3>Functional testing outputs: pass/fail results with evidence</h3>
       <p>
         Clear outcomes: pass or fail, backed by evidence and reproducible steps.
         Not vibes. Not opinions.
@@ -271,7 +271,7 @@
 
     <hr>
 
-    <h2 id="two-flows">The two flows I test first</h2>
+    <h2 id="two-flows">Functional testing: the two flows I verify first</h2>
     <ol>
       <li>
         <strong>Start to first control</strong><br>
@@ -289,7 +289,7 @@
 
     <hr>
 
-    <h2 id="input">Why input ownership deserves its own mini-suite</h2>
+    <h2 id="input">Input ownership testing: controller and keyboard hand-off</h2>
     <p>
       Mixed input is a feature, not an edge case.
       When a controller is connected and a keyboard is used, behaviour must remain predictable.
@@ -307,7 +307,7 @@
     </p>
 
     <section class="callout">
-      <h3>Common pattern</h3>
+      <h3>Common pattern: mixed input causes menu focus bugs</h3>
       <p>
         Controller connected plus keyboard input plus menu open equals focus bugs.
         Easy to reproduce. Easy to prove. Easy to fix once isolated.
@@ -316,7 +316,7 @@
 
     <hr>
 
-    <h2 id="evidence">Evidence: what I capture and why</h2>
+    <h2 id="evidence">Bug evidence for functional testing: what I capture and why</h2>
     <p>
       I favour short video clips (10 to 30 seconds) and only use screenshots when they add clarity.
       The goal is to make the defect obvious without forcing someone to scrub a long recording.
@@ -332,7 +332,7 @@
 
     <hr>
 
-    <h2 id="timebox">How I timebox a functional pass</h2>
+    <h2 id="timebox">How I timebox a one-week functional testing pass</h2>
     <ul>
       <li><strong>Day 1:</strong> Smoke testing and baseline flow validation.</li>
       <li><strong>Days 2 to 4:</strong> Execute runs, expand where risk appears, log defects immediately.</li>
@@ -347,9 +347,9 @@
     <hr>
     
     <!-- Sources / Oracles (article-appropriate: explain what you used, do not turn into a references page) -->
-    <h2 id="oracles">Sources and oracles used</h2>
+    <h2 id="oracles">Testing oracles used for functional verification</h2>
     <ul class="small">
-      <li><strong>In-game UI and outcomes:</strong> observable behaviour of core flows (control, progression, Pause, Resume).</li>
+      <li><strong>In-game UI and outcomes:</strong> observable behaviour of core flows (control, progression, Pause/Resume).</li>
       <li><strong>Controls menu bindings:</strong> used as an oracle for expected key behaviour (for example, Esc and Enter bindings).</li>
       <li><strong>Consistency across repeated runs:</strong> behaviour confirmed via reruns to rule out one-off variance.</li>
     </ul>
@@ -357,10 +357,10 @@
     <hr>
 
     <!-- Proof content AI trusts, kept minimal and article-like -->
-    <h2 id="proof">Proof points from the Battletoads pass</h2>
+    <h2 id="proof">Functional testing examples from the Battletoads pass</h2>
 
     <section class="callout">
-      <h3>Concrete example</h3>
+      <h3>Example bug pattern: mixed input misroutes Pause and overlays</h3>
       <p class="small">
         With a controller connected on PC, Pause opened and closed reliably via controller Start.
         Keyboard interaction on Pause could be ignored or misrouted into Join In, and in one observed case
@@ -370,7 +370,7 @@
     </section>
 
     <section class="callout">
-      <h3>Named micro-charter</h3>
+      <h3>Micro-charter: mixed input ownership around Pause and overlays</h3>
       <p class="small">
         <strong>Charter:</strong> Mixed input ownership around Pause and overlays (controller plus keyboard).<br>
         <strong>Goal:</strong> Confirm predictable focus, navigation, and confirm/back actions under common PC setups.
@@ -380,10 +380,10 @@
     <hr>
 
     <!-- Evidence links: named artefacts, but keep it light and defer details to case study -->
-    <h2 id="takeaways">Key takeaways</h2>
+    <h2 id="takeaways">Functional testing takeaways (flows, input, evidence)</h2>
     <ul class="small">
       <li>Functional testing finds high-impact defects early because it targets the systems everything else relies on.</li>
-      <li>Pause and overlays are reliable defect generators because they stress state and input routing.</li>
+      <li>Pause and overlays are reliable bug generators because they stress state and input routing.</li>
       <li>On PC, mixed input should be treated as a primary scenario, not an edge case.</li>
       <li>Short evidence clips reduce repro ambiguity and speed up triage.</li>
       <li>Repeating the same steps is how “random” issues become diagnosable patterns.</li>
@@ -392,7 +392,7 @@
     <hr>
 
     <section>
-      <h2>Evidence and related pages</h2>
+      <h2>Functional testing evidence and case study links</h2>
       <ul>
         <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">Battletoads functional case study (full artefacts and evidence)</a></li>
         <li><a href="/QA-Chronicles-Kelina-Cowell/issues/issue-01-battletoads.html">QA Chronicles Issue 1: Battletoads</a></li>
