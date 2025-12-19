@@ -365,23 +365,15 @@
 
       <hr>
 
-      <section class="section" id="example">
-        <h2>Android exploratory testing example: reward claim soft lock</h2>
-        <div class="example">
-          <p><strong>Scenario:</strong> reward claim flow under interruptions (Android).</p>
-          <p>
-            During an exploratory session, repeatedly backgrounding and resuming the app while a reward flow was mid-animation
-            triggered a soft lock: the UI stayed visible, but the claim state never completed, blocking progression.
-            This did not appear during clean uninterrupted smoke testing because the trigger was lifecycle timing and state recovery.
-          </p>
-          <p>
-            <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not a rare edge case. Exploratory sessions hit it because they are designed to.
-          </p>
-        </div>
-        <p style="margin-top: 10px; opacity: .85;">
-          If you have a screenshot or short clip for the above, add it directly under this section.
-        </p>
-      </section>
+    <p><strong>Scenario:</strong> reward claim flow under interruptions (Android).</p>
+<p>
+  During an exploratory session, repeatedly backgrounding and resuming the app while a reward flow was mid-animation
+  triggered a soft lock: the UI stayed visible, but the claim state never completed, blocking progression.
+  This did not appear during clean uninterrupted smoke testing because the trigger was lifecycle timing and state recovery.
+</p>
+<p>
+  <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not a rare edge case. Exploratory sessions hit it because they are designed to.
+</p>
 
       <hr>
 
