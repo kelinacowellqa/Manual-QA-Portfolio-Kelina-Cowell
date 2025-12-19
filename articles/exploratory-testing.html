@@ -150,7 +150,7 @@
     <main id="content">
 
       <header class="page-header">
-        <h1>Exploratory testing on mobile: how it works in practice</h1>
+        <h1>Exploratory testing: the messy checks that find real mobile bugs</h1>
         <p class="hint">An applied QA article, not a definition page and not a case study.</p>
 
         <p class="meta-line">
@@ -256,25 +256,25 @@
       <hr>
 
       <section class="section" id="practice">
-        <h2>How exploratory testing is applied in practice</h2>
+        <h2>Exploratory testing workflow in practice</h2>
 
         <div class="two-col">
           <div>
-            <h3>Test charters, not scripts</h3>
+            <h3>Exploratory test charters, not scripts</h3>
             <p>
               Sessions start with a charter: a short statement of intent.
               For example, “Explore reward claim behaviour under interruptions” or “Explore recovery after network loss”.
               The charter defines <em>focus</em>, not steps.
             </p>
 
-            <h3>Timeboxed sessions</h3>
+            <h3>Timeboxed exploratory testing sessions</h3>
             <p>
               Exploratory testing works best in short sessions.
               Timeboxing forces prioritisation and prevents unfocused wandering.
               Typical sessions range from 20 to 45 minutes.
             </p>
 
-            <h3>Controlled variation</h3>
+            <h3>Controlled variation: one variable at a time</h3>
             <p>
               Rather than changing everything at once, one variable is altered at a time: lock state, network type, lifecycle state.
               This keeps results interpretable and defects reproducible.
@@ -282,7 +282,7 @@
           </div>
 
           <aside class="mini" aria-label="Session checklist">
-            <h3>Session checklist</h3>
+            <h3>Exploratory testing session checklist (charter, timebox, evidence)</h3>
             <ul>
               <li>Charter chosen (risk and focus)</li>
               <li>Timebox set (20 to 45 mins)</li>
@@ -298,7 +298,7 @@
       <hr>
 
       <section class="section" id="findings">
-        <h2>What exploratory testing tends to uncover</h2>
+        <h2>Common mobile bugs found with exploratory testing</h2>
         <p>
           Exploratory testing is effective at surfacing issues that are low-frequency but high-impact, especially on mobile.
         </p>
@@ -313,7 +313,7 @@
       <hr>
 
       <section class="section" id="example">
-        <h2>Example from a real Android pass</h2>
+        <h2>Android exploratory testing example: reward claim soft lock</h2>
         <div class="example">
           <p><strong>Scenario:</strong> reward claim flow under interruptions (Android).</p>
           <p>
@@ -322,7 +322,7 @@
             This did not appear during clean uninterrupted smoke testing because the trigger was lifecycle timing and state recovery.
           </p>
           <p>
-            <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not an edge case. Exploratory sessions hit it because they are designed to.
+            <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not a rare edge case. Exploratory sessions hit it because they are designed to.
           </p>
         </div>
         <p style="margin-top: 10px; opacity: .85;">
@@ -333,9 +333,9 @@
       <hr>
 
       <section class="section" id="reporting">
-        <h2>Notes, evidence, and bug reporting</h2>
+        <h2>Bug reporting for exploratory testing: notes and evidence</h2>
         <p>
-          Because exploratory testing is adaptive, notes and evidence matter more than usual.
+          Because exploratory testing is adaptive, notes and evidence matter more than in scripted runs.
           Findings must be supported with enough context to reproduce and diagnose.
         </p>
         <ul>
@@ -351,7 +351,7 @@
       <hr>
 
       <section class="section" id="skills">
-        <h2>Skills demonstrated through exploratory testing</h2>
+        <h2>Exploratory testing skills shown in this mobile pass</h2>
         <ul>
           <li>Risk-based testing decisions</li>
           <li>Test charter creation and execution</li>
@@ -366,10 +366,10 @@
       <hr>
 
       <section class="section" id="takeaways">
-        <h2>Key takeaways</h2>
+        <h2>Exploratory testing takeaways for mobile QA</h2>
         <ul>
           <li>Exploratory testing is structured, not random.</li>
-          <li>Mobile risk is contextual, not purely functional.</li>
+          <li>Mobile risk is contextual, not just functional.</li>
           <li>Interruptions and recovery deserve dedicated exploration.</li>
           <li>Good notes and evidence make exploratory work credible and actionable.</li>
         </ul>
@@ -378,7 +378,7 @@
       <hr>
 
       <section class="section" id="faq">
-        <h2>Mini FAQ</h2>
+        <h2>Exploratory testing FAQ (mobile QA)</h2>
 
         <h3>Is exploratory testing unstructured?</h3>
         <p>No. It is structured around charters, timeboxes, and controlled variation.</p>
