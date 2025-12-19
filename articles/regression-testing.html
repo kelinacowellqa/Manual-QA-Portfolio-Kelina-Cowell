@@ -452,6 +452,47 @@
       </p>
     </section>
 
+    <section class="section" id="faq">
+  <h2>Regression testing FAQ (manual QA)</h2>
+
+  <h3>Is regression testing just re-testing old bugs?</h3>
+  <p>
+    No. Regression testing verifies that existing behaviour still works after change.
+    It covers previously working systems, whether or not bugs were ever logged against them.
+  </p>
+
+  <h3>Do you need to re-test everything in regression?</h3>
+  <p>
+    No. Effective regression testing is selective.
+    Scope is driven by change and risk, not by feature count.
+  </p>
+
+  <h3>How do you scope regression without internal patch notes?</h3>
+  <p>
+    By using external change signals such as public patch notes, previous builds,
+    and observed behaviour as oracles, without assuming platform parity.
+  </p>
+
+  <h3>What’s the difference between regression and exploratory testing?</h3>
+  <p>
+    Regression testing verifies known behaviour after change.
+    Exploratory testing searches for unknown risk and emergent failure modes.
+    They complement each other but answer different questions.
+  </p>
+
+  <h3>Is a “pass” result meaningful in regression testing?</h3>
+  <p>
+    Yes. A pass is still a claim.
+    That’s why regression passes should be supported with evidence, not just a checkbox.
+  </p>
+
+  <h3>When is “not applicable” a valid regression outcome?</h3>
+  <p>
+    When a feature is not present on the build under test and that absence is confirmed with evidence.
+    Logging this explicitly is more honest than assuming parity or skipping the check silently.
+  </p>
+</section>
+
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
       <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
