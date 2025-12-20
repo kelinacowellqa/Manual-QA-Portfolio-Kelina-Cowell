@@ -6,7 +6,7 @@
 
  <title>Regression testing workflow example (Sworn, PC Game Pass) | Kelina Cowell</title>
 
-  <meta name="description" content="Regression testing workflow article backed by my Sworn (PC Game Pass) one-week pass: how I use SteamDB patch notes as an external oracle, build a risk-based regression matrix, and verify golden-path stability, save/continue integrity, audio sanity, and input handover on build 1.01.0.1039." />
+ <meta name="description" content="Regression testing workflow example from my Sworn (PC Game Pass) one-week pass: how I scope regression from change signals, build a risk-based matrix, and verify golden-path stability." />
 
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html" />
 
@@ -109,35 +109,6 @@
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-  <!-- Site-wide structured data (fine here, better in layout) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Kelina Cowell QA Portfolio",
-    "url": "https://kelinacowellqa.github.io/",
-    "inLanguage": "en-GB",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
-    }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://kelinacowellqa.github.io/#kelina-cowell",
-    "name": "Kelina Cowell",
-    "jobTitle": "QA Tester (Manual QA)",
-    "url": "https://kelinacowellqa.github.io/",
-    "sameAs": [
-      "https://www.linkedin.com/in/kelina-cowell-qa-tester"
-    ]
-  }
-  </script>
-
   <!-- Page-specific structured data (keep ONE Article schema) -->
   <script type="application/ld+json">
   {
@@ -181,8 +152,9 @@
 
     <header class="article-hero">
       <h1>Regression testing: the risk-first checks that keep releases stable</h1>
-      
-      <p class="author-row small">
+      <p class="hint">An applied QA article, not a definition page and not a case study.</p>
+
+        <p class="author-row small">
         <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
         <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
       </p>
@@ -191,11 +163,6 @@
         This is an article on my regression testing workflow for manual QA, backed by a real one-week solo pass on
         <strong>Sworn (PC Game Pass, Windows)</strong>. It exists to show how I design regression scope from change signals,
         what I verify first (golden path), and how I record evidence that makes both passes and failures credible.
-      </p>
-
-      <p class="author-row small">
-        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
-        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
       </p>
 
       <hr>
