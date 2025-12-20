@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
- <title>Regression testing workflow example (Sworn, PC Game Pass) | Kelina Cowell</title>
+ <title>Regression testing workflow (Sworn, PC Game Pass) | Kelina Cowell</title>
 
- <meta name="description" content="Regression testing workflow example from my Sworn (PC Game Pass) one-week pass: how I scope regression from change signals, build a risk-based matrix, and verify golden-path stability." />
+ <meta name="description" content="Regression testing workflow from my Sworn (PC Game Pass) pass: how I scope regression from change signals, build a risk-based matrix, and verify golden-path stability." />
 
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html" />
 
@@ -151,7 +151,7 @@
     <hr>
 
     <header class="article-hero">
-      <h1>Regression testing: the risk-first checks that keep releases stable</h1>
+      <h1>Regression testing workflow: the risk-first checks that keep releases stable</h1>
       <p class="hint">An applied QA article, not a definition page and not a case study.</p>
 
         <p class="author-row small">
@@ -183,17 +183,16 @@
 
        <hr>
 
-      <section class="callout" aria-label="TL;DR">
-        <h2 style="margin-top:0;">TL;DR</h2>
-        <ul class="tldr small">
-          <li><strong>What it is:</strong> a risk-based regression workflow for timeboxed solo passes.</li>
-          <li><strong>Backing project:</strong> Sworn on PC Game Pass (Windows), one-week pass (24 Nov to 03 Dec 2025).</li>
-          <li><strong>Build tested:</strong> <code>1.01.0.1039</code> (PC Game Pass build).</li>
-          <li><strong>Approach:</strong> change-driven scope using SteamDB patch notes as an external oracle only, plus a repeatable golden-path baseline.</li>
-          <li><strong>Outcome:</strong> 8 pass, 1 fail, 1 not applicable, 1 known A11y cluster (no new build available for re-test).</li>
-          <li><strong>Outputs:</strong> Regression Matrix line results, Sessions Log timestamps, bug tickets with evidence links.</li>
-        </ul>
-      </section>
+<section class="callout" aria-label="Workflow proof points">
+  <h2 style="margin-top:0;">TL;DR</h2>
+  <ul class="tldr small">
+    <li><strong>Workflow shown:</strong> risk-first regression scoping → golden-path baseline → targeted probes → evidence-backed results.</li>
+    <li><strong>Example context:</strong> Sworn on PC Game Pass (Windows) used only as a real-world backing example.</li>
+    <li><strong>Build context:</strong> tested on the PC Game Pass build <code>1.01.0.1039</code>.</li>
+    <li><strong>Scope driver:</strong> public SteamDB patch notes used as an external change signal (no platform parity assumed).</li>
+    <li><strong>Outputs:</strong> a regression matrix with line-by-line outcomes, session timestamps, and bug tickets with evidence.</li>
+  </ul>
+</section>
 
       <hr>
 
@@ -222,6 +221,7 @@
         <li><a href="#anchors">Save/Continue regression testing: anchors, not vibes</a></li>
         <li><a href="#evidence">QA evidence for regression testing: what I capture and why</a></li>
         <li><a href="#proof">Regression testing examples from the Sworn pass</a></li>
+        <li><a href="#takeaways">Regression testing takeaways (risk, evidence, and verification)</a></li>
         <li><a href="#faq">Regression testing FAQ (manual QA)</a></li>
         <li><a href="#links">Regression testing evidence and case study links</a></li>
       </ul>
@@ -386,7 +386,7 @@
     </section>
 
     <section class="callout">
-      <h3>Patch-note probe example: music continuity check (STEA-103-MUSIC</h3>
+      <h3>Patch-note probe example: music continuity check (STEA-103-MUSIC)</h3>
       <p class="small">
         SteamDB notes mention a fix for music cutting out, so I ran <strong>STEA-103-MUSIC</strong>:
         10 minutes runtime with combat transitions, plus pause/unpause and a level load.
@@ -412,8 +412,17 @@
       </p>
     </section>
 
-    <hr>
+    <section class="callout">
+  <h3>Results snapshot (for transparency)</h3>
+  <p class="small">
+    In this backing pass, the matrix recorded: <strong>8 pass</strong>, <strong>1 fail</strong>, <strong>1 not applicable</strong>,
+    plus <strong>1 known accessibility cluster</strong> captured on Day 0 with no newer build available for re-test.
+    Counts are included here for context, not as the focus of the article.
+  </p>
+</section>
 
+<hr>
+    
     <h2 id="takeaways">Regression testing takeaways (risk, evidence, and verification)</h2>
     <ul class="small">
       <li>Regression testing is change-driven verification, not “re-test everything”.</li>
