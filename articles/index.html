@@ -188,6 +188,25 @@
       .article-cta{ justify-content:flex-start; }
       .btn-mini{ width: fit-content; }
     }
+
+    /* OCD fix: force all rows to the same width */
+.article-list{
+  align-items: stretch;
+}
+
+.article-row{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.article-main{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.article-cta{
+  flex: 0 0 auto;
+}
   </style>
 
   <script type="application/ld+json">
