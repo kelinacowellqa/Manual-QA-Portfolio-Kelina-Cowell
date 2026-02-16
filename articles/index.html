@@ -8,11 +8,11 @@
 
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="Game QA articles by Kelina Cowell. Practical, method-first guides based on real portfolio testing passes, covering workflows, risk, evidence, and reporting." />
+  <meta name="description" content="Game QA articles by Kelina Cowell. Practical, method-first guides based on real portfolio testing passes, covering workflows, risk, evidence, reporting, and game accessibility QA." />
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
 
   <meta property="og:title" content="Game QA Articles | Manual Game Testing Guides - Kelina Cowell">
-  <meta property="og:description" content="Applied game QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes.">
+  <meta property="og:description" content="Applied game QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes, and accessibility testing in games.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
   <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
@@ -74,60 +74,95 @@
       box-shadow: 0 18px 50px rgba(0,0,0,.35);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-      margin-top:14px;
+    /* Category jump links */
+    .hub-nav{
+      margin: 10px 0 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+    .pill{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.02);
+      text-decoration:none;
+      font-size:.95rem;
+      opacity:.95;
+    }
+    .pill:hover{ background: rgba(255,255,255,.04); opacity:1; }
+
+    .hub-section{
+      margin: 0;
+    }
+    .hub-section h2{
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+    .section-hint{
+      margin: 0 0 14px;
+      opacity: .78;
+      line-height: 1.55;
     }
 
-    .card{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:14px;
+    /* Article rows (scalable list, not a 3-card grid) */
+    .article-list{
       display:flex;
       flex-direction:column;
-      gap:10px;
-      min-height: 240px;
+      gap:12px;
     }
-
-    .card h2{
-      margin:0;
-      font-size:18px;
-      line-height:1.25;
-    }
-
-    .card h2 a{ text-decoration:none; }
-
-    .meta{
-      font-size:.95rem;
-      opacity:.85;
-      margin:0;
-      line-height:1.35;
-    }
-
-    .desc{
-      margin:0;
-      opacity:.92;
-      line-height:1.55;
-    }
-
-  .kicker{
-  font-size:.92rem;
-  opacity:.78;
-  margin: 0 0 14px;
-  max-width: none;
-}
-
-    .actions{
-      margin-top:auto;
+    .article-row{
       display:flex;
-      gap:10px;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.02);
+    }
+    .article-main{
+      min-width: 0;
+    }
+    .article-title{
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+    .article-title a{
+      text-decoration:none;
+    }
+    .article-desc{
+      margin: 0 0 10px;
+      opacity: .92;
+      line-height: 1.55;
+    }
+    .meta{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
       flex-wrap:wrap;
+      gap:8px 10px;
       align-items:center;
+      opacity: .86;
+      font-size: .92rem;
+      line-height: 1.35;
+    }
+    .tag{
+      display:inline-block;
+      padding:3px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.02);
     }
 
+    .article-cta{
+      display:flex;
+      align-items:flex-start;
+      flex: 0 0 auto;
+    }
     .btn-mini{
       display:inline-block;
       padding:8px 10px;
@@ -137,11 +172,22 @@
       text-decoration:none;
       font-size:.95rem;
       opacity:.95;
+      white-space: nowrap;
     }
     .btn-mini:hover{ opacity:1; }
 
-    @media (max-width:980px){ .grid{ grid-template-columns:1fr 1fr; } }
-    @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 22px 0;
+      opacity: .9;
+    }
+
+    @media (max-width: 720px){
+      .article-row{ flex-direction:column; }
+      .article-cta{ justify-content:flex-start; }
+      .btn-mini{ width: fit-content; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -150,11 +196,12 @@
     "@type":"CollectionPage",
     "name":"QA Articles — Kelina Cowell",
     "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/",
-    "description":"Applied QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes.",
+    "description":"Applied QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes, and accessibility testing in games.",
     "author":{"@type":"Person","name":"Kelina Cowell"}
   }
   </script>
 
+  <!-- ItemList: keep this updated as you add articles -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -165,20 +212,26 @@
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html",
-        "name": "Functional testing: the boring basics that catch real bugs"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
+        "name": "Game accessibility QA: what I learned from the APX Practitioner course"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
-        "name": "Exploratory testing on mobile: how I actually break games on purpose"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
+        "name": "Regression testing: the risk-first checks that keep releases stable"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
-        "name": "Regression testing in practice: patch notes, risk, and ruthless retesting"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
+        "name": "Exploratory testing on mobile: the method behind the chaos"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html",
+        "name": "Functional testing: the boring basics that catch real bugs"
       }
     ]
   }
@@ -199,7 +252,6 @@
     </div>
 
     <!-- Nav under banner -->
-
     <nav class="site-nav cta-row" style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
       <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
@@ -213,62 +265,277 @@
     <hr>
 
     <h1>Game QA Articles: practical guides from real testing projects</h1>
-    
+
     <p class="hint">
-  Method-first game QA guides: how I scope, test, capture evidence, and report issues across functional, exploratory, and regression passes.
-  More topics coming, including VR comfort/accessibility, XR learning, controller parity, narrative/localisation QA, and early automation.
-</p>
+      Method-first game QA guides: how I scope, test, capture evidence, and report issues across functional, exploratory, regression, and accessibility-focused passes.
+      More topics coming, including VR comfort/accessibility, XR learning, controller parity, narrative/localisation QA, and early automation.
+    </p>
 
-    <hr>
+    <!-- Category jump links -->
+    <nav class="hub-nav" aria-label="Article categories">
+      <a class="pill" href="#featured">Featured</a>
+      <a class="pill" href="#methods">Methods</a>
+      <a class="pill" href="#accessibility">Accessibility</a>
+      <a class="pill" href="#portfolio">Portfolio</a>
+      <a class="pill" href="#vrxr">VR and XR</a>
+      <a class="pill" href="#tools">Tools</a>
+    </nav>
 
-    <section aria-label="Articles list">
-      <div class="grid">
+    <div class="divider" role="separator" aria-hidden="true"></div>
 
-        <article class="card">
-          <h2><a href="./functional-testing.html">Functional testing: the boring basics that catch real bugs</a></h2>
-          <p class="meta">
-            Topic: Functional testing • Context: Battletoads •
-            <time datetime="2025-12-17">17 Dec 2025</time>
-          </p>
-          <p class="desc">
-  A practical functional testing workflow for a timeboxed QA pass: what I check first, how I prioritise risk, and what evidence I capture to turn findings into usable bug reports.
-</p>
-          <div class="actions">
-            <a class="btn-mini" href="./functional-testing.html">View functional testing workflow</a>
+    <!-- Featured -->
+    <section id="featured" class="hub-section" aria-labelledby="featured-title">
+      <h2 id="featured-title">Featured</h2>
+      <p class="section-hint">A small rotating set. Keeps the hub tidy.</p>
+
+      <div class="article-list">
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./apx-practitioner-reflection.html">Game accessibility QA: what I learned from the APX Practitioner course</a>
+            </h3>
+            <p class="article-desc">
+              APX, the player–game loop, and accessibility design patterns that changed how I approach accessibility testing in games.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">APX</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-02-16">16 Feb 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./apx-practitioner-reflection.html">Read article</a>
           </div>
         </article>
 
-        <article class="card">
-          <h2><a href="./exploratory-testing.html">Exploratory testing on mobile: the method behind the chaos</a></h2>
-          <p class="meta">
-            Topic: Exploratory testing • Context: Rebel Racing (Android) •
-            <time datetime="2025-12-17">18 Dec 2025</time>
-          </p>
-          <p class="desc">
-  How I run timeboxed exploratory sessions on Android: charters, controlled variation, interruptions and recovery, and the failure modes clean scripted checks rarely hit.
-</p>
-          <div class="actions">
-            <a class="btn-mini" href="./exploratory-testing.html">View exploratory testing workflow</a>
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./exploratory-testing.html">Exploratory testing on mobile: the method behind the chaos</a>
+            </h3>
+            <p class="article-desc">
+              Timeboxed exploratory sessions on Android: charters, controlled variation, interruptions and recovery, and the bugs scripted checks miss.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Methods</span></li>
+              <li><span class="tag">Exploratory</span></li>
+              <li><span class="tag">Mobile</span></li>
+              <li><time datetime="2025-12-18">18 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./exploratory-testing.html">Read article</a>
           </div>
         </article>
 
-        <article class="card">
-          <h2><a href="./regression-testing.html">Regression testing: the risk-first checks that keep releases stable</a></h2>
-          <p class="meta">
-            Topic: Regression testing • Context: Sworn (PC Game Pass) •
-            <time datetime="2025-12-17">19 Dec 2025</time>
-          </p>
-          <p class="desc">
-            How I turn patch notes into a targeted retest plan, what I sanity-check first, and how I make clean pass or fail calls with evidence inside a one week window.
-          </p>
-          <div class="actions">
-            <a class="btn-mini" href="./regression-testing.html">View regression testing workflow</a>
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./regression-testing.html">Regression testing: the risk-first checks that keep releases stable</a>
+            </h3>
+            <p class="article-desc">
+              Turning patch notes into a targeted retest plan: what I sanity-check first, and how I make clean pass or fail calls with evidence.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Methods</span></li>
+              <li><span class="tag">Regression</span></li>
+              <li><span class="tag">PC</span></li>
+              <li><time datetime="2025-12-19">19 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./regression-testing.html">Read article</a>
           </div>
         </article>
 
       </div>
     </section>
 
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Methods -->
+    <section id="methods" class="hub-section" aria-labelledby="methods-title">
+      <h2 id="methods-title">Methods</h2>
+      <p class="section-hint">Repeatable QA workflows. Practical guides, not definition pages.</p>
+
+      <div class="article-list">
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./functional-testing.html">Functional testing: the boring basics that catch real bugs</a>
+            </h3>
+            <p class="article-desc">
+              A practical functional testing workflow for a timeboxed QA pass: what I check first, how I prioritise risk, and what evidence I capture.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Methods</span></li>
+              <li><span class="tag">Functional</span></li>
+              <li><span class="tag">PC</span></li>
+              <li><time datetime="2025-12-17">17 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./functional-testing.html">Read article</a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./exploratory-testing.html">Exploratory testing on mobile: the method behind the chaos</a>
+            </h3>
+            <p class="article-desc">
+              How I run timeboxed exploratory sessions on Android: charters, controlled variation, interruptions and recovery.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Methods</span></li>
+              <li><span class="tag">Exploratory</span></li>
+              <li><span class="tag">Mobile</span></li>
+              <li><time datetime="2025-12-18">18 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./exploratory-testing.html">Read article</a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./regression-testing.html">Regression testing: the risk-first checks that keep releases stable</a>
+            </h3>
+            <p class="article-desc">
+              Patch notes to retest plan, ruthless prioritisation, and evidence-backed pass/fail calls inside a one week window.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Methods</span></li>
+              <li><span class="tag">Regression</span></li>
+              <li><span class="tag">PC</span></li>
+              <li><time datetime="2025-12-19">19 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./regression-testing.html">Read article</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Accessibility -->
+    <section id="accessibility" class="hub-section" aria-labelledby="accessibility-title">
+      <h2 id="accessibility-title">Accessibility</h2>
+      <p class="section-hint">Accessibility testing in games, APX patterns, and practical QA application.</p>
+
+      <div class="article-list">
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./apx-practitioner-reflection.html">Game accessibility QA: what I learned from the APX Practitioner course</a>
+            </h3>
+            <p class="article-desc">
+              The player–game loop, accessibility design patterns, and how this changes my QA approach.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">APX</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-02-16">16 Feb 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./apx-practitioner-reflection.html">Read article</a>
+          </div>
+        </article>
+
+        <article class="article-row" aria-label="Coming soon: APX implementation case study">
+          <div class="article-main">
+            <h3 class="article-title">
+              <span>Applying APX patterns in a real QA portfolio project</span> <span class="tag">Coming soon</span>
+            </h3>
+            <p class="article-desc">
+              A practical case study showing how I applied APX patterns in a portfolio test plan and how it changed reporting and risk coverage.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">APX</span></li>
+              <li><span class="tag">Case study</span></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <span class="btn-mini" aria-hidden="true">Soon</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="hub-section" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title">Portfolio</h2>
+      <p class="section-hint">Articles tied directly to a specific project and its artefacts. (Empty for now.)</p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">No portfolio-specific articles yet</h3>
+            <p class="article-desc">
+              This section will hold project-linked write-ups that point directly to workbook tabs, evidence, and bug logs.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- VR/XR -->
+    <section id="vrxr" class="hub-section" aria-labelledby="vrxr-title">
+      <h2 id="vrxr-title">VR and XR</h2>
+      <p class="section-hint">VR comfort, XR learning tools, controller parity, and device-specific testing. (Coming soon.)</p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">No VR/XR articles yet</h3>
+            <p class="article-desc">
+              This section will cover comfort/accessibility testing in VR, interaction risks, and device-specific QA approaches.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Tools -->
+    <section id="tools" class="hub-section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Tools</h2>
+      <p class="section-hint">Practical QA tooling: reporting, evidence capture, templates, and workflows. (Coming soon.)</p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">No tools articles yet</h3>
+            <p class="article-desc">
+              This section will cover bug reporting structure, evidence naming, templates, and tooling setup.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Optional: keep your footer clean; no additional CTA block needed here since nav exists -->
   </main>
 
   <footer>
@@ -276,5 +543,3 @@
   </footer>
 </body>
 </html>
-
-
