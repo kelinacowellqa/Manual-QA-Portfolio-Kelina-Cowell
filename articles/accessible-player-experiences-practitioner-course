@@ -1,1 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>What I learned from the APX Practitioner course | Kelina Cowell</title>
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta name="description" content="Reflections on completing the APX (Accessible Player Experiences) Practitioner course by AbleGamers and how it reshaped my approach to accessibility in Game QA." />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html">
+
+  <meta property="og:title" content="What I learned from the APX Practitioner course | Kelina Cowell">
+  <meta property="og:description" content="How the APX Practitioner course reshaped my understanding of accessibility as a player–game loop and changed how I approach QA testing.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"What I learned from the APX Practitioner course",
+    "author":{"@type":"Person","name":"Kelina Cowell"},
+    "datePublished":"2026-02-16",
+    "dateModified":"2026-02-16",
+    "mainEntityOfPage":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
+    "description":"Reflections on completing the APX Practitioner course by AbleGamers and how it reshaped my approach to accessibility in Game QA."
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <main id="content">
+
+      <header class="page-header">
+        <h1>What I learned from the APX (Accessible Player Experiences) Practitioner course</h1>
+        <p class="hint">Reflections on accessibility through a QA lens.</p>
+
+        <p class="author-row small">
+          <strong>Author:</strong> Kelina Cowell •
+          <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+        </p>
+
+        <hr>
+
+        <nav class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <ul>
+            <li><a href="#core">The core insight</a></li>
+            <li><a href="#takeaways">Key takeaways</a></li>
+            <li><a href="#qa">How this changes my QA approach</a></li>
+            <li><a href="#next">What comes next</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <hr>
+
+      <section id="core">
+        <p>
+          I recently completed the APX Practitioner course by AbleGamers, and it fundamentally changed how I think about accessibility in games.
+        </p>
+
+        <div class="pullquote">
+          <blockquote>
+            <p>
+              Accessibility isn’t about making games easier. It’s about making experiences reachable.
+            </p>
+          </blockquote>
+        </div>
+
+        <h2>The Core Insight: The Player–Game Loop</h2>
+
+        <p>
+          APX frames games as a feedback loop between player and game.
+        </p>
+
+        <ul>
+          <li>The player inputs an action.</li>
+          <li>The game responds with feedback.</li>
+          <li>The player interprets that feedback and acts again.</li>
+        </ul>
+
+        <p>
+          If a player cannot input reliably or cannot receive feedback clearly, they are locked out of the loop entirely.
+        </p>
+
+        <p>
+          Accessibility work is about restoring that loop. Not removing challenge. Not lowering difficulty.
+          Removing unnecessary barriers that prevent participation.
+        </p>
+
+        <p>
+          That reframing alone changed how I evaluate mechanics during testing.
+        </p>
+      </section>
+
+      <hr>
+
+      <section id="takeaways">
+        <h2>Key Takeaways That Shifted My Thinking</h2>
+
+        <h3>1. Access Comes Before Challenge</h3>
+
+        <p>Before difficulty matters, access must exist.</p>
+
+        <ul>
+          <li>Cannot remap controls</li>
+          <li>Cannot perceive essential feedback</li>
+          <li>Cannot sustain required physical input</li>
+        </ul>
+
+        <p>
+          Then difficulty settings are irrelevant.
+        </p>
+
+        <p>
+          As QA, this pushes me to test for input reliability under strain, clarity of feedback channels,
+          and whether core mechanics are physically sustainable.
+        </p>
+
+        <h3>2. Patterns &gt; Checklists</h3>
+
+        <p>
+          APX teaches design patterns, not rigid compliance rules.
+        </p>
+
+        <ul>
+          <li>Same Controls, But Different</li>
+          <li>Second Channel</li>
+          <li>Do More With Less</li>
+          <li>Slow It Down</li>
+        </ul>
+
+        <p>
+          Instead of asking “Does the game have accessibility features?” I now ask:
+          “Where is this pattern being applied, and where is it breaking down?”
+        </p>
+
+        <p>
+          That shifts bug reporting from reactive to analytical.
+        </p>
+
+        <h3>3. One Barrier Can Affect Many Players</h3>
+
+        <p>
+          Accessibility is not diagnosis-based.
+        </p>
+
+        <ul>
+          <li>Permanent disability</li>
+          <li>Temporary injury</li>
+          <li>Ageing players</li>
+          <li>Situational limitations</li>
+        </ul>
+
+        <p>
+          Accessibility is not niche. It is universal design pressure.
+        </p>
+
+        <h3>4. Accessibility Is an Experience Problem</h3>
+
+        <p>
+          The real question is:
+        </p>
+
+        <div class="pullquote">
+          <blockquote>
+            <p>
+              Can players still experience connection, challenge, mastery, escapism, and creativity?
+            </p>
+          </blockquote>
+        </div>
+
+        <p>
+          That shifts accessibility from a settings menu conversation to a player experience conversation.
+        </p>
+      </section>
+
+      <hr>
+
+      <section id="qa">
+        <h2>How This Changes My QA Approach</h2>
+
+        <ul>
+          <li>A framework for identifying genuine player blockers</li>
+          <li>Stronger vocabulary for accessibility-focused bug reports</li>
+          <li>Pattern-based analysis instead of surface-level checks</li>
+          <li>Earlier intervention during development, not just polish-stage validation</li>
+        </ul>
+
+        <p>
+          Accessibility done well does not dilute a game’s vision.
+          It strengthens it.
+        </p>
+
+        <p>
+          This framework will influence every future test plan I write.
+        </p>
+      </section>
+
+      <hr>
+
+      <section id="next">
+        <h2>What Comes Next</h2>
+
+        <p>
+          The certificate is not the achievement.
+          Application is.
+        </p>
+
+        <p>
+          Next step: integrating APX patterns into live test cases, portfolio projects, and real development workflows.
+        </p>
+
+        <p>
+          This isn’t a finished chapter.
+          It’s a new baseline.
+        </p>
+      </section>
+
+      <hr>
+
+      <p class="cta-row" style="text-align:center;">
+        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+        <a class="cta-btn" href="./">Back to Articles</a>
+      </p>
+
+    </main>
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
 
