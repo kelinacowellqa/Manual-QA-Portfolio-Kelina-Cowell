@@ -6,12 +6,253 @@
 
   <title>Exploratory QA & Live Testing | Kelina Cowell</title>
 
-  <meta name="description" content="Exploratory QA and live testing work including game jams, demos, alpha and beta builds. Focused on destructive testing, real-world bug discovery, and rapid QA workflows." />
+  <meta name="description" content="Exploratory QA and live testing portfolio by Kelina Cowell, covering destructive testing, game jam QA, demos, alphas, betas, and additional hands-on bug-hunting work outside full case studies." />
+  <meta property="og:description" content="Exploratory QA and live testing portfolio by Kelina Cowell, covering destructive testing, game jam QA, demos, alphas, betas, and additional hands-on bug-hunting work outside full case studies." />
+  <meta name="twitter:description" content="Exploratory QA and live testing portfolio by Kelina Cowell, covering destructive testing, game jam QA, demos, alphas, betas, and additional hands-on bug-hunting work outside full case studies." />
 
+  <!-- Jekyll / GitHub Pages stylesheet -->
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-  <!-- (KEEP YOUR SAME STYLE BLOCK HERE – don’t touch it) -->
+  <style>
+    /* === House palette (single source of truth) === */
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1215;
+      --text:#cfd6dd;
+      --muted:#a9b3bd;
+      --line:rgba(255,255,255,.08);
+      --teal:#00fff0;
+      --teal-soft:#66fff7;
 
+      --thumb-w:240px;
+      --thumb-gap:18px;
+
+      --s-1: 8px;
+      --s-2: 12px;
+      --s-3: 16px;
+      --s-4: 20px;
+      --s-5: 28px;
+      --s-6: 36px;
+    }
+
+    /* Base */
+    html,body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin:0;
+      line-height:1.55;
+    }
+    a{color:var(--teal);text-decoration:none}
+    a:hover{color:var(--teal-soft)}
+    strong{color:inherit}
+    h1,h2,h3,h4,h5,h6{color:var(--teal)}
+    hr{border:0;border-top:1px solid var(--teal);opacity:.35}
+
+    /* Layout width */
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    @media (min-width:1400px){
+      .wrap{ max-width:1280px; }
+    }
+
+    /* Hero */
+    .hero{max-width:1100px;margin:30px auto 20px;padding:0 18px;text-align:center}
+    .hero img{display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:14px}
+
+    /* CTA button */
+    .cta-btn{
+      display:inline-block; padding:12px 18px; border-radius:12px;
+      background:#0d1117; border:1px solid #2b2f36; color:var(--teal); font-weight:700;
+      text-decoration:none;
+    }
+    .cta-btn:hover{background:var(--teal); color:var(--bg)}
+
+    /* --- Stable vertical rhythm --- */
+    h1{ margin-block: var(--s-5) var(--s-3); }
+    h2{ margin-block: var(--s-5) var(--s-2); }
+    h3{ margin-block: var(--s-4) var(--s-2); }
+    p, ul, ol{ margin-block: var(--s-2) var(--s-3); }
+    li + li{ margin-top: var(--s-1); }
+    hr{ margin-block: var(--s-5); }
+
+    /* Prevent margin-collapse WITHOUT breaking flex/grid blocks */
+    .project-block,
+    .section,
+    header.hero,
+    footer{
+      display: flow-root;
+      padding-block: 0.5px;
+    }
+
+    /* === Intro: image left, text right (MUST stay flex) === */
+    .intro{
+      display:flex;
+      align-items:flex-start;
+      gap:22px;
+      margin-top: 12px;
+    }
+    .intro .headshot{
+      flex: 0 0 264px;
+      width: 264px;
+      height: auto;
+      display:block;
+      margin:0;
+    }
+    .intro > div{
+      flex: 1;
+      min-width: 0;
+    }
+    @media (max-width: 760px){
+      .intro{ flex-direction:column; }
+      .intro .headshot{ width: 220px; flex-basis:auto; }
+    }
+
+    /* Intro text tweaks */
+    .intro p{ line-height: 1.6; }
+    .intro p:last-child{ margin-bottom: 0; }
+
+    /* Project lineup heading spacing + force new row */
+    #projects{
+      margin-block: var(--s-6) var(--s-2);
+      clear: both;
+    }
+
+    /* ===== Metrics-style table ===== */
+    .metrics-look table{
+      width:100%;
+      border-collapse:collapse;
+      background:transparent;
+      border:1px solid var(--line);
+      margin:12px 0;
+    }
+    .metrics-look thead th{
+      background:rgba(0,255,240,.08);
+      color:var(--teal);
+      text-align:left;
+      font-weight:700;
+      font-size:14px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+    }
+    .metrics-look tbody th,
+    .metrics-look tbody td{
+      padding:12px 14px;
+      vertical-align:top;
+      color:var(--text);
+      background:transparent;
+    }
+    .metrics-look thead th + th,
+    .metrics-look tbody td + td,
+    .metrics-look tbody th + td{ border-left:1px solid var(--line); }
+    .metrics-look tbody tr + tr td,
+    .metrics-look tbody tr + tr th{ border-top:1px solid var(--line); }
+
+    /* === Compact tags — SKILLS ONLY === */
+    .skills-block .chips,
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px 10px; margin:0; padding:0; list-style:none;
+    }
+    .skills-block .chips li,
+    .chips li{
+      display:inline-flex; align-items:center;
+      padding:.35rem .6rem; border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--text); line-height:1.2; font-weight:500;
+    }
+    .skills-block .chips li:focus-within,
+    .chips li:focus-within{ outline:2px solid var(--teal); outline-offset:2px; }
+    .section .hint{ color:var(--muted); margin:.25rem 0 0; font-size:.95rem; }
+    .skills-block{ margin:12px 0 20px; }
+
+    /* === Project case-study blocks === */
+    .project-block{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,.25);
+      margin:22px 0;
+      padding:16px 18px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .22s ease, filter .22s ease, box-shadow .22s ease;
+      will-change: transform, filter;
+      filter: drop-shadow(0 0 0 rgba(15,181,201,0));
+    }
+    .project-block.with-thumb{
+      padding-right:calc(var(--thumb-w) + var(--thumb-gap) + 18px);
+      min-height:calc(var(--thumb-w) * 1.25);
+    }
+    .project-block .thumb{
+      position:absolute; top:16px; right:18px;
+      width:var(--thumb-w); height:auto; aspect-ratio:3/4; object-fit:cover;
+      border-radius:10px; border:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+    .project-block em{color:var(--muted)}
+    .project-block p{margin:6px 0 8px;}
+
+    /* Hover/focus outward glow */
+    .project-block:hover{
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    }
+    .project-block:focus-within{
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+      outline: 2px solid rgba(15,181,201,.55);
+      outline-offset: 2px;
+    }
+    .project-block:hover:focus-within{
+      filter: drop-shadow(0 0 34px rgba(15,181,201,.45));
+    }
+    @media (prefers-reduced-motion: reduce){
+      .project-block,
+      .project-block:hover,
+      .project-block:focus-within{
+        transition: filter .01s linear, box-shadow .01s linear;
+        transform: none;
+      }
+    }
+
+    /* Banner pulse */
+    .banner-pulse{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:16px;
+      animation: imgOutPulse 4s ease-in-out infinite;
+    }
+    @keyframes imgOutPulse{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1); }
+      50%{ filter: drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .banner-pulse{ animation:none !important; filter:none !important; }
+    }
+
+    /* kill any leftover paragraph caps */
+    p, .intro p, .project-block p{ max-width:none !important; }
+
+    /* kill any old header-level halo on this page */
+    header.hero::before,
+    header.hero::after{
+      content:none !important;
+      animation:none !important;
+      box-shadow:none !important;
+    }
+
+    /* Footer */
+    footer{
+      max-width:980px;margin:40px auto 0;padding:20px 18px 0;
+      text-align:center;font-size:.85em;opacity:.8;
+      border-top:1px solid rgba(255,255,255,.05)
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
 <body>
@@ -22,15 +263,14 @@
       <header class="hero">
         <img class="banner-pulse"
              src="../assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
-             alt="Exploratory QA and live testing banner">
+             alt="Games QA portfolio banner showing multi-platform testing across PC, mobile, and VR">
       </header>
 
-      <!-- NAV (same as your main page) -->
-     <nav class="site-nav cta-row"
+      <nav class="site-nav cta-row"
            style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
         <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
         <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/" aria-current="page">Exploratory QA & Live Testing</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/" aria-current="page">Exploratory QA &amp; Live Testing</a>
         <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
         <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
         <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a>
@@ -41,30 +281,74 @@
       <hr>
 
       <!-- Intro -->
-      <section class="section">
-        <h1>Exploratory QA & Live Testing</h1>
+      <section class="section" aria-labelledby="about-title">
+        <h1 id="about-title">Exploratory QA &amp; Live Testing</h1>
+
+        <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina",
+      "name": "Kelina Cowell",
+      "jobTitle": "Junior QA Tester (Games)",
+      "url": "https://kelinacowellqa.github.io/",
+      "sameAs": [
+        "https://www.linkedin.com/in/kelina-cowell-qa-tester/"
+      ],
+      "knowsAbout": [
+        "Game QA",
+        "Manual testing",
+        "Exploratory testing",
+        "Destructive testing",
+        "Game jam QA",
+        "Live testing",
+        "Bug reporting",
+        "Evidence capture"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kelinacowellqa.github.io/#website",
+      "url": "https://kelinacowellqa.github.io/",
+      "name": "Kelina Cowell - Game QA Portfolio",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/#portfolio",
+      "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/",
+      "name": "Exploratory QA & Live Testing - Kelina Cowell",
+      "isPartOf": { "@id": "https://kelinacowellqa.github.io/#website" },
+      "about": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+    }
+  ]
+}
+</script>
 
         <div class="intro">
           <img
             class="headshot"
             src="../assets/img/manual-qa-bug-hunt-illustration.png"
-            alt="QA tester exploring and hunting bugs"
+            alt="Illustration of a QA tester character chasing a bug with a net"
+            width="528" height="528"
             loading="lazy"
+            decoding="async"
           />
 
           <div>
             <p class="card-intro">
-              This section focuses on exploratory QA, destructive testing, and real-world testing scenarios across game jams,
-              demos, alpha, and beta builds.
+              This section collects exploratory QA practice and live testing work across smaller, faster-moving, and less controlled environments than my main case studies.
             </p>
 
             <p class="card-intro">
-              Unlike structured case studies, this work reflects shorter, fast-paced testing sessions where the goal is to quickly
-              identify impactful issues, validate player experience, and adapt testing approaches in unstable or evolving builds.
+              It includes destructive testing, game jam QA, demos, alpha and beta builds, and other short-form projects where the focus is on quick bug discovery, practical judgement, and adapting to unstable or evolving builds.
             </p>
 
             <p class="card-intro">
-              The emphasis here is on practical bug hunting, adaptability, and applying QA thinking in less controlled environments.
+              The goal here is not depth for its own sake, but evidence of consistency: regular hands-on testing, clear reporting, and QA thinking applied outside longer structured project work.
             </p>
           </div>
         </div>
@@ -72,95 +356,229 @@
 
       <hr>
 
-      <!-- PROJECTS -->
-      <section class="section">
-        <h2>Exploratory QA Practice</h2>
+      <h2 id="projects">Exploratory QA &amp; Live Testing Lineup</h2>
 
-        <!-- PROJECT BLOCK -->
-        <div class="project-block with-thumb">
+      <!-- 1: QA 101 Destructive Testing -->
+      <section class="project-block with-thumb">
+        <img class="thumb" src="../assets/img/manual-qa-bug-hunt-illustration.png" alt="QA 101 destructive testing project thumbnail showing exploratory bug-hunting practice.">
 
-          <img class="thumb"
-               src="../assets/img/project-placeholder.png"
-               alt="Exploratory QA project thumbnail">
+        <h3>1: Destructive / Exploratory Testing - <em>QA 101 Project (PC)</em></h3>
 
-          <h3>Destructive Testing – Emerge QA - QA 101 Course Project (PC)</h3>
+        <p class="card-intro">
+          Short-form destructive testing exercise based on a beginner QA course project, repositioned here as exploratory bug-hunting practice rather than a main portfolio case study.
+        </p>
 
-          <p>
-            Short-form destructive testing focused on breaking systems and identifying reproducible issues using destructive testing techniques.
-          </p>
+        <ul class="card-bullets">
+          <li>
+            <strong>Goal:</strong> Practise structured destructive testing by learning the game, testing basic functionality first, then pushing into unusual actions and edge cases to surface reproducible bugs.
+          </li>
 
-          <p><strong>Goal:</strong> Practise real bug-hunting behaviour by testing outside intended flows and identifying edge-case failures.</p>
+          <li>
+            <strong>Focus:</strong> Menu and settings checks, core gameplay behaviour, unexpected player actions, UI issues, and break-testing gameplay logic.
+          </li>
 
-          <p><strong>Focus:</strong> UI behaviour, unexpected player actions, system edge cases, and break-testing gameplay logic.</p>
+          <li>
+            <strong>Planned output:</strong> Lightweight bug log, short repro clips, and a concise summary of findings and bug-hunting approach.
+          </li>
 
-          <p><strong>Evidence:</strong> Bug log, reproduction steps, and short video clips demonstrating issues.</p>
+          <li>
+            <strong>Why this belongs here:</strong> This was useful as an extra repetition in exploratory testing, but it is intentionally kept separate from my larger, deeper case studies.
+          </li>
+        </ul>
 
-          <p><strong>Status:</strong> In progress</p>
-
-        </div>
-      </section>
-
-      <hr>
-
-      <!-- GAME JAM -->
-      <section class="section">
-        <h2>Game Jam QA</h2>
-
-        <div class="project-block">
-
-          <h3>Game Jam QA - Coming Soon</h3>
-
-          <p>
-            Rapid exploratory testing within time-constrained development environments, focusing on identifying high-impact issues
-            affecting core gameplay and player experience.
-          </p>
-
-          <p><strong>Focus:</strong> Core loop stability, progression risks, UI clarity, and player-facing issues.</p>
-
-          <p><strong>Status:</strong> Coming Soon</p>
-
-        </div>
-      </section>
-
-      <hr>
-
-      <!-- LIVE TESTING -->
-      <section class="section">
-        <h2>Demos, Alphas & Betas</h2>
-
-        <div class="project-block">
-
-          <h3>Live Testing - Coming Soon</h3>
-
-          <p>
-            Testing of public or limited-access builds with a focus on real player experience, stability, and usability issues.
-          </p>
-
-          <p><strong>Focus:</strong> Player-facing bugs, UX friction, performance issues, and real-world behaviour.</p>
-
-          <p><strong>Status:</strong> In progress</p>
-
-        </div>
-      </section>
-
-      <hr>
-
-      <!-- CONTEXT -->
-      <section class="section">
-        <h2>How this differs from my main case studies</h2>
-
-        <p>
-          My main case studies focus on structured QA workflows, documentation, and deeper analysis.
-          This section highlights shorter, practical testing work that demonstrates consistency,
-          adaptability, and real-world QA application across a variety of environments.
+        <p class="cta">
+          <em>Project page coming soon.</em>
         </p>
       </section>
 
-      <footer>
-        <p>© Kelina Cowell - Game QA Portfolio</p>
-      </footer>
+      <!-- 2: Game Jam QA -->
+      <section class="project-block with-thumb">
+        <img class="thumb" src="../assets/img/drink-up-cowboy-qa-case-study.png" alt="Game jam QA placeholder thumbnail for rapid exploratory testing in a fast-moving build.">
 
-    </div>
+        <h3>2: Game Jam QA - <em>Rapid Build Testing</em></h3>
+
+        <p class="card-intro">
+          Planned section for game jam QA contributions, focused on unstable builds, rapid bug discovery, and practical communication under time pressure.
+        </p>
+
+        <ul class="card-bullets">
+          <li>
+            <strong>Goal:</strong> Show how I test in messy, real-world development conditions where speed, prioritisation, and clarity matter more than perfect coverage.
+          </li>
+
+          <li>
+            <strong>Focus:</strong> Core loop stability, progression blockers, player-facing UX issues, and quick issue escalation during active development.
+          </li>
+
+          <li>
+            <strong>Planned output:</strong> Short write-ups of contribution, issue examples, and notes on impact where fixes were made before submission.
+          </li>
+
+          <li>
+            <strong>Status:</strong> Coming soon.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3: Demos / Alphas / Betas -->
+      <section class="project-block with-thumb">
+        <img class="thumb" src="../assets/img/rebel-racing-mobile-exploratory-testing-case-study.webp" alt="Live testing placeholder thumbnail for demos, alpha and beta builds.">
+
+        <h3>3: Demos, Alphas &amp; Betas - <em>Live Testing Work</em></h3>
+
+        <p class="card-intro">
+          Planned entries covering short-form testing on public or limited-access builds, with emphasis on player-facing defects, usability issues, and stability.
+        </p>
+
+        <ul class="card-bullets">
+          <li>
+            <strong>Goal:</strong> Document how I approach live builds where issues appear in real-world conditions and testing scope is often narrower or more reactive.
+          </li>
+
+          <li>
+            <strong>Focus:</strong> Stability, UX friction, progression issues, interface clarity, and anything likely to affect real players quickly.
+          </li>
+
+          <li>
+            <strong>Planned output:</strong> Lightweight notes, bug examples where appropriate, and concise summaries of what was tested and why it mattered.
+          </li>
+
+          <li>
+            <strong>Status:</strong> Coming soon.
+          </li>
+        </ul>
+      </section>
+
+      <h2>✅ Coverage Map</h2>
+
+      <p class="hint">
+        Overview of the exploratory and live testing work covered in this section, including testing type, environment, and intended output.
+      </p>
+
+      <div class="metrics-look">
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>QA Type</th>
+              <th>Environment</th>
+              <th>Focus</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>QA 101 Project</td>
+              <td>Destructive / Exploratory</td>
+              <td>PC</td>
+              <td>Bug hunting · Edge cases · UI · Core gameplay</td>
+              <td>Planned</td>
+            </tr>
+
+            <tr>
+              <td>Game Jam QA</td>
+              <td>Rapid Exploratory</td>
+              <td>Jam builds</td>
+              <td>Core loop · Progression · Player-facing issues</td>
+              <td>Coming soon</td>
+            </tr>
+
+            <tr>
+              <td>Demos / Alphas / Betas</td>
+              <td>Live Testing</td>
+              <td>Public / limited-access builds</td>
+              <td>Stability · UX · Real-player-facing defects</td>
+              <td>Coming soon</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <section class="section faq" aria-labelledby="faq">
+        <h2 id="faq">FAQ</h2>
+
+        <h3>How is this section different from the main portfolio?</h3>
+        <p>
+          The main portfolio focuses on larger, structured case studies with deeper documentation, stronger timeboxing, and fuller QA workflows. This section is intentionally lighter and exists to show consistency, extra repetitions, and testing in faster-moving environments.
+        </p>
+
+        <h3>Why include smaller practice projects at all?</h3>
+        <p>
+          Because regular QA practice matters. These entries show that I test beyond formal portfolio pieces and keep building bug-hunting, reporting, and judgment skills across different contexts.
+        </p>
+
+        <h3>Will every entry here have a full workbook and STAR summary?</h3>
+        <p>
+          Not necessarily. Some entries will stay lightweight by design. The point of this section is to show useful additional QA work without pretending every short-form test session is a full case study.
+        </p>
+
+        <h3>What counts as live testing here?</h3>
+        <p>
+          Demos, alpha builds, beta builds, game jams, and other active or limited-access environments where testing happens closer to real player conditions or in less stable development phases.
+        </p>
+      </section>
+
+      <hr>
+
+      <section class="section" aria-labelledby="tools">
+        <h2 id="tools">🛠️ Tools Used</h2>
+        <p class="hint">Tools used for exploratory bug hunting, short-form documentation, evidence capture, and live build testing.</p>
+
+        <ul class="chips" role="list">
+          <li><span class="k">Bug tracking</span> Jira</li>
+          <li><span class="k">Test documentation</span> Google Sheets</li>
+          <li><span class="k">PC video capture</span> OBS Studio</li>
+          <li><span class="k">PC video capture</span> Xbox Game Bar</li>
+          <li><span class="k">Evidence hosting</span> YouTube</li>
+          <li><span class="k">Mobile screen capture</span> scrcpy (Android)</li>
+          <li><span class="k">Version control</span> GitHub</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <h2 id="skills">🎯 Skills</h2>
+      <section class="skills-block">
+        <p class="hint">Exploratory and destructive testing, short-form bug hunting, and practical reporting across unstable or fast-moving test environments.</p>
+
+        <ul class="chips" role="list">
+          <li>Exploratory testing</li>
+          <li>Destructive testing</li>
+          <li>Ad-hoc bug hunting</li>
+          <li>Rapid repro isolation</li>
+          <li>Bug reporting</li>
+          <li>Evidence capture</li>
+          <li>Severity assessment</li>
+          <li>Bug type categorisation</li>
+          <li>Short-form documentation</li>
+          <li>Game jam QA</li>
+          <li>Live build testing</li>
+          <li>Player-impact thinking</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <h2 id="summary"><span aria-hidden="true">📊</span> Summary</h2>
+
+      <p>
+        This page covers the lighter, faster-moving side of my QA work: exploratory sessions, destructive testing, game jam QA, and live build testing. It complements my main case studies by showing extra repetitions, adaptability, and a consistent habit of hands-on bug hunting outside larger structured projects.
+      </p>
+
+    </div> <!-- /.wrap -->
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Back to Portfolio Hub</a>
+    </p>
+
   </main>
+
+  <hr>
+
+  <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio  📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
 </body>
 </html>
