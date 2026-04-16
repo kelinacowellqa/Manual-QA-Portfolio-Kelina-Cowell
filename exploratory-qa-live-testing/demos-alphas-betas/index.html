@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Demos, Alphas & Betas – Live Testing Work | Kelina Cowell</title>
+
+  <meta name="description" content="Live testing portfolio by Kelina Cowell, covering demos, alpha builds, beta builds, limited-access projects, and other short-form QA work. Focused on usability friction, stability, recovery behaviour, interface clarity, and practical bug hunting in real-world test conditions." />
+  <meta property="og:description" content="Live testing portfolio by Kelina Cowell, covering demos, alpha builds, beta builds, limited-access projects, and other short-form QA work. Focused on usability friction, stability, recovery behaviour, interface clarity, and practical bug hunting in real-world test conditions." />
+  <meta name="twitter:description" content="Live testing portfolio by Kelina Cowell, covering demos, alpha builds, beta builds, limited-access projects, and other short-form QA work. Focused on usability friction, stability, recovery behaviour, interface clarity, and practical bug hunting in real-world test conditions." />
+
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#0f1215;
+    --text:#cfd6dd;
+    --muted:#a9b3bd;
+    --line:rgba(255,255,255,.08);
+    --teal:#00fff0;
+    --teal-soft:#66fff7;
+
+    --thumb-size:220px;
+    --thumb-gap:18px;
+
+    --s-1: 8px;
+    --s-2: 12px;
+    --s-3: 16px;
+    --s-4: 20px;
+    --s-5: 28px;
+    --s-6: 36px;
+  }
+
+  html,body{
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    margin:0;
+    line-height:1.55;
+  }
+  a{color:var(--teal);text-decoration:none}
+  a:hover{color:var(--teal-soft)}
+  strong{color:inherit}
+  h1,h2,h3,h4,h5,h6{color:var(--teal)}
+  hr{border:0;border-top:1px solid var(--teal);opacity:.35}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  @media (min-width:1400px){
+    .wrap{ max-width:1280px; }
+  }
+
+  .hero{max-width:1100px;margin:30px auto 20px;padding:0 18px;text-align:center}
+  .hero img{display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:14px}
+
+  .cta-btn{
+    display:inline-block; padding:12px 18px; border-radius:12px;
+    background:#0d1117; border:1px solid #2b2f36; color:var(--teal); font-weight:700;
+    text-decoration:none;
+  }
+  .cta-btn:hover{background:var(--teal); color:var(--bg)}
+
+  h1{ margin-block: var(--s-5) var(--s-3); }
+  h2{ margin-block: var(--s-5) var(--s-2); }
+  h3{ margin-block: var(--s-4) var(--s-2); }
+  p, ul, ol{ margin-block: var(--s-2) var(--s-3); }
+  li + li{ margin-top: var(--s-1); }
+  hr{ margin-block: var(--s-5); }
+
+  .project-block,
+  .section,
+  header.hero,
+  footer{
+    display: flow-root;
+    padding-block: 0.5px;
+  }
+
+  .intro{
+    display:flex;
+    align-items:flex-start;
+    gap:22px;
+    margin-top: 12px;
+  }
+  .intro .headshot{
+    flex: 0 0 264px;
+    width: 264px;
+    height: auto;
+    display:block;
+    margin:0;
+  }
+  .intro > div{
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 760px){
+    .intro{ flex-direction:column; }
+    .intro .headshot{ width: 220px; flex-basis:auto; }
+  }
+
+  .intro p{ line-height: 1.6; }
+  .intro p:last-child{ margin-bottom: 0; }
+
+  #projects{
+    margin-block: var(--s-6) var(--s-2);
+    clear: both;
+  }
+
+  .project-block{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 4px 20px rgba(0,0,0,.25);
+    margin:22px 0;
+    padding:16px 18px;
+    position:relative;
+    overflow:hidden;
+    transition: transform .22s ease, filter .22s ease, box-shadow .22s ease;
+    will-change: transform, filter;
+    filter: drop-shadow(0 0 0 rgba(15,181,201,0));
+  }
+  .project-block.with-thumb{
+    padding-right:calc(var(--thumb-size) + var(--thumb-gap) + 18px);
+    min-height:calc(var(--thumb-size) + 32px);
+  }
+  .project-block .thumb{
+    position:absolute;
+    top:16px;
+    right:18px;
+    width:var(--thumb-size);
+    height:var(--thumb-size);
+    object-fit:cover;
+    object-position:center;
+    border-radius:10px;
+    border:1px solid var(--line);
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  .project-block em{color:var(--muted)}
+  .project-block p{margin:6px 0 8px;}
+
+  .project-block:hover{
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+  }
+  .project-block:focus-within{
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    outline: 2px solid rgba(15,181,201,.55);
+    outline-offset: 2px;
+  }
+  .project-block:hover:focus-within{
+    filter: drop-shadow(0 0 34px rgba(15,181,201,.45));
+  }
+  @media (prefers-reduced-motion: reduce){
+    .project-block,
+    .project-block:hover,
+    .project-block:focus-within{
+      transition: filter .01s linear, box-shadow .01s linear;
+      transform: none;
+    }
+  }
+
+  .banner-pulse{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:16px;
+    animation: imgOutPulse 4s ease-in-out infinite;
+  }
+  @keyframes imgOutPulse{
+    0%,100%{ filter: drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1); }
+    50%{ filter: drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .banner-pulse{ animation:none !important; filter:none !important; }
+  }
+
+  p, .intro p, .project-block p{ max-width:none !important; }
+
+  header.hero::before,
+  header.hero::after{
+    content:none !important;
+    animation:none !important;
+    box-shadow:none !important;
+  }
+
+  @media (max-width: 900px){
+    .project-block.with-thumb{
+      padding-right:18px;
+      min-height:auto;
+    }
+
+    .project-block .thumb{
+      position:static;
+      display:block;
+      width:100%;
+      max-width:220px;
+      height:auto;
+      aspect-ratio:1/1;
+      margin:0 0 14px auto;
+    }
+  }
+
+  footer{
+    max-width:980px;margin:40px auto 0;padding:20px 18px 0;
+    text-align:center;font-size:.85em;opacity:.8;
+    border-top:1px solid rgba(255,255,255,.05)
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="wrap">
+
+      <header class="hero">
+        <img class="banner-pulse"
+             src="../../assets/img/qa-tester-multi-platform-pc-console-vr-mobile.png"
+             alt="Games QA portfolio banner showing multi-platform testing across PC, mobile, and VR">
+      </header>
+
+      <nav class="site-nav cta-row"
+           style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
+      </nav>
+
+      <hr>
+
+      <section class="section" aria-labelledby="about-title">
+        <h1 id="about-title">Demos, Alphas &amp; Betas – Live Testing Work</h1>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina",
+      "name": "Kelina Cowell",
+      "jobTitle": "Junior QA Tester (Games)",
+      "url": "https://kelinacowellqa.github.io/",
+      "sameAs": [
+        "https://www.linkedin.com/in/kelina-cowell-qa-tester/"
+      ],
+      "knowsAbout": [
+        "Game QA",
+        "Manual testing",
+        "Exploratory testing",
+        "Live testing",
+        "Alpha testing",
+        "Beta testing",
+        "Accessibility testing",
+        "Bug reporting",
+        "Evidence capture"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kelinacowellqa.github.io/#website",
+      "url": "https://kelinacowellqa.github.io/",
+      "name": "Kelina Cowell - Game QA Portfolio",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/#portfolio",
+      "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/",
+      "name": "Demos, Alphas & Betas – Live Testing Work - Kelina Cowell",
+      "isPartOf": { "@id": "https://kelinacowellqa.github.io/#website" },
+      "about": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+    }
+  ]
+}
+</script>
+
+        <div class="intro">
+          <img
+            class="headshot"
+            src="../../assets/img/live-testing-demos-alphas-betas-thumbnail.png"
+            alt="Cartoon QA tester cat testing across controller, mobile, and VR devices, representing live testing on demos, alpha and beta builds"
+            width="528" height="528"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div>
+            <p class="card-intro">
+              This page collects shorter-form QA work completed on demos, alpha builds, beta builds, limited-access tools, and other live test environments where usability, stability, and real-world behaviour matter more than polished presentation.
+            </p>
+
+            <p class="card-intro">
+              The focus here is on practical testing in messier conditions: identifying player-facing defects quickly, spotting friction in onboarding or progression, and documenting issues clearly enough to be actionable.
+            </p>
+
+            <p class="card-intro">
+              These entries are intentionally lighter than my main case studies. The goal is to show consistent hands-on QA activity, adaptable bug hunting, and useful reporting across active or evolving builds.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <h2 id="projects">Live Testing Lineup</h2>
+
+      <!-- 5: Flock XR (COMING SOON) -->
+      <section class="project-block with-thumb">
+        <img class="thumb" src="../../assets/img/xr-3d-creation-tool-learning-recovery-accessibility.webp" alt="Browser-based 3D creation tool case study thumbnail for XR learning, recovery workflows, and accessibility checks for first-time learners.">
+
+        <h3>5: XR Learning, Recovery &amp; Accessibility - <em>Browser-based 3D Game Design Tool</em></h3>
+
+        <p class="card-intro">
+          One-week solo case study using risk-based manual testing to evaluate first-time learner workflows in a browser-based 3D creation tool, covering onboarding, object manipulation, navigation clarity, save and recovery behaviour, and core accessibility checks.
+        </p>
+
+        <ul class="card-bullets">
+          <li>
+            <strong>Goal:</strong> Validate that a first-time learner can start, follow instructions, complete core creation tasks, and recover from mistakes without losing work, using clear evidence and actionable reporting.
+          </li>
+
+          <li>
+            <strong>Testing scope:</strong> Onboarding and “what do I do now?”, learning flow and cognitive load, object placement and transform, navigation and UI context, save behaviour and loss prevention, undo/redo expectations, and basic accessibility.
+          </li>
+
+          <li>
+            <strong>Deliverables:</strong> Charter-based session log and evidence, issue list with reproducible bug reports, short UX and accessibility findings with practical recommendations, and a summary grouped by onboarding, editor usability, recovery and accessibility.
+          </li>
+
+          <li>
+            <strong>Why this project?</strong> Shows how QA skills apply to educational creator tools, where clarity, recovery and accessibility matter as much as feature correctness.
+          </li>
+
+          <li>
+            <strong>Note:</strong> Product name kept anonymous by agreement. Findings are shared privately, and a named public case study will only be published with the team’s approval.
+          </li>
+        </ul>
+
+        <p class="cta">
+          <em>Case study coming soon.</em>
+        </p>
+      </section>
+
+      <hr>
+
+      <section class="section faq" aria-labelledby="faq">
+        <h2 id="faq">FAQ</h2>
+
+        <h3>How is this page different from the main portfolio?</h3>
+        <p>
+          The main portfolio focuses on structured, timeboxed game QA case studies with deeper analysis and fuller documentation. This page is lighter and more flexible, grouping shorter-form live testing work where quick judgement, usability thinking, and practical reporting matter most.
+        </p>
+
+        <h3>What counts as live testing?</h3>
+        <p>
+          Demos, alpha builds, beta builds, limited-access environments, and other real-world testing contexts where builds may still be unstable or evolving, and where user-facing issues can surface quickly.
+        </p>
+
+        <h3>Will every entry here be a full public case study?</h3>
+        <p>
+          No. Some entries may stay lightweight, anonymous, or summary-only depending on access terms, confidentiality, or the nature of the build. The purpose of this page is to show practical QA activity and consistent testing output, not force every project into the same format.
+        </p>
+
+        <h3>Why include a non-game interactive tool here?</h3>
+        <p>
+          Because the QA thinking is still relevant. Onboarding clarity, recovery behaviour, navigation context, usability friction, and accessibility all matter in interactive systems, especially when first-time users need to learn quickly without losing progress.
+        </p>
+      </section>
+
+      <hr>
+
+      <h2 id="summary"><span aria-hidden="true">📊</span> Summary</h2>
+
+      <p>
+        This page covers the live, lighter, and less controlled side of my QA work: short-form testing on evolving builds, real-user workflows, usability friction, stability risks, and practical issue reporting. It complements my main portfolio by showing consistent hands-on testing outside larger flagship case studies.
+      </p>
+
+    </div>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Back to Exploratory QA &amp; Live Testing</a>
+    </p>
+
+  </main>
+
+  <hr>
+
+  <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio  📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
+</body>
+</html>
