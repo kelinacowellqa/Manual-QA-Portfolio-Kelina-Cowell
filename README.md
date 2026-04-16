@@ -1,4 +1,4 @@
-# Kelina Cowell — Manual & Automation QA Engineer | Games & Software Testing Portfolio
+# Kelina Cowell - Junior Game QA Tester | Manual & Accessibility Testing
 
 **Live site:**  
 ▶ https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/
