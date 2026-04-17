@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Chef's Shift - Early Build QA Case Study</title>
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+  <style>
+    body h2{ margin:32px 0 12px !important; }
+    body hr{ margin:28px 0 !important; }
+    body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+    body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+    body li{ line-height:1.7 !important; margin:8px 0 !important; }
+    details + *{ margin-top:16px !important; }
+    .embed{ margin:12px 0 18px !important; }
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:12px 0}
+    .grid-3 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    table{width:100%;border-collapse:collapse;background:#0f1215;border:1px solid rgba(255,255,255,.08);margin:12px 0;border-radius:8px}
+    thead th{background:rgba(0,255,240,.08);color:#00fff0;text-align:left;font-weight:700;font-size:14px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+    tbody td, tbody th{color:#cfd6dd;padding:12px 14px;vertical-align:top}
+    thead th+th, tbody td+td, tbody th+td{border-left:1px solid rgba(255,255,255,.08)}
+    tbody tr+tr td, tbody tr+tr th{border-top:1px solid rgba(255,255,255,.08)}
+
+    .table-compare td:last-child{width:190px}
+    .table-compare td:last-child a,
+    .table-compare td:last-child img{display:block}
+    .table-compare td:last-child img{
+      width:160px;height:90px;object-fit:cover;border-radius:10px;
+      border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(0,0,0,.35)
+    }
+    .table-compare td:last-child img.square{width:120px;height:120px}
+
+    .details-btn{display:inline-block;padding:12px 18px;border-radius:12px;background:#0d1117;border:1px solid #2b2f36;color:#14b8a6;font-weight:700;letter-spacing:.2px;box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer;transition:background .15s ease,color .15s ease}
+    .details-btn:hover{background:#14b8a6;color:#0b0f14}
+    details summary{list-style:none}
+    details summary::-webkit-details-marker{display:none}
+    .details-btn::before{content:"▶ "}
+    details[open] .details-btn::before{content:"▼ "}
+    .embed{position:relative;padding-top:56.25%;margin:12px 0}
+    .embed>iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    .method-note{ margin:-6px 0 10px; font-size:.95rem; color:#a9b3bd; opacity:.9; }
+    .cta-row .cta-btn { margin: 6px 8px; }
+    @media (max-width:560px){ .cta-row .cta-btn{display:block;margin:8px auto;width:fit-content} }
+
+    .method-note,
+    .method-note a {
+      color: inherit !important;
+      font-size: inherit !important;
+      line-height: inherit !important;
+      opacity: 1 !important;
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- Hero -->
+    <header class="hero">
+      <!-- Replace image path if needed -->
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/cs_header.jpg" alt="The Chef's Shift Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <h1>🍽️ The Chef's Shift - Early Build QA Case Study (PC)</h1>
+    <p class="meta">Tested: 16 Apr–17 Apr 2026</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 About this work</h2>
+      <ul>
+        <li><strong>Author:</strong> Kelina Cowell - Junior QA Tester (Games)</li>
+        <li><strong>Context:</strong> Self-directed manual QA portfolio project</li>
+        <li><strong>Timebox:</strong> 2-day focused pass</li>
+        <li><strong>Platform:</strong> PC</li>
+        <li><strong>Build:</strong> v0.1.2a</li>
+        <li><strong>Scope:</strong> Core loop, input handling, serving flow, recovery, and accessibility under pressure</li>
+        <li><strong>Focus:</strong> Early build QA, system interaction, input behaviour, and accessibility risk surfaces</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/#case-study",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/",
+  "name": "The Chef's Shift: Early Build QA - Core Loop & System Interaction",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "The Chef's Shift" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Early build testing" },
+    { "@type": "Thing", "name": "Core loop testing" },
+    { "@type": "Thing", "name": "Input testing" },
+    { "@type": "Thing", "name": "Accessibility testing" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P2D",
+  "keywords": [
+    "manual testing",
+    "early build QA",
+    "core loop testing",
+    "system interaction testing",
+    "typing game QA",
+    "input handling",
+    "recovery testing",
+    "accessibility testing",
+    "APX Practitioner",
+    "readability testing",
+    "UI clarity",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting",
+    "Jira"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC" },
+    { "@type": "PropertyValue", "name": "Build", "value": "v0.1.2a" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "2-day focused pass" },
+    { "@type": "PropertyValue", "name": "Tested dates", "value": "2026-04-16 to 2026-04-17" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Core loop, input handling, serving flow, recovery, and accessibility under pressure" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven early build QA pass focused on core loop stability, system interaction, input handling, and accessibility-related pressure points" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "Session log traceability, bug log, Jira tickets, and linked video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "2" }
+  ],
+  "hasPart": [
+    {
+      "@type": "ItemList",
+      "name": "Skills demonstrated",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Early build QA" },
+        { "@type": "ListItem", "position": 2, "name": "Core loop testing" },
+        { "@type": "ListItem", "position": 3, "name": "Input validation and recovery testing" },
+        { "@type": "ListItem", "position": 4, "name": "System interaction testing" },
+        { "@type": "ListItem", "position": 5, "name": "Accessibility-aware testing" },
+        { "@type": "ListItem", "position": 6, "name": "Bug reporting with reproducible steps" },
+        { "@type": "ListItem", "position": 7, "name": "Session-based documentation and traceability" },
+        { "@type": "ListItem", "position": 8, "name": "Evidence capture and Jira workflow" }
+      ]
+    }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+    <p>
+      This project is a focused early build QA pass on <em>The Chef’s Shift</em> (PC, v0.1.2a), tested across 16–17 April 2026.
+      The project targeted core loop stability, system interaction, input handling, recovery behaviour, and accessibility-related
+      pressure points from a first-time player perspective.
+    </p>
+    <p>
+      Testing was charter-driven and risk-based rather than exhaustive. The goal was not full content coverage or full regression,
+      but to identify the issues most likely to disrupt progression, create player confusion, or expose accessibility barriers in a
+      typing-based gameplay loop.
+    </p>
+    <p>
+      Alongside core QA, I applied an accessibility lens informed by my APX Practitioner training to examine how typed input,
+      readability, multitasking, and UI clarity affected player performance under pressure. This strengthened the analysis of
+      player-facing friction without turning the project into a full accessibility audit.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Scope:</strong> Short, self-directed QA pass on <em>The Chef’s Shift</em> (PC, v0.1.2a), covering the core loop
+        (prepare → tray → serve → collect → repeat), input handling, serving flow, recovery/progression, and accessibility-related
+        pressure points. No claim of studio coverage or full regression.
+      </li>
+
+      <li>
+        <strong>Approach:</strong> Risk-based charter testing executed through a Test Matrix and Session Log. Core tests validated
+        the main loop, invalid actions, recovery, and input behaviour, followed by accessibility-focused passes examining typing
+        under pressure, readability, action chain complexity, and order association clarity.
+      </li>
+
+      <li>
+        <strong>Outcome:</strong> 8 logged sessions (S1 to S8) produced 2 tracked issues. The main findings were a core loop
+        blocking payment inconsistency (CHEF-1) and a UI visibility/readability issue affecting oven interaction under pressure
+        (CHEF-2).
+      </li>
+
+      <li>
+        <strong>Evidence:</strong> Workbook tabs (Test Matrix, Session Log, Bug Log, STAR summaries) supported by video evidence
+        per session and per issue. Jira tickets were also created to mirror real-world workflow and strengthen traceability from
+        test execution to logged defect.
+      </li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>The Chef’s Shift</td>
+          <td>PC, build v0.1.2a</td>
+          <td>
+            Charter-driven early build QA focused on core loop stability, input handling, system interaction,
+            recovery/progression, and accessibility-related pressure points.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Show how I run a realistic short early build QA pass on <em>The Chef’s Shift</em>, using structured charters to
+          validate core loop stability, input behaviour, system interaction, recovery, and player-facing friction under pressure.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Core gameplay loop stability and repeatability</li>
+          <li>Input handling: typing, correction, and retargeting</li>
+          <li>System interaction: serving, payment, retry, and continue flow</li>
+          <li>Failure and recovery behaviour</li>
+          <li>Readability, visibility, and multitasking under pressure</li>
+          <li>Accessibility-related risks in a typing-based game loop</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>Session Log with 8 structured sessions and linked evidence</li>
+          <li>Test Matrix showing planned coverage, outcomes, and linked bugs</li>
+          <li>Bug Log with severity, reproducibility, and evidence links</li>
+          <li>Jira tickets demonstrating structured bug workflow</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Bugs Logged</td><td>2</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>1</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Sessions Logged</td><td>8</td></tr>
+        <tr><td>Tests Completed</td><td>9</td></tr>
+        <tr><td>Repro Rate</td><td><strong>CHEF-1 = 3/3</strong>, <strong>CHEF-2 = observed repeatedly under pressure</strong></td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h2 id="star-summary">⭐ STAR SUMMARY – The Chef’s Shift Early Build QA (PC)</h2>
+
+    <p><strong>Situation:</strong> Short, self-directed QA portfolio project on <strong>The Chef’s Shift</strong> (PC, build <strong>v0.1.2a</strong>). Testing focused on a typing-based core loop where input handling, flow stability, and prompt visibility could quickly affect progression.</p>
+
+    <p><strong>Task:</strong> Run a realistic early build QA pass focused on core loop stability, input reliability, system interaction, recovery/progression, and accessibility-related pressure points from a first-time player perspective.</p>
+
+    <p><strong>Action:</strong> Created a charter-driven Test Matrix, then executed <strong>8</strong> structured sessions (S1 to S8) with linked video evidence. Covered baseline loop flow, repetition, invalid serving, recovery, input correction, complexity under pressure, readability, and order association clarity. Logged issues in a structured Bug Log and mirrored key defects in Jira with reproducible steps and evidence.</p>
+
+    <p><strong>Result:</strong> Logged <strong>2</strong> gameplay-impacting issues: a core loop blocking payment inconsistency (CHEF-1) and a UI visibility/readability issue affecting oven interaction under pressure (CHEF-2). Also validated that invalid serving, recovery/progression, input correction, and order association remained stable outside failure scenarios. Testing showed that performance shifted from input accuracy at low complexity to cognitive load and task management at higher complexity.</p>
+
+    <hr>
+
+    <h2 id="accessibility-training">📚 Accessibility Training &amp; Application</h2>
+
+    <p class="method-note">
+      For this project, I applied learning from the <strong>Accessible Player Experiences (APX) Practitioner</strong> certification
+      to add an accessibility-focused lens to a core loop and system interaction QA pass.
+    </p>
+
+    <p class="method-note">
+      This was <strong>not</strong> a full accessibility audit. The main project focus remained early build QA of the core gameplay loop,
+      input handling, serving flow, and recovery. APX was used to strengthen the analysis of player-facing pressure points, especially
+      where readability, typing speed, multitasking, and UI clarity affected gameplay performance.
+    </p>
+
+    <p class="method-note">
+      <strong>APX patterns applied in this project:</strong>
+    </p>
+
+    <ul class="method-note">
+      <li><strong>Flexible Text Entry</strong> - informed checks around typing speed, correction behaviour, and how input pressure affects performance.</li>
+      <li><strong>Clear Text</strong> - informed readability checks, especially recognition speed under pressure and the impact of text presentation on decision-making.</li>
+      <li><strong>Distinguish This From That</strong> - informed checks around prompt visibility and whether important information was easy to separate from surrounding UI/background noise.</li>
+      <li><strong>Do More With Less</strong> - helped frame whether failure came from unnecessary action complexity or from genuine gameplay challenge.</li>
+      <li><strong>Slow It Down</strong> - supported analysis of how performance changed when typing pace was deliberately reduced under pressure.</li>
+      <li><strong>Undo Redo</strong> - supported evaluation of recovery behaviour when players mistyped, reset input, or re-targeted actions.</li>
+    </ul>
+
+    <p class="method-note">
+      <strong>Outcome:</strong> Applying APX improved the project in two ways. First, it helped separate <strong>system failures</strong> from
+      <strong>player performance limits</strong>. Second, it made the accessibility findings more specific, especially around the shift from
+      <strong>input accuracy at low complexity</strong> to <strong>cognitive load and task management at higher complexity</strong>.
+    </p>
+
+    <p class="cta-row">
+      <!-- Replace with your actual APX verification link if you have one -->
+      <a class="cta-btn" href="#" target="_blank" rel="noopener">Verify APX Practitioner</a>
+    </p>
+
+    <hr>
+    <h2>📷 Evidence &amp; Media</h2>
+
+    <p class="method-note">These links are the <strong>complete artefacts</strong> for this project. They contain:</p>
+    <ul class="method-note">
+      <li>Overview and scope</li>
+      <li>Test Matrix and Session Log</li>
+      <li>Bug Log</li>
+      <li>STAR summaries</li>
+      <li>Glossary and methodology notes</li>
+    </ul>
+
+    <table>
+      <thead><tr><th>Type</th><th>File / Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td><a href="#">Open Workbook</a></td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td><a href="#">Open PDF</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h2 id="core-findings">📌 Core Project Findings - Sessions and Bugs</h2>
+
+    <p class="method-note">
+      This project was a charter-driven early build QA pass on <em>The Chef’s Shift</em> (PC, v0.1.2a). Across 8 logged sessions
+      (S1 to S8), I focused on core loop stability, system interaction, input correction, recovery/progression, and accessibility-related
+      pressure points including readability, prompt visibility, and task management under higher complexity.
+    </p>
+
+    <p class="method-note">
+      Across the project I logged 2 issues in the Bug Log. The highest-impact finding was a core loop blocking payment inconsistency
+      (CHEF-1), followed by a UI visibility/readability issue affecting oven interaction under pressure (CHEF-2). Outside those defects,
+      the project also validated several stable behaviours, including invalid serve rejection, input correction, Retry/Continue state reset,
+      and order association clarity.
+    </p>
+
+    <h3>📁 Jira Board Screenshot - Overview</h3>
+    <p>
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/jira-board.png" target="_blank" rel="noopener">
+        <img
+          src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/jira-board.png"
+          alt="The Chef's Shift QA board overview"
+          loading="lazy"
+          style="max-width:100%; width:900px; height:auto; border-radius:8px;">
+      </a>
+    </p>
+
+    <h3 id="jira-bug">🗂️ Jira - Bug Ticket Layout Example</h3>
+    <table>
+      <tr>
+        <td>
+          <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/chef1-ticket.png" target="_blank" rel="noopener">
+            <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/chef1-ticket.png"
+                 alt="Jira bug ticket example - CHEF-1" width="160" height="160" loading="lazy"
+                 style="border-radius:8px; object-fit:cover;">
+          </a>
+        </td>
+        <td>
+          <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/chef2-ticket.png" target="_blank" rel="noopener">
+            <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/media/chef2-ticket.png"
+                 alt="Jira bug ticket example - CHEF-2" width="160" height="160" loading="lazy"
+                 style="border-radius:8px; object-fit:cover;">
+          </a>
+        </td>
+      </tr>
+    </table>
+    <p class="method-note" style="margin-top:8px;">Click any thumbnail to view the full-size image.</p>
+
+    <div style="clear:both; padding-top:8px;"></div>
+
+    <h3>🐞 Bugs – Summary + Screenshots/Videos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Sev</th>
+          <th>Repro</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>CHEF-1</td>
+          <td>Payment input accepted but payment behaviour is inconsistent when multiple customers are active</td>
+          <td>High</td>
+          <td>3/3</td>
+          <td>
+            <a href="https://youtu.be/L7fiP2EtHUI" target="_blank" rel="noopener">
+              <img
+                src="https://img.youtube.com/vi/L7fiP2EtHUI/hqdefault.jpg"
+                alt="CHEF-1 - Payment behaviour inconsistent when multiple customers are active"
+                width="140"
+                loading="lazy">
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>CHEF-2</td>
+          <td>Oven interaction prompt is difficult to see against background during pizza step</td>
+          <td>Medium</td>
+          <td>Observed repeatedly under pressure</td>
+          <td>
+            <a href="https://youtu.be/6mxSD831Z9k" target="_blank" rel="noopener">
+              <img
+                src="https://img.youtube.com/vi/6mxSD831Z9k/hqdefault.jpg"
+                alt="CHEF-2 - Oven interaction prompt difficult to see against background"
+                width="140"
+                loading="lazy">
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div style="clear:both; padding-top:8px;"></div>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>
+        Completed a focused, charter-driven early build QA pass on <em>The Chef’s Shift</em> (PC, v0.1.2a), across 8 logged sessions (S1 to S8).
+      </li>
+
+      <li>
+        Logged <strong>2 issues in total</strong> in the Bug Log: <strong>1 high</strong> and <strong>1 medium</strong>.
+      </li>
+
+      <li>
+        Repro evidence was recorded per issue, including a <strong>3/3</strong> blocking defect (CHEF-1) and a repeated under-pressure UI visibility issue (CHEF-2).
+      </li>
+
+      <li>
+        <strong>Primary blocker: payment progression.</strong> Repeated loop testing exposed a payment inconsistency that blocked core loop progression and prevented repeat-loop validation (CHEF-1).
+      </li>
+
+      <li>
+        <strong>Primary A11y/UI issue: prompt visibility and readability under pressure.</strong> Readability and prompt visibility problems slowed recognition, caused missed interactions, and delayed service (CHEF-2).
+      </li>
+
+      <li>
+        <strong>Stable systems were also validated.</strong> Invalid serving, input correction, Retry/Continue progression, and order-to-customer association all behaved consistently outside failure scenarios.
+      </li>
+
+      <li>
+        <strong>Pressure shifted from execution to cognition.</strong> At low complexity, performance was limited mainly by typing accuracy. At higher complexity, the limiting factor shifted toward cognitive load, situational awareness, and task management.
+      </li>
+    </ul>
+
+    <p class="method-note">
+      See Metrics above for the full table of runs and references.
+    </p>
+
+    <hr>
+    <h3>🏁 Result and takeaway</h3>
+
+    <p>
+      <strong>Result:</strong> Across a focused early build QA pass on <em>The Chef’s Shift</em> (PC, v0.1.2a), I completed 8 logged sessions and recorded 2 gameplay-impacting issues in the Bug Log, each supported by evidence and traceable through the Test Matrix, Session Log, Bug Log, and Jira.
+    </p>
+
+    <p>
+      <strong>Takeaway:</strong> The highest-impact risks were a core loop blocker in payment handling and a visibility/readability issue affecting interaction prompts under pressure. The project also showed that not all difficulty comes from system failure: under higher complexity, player performance shifted from typing accuracy to cognitive load and multitasking pressure. This made the accessibility lens valuable for separating <strong>broken systems</strong> from <strong>player-facing friction</strong>.
+    </p>
+
+    <hr>
+
+    <h2 id="what-i-learned">🧠 What I learned</h2>
+
+    <ul>
+      <li>
+        <strong>Risk-based scoping finds signal faster.</strong>
+        Focusing on high-risk gameplay surfaces made it possible to identify a core loop blocker quickly without wasting time on fake thoroughness.
+      </li>
+
+      <li>
+        <strong>Repetition testing exposes blockers fast.</strong>
+        A clean baseline run can look fine, but repeated loop testing is where unstable systems often break.
+      </li>
+
+      <li>
+        <strong>Not every difficult moment is a bug.</strong>
+        Some pressure points came from player execution limits or multitasking load rather than system failure, which is exactly why accessibility-aware testing matters.
+      </li>
+
+      <li>
+        <strong>Readability and visibility can break gameplay just as much as logic bugs.</strong>
+        CHEF-2 showed that a missed UI prompt can delay service and disrupt progression even when the underlying system still works.
+      </li>
+
+      <li>
+        <strong>Stable systems matter too.</strong>
+        Confirming that invalid serving, recovery flow, and order association behaved correctly strengthened the project more than trying to force extra bugs.
+      </li>
+
+      <li>
+        <strong>Good admin makes the work easy to audit.</strong>
+        Session IDs, linked evidence, bug IDs, and mirrored Jira tickets made the project easy to trace from test execution to final findings.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 Conclusion</h2>
+
+    <p>
+      Focused early build QA pass completed on <em>The Chef’s Shift</em> (PC, v0.1.2a), tested across 16–17 April 2026. The project was tightly scoped to core loop and system interaction risks, using structured charters rather than broad, unbounded exploration.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Coverage delivered:</strong>
+        baseline and repeated core loop checks, input correction, invalid action handling, Retry/Continue progression, pressure and complexity analysis, readability under pressure, and order association clarity.
+      </li>
+
+      <li>
+        <strong>Highest-impact findings:</strong>
+        a gameplay-blocking payment inconsistency (CHEF-1) and a UI visibility/readability issue affecting oven interaction under pressure (CHEF-2). Together, these show both a true system failure and a player-facing clarity risk.
+      </li>
+
+      <li>
+        <strong>Evidence maturity:</strong>
+        Coverage and outcomes are traceable through the Test Matrix and Session Log, with 2 logged issues recorded in the Bug Log and mirrored in Jira. Each issue includes severity, reproducibility, and linked evidence, providing a clear audit trail from test execution to conclusion.
+      </li>
+    </ul>
+
+    <p>
+      <strong>Up next:</strong> a browser-based educational UX and cognitive load case study focused on first-time onboarding, learning flow, error recovery, and lightweight accessibility checks for young learners using a 3D game design tool.
+    </p>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
