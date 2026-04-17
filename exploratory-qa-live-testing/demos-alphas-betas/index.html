@@ -13,10 +13,18 @@
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 <style>
-  .project-block .thumb {
-  width: 160px;
-  height: auto;
-  object-fit: contain;
+ .project-block.with-thumb {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.project-block .thumb {
+  width: 160px;          /* adjust size */
+  height: auto;          /* keeps aspect ratio */
+  aspect-ratio: 3 / 4;   /* portrait ratio */
+  object-fit: cover;     /* fills nicely */
+  border-radius: 10px;
 }
   
   :root{
