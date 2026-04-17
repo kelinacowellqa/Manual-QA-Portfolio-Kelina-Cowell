@@ -162,6 +162,42 @@
       line-height: inherit !important;
       opacity: 1 !important;
     }
+
+    table{
+  width:100%;
+  border-collapse:collapse;
+  background:#0f1215;
+  border:1px solid rgba(255,255,255,.08);
+  margin:12px 0;
+  border-radius:8px;
+}
+
+thead th{
+  background:rgba(0,255,240,.08);
+  color:#00fff0;
+  text-align:left;
+  font-weight:700;
+  font-size:14px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tbody td, tbody th{
+  color:#cfd6dd;
+  padding:12px 14px;
+  vertical-align:top;
+}
+
+thead th+th,
+tbody td+td,
+tbody th+td{
+  border-left:1px solid rgba(255,255,255,.08);
+}
+
+tbody tr+tr td,
+tbody tr+tr th{
+  border-top:1px solid rgba(255,255,255,.08);
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
