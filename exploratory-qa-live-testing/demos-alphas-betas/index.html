@@ -12,292 +12,233 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-<style>
-  :root{
-    --bg:#0b0f14;
-    --panel:#0f1215;
-    --text:#cfd6dd;
-    --muted:#a9b3bd;
-    --line:rgba(255,255,255,.08);
-    --teal:#00fff0;
-    --teal-soft:#66fff7;
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1215;
+      --text:#cfd6dd;
+      --muted:#a9b3bd;
+      --line:rgba(255,255,255,.08);
+      --teal:#00fff0;
+      --teal-soft:#66fff7;
 
-    --thumb-width:180px;
-    --thumb-height:240px;
+      --thumb-width:180px;
+      --thumb-height:240px;
 
-    --s-1:8px;
-    --s-2:12px;
-    --s-3:16px;
-    --s-4:20px;
-    --s-5:28px;
-    --s-6:36px;
-  }
-
-  html, body{
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin:0;
-    line-height:1.55;
-  }
-
-  a{
-    color:var(--teal);
-    text-decoration:none;
-  }
-
-  a:hover{
-    color:var(--teal-soft);
-  }
-
-  strong{
-    color:inherit;
-  }
-
-  h1, h2, h3, h4, h5, h6{
-    color:var(--teal);
-  }
-
-  hr{
-    border:0;
-    border-top:1px solid var(--teal);
-    opacity:.35;
-    margin-block:var(--s-5);
-  }
-
-  .wrap{
-    max-width:1200px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  @media (min-width:1400px){
-    .wrap{
-      max-width:1280px;
-    }
-  }
-
-  .hero{
-    max-width:1100px;
-    margin:30px auto 20px;
-    padding:0 18px;
-    text-align:center;
-  }
-
-  .hero img{
-    display:block;
-    max-width:100%;
-    height:auto;
-    margin:0 auto 24px;
-    border-radius:14px;
-  }
-
-  .cta-btn{
-    display:inline-block;
-    padding:12px 18px;
-    border-radius:12px;
-    background:#0d1117;
-    border:1px solid #2b2f36;
-    color:var(--teal);
-    font-weight:700;
-    text-decoration:none;
-  }
-
-  .cta-btn:hover{
-    background:var(--teal);
-    color:var(--bg);
-  }
-
-  h1{ margin-block:var(--s-5) var(--s-3); }
-  h2{ margin-block:var(--s-5) var(--s-2); }
-  h3{ margin-block:var(--s-4) var(--s-2); }
-  p, ul, ol{ margin-block:var(--s-2) var(--s-3); }
-  li + li{ margin-top:var(--s-1); }
-
-  .project-block,
-  .section,
-  header.hero,
-  footer{
-    display:flow-root;
-    padding-block:0.5px;
-  }
-
-  .intro{
-    display:flex;
-    align-items:flex-start;
-    gap:22px;
-    margin-top:12px;
-  }
-
-  .intro .headshot{
-    flex:0 0 264px;
-    width:264px;
-    height:auto;
-    display:block;
-    margin:0;
-  }
-
-  .intro > div{
-    flex:1;
-    min-width:0;
-  }
-
-  @media (max-width:760px){
-    .intro{
-      flex-direction:column;
+      --s-1:8px;
+      --s-2:12px;
+      --s-3:16px;
+      --s-4:20px;
+      --s-5:28px;
+      --s-6:36px;
     }
 
-    .intro .headshot{
-      width:220px;
-      flex-basis:auto;
+    html,body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin:0;
+      line-height:1.55;
     }
-  }
 
-  .intro p{
-    line-height:1.6;
-  }
+    a{color:var(--teal);text-decoration:none}
+    a:hover{color:var(--teal-soft)}
+    strong{color:inherit}
+    h1,h2,h3,h4,h5,h6{color:var(--teal)}
+    hr{border:0;border-top:1px solid var(--teal);opacity:.35}
 
-  .intro p:last-child{
-    margin-bottom:0;
-  }
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    @media (min-width:1400px){
+      .wrap{ max-width:1280px; }
+    }
 
-  #projects{
-    margin-block:var(--s-6) var(--s-2);
-    clear:both;
-  }
+    .hero{max-width:1100px;margin:30px auto 20px;padding:0 18px;text-align:center}
+    .hero img{display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:14px}
 
-  .project-block{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:12px;
-    box-shadow:0 4px 20px rgba(0,0,0,.25);
-    margin:22px 0;
-    padding:16px 18px;
-    position:relative;
-    overflow:hidden;
-    transition:transform .22s ease, filter .22s ease, box-shadow .22s ease;
-    will-change:transform, filter;
-    filter:drop-shadow(0 0 0 rgba(15,181,201,0));
-  }
+    .cta-btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:12px;
+      background:#0d1117;
+      border:1px solid #2b2f36;
+      color:var(--teal);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .cta-btn:hover{background:var(--teal); color:var(--bg)}
 
-  .project-block:hover{
-    transform:translateY(-2px);
-    filter:drop-shadow(0 0 28px rgba(15,181,201,.38));
-  }
+    h1{ margin-block: var(--s-5) var(--s-3); }
+    h2{ margin-block: var(--s-5) var(--s-2); }
+    h3{ margin-block: var(--s-4) var(--s-2); }
+    p, ul, ol{ margin-block: var(--s-2) var(--s-3); }
+    li + li{ margin-top: var(--s-1); }
+    hr{ margin-block: var(--s-5); }
 
-  .project-block:focus-within{
-    transform:translateY(-2px);
-    filter:drop-shadow(0 0 28px rgba(15,181,201,.38));
-    outline:2px solid rgba(15,181,201,.55);
-    outline-offset:2px;
-  }
-
-  .project-block:hover:focus-within{
-    filter:drop-shadow(0 0 34px rgba(15,181,201,.45));
-  }
-
-  @media (prefers-reduced-motion:reduce){
     .project-block,
-    .project-block:hover,
+    .section,
+    header.hero,
+    footer{
+      display: flow-root;
+      padding-block: 0.5px;
+    }
+
+    .intro{
+      display:flex;
+      align-items:flex-start;
+      gap:22px;
+      margin-top: 12px;
+    }
+    .intro .headshot{
+      flex: 0 0 264px;
+      width: 264px;
+      height: auto;
+      display:block;
+      margin:0;
+    }
+    .intro > div{
+      flex: 1;
+      min-width: 0;
+    }
+    @media (max-width: 760px){
+      .intro{ flex-direction:column; }
+      .intro .headshot{ width: 220px; flex-basis:auto; }
+    }
+
+    .intro p{ line-height: 1.6; }
+    .intro p:last-child{ margin-bottom: 0; }
+
+    #projects{
+      margin-block: var(--s-6) var(--s-2);
+      clear: both;
+    }
+
+    .project-block{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,.25);
+      margin:22px 0;
+      padding:16px 18px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .22s ease, filter .22s ease, box-shadow .22s ease;
+      will-change: transform, filter;
+      filter: drop-shadow(0 0 0 rgba(15,181,201,0));
+    }
+
+    .project-block:hover{
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    }
     .project-block:focus-within{
-      transition:filter .01s linear, box-shadow .01s linear;
-      transform:none;
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+      outline: 2px solid rgba(15,181,201,.55);
+      outline-offset: 2px;
     }
-  }
-
-  .project-block em{
-    color:var(--muted);
-  }
-
-  .project-block p{
-    margin:6px 0 8px;
-  }
-
-  .project-block.with-thumb{
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) var(--thumb-width);
-    gap:24px;
-    align-items:start;
-  }
-
-  .project-block.with-thumb .project-main{
-    min-width:0;
-  }
-
-  .project-block.with-thumb .thumb{
-    width:var(--thumb-width);
-    height:var(--thumb-height);
-    object-fit:cover;
-    object-position:center;
-    border-radius:10px;
-    border:1px solid var(--line);
-    box-shadow:0 6px 18px rgba(0,0,0,.35);
-    justify-self:end;
-    display:block;
-  }
-
-  .banner-pulse{
-    display:block;
-    width:100%;
-    height:auto;
-    border-radius:16px;
-    animation:imgOutPulse 4s ease-in-out infinite;
-  }
-
-  @keyframes imgOutPulse{
-    0%, 100%{
-      filter:drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1);
+    .project-block:hover:focus-within{
+      filter: drop-shadow(0 0 34px rgba(15,181,201,.45));
     }
-    50%{
-      filter:drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04);
+    @media (prefers-reduced-motion: reduce){
+      .project-block,
+      .project-block:hover,
+      .project-block:focus-within{
+        transition: filter .01s linear, box-shadow .01s linear;
+        transform: none;
+      }
     }
-  }
 
-  @media (prefers-reduced-motion:reduce){
-    .banner-pulse{
-      animation:none !important;
-      filter:none !important;
-    }
-  }
+    .project-block em{color:var(--muted)}
+    .project-block p{margin:6px 0 8px;}
 
-  p, .intro p, .project-block p{
-    max-width:none !important;
-  }
-
-  header.hero::before,
-  header.hero::after{
-    content:none !important;
-    animation:none !important;
-    box-shadow:none !important;
-  }
-
-  @media (max-width:900px){
     .project-block.with-thumb{
-      grid-template-columns:1fr;
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) var(--thumb-width);
+      gap:24px;
+      align-items:start;
+    }
+
+    .project-block.with-thumb .project-main{
+      min-width:0;
     }
 
     .project-block.with-thumb .thumb{
-      width:100%;
-      max-width:220px;
-      height:auto;
-      aspect-ratio:3 / 4;
-      margin-left:auto;
+      display:block;
+      width:var(--thumb-width);
+      height:var(--thumb-height);
+      object-fit:cover;
+      object-position:center;
+      border-radius:10px;
+      border:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      justify-self:end;
     }
-  }
 
-  footer{
-    max-width:980px;
-    margin:40px auto 0;
-    padding:20px 18px 0;
-    text-align:center;
-    font-size:.85em;
-    opacity:.8;
-    border-top:1px solid rgba(255,255,255,.05);
-  }
-</style>
-  
+    .card-bullets{
+      margin-left:1.2rem;
+      padding-left:0;
+    }
+
+    .card-bullets li{
+      margin-bottom:10px;
+    }
+
+    .cta{
+      margin-top:14px;
+      margin-bottom:0;
+    }
+
+    .banner-pulse{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:16px;
+      animation: imgOutPulse 4s ease-in-out infinite;
+    }
+    @keyframes imgOutPulse{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(15,181,201,0)) brightness(1); }
+      50%{ filter: drop-shadow(0 0 34px rgba(15,181,201,.75)) brightness(1.06) saturate(1.04); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .banner-pulse{ animation:none !important; filter:none !important; }
+    }
+
+    p, .intro p, .project-block p{ max-width:none !important; }
+
+    header.hero::before,
+    header.hero::after{
+      content:none !important;
+      animation:none !important;
+      box-shadow:none !important;
+    }
+
+    @media (max-width: 900px){
+      .project-block.with-thumb{
+        grid-template-columns:1fr;
+      }
+
+      .project-block.with-thumb .thumb{
+        width:100%;
+        max-width:220px;
+        height:auto;
+        aspect-ratio:3/4;
+        margin-left:auto;
+      }
+    }
+
+    footer{
+      max-width:980px;
+      margin:40px auto 0;
+      padding:20px 18px 0;
+      text-align:center;
+      font-size:.85em;
+      opacity:.8;
+      border-top:1px solid rgba(255,255,255,.05)
+    }
+  </style>
+
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
@@ -328,7 +269,7 @@
       <section class="section" aria-labelledby="about-title">
         <h1 id="about-title">Demos, Alphas &amp; Betas – Live Testing Work</h1>
 
-<script type="application/ld+json">
+        <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -371,7 +312,7 @@
     }
   ]
 }
-</script>
+        </script>
 
         <div class="intro">
           <img
@@ -403,77 +344,84 @@
 
       <h2 id="projects">Live Testing Lineup</h2>
 
-<section class="project-block with-thumb">
-  <img class="thumb" src="../../assets/img/firewing.png" alt="Firewing 64 exploratory QA testing focused on input behaviour, system interaction, and UI clarity under pressure.">
+      <section class="project-block with-thumb">
+        <div class="project-main">
+          <h3>Firewing 64 - <em>Destructive Exploratory Testing</em></h3>
 
-  <h3>Firewing 64 - <em>Destructive Exploratory Testing</em></h3>
+          <p class="card-intro">
+            Short-form exploratory QA session applying a structured-to-destructive testing approach 
+            to identify system weaknesses, input reliability issues, and clarity problems under pressure 
+            in an early build environment.
+          </p>
 
-  <p class="card-intro">
-    Short-form exploratory QA session applying a structured-to-destructive testing approach 
-    to identify system weaknesses, input reliability issues, and clarity problems under pressure 
-    in an early build environment.
-  </p>
+          <ul class="card-bullets">
+            <li>
+              <strong>Goal:</strong> Apply destructive testing techniques in a focused session to surface meaningful issues quickly, supported by clear evidence and concise reporting.
+            </li>
 
-  <ul class="card-bullets">
-    <li>
-      <strong>Goal:</strong> Apply destructive testing techniques in a focused session to surface meaningful issues quickly, supported by clear evidence and concise reporting.
-    </li>
+            <li>
+              <strong>Testing focus:</strong> Input behaviour under stress, system and state conflicts during combined actions, and UI clarity during fast or chaotic gameplay, with attention to player understanding and control.
+            </li>
 
-    <li>
-      <strong>Testing focus:</strong> Input behaviour under stress, system and state conflicts during combined actions, and UI clarity during fast or chaotic gameplay, with attention to player understanding and control.
-    </li>
+            <li>
+              <strong>Why this matters:</strong> Demonstrates the ability to adapt structured learning into practical testing, focusing on system behaviour under pressure rather than ideal conditions.
+            </li>
 
-    <li>
-      <strong>Why this matters:</strong> Demonstrates the ability to adapt structured learning into practical testing, focusing on system behaviour under pressure rather than ideal conditions.
-    </li>
+            <li>
+              <strong>Outcome:</strong> Identified several issues where systems behaved correctly in isolation but became inconsistent under stress, impacting reliability and clarity of player actions.
+            </li>
+          </ul>
 
-    <li>
-      <strong>Outcome:</strong> Identified several issues where systems behaved correctly in isolation but became inconsistent under stress, impacting reliability and clarity of player actions.
-    </li>
-  </ul>
+          <p class="cta">
+            <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/index.html">
+              View demos, alphas &amp; betas testing →
+            </a>
+          </p>
+        </div>
 
-  <p class="cta">
-    <a href="#">View exploratory testing notes →</a>
-  </p>
-</section>
+        <img class="thumb" src="../../assets/img/firewing.png" alt="Firewing 64 exploratory QA testing focused on input behaviour, system interaction, and UI clarity under pressure.">
+      </section>
 
-      <!-- Flock XR (COMING SOON) -->
-     <section class="project-block with-thumb">
-  <img class="thumb" src="../../assets/img/xr-3d-creation-tool-learning-recovery-accessibility.webp" alt="Interactive creator tool case study thumbnail focused on first-time user workflows, recovery behaviour, and accessibility in a complex live testing environment.">
+      <section class="project-block with-thumb">
+        <div class="project-main">
+          <h3>Creator Tool UX &amp; Recovery Testing - <em>Exploratory Live Testing</em></h3>
 
-  <h3>Creator Tool UX &amp; Recovery Testing - <em>Exploratory Live Testing</em></h3>
+          <p class="card-intro">
+            Short-form exploratory QA focused on first-time user workflows, recovery behaviour, and clarity in a complex interactive environment, with attention on how easily a new user can understand tasks, recover from mistakes, and continue without losing progress.
+          </p>
 
-  <p class="card-intro">
-    Short-form exploratory QA focused on first-time user workflows, recovery behaviour, and clarity in a complex interactive environment, with attention on how easily a new user can understand tasks, recover from mistakes, and continue without losing progress.
-  </p>
+          <ul class="card-bullets">
+            <li>
+              <strong>Goal:</strong> Evaluate whether a first-time user can begin confidently, follow the intended workflow, complete core creation tasks, and recover cleanly from errors or confusion using clear evidence and practical reporting.
+            </li>
 
-  <ul class="card-bullets">
-    <li>
-      <strong>Goal:</strong> Evaluate whether a first-time user can begin confidently, follow the intended workflow, complete core creation tasks, and recover cleanly from errors or confusion using clear evidence and practical reporting.
-    </li>
+            <li>
+              <strong>Testing focus:</strong> Onboarding clarity, “what do I do now?” friction, workflow comprehension, navigation context, object interaction, save and loss-prevention behaviour, undo or redo expectations, and basic accessibility checks.
+            </li>
 
-    <li>
-      <strong>Testing focus:</strong> Onboarding clarity, “what do I do now?” friction, workflow comprehension, navigation context, object interaction, save and loss-prevention behaviour, undo or redo expectations, and basic accessibility checks.
-    </li>
+            <li>
+              <strong>Why this matters:</strong> Shows transferable QA thinking across interactive systems, especially around onboarding, UI clarity, user confusion, recovery design, and accessibility rather than pure feature correctness alone.
+            </li>
 
-    <li>
-      <strong>Why this matters:</strong> Shows transferable QA thinking across interactive systems, especially around onboarding, UI clarity, user confusion, recovery design, and accessibility rather than pure feature correctness alone.
-    </li>
+            <li>
+              <strong>Deliverables:</strong> Charter-based session notes and evidence, reproducible issue logging, short UX and accessibility findings with practical recommendations, and a summary grouped by clarity, editor usability, recovery, and accessibility.
+            </li>
 
-    <li>
-      <strong>Deliverables:</strong> Charter-based session notes and evidence, reproducible issue logging, short UX and accessibility findings with practical recommendations, and a summary grouped by clarity, editor usability, recovery, and accessibility.
-    </li>
+            <li>
+              <strong>Context:</strong> Product name is kept anonymous by agreement. Public coverage stays summary-level unless named publication is approved.
+            </li>
+          </ul>
 
-    <li>
-      <strong>Context:</strong> Product name is kept anonymous by agreement. Public coverage stays summary-level unless named publication is approved.
-    </li>
-  </ul>
+          <p class="cta">
+            <a href="#">
+              View creator tool testing summary →
+            </a>
+          </p>
+        </div>
 
-  <p class="cta">
-    <em>Case study coming soon.</em>
-  </p>
-</section>
-      
+        <img class="thumb" src="../../assets/img/xr-3d-creation-tool-learning-recovery-accessibility.webp" alt="Interactive creator tool case study thumbnail focused on first-time user workflows, recovery behaviour, and accessibility in a complex live testing environment.">
+      </section>
+
       <hr>
 
       <section class="section faq" aria-labelledby="faq">
@@ -495,9 +443,9 @@
         </p>
 
         <h3>Why include a non-game interactive tool here?</h3>
-<p>
-  Because the QA thinking is transferable. Testing first-time user workflows, clarity, and recovery behaviour applies directly to games, especially in onboarding, UI understanding, player confusion, and save or recovery systems. This shows I can test complex interactive environments and identify real user friction, not just follow scripted checks.
-</p>
+        <p>
+          Because the QA thinking is transferable. Testing first-time user workflows, clarity, and recovery behaviour applies directly to games, especially in onboarding, UI understanding, player confusion, and save or recovery systems. This shows I can test complex interactive environments and identify real user friction, not just follow scripted checks.
+        </p>
       </section>
 
       <hr>
@@ -520,6 +468,6 @@
 
   <hr>
 
-  <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio  📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
+  <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio 📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
 </body>
 </html>
