@@ -8,31 +8,63 @@
   <link rel="stylesheet" href="../../assets/css/site.css?v=5">
 
   <style>
- .hero {
+.hero {
   width: 100%;
   height: 260px;
-  border-radius: 20px;
   position: relative;
+  padding: 0 !important;
+  margin: 0;
+  border: 0;
+  border-radius: 20px;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
 }
 
 .hero img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
   object-position: left center;
-  display: block;
   border-radius: 20px;
+  border: 0;
+  box-shadow: none !important;
+  background: transparent;
 }
 
-/* Glow layer */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 20px;
   pointer-events: none;
+  box-shadow:
+    0 0 14px rgba(0,255,240,0.28),
+    0 0 28px rgba(0,255,240,0.16),
+    0 0 52px rgba(0,255,240,0.10);
   animation: heroPulse 3.2s ease-in-out infinite;
 }
+
+@keyframes heroPulse {
+  0% {
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(0,255,240,0.42),
+      0 0 42px rgba(0,255,240,0.24),
+      0 0 72px rgba(0,255,240,0.14);
+  }
+  100% {
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+  }
 
 @keyframes heroPulse {
   0% {
