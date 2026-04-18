@@ -318,28 +318,28 @@
 
     <hr>
 
-    <h2 id="signal-vs-noise">How I separate signal from noise in a short pass</h2>
-    <p>
-      A short early build pass should not try to answer every question.
-      It should answer the questions most likely to change what you test next.
-    </p>
-    <ul>
-      <li><strong>Does the loop work once?</strong></li>
-      <li><strong>Does it keep working when repeated?</strong></li>
-      <li><strong>Can invalid actions be rejected safely?</strong></li>
-      <li><strong>Can the game recover cleanly after a transition or failure state?</strong></li>
-      <li><strong>Do readability, prompts, and timing create player-facing friction?</strong></li>
-    </ul>
-    <p>
-      Anything outside that is noise unless the build gives me a reason to follow it.
-    </p>
+<h2 id="signal-vs-noise">How I separate signal from noise in a short pass</h2>
+<p>
+  A short early build pass should not try to answer every question.
+  It should answer the questions most likely to change what you test next.
+</p>
+<ul>
+  <li><strong>Does the loop work once?</strong></li>
+  <li><strong>Does it keep working when repeated?</strong></li>
+  <li><strong>Can invalid actions be rejected safely?</strong></li>
+  <li><strong>Can the game recover cleanly after a transition or failure state?</strong></li>
+  <li><strong>Do readability, prompts, and timing create player-facing friction?</strong></li>
+</ul>
+<p>
+  Anything outside that is noise unless the build gives me a reason to follow it.
+</p>
 
-    <aside class="pullquote" aria-label="Applied insight">
-      <blockquote>
-        <p>Good scoping is not about testing less. It is about testing the things that change your understanding of the build fastest.</p>
-        <cite>- Kelina Cowell</cite>
-      </blockquote>
-    </aside>
+<section class="callout">
+  <h3>Scoping principle</h3>
+  <p class="small">
+    Good scoping is not about testing less. It is about testing the things that change your understanding of the build fastest.
+  </p>
+</section>
 
     <hr>
 
