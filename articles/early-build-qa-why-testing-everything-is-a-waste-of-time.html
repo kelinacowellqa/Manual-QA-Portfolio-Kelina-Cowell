@@ -247,32 +247,33 @@
 
     <hr>
 
-    <h2 id="core-loop-first">Why the core loop comes first in early build QA</h2>
-    <p>
-      The first thing I want to know in an early build is whether the game can sustain its own basic loop.
-      If the main player cycle is unstable, everything layered on top of it is secondary.
-    </p>
-    <p class="small">
-      For The Chef’s Shift, that meant focusing on:
-      <strong>prepare → tray → serve → collect → repeat</strong>.
-      If that loop holds, I can push further. If it breaks, that is the real story of the build.
-    </p>
+   <h2 id="core-loop-first">Why the core loop comes first in early build QA</h2>
+<p>
+  The first thing I want to know in an early build is whether the game can sustain its own basic loop.
+  If the main player cycle is unstable, everything layered on top of it is secondary.
+</p>
+<p class="small">
+  For The Chef’s Shift, that meant focusing on:
+  <strong>prepare → tray → serve → collect → repeat</strong>.
+  If that loop holds, I can push further. If it breaks, that is the real story of the build.
+</p>
 
-    <aside class="pullquote" aria-label="Applied insight">
-      <blockquote>
-        <p>In early builds, the most valuable tests are usually the ones that stress the main player loop, not the ones that make coverage look wide.</p>
-        <cite>- Kelina Cowell</cite>
-      </blockquote>
-    </aside>
+<section class="callout">
+  <h3>Core principle</h3>
+  <p class="small">
+    In early builds, the most valuable tests are the ones that stress the main player loop,
+    not the ones that make coverage look wide.
+  </p>
+</section>
 
-    <section class="callout">
-      <h3>Why this matters</h3>
-      <p class="small">
-        Players do not experience a build as a spreadsheet. They experience its loop. If the loop is unstable,
-        that is the problem worth finding first.
-      </p>
-    </section>
-
+<section class="callout">
+  <h3>Why this matters</h3>
+  <p class="small">
+    Players do not experience a build as a spreadsheet. They experience its loop. If the loop is unstable,
+    that is the problem worth finding first.
+  </p>
+</section>
+    
     <hr>
 
     <h2 id="baseline">Why I start with a clean baseline</h2>
