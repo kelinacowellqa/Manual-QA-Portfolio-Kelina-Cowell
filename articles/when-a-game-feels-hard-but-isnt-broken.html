@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>When a game feels hard… but isn’t broken | Kelina Cowell</title>
+
+  <meta name="description" content="An applied QA article based on my The Chef’s Shift (PC) early build pass, examining how UI clarity, typing pressure, and cognitive load can make a game feel difficult without the system actually being broken." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html" />
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta property="og:title" content="When a game feels hard… but isn’t broken | Kelina Cowell">
+  <meta property="og:description" content="Applied QA article based on my The Chef’s Shift (PC) pass: how UI clarity, multitasking load, and prompt visibility can create player struggle without a true system failure.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta property="article:published_time" content="2026-04-18">
+  <meta property="article:modified_time" content="2026-04-18">
+
+  <meta name="twitter:title" content="When a game feels hard… but isn’t broken | Kelina Cowell">
+  <meta name="twitter:description" content="Applied QA article based on my The Chef’s Shift (PC) pass: how UI clarity, multitasking load, and prompt visibility can create player struggle without a true system failure.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html">
+
+  <style>
+    .article-hero,
+    .toc,
+    .callout{
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    .article-hero{
+      margin: 12px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toc{
+      margin: 10px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .callout{ margin: 16px 0; }
+
+    .meta{ margin: 0; opacity: .9; }
+
+    .small{ font-size: .95rem; opacity: .95; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    .tldr{
+      margin: 14px 0 0;
+      padding: 0;
+    }
+    .tldr li{ margin: 6px 0; }
+
+    .author-row{
+      margin-top: 10px;
+      opacity: .95;
+    }
+    .author-row a{ text-decoration: underline; }
+
+    .pullquote{
+      margin: 16px 0;
+      padding: 14px 16px 14px 18px;
+      border-left: 3px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+    }
+    .pullquote blockquote{
+      margin: 0;
+      padding: 0;
+    }
+    .pullquote blockquote p{
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .pullquote blockquote p:before{
+      content: "“";
+      font-size: 2.2rem;
+      line-height: 0;
+      vertical-align: -0.35em;
+      opacity: .55;
+      margin-right: 6px;
+    }
+    .pullquote cite{
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      opacity: .85;
+      font-size: .95rem;
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "When a game feels hard… but isn’t broken",
+    "description": "An applied QA article based on my The Chef’s Shift (PC) early build pass, examining how UI clarity, typing pressure, and cognitive load can make a game feel difficult without the system actually being broken.",
+    "datePublished": "2026-04-18",
+    "dateModified": "2026-04-18",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+      <h1>When a game feels hard… but isn’t broken</h1>
+      <p class="hint">An applied QA article about accessibility, cognition, and player-facing friction under pressure.</p>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+
+      <p class="small">
+        This article is based on my short early build QA pass on <strong>The Chef’s Shift (PC, v0.1.2a)</strong>.
+        It exists to show how player struggle is not always a skill issue, and how UI clarity, multitasking load,
+        and prompt visibility can make a game feel harder even when the underlying system still works.
+      </p>
+
+      <hr>
+
+      <figure class="article-figure plain-figure">
+        <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp" target="_blank" rel="noopener">
+          <img
+            src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp"
+            alt="Early build QA workflow diagram showing risk-based scope, baseline validation, repetition testing, issue validation, and evidence-backed outcomes."
+            loading="eager"
+            decoding="async"
+          >
+        </a>
+        <figcaption class="small">
+          This article is grounded in my short QA pass on The Chef’s Shift: a build where pressure, typing speed, prompt visibility, and multitasking all affected how difficulty was experienced. <span class="hint">(Click to enlarge)</span>
+        </figcaption>
+      </figure>
+
+      <hr>
+
+      <section class="callout" aria-label="Article summary">
+        <h2 style="margin-top:0;">TL;DR</h2>
+        <ul class="tldr small">
+          <li><strong>Point:</strong> not every player struggle is a system bug or a skill issue.</li>
+          <li><strong>Example context:</strong> The Chef’s Shift on PC, tested in a 2-day early build pass across 8 logged sessions.</li>
+          <li><strong>Main example:</strong> CHEF-2 showed that poor prompt visibility made an interaction feel harder without the system actually failing.</li>
+          <li><strong>QA value:</strong> accessibility-aware testing helps separate true system failure from cognitive overload and poor communication.</li>
+          <li><strong>Takeaway:</strong> difficulty is not automatically good design if the player is fighting clarity instead of challenge.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section class="callout" aria-label="About this work">
+        <h2 style="margin-top:0;">Project context</h2>
+        <p class="small">
+          This article is grounded in a self-directed portfolio pass on <strong>The Chef’s Shift</strong> using the
+          <strong>PC build</strong> <code>v0.1.2a</code>, run as a <strong>2-day focused pass</strong>.
+          Scope included core loop stability, input handling, serving flow, recovery, and accessibility-related pressure points.
+          The goal was not a full accessibility audit, but a realistic QA pass that also examined how readability, typing speed,
+          and multitasking pressure affected player-facing friction.
+        </p>
+      </section>
+    </header>
+
+    <hr>
+
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#hard-but-not-broken">When a game feels hard… but isn’t broken</a></li>
+        <li><a href="#why-this-matters">Why this matters in early build QA</a></li>
+        <li><a href="#chef2">Example: CHEF-2 and prompt visibility</a></li>
+        <li><a href="#typing-pressure">Typing under pressure is not just input</a></li>
+        <li><a href="#multitasking">Multitasking is where clarity matters most</a></li>
+        <li><a href="#difficulty-vs-communication">Difficulty vs communication</a></li>
+        <li><a href="#qa-role">What this means for QA</a></li>
+        <li><a href="#takeaway">Takeaway</a></li>
+        <li><a href="#faq">QA and accessibility FAQ</a></li>
+        <li><a href="#links">Evidence and case study links</a></li>
+      </ul>
+    </nav>
+
+    <hr>
+
+    <h2 id="hard-but-not-broken">When a game feels hard… but isn’t broken</h2>
+    <p>
+      One of the easiest mistakes to make in QA is assuming that if a player struggles, the problem is skill.
+    </p>
+    <p>
+      Sometimes that is true.
+    </p>
+    <p>
+      But sometimes the game is not hard. It is just unclear.
+    </p>
+
+    <section class="callout">
+      <h3>Core idea</h3>
+      <p class="small">
+        Difficulty is not the same as good design. If the player fails because the game communicates poorly,
+        that is not challenge. It is friction.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="why-this-matters">Why this matters in early build QA</h2>
+    <p>
+      In early builds, it is easy to misread player behaviour.
+    </p>
+    <p>
+      You see hesitation, mistakes, or slow performance and assume:
+    </p>
+    <ul>
+      <li>The player needs practice</li>
+      <li>The mechanic is intentionally demanding</li>
+      <li>The difficulty curve is working</li>
+    </ul>
+    <p>
+      But in a typing-based game like <strong>The Chef’s Shift</strong>, performance is heavily influenced by:
+    </p>
+    <ul>
+      <li>How clearly prompts are presented</li>
+      <li>How quickly information can be recognised</li>
+      <li>How much the player has to track at once</li>
+    </ul>
+    <p>
+      If those break down, the player looks like they are struggling, even when the system itself still works.
+    </p>
+    <p>
+      That matters in QA because it changes the diagnosis. A rough player moment is not always proof of broken logic.
+      Sometimes it is proof that the game is asking the player to do too much with too little support.
+    </p>
+
+    <hr>
+
+    <h2 id="chef2">Example: CHEF-2 and prompt visibility</h2>
+    <p>
+      In my early build pass, the clearest example of “this feels harder than it should” was <strong>CHEF-2</strong>.
+    </p>
+    <p>
+      The oven interaction prompt was technically present. The system worked. The interaction could be completed.
+    </p>
+    <p>
+      But under pressure, the prompt was difficult to see against the background during the pizza step.
+    </p>
+    <p>
+      The result was not a system failure. It was something more subtle:
+    </p>
+    <ul>
+      <li>Delayed recognition</li>
+      <li>Missed interactions</li>
+      <li>Hesitation before acting</li>
+      <li>Breaks in serving flow</li>
+    </ul>
+    <p>
+      From the outside, this can look like player error.
+    </p>
+    <p>
+      In practice, it is a communication problem.
+    </p>
+
+    <section class="callout">
+      <h3>Key distinction</h3>
+      <p class="small">
+        The system allowed success. The UI made success harder to achieve quickly.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="typing-pressure">Typing under pressure is not just input</h2>
+    <p>
+      At low complexity, performance in The Chef’s Shift is mostly about typing accuracy.
+    </p>
+    <p>
+      You see the prompt, you type the word, you move on.
+    </p>
+    <p>
+      But as complexity increases, that changes.
+    </p>
+    <p>
+      The player is no longer just typing. They are:
+    </p>
+    <ul>
+      <li>Tracking multiple customers</li>
+      <li>Managing order flow</li>
+      <li>Watching for the next interaction prompt</li>
+      <li>Trying not to fall behind while still typing correctly</li>
+    </ul>
+    <p>
+      Typing becomes one part of a larger cognitive load rather than a standalone input task.
+    </p>
+
+    <section class="callout">
+      <h3>What changed in this project</h3>
+      <p class="small">
+        In my testing, performance shifted from input accuracy at low complexity to cognitive load and task management under higher pressure.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="multitasking">Multitasking is where clarity matters most</h2>
+    <p>
+      This is where design either supports the player or works against them.
+    </p>
+    <p>
+      When multiple tasks are active, the player relies on fast recognition, not careful reading.
+    </p>
+    <p>
+      They need to:
+    </p>
+    <ul>
+      <li>Spot the right prompt instantly</li>
+      <li>Understand what action is required without second-guessing</li>
+      <li>Act before another demand appears</li>
+    </ul>
+    <p>
+      If the UI slows that process down, even slightly, the effect compounds.
+    </p>
+    <p>
+      The player hesitates. They lose tempo. They start making mistakes. The game now feels harder.
+    </p>
+    <p>
+      But the difficulty is not necessarily coming from the mechanic itself. It is coming from the cost of understanding what to do.
+    </p>
+
+    <section class="callout">
+      <h3>Accessibility angle</h3>
+      <p class="small">
+        This is where readability, prompt contrast, recognition speed, and multitasking load stop being “nice extras” and become part of whether the experience feels fair.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="difficulty-vs-communication">Difficulty vs communication</h2>
+    <p>
+      This was the core distinction that shaped how I interpreted the results of this project.
+    </p>
+    <ul>
+      <li><strong>Real difficulty:</strong> the player understands the task, but execution is demanding</li>
+      <li><strong>Poor communication:</strong> the player struggles to understand the task quickly enough to act</li>
+    </ul>
+    <p>
+      Both can produce failure.
+    </p>
+    <p>
+      Only one reflects intended challenge.
+    </p>
+
+    <section class="pullquote" aria-label="Applied insight">
+      <blockquote>
+        <p>
+          When a player fails, the real question is not “was that hard?” It is “did they have a fair chance to understand what to do?”
+        </p>
+      </blockquote>
+    </section>
+
+    <p>
+      This is why I do not treat every rough player moment the same way. A hard mechanic can be valid. A badly communicated one is a different problem.
+    </p>
+    <p>
+      In a pressure-driven loop, poor communication can imitate difficulty so well that teams risk mistaking friction for design strength.
+    </p>
+
+    <hr>
+
+    <h2 id="qa-role">What this means for QA</h2>
+    <p>
+      This is where accessibility-aware testing adds value without becoming preachy or turning every issue into a moral lecture.
+    </p>
+    <p>
+      The point is not to label everything as an accessibility defect.
+    </p>
+    <p>
+      The point is to separate:
+    </p>
+    <ul>
+      <li>Systems that are breaking</li>
+      <li>Players who are being overloaded</li>
+      <li>Interfaces that are not communicating clearly enough</li>
+    </ul>
+    <p>
+      In this project, that distinction mattered.
+    </p>
+    <p>
+      <strong>CHEF-1</strong> was a genuine system failure. It blocked progression through inconsistent payment behaviour under multi-customer conditions.
+    </p>
+    <p>
+      <strong>CHEF-2</strong> was different. The system still functioned, but prompt visibility created friction that slowed recognition and action under pressure.
+    </p>
+    <p>
+      Treating both as generic bugs would miss the point. One broke the loop. The other made the loop feel harsher than it needed to.
+    </p>
+
+    <section class="callout">
+      <h3>Practical QA value</h3>
+      <p class="small">
+        Being able to explain why something feels hard is often more useful than simply proving that it happens.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="takeaway">Takeaway</h2>
+    <p>
+      Not every difficult moment in a game is good difficulty.
+    </p>
+    <p>
+      Sometimes the system works, but the player is still being set up to fail.
+    </p>
+    <p>
+      In a typing-based, pressure-driven loop, small issues like prompt visibility, recognition speed, and multitasking load can shape the experience as much as the core mechanic itself.
+    </p>
+    <p>
+      That is why good QA should not only ask:
+    </p>
+    <ul>
+      <li>Does this work?</li>
+    </ul>
+    <p>
+      It should also ask:
+    </p>
+    <ul>
+      <li>Can the player understand this fast enough to succeed?</li>
+    </ul>
+    <p>
+      Because if the answer is no, the game may feel hard without actually being broken.
+    </p>
+    <p>
+      And that is not meaningful challenge.
+    </p>
+    <p>
+      That is friction.
+    </p>
+
+    <hr>
+
+    <section class="section" id="faq">
+      <h2>QA and accessibility FAQ</h2>
+
+      <h3>Is every frustrating moment an accessibility issue?</h3>
+      <p>
+        No. Some moments are meant to be demanding. The point is to tell the difference between intended challenge and avoidable player-facing friction.
+      </p>
+
+      <h3>Can a system be technically functional but still create a real issue?</h3>
+      <p>
+        Yes. CHEF-2 is exactly that kind of case. The interaction worked, but the prompt was hard to notice quickly under pressure, which affected performance.
+      </p>
+
+      <h3>Why does cognitive load matter in QA?</h3>
+      <p>
+        Because players do not interact with one mechanic in a vacuum. They process timing, prompts, targets, and consequences at the same time. That affects how difficulty is experienced.
+      </p>
+
+      <h3>Is this the same as doing a full accessibility audit?</h3>
+      <p>
+        No. This project was an early build QA pass with an accessibility-informed lens, not a full audit. The goal was to improve interpretation of player-facing friction, not claim complete accessibility coverage.
+      </p>
+
+      <h3>Why not just say “the player needs more practice”?</h3>
+      <p>
+        Because that can hide real design problems. If the player is failing because the game communicates poorly, practice is not the real fix.
+      </p>
+
+      <h3>What did this article help show about your QA approach?</h3>
+      <p>
+        That I do not just log what breaks. I also look at how readability, multitasking, and cognitive demand affect the player experience, and I can explain the difference clearly.
+      </p>
+    </section>
+
+    <hr>
+
+    <section class="section" id="links">
+      <h2>Evidence and case study links</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift case study (full artefacts and evidence)</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Articles hub</a></li>
+      </ul>
+      <p class="small">
+        This page stays focused on interpretation and QA judgement. The case study links out to the workbook tabs, session logs, bug log, Jira tickets, and supporting evidence clips.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Back to Articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
