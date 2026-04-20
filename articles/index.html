@@ -21,119 +21,10 @@
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-  <style>
-  .visually-hidden{
-    position:absolute !important;
-    height:1px; width:1px;
-    overflow:hidden;
-    clip:rect(1px, 1px, 1px, 1px);
-    white-space:nowrap;
-    clip-path: inset(50%);
-    border:0;
-    padding:0;
-    margin:-1px;
-  }
-
-  .hero{
-    position: relative;
-    margin: 14px 0 12px;
-    border-radius: 16px;
-    overflow: visible;
-  }
-
-  .hero::before{
-    content:"";
-    position:absolute;
-    inset: 10px 14px 10px 14px;
-    border-radius: 18px;
-    background: rgba(0, 242, 201, .14);
-    filter: blur(22px);
-    opacity: .55;
-    z-index: 0;
-    animation: tealPulse 3.2s ease-in-out infinite;
-  }
-
-  @keyframes tealPulse{
-    0%   { opacity: .35; transform: scale(0.995); }
-    50%  { opacity: .62; transform: scale(1.01); }
-    100% { opacity: .40; transform: scale(1.0); }
-  }
-
-  .hero img{
-    position: relative;
-    z-index: 1;
-    display:block;
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    border: 1px solid var(--line);
-    box-shadow: 0 18px 50px rgba(0,0,0,.35);
-  }
-
-  .hub-nav{
-    margin: 10px 0 0;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    justify-content:center;
-  }
-
-  .pill{
-    display:inline-block;
-    padding:8px 12px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    background: rgba(255,255,255,.02);
-    text-decoration:none;
-    font-size:.95rem;
-    opacity:.95;
-    transition: background .18s ease, transform .18s ease, opacity .18s ease, border-color .18s ease;
-  }
-
-  .pill:hover,
-  .pill:focus-visible{
-    background: rgba(255,255,255,.05);
-    opacity:1;
-    transform: translateY(-1px);
-    border-color: rgba(255,255,255,.18);
-    outline: none;
-  }
-
-  .hub-section{
-    margin: 0;
-    padding: 18px 0 2px;
-    border-radius: 18px;
-    position: relative;
-  }
-
-  .hub-section h2{
-    margin: 0 0 6px;
-    font-size: 1.15rem;
-  }
-
-  .section-hint{
-    margin: 0 0 8px;
-    opacity: .82;
-    line-height: 1.55;
-  }
-
-  .section-why{
-    margin: 0 0 14px;
-    font-size: .96rem;
-    line-height: 1.55;
-    opacity: .96;
-    padding-left: 12px;
-    border-left: 2px solid rgba(0, 242, 201, .30);
-  }
-
-  .article-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    align-items: stretch;
-  }
-
+ <style>
   .article-row{
+    position: relative;
+    isolation: isolate;
     width: 100%;
     box-sizing: border-box;
     display:flex;
@@ -143,138 +34,52 @@
     border:1px solid var(--line);
     border-radius:14px;
     background: rgba(255,255,255,.02);
-    transition:
-      transform .18s ease,
-      filter .18s ease,
-      outline-color .18s ease;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+
+  .article-row::before{
+    content:"";
+    position:absolute;
+    inset:-6px;
+    border-radius:18px;
+    background: rgba(15,181,201,.26);
+    filter: blur(22px);
+    opacity: 0;
+    transition: opacity .18s ease;
+    z-index: -1;
+    pointer-events: none;
   }
 
   .article-row:hover{
     transform: translateY(-2px);
-    filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    border-color: rgba(255,255,255,.16);
+  }
+
+  .article-row:hover::before{
+    opacity: 1;
   }
 
   .article-row:focus-within{
     transform: translateY(-2px);
-    filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    border-color: rgba(255,255,255,.16);
     outline: 2px solid rgba(15,181,201,.55);
     outline-offset: 2px;
   }
 
-  .article-row:hover:focus-within{
-    filter: drop-shadow(0 0 34px rgba(15,181,201,.45));
+  .article-row:focus-within::before{
+    opacity: 1;
   }
 
-  .article-main{
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .article-title{
-    margin: 0 0 6px;
-    font-size: 1.05rem;
-    line-height: 1.25;
-  }
-
-  .article-title a{
-    text-decoration:none;
-  }
-
-  .article-title a:hover,
-  .article-title a:focus-visible{
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .article-desc{
-    margin: 0 0 10px;
-    opacity: .92;
-    line-height: 1.55;
-  }
-
-  .meta{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px 10px;
-    align-items:center;
-    opacity: .86;
-    font-size: .92rem;
-    line-height: 1.35;
-  }
-
-  .tag{
-    display:inline-block;
-    padding:3px 8px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    background: rgba(255,255,255,.02);
-  }
-
-  .article-cta{
-    display:flex;
-    align-items:flex-start;
-    flex: 0 0 auto;
-  }
-
-  .btn-mini{
-    display:inline-block;
-    padding:8px 10px;
-    border-radius:10px;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.03);
-    text-decoration:none;
-    font-size:.95rem;
-    opacity:.95;
-    white-space: nowrap;
-    transition: opacity .18s ease, background .18s ease, border-color .18s ease;
-  }
-
-  .btn-mini:hover,
-  .btn-mini:focus-visible{
-    opacity:1;
-    background: rgba(255,255,255,.05);
-    border-color: rgba(255,255,255,.18);
-    outline: none;
-  }
-
-  .divider{
-    height:1px;
-    background: var(--line);
-    margin: 22px 0;
-    opacity: .9;
-  }
-
-  .soon-row{
-    opacity: .94;
-  }
-
-  .empty-row{
-    background: rgba(255,255,255,.015);
-  }
-
-  @media (max-width: 720px){
-    .article-row{ flex-direction:column; }
-    .article-cta{ justify-content:flex-start; }
-    .btn-mini{ width: fit-content; }
+  .article-row:hover:focus-within::before{
+    opacity: 1;
+    background: rgba(15,181,201,.32);
   }
 
   @media (prefers-reduced-motion: reduce){
     .article-row,
     .article-row:hover,
-    .article-row:focus-within{
-      transition: filter .01s linear, box-shadow .01s linear;
-      transform: none;
-    }
-
-    .pill,
-    .pill:hover,
-    .pill:focus-visible,
-    .btn-mini,
-    .btn-mini:hover,
-    .btn-mini:focus-visible{
+    .article-row:focus-within,
+    .article-row::before{
       transition: none;
       transform: none;
     }
