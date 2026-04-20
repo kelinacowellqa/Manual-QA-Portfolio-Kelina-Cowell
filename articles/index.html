@@ -21,70 +21,46 @@
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
- <style>
-  .article-row{
-    position: relative;
-    isolation: isolate;
-    width: 100%;
-    box-sizing: border-box;
-    display:flex;
-    justify-content:space-between;
-    gap:14px;
-    padding:14px;
-    border:1px solid var(--line);
-    border-radius:14px;
-    background: rgba(255,255,255,.02);
-    transition: transform .18s ease, border-color .18s ease;
-  }
-
-  .article-row::before{
-    content:"";
-    position:absolute;
-    inset:-6px;
-    border-radius:18px;
-    background: rgba(15,181,201,.26);
-    filter: blur(22px);
-    opacity: 0;
-    transition: opacity .18s ease;
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  .article-row:hover{
-    transform: translateY(-2px);
-    border-color: rgba(255,255,255,.16);
-  }
-
-  .article-row:hover::before{
-    opacity: 1;
-  }
-
-  .article-row:focus-within{
-    transform: translateY(-2px);
-    border-color: rgba(255,255,255,.16);
-    outline: 2px solid rgba(15,181,201,.55);
-    outline-offset: 2px;
-  }
-
-  .article-row:focus-within::before{
-    opacity: 1;
-  }
-
-  .article-row:hover:focus-within::before{
-    opacity: 1;
-    background: rgba(15,181,201,.32);
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .article-row,
-    .article-row:hover,
-    .article-row:focus-within,
-    .article-row::before{
-      transition: none;
-      transform: none;
+  <style>
+    .article-row{
+      width: 100%;
+      box-sizing: border-box;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.02);
+      transition: transform .2s ease, filter .2s ease;
+      will-change: transform, filter;
     }
-  }
-</style>
+
+    .article-row:hover{
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+    }
+
+    .article-row:focus-within{
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 28px rgba(15,181,201,.38));
+      outline: 2px solid rgba(15,181,201,.55);
+      outline-offset: 2px;
+    }
+
+    .article-row:hover:focus-within{
+      filter: drop-shadow(0 0 34px rgba(15,181,201,.45));
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .article-row,
+      .article-row:hover,
+      .article-row:focus-within{
+        transition: filter .01s linear, box-shadow .01s linear;
+        transform: none;
+      }
+    }
+  </style>
 
   <script type="application/ld+json">
   {
