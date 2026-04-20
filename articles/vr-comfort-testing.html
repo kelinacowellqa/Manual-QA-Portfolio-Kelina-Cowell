@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going | Kelina Cowell</title>
+
+  <meta name="description" content="VR comfort testing article backed by my Shadow Point (Meta Quest 3) one-week pass: how I scope seated VR accessibility and comfort checks, use charter-driven sessions, and log subtitle, locomotion, clarity, and non-audio cue risks with evidence." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html" />
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta property="og:title" content="VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going | Kelina Cowell">
+  <meta property="og:description" content="Applied QA article backed by a one-week Shadow Point (Meta Quest 3) pass: seated VR comfort, subtitle accessibility, non-audio confirmation, locomotion risk, and early-room cognitive barriers on build 1.4.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta property="article:published_time" content="2026-04-20">
+  <meta property="article:modified_time" content="2026-04-20">
+
+  <meta name="twitter:title" content="VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going | Kelina Cowell">
+  <meta name="twitter:description" content="How I run a charter-driven VR comfort and accessibility pass for seated play, backed by my Shadow Point (Meta Quest 3) project: subtitles, locomotion, camera stability, non-audio cues, and cognitive barriers.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html">
+
+  <style>
+    .article-hero,
+    .toc,
+    .callout{
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    .article-hero{
+      margin: 12px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toc{
+      margin: 10px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .callout{ margin: 16px 0; }
+
+    .meta{ margin: 0; opacity: .9; }
+
+    .small{ font-size: .95rem; opacity: .95; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    .tldr{
+      margin: 14px 0 0;
+      padding: 0;
+    }
+    .tldr li{ margin: 6px 0; }
+
+    .author-row{
+      margin-top: 10px;
+      opacity: .95;
+    }
+    .author-row a{ text-decoration: underline; }
+
+    .pullquote{
+      margin: 16px 0;
+      padding: 14px 16px 14px 18px;
+      border-left: 3px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+    }
+    .pullquote blockquote{
+      margin: 0;
+      padding: 0;
+    }
+    .pullquote blockquote p{
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .pullquote blockquote p:before{
+      content: "“";
+      font-size: 2.2rem;
+      line-height: 0;
+      vertical-align: -0.35em;
+      opacity: .55;
+      margin-right: 6px;
+    }
+    .pullquote cite{
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      opacity: .85;
+      font-size: .95rem;
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going",
+    "description": "Applied QA article backed by my Shadow Point (Meta Quest 3, standalone) one-week portfolio pass, showing how I scope and execute seated VR comfort and accessibility testing through charter-driven sessions focused on subtitles, locomotion, camera predictability, non-audio cue redundancy, seated reach, and early-room cognitive barriers.",
+    "datePublished": "2026-04-20",
+    "dateModified": "2026-04-20",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+      <h1>VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going</h1>
+      <p class="hint">An applied QA article, not a definition page and not a full project dump.</p>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+
+      <p class="small">
+        This is an article on how I approach <strong>VR comfort and accessibility testing</strong> in manual QA, backed by a real one-week solo pass on
+        <strong>Shadow Point (Meta Quest 3, standalone)</strong>. It exists to show how I scope comfort and access risk for seated play, what I check first, and how I turn movement, subtitle, clarity, and non-audio cue observations into structured findings using <strong>recognised XR accessibility guidance, formal standards, and expert-informed heuristics</strong>, rather than gut feel or personal preference.
+      </p>
+
+      <hr>
+
+      <figure class="article-figure plain-figure">
+        <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/vr-accessibility-testing-workflow.png" target="_blank" rel="noopener">
+          <img
+            src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/vr-accessibility-testing-workflow.png"
+            alt="VR comfort testing workflow diagram for Shadow Point: risk-based charter design, seated VR checks, subtitle and non-audio cue validation, comfort and cognitive probes, then evidence-backed outcomes."
+            loading="eager"
+            decoding="async"
+          >
+        </a>
+        <figcaption class="small">
+          VR comfort and accessibility workflow used during my Shadow Point pass on Meta Quest 3. <span class="hint">(Click to enlarge)</span>
+        </figcaption>
+      </figure>
+
+      <hr>
+
+      <section class="callout" aria-label="Workflow proof points">
+        <h2 style="margin-top:0;">TL;DR</h2>
+        <ul class="tldr small">
+          <li><strong>Workflow shown:</strong> comfort-risk scoping → charter-driven sessions → targeted follow-up checks → evidence-backed findings.</li>
+          <li><strong>Example context:</strong> Shadow Point on Meta Quest 3 (standalone) used only as a real-world backing example.</li>
+          <li><strong>Build context:</strong> tested on build <code>1.4</code> from <strong>08 Dec to 13 Dec 2025</strong>.</li>
+          <li><strong>Primary focus:</strong> seated VR, subtitles, non-audio confirmation, locomotion comfort, camera predictability, and early-room cognitive barriers.</li>
+          <li><strong>Guidance foundation:</strong> Ian Hamilton, BBC XR Barriers, Dr Tracy Gardner, W3C XAUR, and Game Accessibility Guidelines informed the pass.</li>
+          <li><strong>Outputs:</strong> Charter Matrix, Session Log, Bug Log, and linked screenshot/video evidence across 20 logged sessions.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section class="callout" aria-label="About this work">
+        <h2 style="margin-top:0;">VR comfort testing scope: what I covered and why</h2>
+        <p class="small">
+          This article is grounded in a self-directed portfolio pass on <strong>Shadow Point</strong> using
+          <strong>Meta Quest 3 standalone</strong>, run in a one-week solo timebox.
+          Scope was <strong>risk-based</strong> and <strong>charter-driven</strong>, focused on the
+          <strong>tutorial and early chapters</strong> from a first-time seated-player viewpoint.
+          Coverage centred on comfort stability, subtitle accessibility, non-audio cue redundancy,
+          seated reach and input strain, UI legibility, and early-room comprehension barriers.
+          <strong>This was a heuristic-informed accessibility and comfort review, not a user study and not full regression.</strong>
+        </p>
+      </section>
+    </header>
+
+    <hr>
+
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#what-it-is">What VR comfort testing is in practice</a></li>
+        <li><a href="#baseline">Why seated first-time player checks come first</a></li>
+        <li><a href="#scope">How I scoped VR comfort and accessibility risk</a></li>
+        <li><a href="#charters">How my charter-driven workflow is structured</a></li>
+        <li><a href="#foundation">The guidance foundation behind the pass</a></li>
+        <li><a href="#subtitles">Why subtitles are a major VR comfort and accessibility surface</a></li>
+        <li><a href="#audio-off">Why audio-off testing exposes missing redundancy fast</a></li>
+        <li><a href="#cognitive">Cognitive barriers in VR are not just “player skill issues”</a></li>
+        <li><a href="#proof">Examples from the Shadow Point pass</a></li>
+        <li><a href="#takeaways">VR comfort testing takeaways</a></li>
+        <li><a href="#faq">VR comfort testing FAQ</a></li>
+        <li><a href="#links">Evidence and case study links</a></li>
+      </ul>
+    </nav>
+
+    <hr>
+
+    <h2 id="what-it-is">What VR comfort testing is in practice</h2>
+    <p>
+      VR comfort testing is not just asking “did this make me feel sick?”
+      That is the useless version.
+    </p>
+    <p>
+      In practice, it means checking whether movement, camera behaviour, text placement,
+      tutorial messaging, interaction design, and sensory feedback create barriers that stop players
+      from continuing comfortably, understanding what the game wants from them, or trusting the space enough to keep playing.
+    </p>
+    <p>
+      For this project, I did not build the pass on personal preference or vague “VR intuition”.
+      I built it on <strong>recognised XR accessibility guidance and expert-informed heuristics</strong>.
+      That included VR comfort fundamentals from Ian Hamilton, cognitive accessibility heuristics from the BBC XR Barriers framework, standards-level expectations from W3C XAUR, practical pattern guidance from Game Accessibility Guidelines, and practitioner insight from Dr Tracy Gardner on locomotion risk and multi-modal communication.
+    </p>
+    <p>
+      That matters because it changes the meaning of the findings. This article is not claiming
+      “Kelina noticed smart things in VR.” It is showing how I translated established accessibility thinking into a structured, one-week manual QA pass.
+    </p>
+
+    <section class="callout">
+      <h3>What this project was, and what it was not</h3>
+      <p class="small">
+        This was a <strong>heuristic-informed accessibility and comfort review</strong>, not a user study.
+        The goal was to test against recognised risk areas and accessibility expectations in a structured way,
+        not to pretend I was running formal player research.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="baseline">Why seated first-time player checks come first</h2>
+    <p>
+      For this project I tested from a <strong>first-time seated VR viewpoint</strong> because that is where
+      accessibility and comfort issues show up fast. Early onboarding is where players decide whether they trust
+      the game, and in VR that trust is fragile.
+    </p>
+    <p class="small">
+      My checks focused on tutorial clarity, subtitle readability, seated interaction reach, non-audio confirmation,
+      locomotion and turning comfort, and horizon stability during movement-heavy moments such as the cable car sequence.
+    </p>
+
+    <aside class="pullquote" aria-label="Applied insight">
+      <blockquote>
+        <p>Comfort is not a bonus layer in VR. If the player cannot comfortably stay in the experience, everything after that becomes irrelevant.</p>
+        <cite>- Principle applied throughout my Shadow Point pass</cite>
+      </blockquote>
+    </aside>
+
+    <section class="callout">
+      <h3>Why first-time seated VR matters</h3>
+      <p class="small">
+        Seated first-time play is a strong stress point for accessibility because it combines unfamiliar controls,
+        distance-based text, spatial interaction, and comfort sensitivity. If the game fails there, it risks losing players before the core experience even starts.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="scope">How I scoped VR comfort and accessibility risk</h2>
+    <p>
+      I did not treat this as full functional coverage. It was a one-week solo portfolio pass, so the scope had to be selective and evidence-led.
+      I focused on the areas most likely to create access barriers, comfort breakdown, or early-player drop-off in seated VR.
+    </p>
+
+    <ul>
+      <li><strong>Camera behaviour and horizon stability:</strong> does movement remain visually stable and predictable?</li>
+      <li><strong>Locomotion and turning:</strong> do seated controller checks reveal discomfort, disorientation, or nausea risk?</li>
+      <li><strong>Subtitles:</strong> are they available, readable, and visible when players actually need them?</li>
+      <li><strong>Non-audio confirmation:</strong> if volume is reduced to 0, does the game still confirm actions clearly through visual or haptic means?</li>
+      <li><strong>Seated reach and input strain:</strong> does the interaction design support normal seated posture and realistic reach?</li>
+      <li><strong>Cognitive barriers:</strong> do early puzzle spaces create confusion around comprehension, expectation, timing, wayfinding, or memory load?</li>
+    </ul>
+
+    <p>
+      The foundation for those checks came from multiple layers of guidance.
+      <strong>Ian Hamilton’s VR accessibility guidance</strong> acted as the comfort spine for charter design, shaping checks around camera behaviour, locomotion, vignettes, horizon stability, seated play, and VR text readability.
+      <strong>Jamie Knight’s BBC XR Barriers framework</strong> shaped the cognitive layer of the pass, which I translated into COG01 to COG05 around comprehension, expectation, wayfinding, timing, and focus and memory.
+    </p>
+    <p>
+      <strong>Dr Tracy Gardner’s feedback</strong> strengthened how I framed locomotion and turning checks.
+      Movement design in VR is not just a comfort preference surface. It is a high-risk accessibility area because poor locomotion can trigger nausea quickly and put players off VR entirely.
+      That means movement problems are not just polish issues. They can be access barriers and retention risks.
+    </p>
+    <p>
+      I also used <strong>W3C XR Accessibility User Requirements (XAUR)</strong> as the standards layer, which reinforced expectations around neutral posture, alternative input paths, reduced motor strain, multi-sensory communication, and UI clarity.
+      Finally, I used <strong>Game Accessibility Guidelines</strong> as the practical pattern layer to strengthen expectations around subtitle stability, text readability, cue redundancy, chunked information, and reduced multitasking load.
+    </p>
+
+    <section class="callout">
+      <h3>Why this matters</h3>
+      <p class="small">
+        The pass was not shaped by “what felt good to me”.
+        It was shaped by established XR accessibility thinking, standards-level expectations, and practical design patterns, then applied through a realistic manual QA workflow.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="charters">How my charter-driven workflow is structured</h2>
+    <p>
+      A clear charter set stops VR testing from turning into random headset wandering.
+      For this project, the charters were not invented in a vacuum. They were built from recognised XR accessibility guidance and then translated into practical QA coverage for seated VR.
+    </p>
+    <p>
+      The comfort spine came from VR accessibility fundamentals, the cognitive layer came from BBC XR Barriers, and the standards/pattern layer came from XAUR and Game Accessibility Guidelines.
+      That gave the pass a clear structure: not “test whatever seems annoying”, but test against known accessibility and comfort risk surfaces in a time-boxed, auditable way.
+    </p>
+    <p>
+      For Shadow Point, I used a <strong>Charter Matrix</strong> and <strong>time-boxed Session Log</strong> to keep the pass structured.
+      Sessions were logged as <strong>S-001 to S-020</strong>, with timestamp anchors, outcomes, and evidence type recorded against each run.
+      Where checks overlapped, I consolidated them rather than pretending duplicate work was useful coverage.
+    </p>
+
+    <section class="callout">
+      <h3>What my workflow produced</h3>
+      <ul class="small">
+        <li><strong>20 logged sessions</strong> across seated VR comfort, accessibility, and cognitive checks</li>
+        <li><strong>11 logged issues</strong> in total</li>
+        <li><strong>7 medium</strong> and <strong>4 low</strong> severity findings</li>
+        <li><strong>Repro evidence</strong> tracked as 3/3, 2/2, or 1/1 depending on follow-up depth</li>
+        <li><strong>Workbook tabs exported as PDF</strong> plus video and screenshot evidence tied to sessions and bug IDs</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <h2 id="foundation">The guidance foundation behind the pass</h2>
+    <p>
+      One of the most important parts of this project was the foundation behind the testing.
+      I did not want the write-up to imply that the findings came from personal taste, or that I was treating my own discomfort threshold as universal.
+    </p>
+    <p>
+      Instead, I built the pass on a layered guidance model:
+    </p>
+
+    <ul>
+      <li><strong>Comfort foundation:</strong> Ian Hamilton’s VR accessibility guidance shaped the core comfort charters for camera behaviour, locomotion, vignettes, horizon stability, seated play, and readable text at real VR distance.</li>
+      <li><strong>Cognitive framework:</strong> Jamie Knight’s BBC XR Barriers framework shaped the cognitive accessibility checks around comprehension, expectation, wayfinding, timing, and focus and memory.</li>
+      <li><strong>Movement risk framing:</strong> Dr Tracy Gardner’s practitioner input reinforced that locomotion is a high-risk accessibility surface and a retention risk, not just a comfort preference.</li>
+      <li><strong>Standards layer:</strong> W3C XAUR helped validate expectations around posture, alternative input paths, reduced strain, multi-sensory communication, and UI clarity.</li>
+      <li><strong>Practical pattern layer:</strong> Game Accessibility Guidelines strengthened expectations around subtitles, cue redundancy, text readability, and cognitive load reduction.</li>
+    </ul>
+
+    <p>
+      That combination gave the project a more serious footing. It let me frame findings in terms of recognised XR accessibility risk rather than isolated personal observation.
+    </p>
+
+    <section class="callout">
+      <h3>Important boundary</h3>
+      <p class="small">
+        This does not turn the project into a formal user study, and I do not present it as one.
+        It was a <strong>heuristic-informed QA pass</strong> built on recognised guidance, executed through structured manual testing, with findings recorded against charters, sessions, and evidence.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="subtitles">Why subtitles are a major VR comfort and accessibility surface</h2>
+    <p>
+      Subtitles in VR are not a minor polish layer. They are a core usability surface.
+    </p>
+    <p>
+      In flat-screen testing, subtitle problems are often obvious. In VR, they get nastier because text competes with depth,
+      camera angle, held objects, environmental framing, and UI overlays. That means a subtitle can technically exist but still fail the player in practice.
+    </p>
+    <p>
+      Subtitle testing in this pass was shaped by both standards and practical guidance.
+      Ian Hamilton’s VR guidance helped frame readability as a <strong>VR distance and comfort problem</strong>, not just a flat UI problem, while Game Accessibility Guidelines strengthened expectations around subtitle stability, visibility, and clarity.
+    </p>
+    <p>
+      That matters because a subtitle can technically exist and still fail accessibility in practice. In VR, held objects, overlays, scene framing, and head position can all interfere with subtitle access. So the real question is not “are subtitles turned on?” but “can players reliably use them under normal play conditions?”
+    </p>
+    <p class="small">
+      In this pass, subtitle problems were one of the clearest issue clusters:
+      <strong>SP-12</strong>, <strong>SP-17</strong>, <strong>SP-24</strong>, and <strong>SP-25</strong> all related to readability or occlusion.
+      These included backpack UI covering subtitles, held objects blocking them, and subtitle behaviour failing near cable car windows and sides.
+    </p>
+
+    <aside class="pullquote" aria-label="Applied insight">
+      <blockquote>
+        <p>If subtitles are present but unstable, obscured, or unreadable at real VR distance, they are not genuinely accessible.</p>
+        <cite>- A working rule from this project</cite>
+      </blockquote>
+    </aside>
+
+    <section class="callout">
+      <h3>Why subtitle failures matter so much in VR</h3>
+      <p class="small">
+        Subtitle failure is not just a hearing-access issue. It also affects comprehension, pacing, confidence, and puzzle understanding.
+        In a narrative puzzle game, that can break the whole onboarding experience.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="audio-off">Why audio-off testing exposes missing redundancy fast</h2>
+    <p>
+      One of the quickest ways to expose weak accessibility design is to set volume to <strong>0</strong> and see what falls apart.
+    </p>
+    <p>
+      If tutorial steps, interactions, or confirmations rely heavily on sound with no strong visual or haptic replacement,
+      the game is telling on itself immediately.
+    </p>
+    <p>
+      The non-audio cue checks were also grounded in guidance rather than improvisation.
+      XAUR reinforced the expectation for multi-sensory communication, and Game Accessibility Guidelines strengthened the practical expectation that important cues should not rely on audio alone.
+    </p>
+    <p>
+      That is why testing at volume 0 was useful. It was not a gimmick. It was a direct way to probe whether the tutorial and interaction flow still communicated clearly when one channel was removed.
+    </p>
+    <p class="small">
+      That is exactly what happened here. <strong>SP-27</strong> captured tutorial steps that lacked visual or haptic completion feedback at volume 0,
+      while <strong>SP-28</strong> exposed clarity issues with the tutorial whiteboard. Together, they showed that removing audio did not just reduce polish,
+      it reduced understanding.
+    </p>
+
+    <section class="callout">
+      <h3>Why non-audio cue checks matter</h3>
+      <p class="small">
+        Players may rely on reduced audio or no audio for all sorts of reasons:
+        Deaf or hard of hearing access, sensory sensitivity, shared living spaces, volume preference, or plain headset setup.
+        A tutorial that only “works properly” with sound on is not robust.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="cognitive">Cognitive barriers in VR are not just “player skill issues”</h2>
+    <p>
+      Cognitive barriers in VR are easy to dismiss as “the player just didn’t get it”, which is lazy and usually wrong.
+      For this pass, I used the <strong>BBC XR Barriers</strong> as an explicit heuristic framework so that cognitive accessibility checks had structure.
+    </p>
+    <p>
+      That meant I was not just logging vague confusion. I was checking for specific barrier types:
+      <strong>comprehension, expectation, wayfinding, timing, and focus and memory</strong>.
+      That gave the early-room clarity findings a much stronger foundation than simple UX opinion.
+    </p>
+    <p>
+      Puzzle VR can fail players without ever throwing a traditional bug.
+      Confusing sequencing, unclear expectation-setting, poor wayfinding, overloaded instructions, and awkward pacing can all act as access barriers.
+    </p>
+    <p class="small">
+      This was especially useful in early rooms, where subtle issues around item signalling,
+      whiteboard behaviour, backpack messaging, and interaction expectations could be framed as real barriers rather than player error.
+    </p>
+
+    <section class="callout">
+      <h3>One useful rule here</h3>
+      <p class="small">
+        If the game highlights an object, shows a grab icon, or presents a tutorial prompt that implies clear next steps,
+        the player should not then have to fight the game to work out what it actually means.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="proof">Examples from the Shadow Point pass</h2>
+
+    <section class="callout">
+      <h3>Example issue cluster: subtitle accessibility was the main risk theme</h3>
+      <p class="small">
+        Across the pass, subtitle-related issues formed the clearest cluster.
+        <strong>SP-12</strong> captured a backpack popup occluding subtitles after picking up the book.
+        <strong>SP-17</strong> showed subtitle behaviour failing near the cable car windows and sides, leaving an ellipsis bubble with no readable text.
+        <strong>SP-24</strong> showed subtitles being blocked by the held book in the start room.
+        <strong>SP-25</strong> captured backpack UI and a loading icon appearing over subtitles.
+        These were not isolated visual quirks. They were repeated comprehension blockers.
+      </p>
+    </section>
+
+    <section class="callout">
+      <h3>Example accessibility issue: grab affordance did not match seated reach</h3>
+      <p class="small">
+        In Room 3, <strong>SP-18</strong> and <strong>SP-19</strong> captured a clear seated usability problem:
+        a highlighted floor item showed a grab icon but would not grab at normal seated reach.
+        That matters because the game is explicitly signalling “you can do this” while the physical interaction says otherwise.
+        In VR, that kind of mismatch creates friction fast.
+      </p>
+    </section>
+
+    <section class="callout">
+      <h3>Example audio-off risk: confirmation breaks down when sound is removed</h3>
+      <p class="small">
+        <strong>SP-27</strong> showed tutorial steps lacking sufficient visual or haptic completion feedback at volume 0.
+        That means the game depended too heavily on audio confirmation during onboarding.
+        <strong>SP-28</strong> reinforced this by showing the tutorial whiteboard behaving poorly when approached from behind, creating an extra clarity problem rather than solving one.
+      </p>
+    </section>
+
+    <section class="callout">
+      <h3>Example low-severity but still relevant comfort oddity</h3>
+      <p class="small">
+        <strong>SP-4</strong> logged a visual issue where the left hand appeared in front of the menu during move plus look,
+        and looking at the hands caused snapping back. Low severity, yes, but still relevant because hand and menu stability contribute to trust in the VR space.
+      </p>
+    </section>
+
+    <section class="callout">
+      <h3>Results snapshot</h3>
+      <p class="small">
+        In this pass I logged <strong>11 issues</strong> total across <strong>20 sessions</strong>:
+        <strong>7 medium</strong> and <strong>4 low</strong>.
+        The main risk themes were subtitle accessibility, non-audio confirmation gaps, and seated interaction clarity.
+        That tells me the project’s biggest accessibility risks were concentrated in information delivery and interaction expectation, not raw system instability.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="takeaways">VR comfort testing takeaways</h2>
+    <ul class="small">
+      <li>Comfort in VR is an accessibility baseline, not a preference setting.</li>
+      <li>Seated first-time-player checks are high value because that is where trust breaks fastest.</li>
+      <li>Subtitle testing in VR must account for real use conditions, not just subtitle presence.</li>
+      <li>Audio-off testing is one of the fastest ways to reveal weak redundancy.</li>
+      <li>If the UI promises an interaction, seated play needs to support it reliably.</li>
+      <li>Cognitive confusion in puzzle VR should be treated as a barrier, not brushed off as player incompetence.</li>
+      <li>Charters and session logs stop VR passes from becoming chaotic and make the work auditable.</li>
+      <li>Good evidence matters for comfort findings because “this feels bad” is not enough on its own.</li>
+      <li>The strongest VR accessibility write-ups show the guidance foundation behind the checks, not just the observations that came out of them.</li>
+    </ul>
+
+    <hr>
+
+    <section class="section" id="faq">
+      <h2>VR comfort testing FAQ</h2>
+
+      <h3>Is VR comfort testing just about motion sickness?</h3>
+      <p>
+        No. Motion sickness is part of it, but VR comfort testing also covers readable text,
+        predictable camera behaviour, seated posture, input strain, interaction reach, and clarity of feedback.
+      </p>
+
+      <h3>Why test seated VR specifically?</h3>
+      <p>
+        Because seated play exposes important accessibility surfaces around reach, posture,
+        input effort, and how clearly the game communicates from a less flexible physical position.
+      </p>
+
+      <h3>Are subtitle issues really that important in VR?</h3>
+      <p>
+        Yes. In VR, subtitles compete with depth, object placement, UI overlays, and head position.
+        If they are obscured or unstable, comprehension can fail immediately.
+      </p>
+
+      <h3>Why test with volume at 0?</h3>
+      <p>
+        It is a simple way to reveal whether the game depends too heavily on audio without providing
+        visual or haptic redundancy for key confirmations and tutorial steps.
+      </p>
+
+      <h3>How is this different from general exploratory testing?</h3>
+      <p>
+        It is still exploratory, but the exploration is guided by explicit comfort and accessibility charters.
+        The point is not random wandering. The point is targeted investigation of high-risk surfaces.
+      </p>
+
+      <h3>Do you need a user study to raise these issues?</h3>
+      <p>
+        No. This project was a heuristic-informed accessibility and comfort review, not a user study.
+        It used established frameworks to structure checks and findings, which is valid for a scoped QA pass.
+      </p>
+    </section>
+
+    <hr>
+
+    <section class="section" id="links">
+      <h2>Evidence and case study links</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">Shadow Point VR accessibility and comfort case study</a></li>
+        <li><a href="https://docs.google.com/spreadsheets/d/1YUXIjYWyeuaH8hWhHAxmAMtr05DNHzJb/edit?usp=drive_link&ouid=101337383007576779931&rtpof=true&sd=true">QA Workbook (Google Sheets)</a></li>
+        <li><a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/media/Shadow_Point_QA_Accessibilty_Comfort_Workbook_QUEST3_Kelina_Cowell_PORTFOLIO.pdf">QA Workbook (PDF export)</a></li>
+      </ul>
+      <p class="small">
+        This page stays focused on the VR comfort and accessibility workflow. The project page and workbook contain the fuller artefacts, including the Charter Matrix, Session Log, Bug Log, Applied Insight layer, and media evidence.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Back to Articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
