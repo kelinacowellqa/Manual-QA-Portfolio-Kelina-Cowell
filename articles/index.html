@@ -22,45 +22,8 @@
           async src="//gc.zgo.at/count.js"></script>
 
  <style>
-  .article-list,
-  .hub-section,
-  .wrap,
-  main{
-    overflow: visible !important;
-  }
-
-  .article-list{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
   .article-row{
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 18px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: rgba(255,255,255,.02);
-    box-shadow: 0 0 0 rgba(15,181,201,0);
-    transition:
-      transform .2s ease,
-      box-shadow .2s ease,
-      border-color .2s ease;
-  }
-
-  .article-main{
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .article-cta{
-    flex: 0 0 auto;
-    margin-left: 12px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
 
   .article-row:hover{
@@ -90,21 +53,6 @@
       0 0 52px rgba(15,181,201,.22);
   }
 
-  @media (max-width: 720px){
-    .article-row{
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .article-cta{
-      margin-left: 0;
-    }
-
-    .btn-mini{
-      width: fit-content;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce){
     .article-row,
     .article-row:hover,
@@ -114,7 +62,6 @@
     }
   }
 </style>
-
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
