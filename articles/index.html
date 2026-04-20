@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +23,6 @@
           async src="//gc.zgo.at/count.js"></script>
 
   <style>
-    /* Visually hidden (keep H1 for SEO/accessibility) */
     .visually-hidden{
       position:absolute !important;
       height:1px; width:1px;
@@ -35,18 +35,17 @@
       margin:-1px;
     }
 
-    /* Banner wrapper: match Sworn-style header (no cropping) + teal pulse glow */
     .hero{
       position: relative;
       margin: 14px 0 12px;
       border-radius: 16px;
-      overflow: visible; /* allow glow to show */
+      overflow: visible;
     }
 
     .hero::before{
       content:"";
       position:absolute;
-      inset: 10px 14px 10px 14px; /* keeps glow tucked behind */
+      inset: 10px 14px 10px 14px;
       border-radius: 18px;
       background: rgba(0, 242, 201, .14);
       filter: blur(22px);
@@ -64,17 +63,14 @@
     .hero img{
       position: relative;
       z-index: 1;
-
       display:block;
       width: 100%;
-      height: auto;           /* IMPORTANT: no cropping */
+      height: auto;
       border-radius: 16px;
-
       border: 1px solid var(--line);
       box-shadow: 0 18px 50px rgba(0,0,0,.35);
     }
 
-    /* Category jump links */
     .hub-nav{
       margin: 10px 0 0;
       display:flex;
@@ -82,6 +78,7 @@
       gap:10px;
       justify-content:center;
     }
+
     .pill{
       display:inline-block;
       padding:8px 12px;
@@ -91,29 +88,55 @@
       text-decoration:none;
       font-size:.95rem;
       opacity:.95;
+      transition: background .18s ease, transform .18s ease, opacity .18s ease, border-color .18s ease;
     }
-    .pill:hover{ background: rgba(255,255,255,.04); opacity:1; }
+
+    .pill:hover,
+    .pill:focus-visible{
+      background: rgba(255,255,255,.05);
+      opacity:1;
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.18);
+      outline: none;
+    }
 
     .hub-section{
       margin: 0;
+      padding: 18px 0 2px;
+      border-radius: 18px;
+      position: relative;
     }
+
     .hub-section h2{
       margin: 0 0 6px;
       font-size: 1.15rem;
     }
+
     .section-hint{
-      margin: 0 0 14px;
-      opacity: .78;
+      margin: 0 0 8px;
+      opacity: .82;
       line-height: 1.55;
     }
 
-    /* Article rows (scalable list, not a 3-card grid) */
+    .section-why{
+      margin: 0 0 14px;
+      font-size: .96rem;
+      line-height: 1.55;
+      opacity: .96;
+      padding-left: 12px;
+      border-left: 2px solid rgba(0, 242, 201, .30);
+    }
+
     .article-list{
       display:flex;
       flex-direction:column;
       gap:12px;
+      align-items: stretch;
     }
+
     .article-row{
+      width: 100%;
+      box-sizing: border-box;
       display:flex;
       justify-content:space-between;
       gap:14px;
@@ -121,23 +144,43 @@
       border:1px solid var(--line);
       border-radius:14px;
       background: rgba(255,255,255,.02);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
     }
+
+    .article-row:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.035);
+      box-shadow: 0 10px 24px rgba(0,0,0,.16);
+    }
+
     .article-main{
+      flex: 1 1 auto;
       min-width: 0;
     }
+
     .article-title{
       margin: 0 0 6px;
       font-size: 1.05rem;
       line-height: 1.25;
     }
+
     .article-title a{
       text-decoration:none;
     }
+
+    .article-title a:hover,
+    .article-title a:focus-visible{
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .article-desc{
       margin: 0 0 10px;
       opacity: .92;
       line-height: 1.55;
     }
+
     .meta{
       margin: 0;
       padding: 0;
@@ -150,6 +193,7 @@
       font-size: .92rem;
       line-height: 1.35;
     }
+
     .tag{
       display:inline-block;
       padding:3px 8px;
@@ -163,6 +207,7 @@
       align-items:flex-start;
       flex: 0 0 auto;
     }
+
     .btn-mini{
       display:inline-block;
       padding:8px 10px;
@@ -173,8 +218,17 @@
       font-size:.95rem;
       opacity:.95;
       white-space: nowrap;
+      transition: opacity .18s ease, background .18s ease, border-color .18s ease, transform .18s ease;
     }
-    .btn-mini:hover{ opacity:1; }
+
+    .btn-mini:hover,
+    .btn-mini:focus-visible{
+      opacity:1;
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+      outline: none;
+    }
 
     .divider{
       height:1px;
@@ -183,30 +237,19 @@
       opacity: .9;
     }
 
+    .soon-row{
+      opacity: .94;
+    }
+
+    .empty-row{
+      background: rgba(255,255,255,.015);
+    }
+
     @media (max-width: 720px){
       .article-row{ flex-direction:column; }
       .article-cta{ justify-content:flex-start; }
       .btn-mini{ width: fit-content; }
     }
-
-    /* OCD fix: force all rows to the same width */
-.article-list{
-  align-items: stretch;
-}
-
-.article-row{
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.article-main{
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.article-cta{
-  flex: 0 0 auto;
-}
   </style>
 
   <script type="application/ld+json">
@@ -220,7 +263,6 @@
   }
   </script>
 
-  <!-- ItemList: keep this updated as you add articles -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -231,24 +273,42 @@
       {
         "@type": "ListItem",
         "position": 1,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html",
+        "name": "VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html",
+        "name": "When a game feels hard… but isn’t broken"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html",
+        "name": "Early Build QA: why testing everything is a waste of time"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
         "name": "Game accessibility QA: what I learned from the APX Practitioner course"
       },
       {
         "@type": "ListItem",
-        "position": 2,
+        "position": 5,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
         "name": "Regression testing: the risk-first checks that keep releases stable"
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 6,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
         "name": "Exploratory testing on mobile: the method behind the chaos"
       },
       {
         "@type": "ListItem",
-        "position": 4,
+        "position": 7,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html",
         "name": "Functional testing: the boring basics that catch real bugs"
       }
@@ -260,7 +320,6 @@
 <body>
   <main class="wrap">
 
-    <!-- Banner -->
     <div class="hero" aria-label="QA Articles banner">
       <img
         src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/qa_articles_banner1.png"
@@ -270,18 +329,17 @@
       >
     </div>
 
-    <!-- Nav under banner -->
     <nav class="site-nav cta-row"
-           style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA & Live Testing</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education & Professional Development</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/" aria-current="page">Articles</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
-        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
-      </nav>
+         style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA & Live Testing</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education & Professional Development</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/" aria-current="page">Articles</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
+    </nav>
 
     <hr>
 
@@ -292,158 +350,157 @@
       More topics coming, including VR comfort/accessibility, XR learning, controller parity, narrative/localisation QA, and early automation.
     </p>
 
-<!-- Category jump links -->
-<nav class="hub-nav" aria-label="Article categories">
-  <a class="pill" href="#latest">Latest</a>
-  <a class="pill" href="#insights">Game QA Insights</a>
-  <a class="pill" href="#methods">Methods</a>
-  <a class="pill" href="#accessibility">Accessibility</a>
-  <a class="pill" href="#vrxr">VR and XR</a>
-  <a class="pill" href="#portfolio">Portfolio</a>
-  <a class="pill" href="#tools">Tools</a>
-</nav>
+    <nav class="hub-nav" aria-label="Article categories">
+      <a class="pill" href="#latest">Latest</a>
+      <a class="pill" href="#insights">Game QA Insights</a>
+      <a class="pill" href="#methods">Methods</a>
+      <a class="pill" href="#accessibility">Accessibility</a>
+      <a class="pill" href="#vrxr">VR and XR</a>
+      <a class="pill" href="#portfolio">Portfolio</a>
+      <a class="pill" href="#tools">Tools</a>
+    </nav>
 
-<div class="divider" role="separator" aria-hidden="true"></div>
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
     <!-- Latest -->
     <section id="latest" class="hub-section" aria-labelledby="latest-title">
       <h2 id="latest-title">Latest</h2>
-      <p class="section-hint">
-Most recent QA articles and applied testing insights.
-</p>
+      <p class="section-hint">Most recent QA articles and applied testing insights.</p>
+      <p class="section-why"><strong>Why this matters:</strong> start here if you want the newest examples of how I currently think, scope, and write about QA work.</p>
 
       <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./vr-comfort-testing.html">
+                VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going
+              </a>
+            </h3>
+            <p class="article-desc">
+              An applied QA article using Shadow Point (Quest 3): how locomotion, subtitle accessibility, non-audio cues, and cognitive clarity shape comfort, access, and early player retention in VR.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">VR QA</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-20">20 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./vr-comfort-testing.html">Read article</a>
+          </div>
+        </article>
 
         <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./vr-comfort-testing.html">
-        VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going
-      </a>
-    </h3>
-    <p class="article-desc">
-      An applied QA article using Shadow Point (Quest 3): how locomotion, subtitle accessibility, non-audio cues, and cognitive clarity shape comfort, access, and early player retention in VR.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Accessibility</span></li>
-      <li><span class="tag">VR QA</span></li>
-      <li><span class="tag">Game QA</span></li>
-      <li><time datetime="2026-04-20">20 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./vr-comfort-testing.html">Read article</a>
-  </div>
-</article>
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./when-a-game-feels-hard-but-isnt-broken.html">
+                When a game feels hard… but isn’t broken
+              </a>
+            </h3>
+            <p class="article-desc">
+              An applied QA article using The Chef’s Shift: how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">Cognitive Load</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">Read article</a>
+          </div>
+        </article>
 
         <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./when-a-game-feels-hard-but-isnt-broken.html">
-        When a game feels hard… but isn’t broken
-      </a>
-    </h3>
-    <p class="article-desc">
-      An applied QA article using The Chef’s Shift: how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Accessibility</span></li>
-      <li><span class="tag">Cognitive Load</span></li>
-      <li><span class="tag">Game QA</span></li>
-      <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">Read article</a>
-  </div>
-</article>
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
+                Early Build QA: why testing everything is a waste of time
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical look at early build QA using The Chef’s Shift: why exhaustive testing fails, how risk-based testing works, and how to find real issues faster.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Early Build QA</span></li>
+              <li><span class="tag">Risk-Based Testing</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">Read article</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- Game QA Insights -->
+    <section id="insights" class="hub-section" aria-labelledby="insights-title">
+      <h2 id="insights-title">Game QA Insights</h2>
+      <p class="section-hint">Applied QA thinking: player experience, difficulty, clarity, and how design decisions shape perception and behaviour.</p>
+      <p class="section-why"><strong>Why this matters:</strong> these are the pieces that show how I interpret player friction and design signals, not just whether a system technically passed or failed.</p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./when-a-game-feels-hard-but-isnt-broken.html">
+                When a game feels hard… but isn’t broken
+              </a>
+            </h3>
+            <p class="article-desc">
+              How UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">Cognitive Load</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">Read article</a>
+          </div>
+        </article>
 
         <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
-        Early Build QA: why testing everything is a waste of time
-      </a>
-    </h3>
-    <p class="article-desc">
-      A practical look at early build QA using The Chef’s Shift: why exhaustive testing fails, how risk-based testing works, and how to find real issues faster.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Early Build QA</span></li>
-      <li><span class="tag">Risk-Based Testing</span></li>
-      <li><span class="tag">Game QA</span></li>
-      <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">Read article</a>
-  </div>
-</article>
-
-   <!-- Game QA Insights -->
-<section id="insights" class="hub-section" aria-labelledby="insights-title">
-  <h2 id="insights-title">Game QA Insights</h2>
-  <p class="section-hint">
-Applied QA thinking: player experience, difficulty, clarity, and how design decisions shape perception and behaviour.
-</p>
-
-  <div class="article-list">
-
-    <article class="article-row">
-      <div class="article-main">
-        <h3 class="article-title">
-          <a href="./when-a-game-feels-hard-but-isnt-broken.html">
-            When a game feels hard… but isn’t broken
-          </a>
-        </h3>
-        <p class="article-desc">
-          An applied QA article using The Chef’s Shift: how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure.
-        </p>
-        <ul class="meta">
-          <li><span class="tag">Accessibility</span></li>
-          <li><span class="tag">Cognitive Load</span></li>
-          <li><span class="tag">Game QA</span></li>
-          <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-        </ul>
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
+                Early Build QA: why testing everything is a waste of time
+              </a>
+            </h3>
+            <p class="article-desc">
+              Why exhaustive testing fails, how risk-based testing works, and how to find real issues faster in early builds.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Early Build QA</span></li>
+              <li><span class="tag">Risk-Based Testing</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">Read article</a>
+          </div>
+        </article>
       </div>
-      <div class="article-cta">
-        <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">Read article</a>
-      </div>
-    </article>
+    </section>
 
-    <article class="article-row">
-      <div class="article-main">
-        <h3 class="article-title">
-          <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
-            Early Build QA: why testing everything is a waste of time
-          </a>
-        </h3>
-        <p class="article-desc">
-          A practical look at early build QA using The Chef’s Shift: why exhaustive testing fails, how risk-based testing works, and how to find real issues faster.
-        </p>
-        <ul class="meta">
-          <li><span class="tag">Early Build QA</span></li>
-          <li><span class="tag">Risk-Based Testing</span></li>
-          <li><span class="tag">Game QA</span></li>
-          <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-        </ul>
-      </div>
-      <div class="article-cta">
-        <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">Read article</a>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="divider" role="separator" aria-hidden="true"></div>
-</section>
+    <div class="divider" role="separator" aria-hidden="true"></div>
 
     <!-- Methods -->
     <section id="methods" class="hub-section" aria-labelledby="methods-title">
       <h2 id="methods-title">Methods</h2>
       <p class="section-hint">Repeatable QA workflows. Practical guides, not definition pages.</p>
+      <p class="section-why"><strong>Why this matters:</strong> these articles show the repeatable workflows behind my testing, so the work looks structured and auditable instead of improvised.</p>
 
       <div class="article-list">
-
         <article class="article-row">
           <div class="article-main">
             <h3 class="article-title">
@@ -470,7 +527,7 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
               <a href="./exploratory-testing.html">Exploratory testing on mobile: the method behind the chaos</a>
             </h3>
             <p class="article-desc">
-              How I run timeboxed exploratory sessions on Android: charters, controlled variation, interruptions and recovery.
+              Timeboxed exploratory testing on Android: charters, controlled variation, interruptions, recovery, and the bugs scripted checks miss.
             </p>
             <ul class="meta">
               <li><span class="tag">Methods</span></li>
@@ -490,7 +547,7 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
               <a href="./regression-testing.html">Regression testing: the risk-first checks that keep releases stable</a>
             </h3>
             <p class="article-desc">
-              Patch notes to retest plan, ruthless prioritisation, and evidence-backed pass/fail calls inside a one week window.
+              Turning patch notes into a targeted retest plan: what to verify first, how to prioritise risk, and how to make clear pass or fail calls with evidence.
             </p>
             <ul class="meta">
               <li><span class="tag">Methods</span></li>
@@ -503,7 +560,6 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
             <a class="btn-mini" href="./regression-testing.html">Read article</a>
           </div>
         </article>
-
       </div>
     </section>
 
@@ -512,10 +568,10 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
     <!-- Accessibility -->
     <section id="accessibility" class="hub-section" aria-labelledby="accessibility-title">
       <h2 id="accessibility-title">Accessibility</h2>
-      <p class="section-hint">Accessibility testing in games, APX patterns, and practical QA application.</p>
+      <p class="section-hint">Accessibility testing in games using APX patterns, player–game loops, and practical QA application.</p>
+      <p class="section-why"><strong>Why this matters:</strong> this is where I show that accessibility is part of how I think about quality, risk, and player experience, not a bolt-on extra.</p>
 
       <div class="article-list">
-
         <article class="article-row">
           <div class="article-main">
             <h3 class="article-title">
@@ -536,13 +592,13 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
           </div>
         </article>
 
-        <article class="article-row" aria-label="Coming soon: APX implementation case study">
+        <article class="article-row soon-row" aria-label="Coming soon: APX implementation case study">
           <div class="article-main">
             <h3 class="article-title">
-              <span>Applying APX patterns in a real QA portfolio project</span> <span class="tag">Coming soon</span>
+              <span>Applying APX patterns in a real QA portfolio project <em>(coming soon)</em></span>
             </h3>
             <p class="article-desc">
-              A practical case study showing how I applied APX patterns in a portfolio test plan and how it changed reporting and risk coverage.
+              A practical case study showing how APX patterns change test planning, reporting, and risk coverage in a real QA project.
             </p>
             <ul class="meta">
               <li><span class="tag">Accessibility</span></li>
@@ -554,7 +610,6 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
             <span class="btn-mini" aria-hidden="true">Soon</span>
           </div>
         </article>
-
       </div>
     </section>
 
@@ -564,9 +619,10 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
     <section id="portfolio" class="hub-section" aria-labelledby="portfolio-title">
       <h2 id="portfolio-title">Portfolio</h2>
       <p class="section-hint">Articles tied directly to a specific project and its artefacts.</p>
+      <p class="section-why"><strong>Why this matters:</strong> this section will connect write-ups directly to workbook tabs, evidence, and bug logs when a project-specific article makes sense.</p>
 
       <div class="article-list">
-        <article class="article-row">
+        <article class="article-row empty-row">
           <div class="article-main">
             <h3 class="article-title">No portfolio-specific articles yet</h3>
             <p class="article-desc">
@@ -579,42 +635,47 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- VR/XR -->
-        <section id="tools" class="hub-section" aria-labelledby="tools-title">
-      <h2 id="tools-title">VR and XR</h2>
+    <!-- VR and XR -->
+    <section id="vrxr" class="hub-section" aria-labelledby="vrxr-title">
+      <h2 id="vrxr-title">VR and XR</h2>
       <p class="section-hint">VR comfort, XR learning tools, controller parity, and device-specific testing.</p>
-          
-    <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./vr-comfort-testing.html">
-        VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going
-      </a>
-    </h3>
-    <p class="article-desc">
-      An applied QA article using Shadow Point (Quest 3): how locomotion, subtitle accessibility, non-audio cues, and cognitive clarity shape comfort, access, and early player retention in VR.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Accessibility</span></li>
-      <li><span class="tag">VR QA</span></li>
-      <li><span class="tag">Game QA</span></li>
-      <li><time datetime="2026-04-20">20 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./vr-comfort-testing.html">Read article</a>
-  </div>
-</article>
+      <p class="section-why"><strong>Why this matters:</strong> this is where I show platform-specific thinking for immersive systems, where comfort, clarity, input, and accessibility risks behave differently from flat-screen testing.</p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./vr-comfort-testing.html">
+                VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going
+              </a>
+            </h3>
+            <p class="article-desc">
+              How locomotion, subtitles, non-audio cues, and clarity affect comfort, accessibility, and early player retention in VR.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">VR QA</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><time datetime="2026-04-20">20 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./vr-comfort-testing.html">Read article</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
     <!-- Tools -->
     <section id="tools" class="hub-section" aria-labelledby="tools-title">
       <h2 id="tools-title">Tools</h2>
-      <p class="section-hint">Practical QA tooling: reporting, evidence capture, templates, and workflows. (Coming soon.)</p>
+      <p class="section-hint">Practical QA tooling: reporting, evidence capture, templates, and workflow setup. <em>(coming soon)</em></p>
+      <p class="section-why"><strong>Why this matters:</strong> good QA is not just what you test, but how clearly you capture, label, organise, and communicate the evidence.</p>
 
       <div class="article-list">
-        <article class="article-row">
+        <article class="article-row empty-row">
           <div class="article-main">
             <h3 class="article-title">No tools articles yet</h3>
             <p class="article-desc">
@@ -626,8 +687,6 @@ Applied QA thinking: player experience, difficulty, clarity, and how design deci
     </section>
 
     <div class="divider" role="separator" aria-hidden="true"></div>
-
-    <!-- Optional: keep your footer clean; no additional CTA block needed here since nav exists -->
   </main>
 
   <footer>
