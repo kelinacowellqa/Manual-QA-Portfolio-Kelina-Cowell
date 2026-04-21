@@ -264,6 +264,24 @@
       box-shadow:none !important;
     }
 
+    .portfolio-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin: 30px 0;
+}
+
+.portfolio-summary section {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .portfolio-summary {
+    grid-template-columns: 1fr;
+  }
+
     /* Footer */
     footer{
       max-width:980px;margin:40px auto 0;padding:20px 18px 0;
@@ -375,59 +393,53 @@
 </div>
 </section>
 
-      <h2>What this Game QA Portfolio Shows</h2>
-<ul>
-  <li>Real bug reports with reproducible steps and evidence</li>
-  <li>Structured test cases and QA workbooks</li>
-  <li>Exploratory testing with defined charters</li>
-  <li>Accessibility testing using APX patterns</li>
-  <li>Cross-platform testing (PC, mobile, VR)</li>
-</ul>
-      
-<hr>
+     <div class="portfolio-summary">
 
-</section>
+  <section>
+    <h2>What this Game QA Portfolio Shows</h2>
+    <ul>
+      <li>Real bug reports with reproducible steps and evidence</li>
+      <li>Structured test cases and QA workbooks</li>
+      <li>Exploratory testing with defined charters</li>
+      <li>Accessibility testing using APX patterns</li>
+      <li>Cross-platform testing (PC, mobile, VR)</li>
+    </ul>
+  </section>
 
-<section class="recruiter-hook">
-  <h2>Featured QA Evidence</h2>
-  <p class="hook-intro">
-    High-impact issues identified through structured testing, with full reproduction and evidence.
-  </p>
+  <section class="recruiter-hook">
+    <h2>Featured QA Evidence</h2>
+    <p class="hook-intro">
+      High-impact issues identified through structured testing, with full reproduction and evidence.
+    </p>
 
-  <ul class="hook-list">
+    <ul class="hook-list">
+      <li>
+        <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">
+          <strong>Controller Input Ownership Break</strong>
+        </a>
+        Battletoads (PC)
+        <p>Player control is lost during controller handoff. 100% reproducible.</p>
+      </li>
 
-    <li>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">
-        <strong>Controller Input Ownership Break</strong>
-      </a>
-      <span class="hook-meta">Battletoads (PC)</span>
-      <p>
-        Player control is lost during controller handoff. 100% reproducible with consistent steps and video evidence.
-      </p>
-    </li>
+      <li>
+        <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">
+          <strong>Reward Collection Failure (Core Loop)</strong>
+        </a>
+        Rebel Racing (Mobile)
+        <p>Reward flow breaks under repeated interactions.</p>
+      </li>
 
-    <li>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">
-        <strong>Reward Collection Failure (Core Loop)</strong>
-      </a>
-      <span class="hook-meta">Rebel Racing (Mobile)</span>
-      <p>
-        Reward flow breaks under repeated interactions, disrupting progression and player feedback loop.
-      </p>
-    </li>
+      <li>
+        <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/">
+          <strong>Regression Validation & Side Effects</strong>
+        </a>
+        Sworn (PC)
+        <p>Regression testing identifying incomplete fixes and side effects.</p>
+      </li>
+    </ul>
+  </section>
 
-    <li>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/">
-        <strong>Regression Validation & Side Effects</strong>
-      </a>
-      <span class="hook-meta">Sworn (PC)</span>
-      <p>
-        Patch-note-driven regression testing identifying incomplete fixes and new issues introduced post-update.
-      </p>
-    </li>
-
-  </ul>
-</section>
+</div>
 
       <hr>
 
