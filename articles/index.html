@@ -11,7 +11,7 @@
   <meta name="description" content="Game QA articles by Kelina Cowell. Practical, method-first guides based on real portfolio testing passes, covering workflows, risk, evidence, reporting, and game accessibility QA." />
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
 
-  <meta property="og:title" content="Game QA Articles | Manual Game Testing Guides - Kelina Cowell">
+  <meta property="og:title" content="Game QA Testing Methods & Articles | Kelina Cowell">
   <meta property="og:description" content="Applied game QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes, and accessibility testing in games.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">
@@ -111,6 +111,7 @@
       font-size: 1.15rem;
     }
 
+    .hint,
     .section-hint{
       margin: 0 0 8px;
       opacity: .82;
@@ -124,6 +125,12 @@
       opacity: .96;
       padding-left: 12px;
       border-left: 2px solid rgba(0, 242, 201, .30);
+    }
+
+    .bullets{
+      margin: 0 0 14px 1.2rem;
+      padding: 0;
+      line-height: 1.6;
     }
 
     .article-list{
@@ -255,9 +262,9 @@
   {
     "@context":"https://schema.org",
     "@type":"CollectionPage",
-    "name":"QA Articles — Kelina Cowell",
+    "name":"Game QA Testing Methods & Articles | Kelina Cowell",
     "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/",
-    "description":"Applied QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes, and accessibility testing in games.",
+    "description":"Applied game QA articles based on real portfolio work. Method first: scope, risk, workflow, evidence, outcomes, and accessibility testing in games.",
     "author":{"@type":"Person","name":"Kelina Cowell"}
   }
   </script>
@@ -266,50 +273,56 @@
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "QA Articles",
+    "name": "Game QA Articles",
     "itemListOrder": "https://schema.org/ItemListOrderDescending",
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html",
-        "name": "VR comfort testing: why locomotion, subtitles, and clarity decide whether players keep going"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-i-structure-game-qa-evidence.html",
+        "name": "Game QA Evidence Workflow: From Test Session to Jira Bug Report"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html",
-        "name": "When a game feels hard… but isn’t broken"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/vr-comfort-testing.html",
+        "name": "VR Comfort Testing in Game QA: Locomotion, Subtitles & Player Retention"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html",
-        "name": "Early Build QA: why testing everything is a waste of time"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/when-a-game-feels-hard-but-isnt-broken.html",
+        "name": "Game QA: When Difficulty Isn’t a Bug (Cognitive Load & UI Clarity)"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
-        "name": "Game accessibility QA: what I learned from the APX Practitioner course"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html",
+        "name": "Early Build Game QA: Why Testing Everything Is a Waste of Time"
       },
       {
         "@type": "ListItem",
         "position": 5,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
-        "name": "Regression testing: the risk-first checks that keep releases stable"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
+        "name": "Game QA Accessibility: What I Learned as an APX Practitioner"
       },
       {
         "@type": "ListItem",
         "position": 6,
-        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
-        "name": "Exploratory testing on mobile: the method behind the chaos"
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html",
+        "name": "Regression Testing in Game QA: Risk-Based Checks That Keep Releases Stable"
       },
       {
         "@type": "ListItem",
         "position": 7,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
+        "name": "Exploratory Testing in Game QA: The Method Behind the Chaos (Mobile)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
         "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html",
-        "name": "Functional testing: the boring basics that catch real bugs"
+        "name": "Functional Testing in Game QA: The Basics That Catch Real Bugs"
       }
     ]
   }
@@ -344,19 +357,19 @@
 
     <h1>Game QA Testing Methods & Articles</h1>
 
-<p class="hint">
-  This section covers game QA testing methods, workflows, and practical approaches used in real testing scenarios. These articles focus on manual QA techniques, exploratory testing, bug reporting, and structured test design within game development.
-</p>
+    <p class="hint">
+      This section covers game QA testing methods, workflows, and practical approaches used in real testing scenarios. These articles focus on manual QA techniques, exploratory testing, bug reporting, and structured test design within game development.
+    </p>
 
-<section class="section" aria-labelledby="what-youll-find">
-  <h2 id="what-youll-find">What you’ll find here</h2>
-  <ul class="bullets">
-    <li>Exploratory testing approaches in games</li>
-    <li>Bug reporting workflows and evidence capture</li>
-    <li>Accessibility-focused QA using structured methods</li>
-    <li>Real examples of QA thinking applied to gameplay systems</li>
-  </ul>
-</section>
+    <section class="section" aria-labelledby="what-youll-find">
+      <h2 id="what-youll-find">What you’ll find here</h2>
+      <ul class="bullets">
+        <li>Exploratory testing approaches in games</li>
+        <li>Bug reporting workflows and evidence capture</li>
+        <li>Accessibility-focused QA using structured methods</li>
+        <li>Real examples of QA thinking applied to gameplay systems</li>
+      </ul>
+    </section>
 
     <nav class="hub-nav" aria-label="Article categories">
       <a class="pill" href="#latest">Latest</a>
@@ -370,348 +383,343 @@
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- Latest -->
     <section id="latest" class="hub-section" aria-labelledby="latest-title">
-  <h2 id="latest-title">Latest Game QA Articles</h2>
-  <p class="section-hint">
-    Most recent articles covering game QA testing methods, workflows, and practical QA insights.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> start here for the latest examples of how I approach game testing, including exploratory QA, bug reporting, and structured testing methods.
-  </p>
-</section>
-    
-<div class="article-list">
-  <article class="article-row">
-    <div class="article-main">
-      <h3 class="article-title">
-        <a href="./how-i-structure-game-qa-evidence.html">
-          Game QA Evidence Workflow: From Test Session to Jira Bug Report
-        </a>
-      </h3>
-      <p class="article-desc">
-        A practical game QA testing workflow showing how I capture gameplay footage, extract bug evidence, organise test data in Google Sheets, and create linked Jira bug reports across functional, exploratory, and regression testing.
+      <h2 id="latest-title">Latest Game QA Articles</h2>
+      <p class="section-hint">
+        Most recent articles covering game QA testing methods, workflows, and practical QA insights.
       </p>
-      <ul class="meta">
-        <li><span class="tag">Game QA</span></li>
-        <li><span class="tag">Bug Reporting</span></li>
-        <li><span class="tag">Jira</span></li>
-        <li><span class="tag">QA Workflow</span></li>
-        <li><time datetime="2026-04-21">21 Apr 2026</time></li>
-      </ul>
-    </div>
-    <div class="article-cta">
-      <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">
-        Read game QA workflow article
-      </a>
-    </div>
-  </article>
-</div>
-<article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./vr-comfort-testing.html">
-        VR Comfort Testing in Game QA: Locomotion, Subtitles, and Player Retention
-      </a>
-    </h3>
-    <p class="article-desc">
-      An applied VR QA testing article using Shadow Point (Quest 3), exploring how locomotion systems, subtitle accessibility, non-audio cues, and cognitive clarity impact player comfort, accessibility, and early retention in VR games.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">VR QA</span></li>
-      <li><span class="tag">Accessibility</span></li>
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">VR Testing</span></li>
-      <li><time datetime="2026-04-20">20 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./vr-comfort-testing.html">
-      Read VR QA testing article
-    </a>
-  </div>
-</article>
+      <p class="section-why">
+        <strong>Why this matters:</strong> start here for the latest examples of how I approach game testing, including exploratory QA, bug reporting, and structured testing methods.
+      </p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./how-i-structure-game-qa-evidence.html">
+                Game QA Evidence Workflow: From Test Session to Jira Bug Report
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical game QA testing workflow showing how I capture gameplay footage, extract bug evidence, organise test data in Google Sheets, and create linked Jira bug reports across functional, exploratory, and regression testing.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Bug Reporting</span></li>
+              <li><span class="tag">Jira</span></li>
+              <li><span class="tag">QA Workflow</span></li>
+              <li><time datetime="2026-04-21">21 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">
+              Read game QA workflow article
+            </a>
+          </div>
+        </article>
 
         <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./when-a-game-feels-hard-but-isnt-broken.html">
-        Game QA: When Difficulty Isn’t a Bug (Cognitive Load & UI Clarity)
-      </a>
-    </h3>
-    <p class="article-desc">
-      An applied game QA testing article using The Chef’s Shift, exploring how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure or bug.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Cognitive Load</span></li>
-      <li><span class="tag">Accessibility</span></li>
-      <li><span class="tag">UX QA</span></li>
-      <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">
-      Read game QA article
-    </a>
-  </div>
-</article>
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./vr-comfort-testing.html">
+                VR Comfort Testing in Game QA: Locomotion, Subtitles & Player Retention
+              </a>
+            </h3>
+            <p class="article-desc">
+              An applied VR QA testing article using Shadow Point (Quest 3), exploring how locomotion systems, subtitle accessibility, non-audio cues, and cognitive clarity impact player comfort, accessibility, and early retention in VR games.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">VR QA</span></li>
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">VR Testing</span></li>
+              <li><time datetime="2026-04-20">20 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./vr-comfort-testing.html">
+              Read VR QA testing article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./when-a-game-feels-hard-but-isnt-broken.html">
+                Game QA: When Difficulty Isn’t a Bug (Cognitive Load & UI Clarity)
+              </a>
+            </h3>
+            <p class="article-desc">
+              An applied game QA testing article using The Chef’s Shift, exploring how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure or bug.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Cognitive Load</span></li>
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">UX QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">
+              Read game QA article
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- Game QA Insights -->
     <section id="insights" class="hub-section" aria-labelledby="insights-title">
-  <h2 id="insights-title">Game QA Insights: Player Experience & Design Analysis</h2>
-  <p class="section-hint">
-    Applied game QA insights focused on player experience, difficulty, UI clarity, and how design decisions influence player behaviour and perception during gameplay.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> these articles show how I analyse player friction, cognitive load, and UX issues in games, not just whether a system technically passes or fails QA testing.
-  </p>
-</section>
-    
+      <h2 id="insights-title">Game QA Insights: Player Experience & Design Analysis</h2>
+      <p class="section-hint">
+        Applied game QA insights focused on player experience, difficulty, UI clarity, and how design decisions influence player behaviour and perception during gameplay.
+      </p>
+      <p class="section-why">
+        <strong>Why this matters:</strong> these articles show how I analyse player friction, cognitive load, and UX issues in games, not just whether a system technically passes or fails QA testing.
+      </p>
+
       <div class="article-list">
-  <article class="article-row">
-    <div class="article-main">
-      <h3 class="article-title">
-        <a href="./when-a-game-feels-hard-but-isnt-broken.html">
-          Game QA: When Difficulty Isn’t a Bug (Cognitive Load & UI Clarity)
-        </a>
-      </h3>
-      <p class="article-desc">
-        A game QA insight on how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure or bug.
-      </p>
-      <ul class="meta">
-        <li><span class="tag">Game QA</span></li>
-        <li><span class="tag">Cognitive Load</span></li>
-        <li><span class="tag">Accessibility</span></li>
-        <li><span class="tag">UX QA</span></li>
-        <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-      </ul>
-    </div>
-    <div class="article-cta">
-      <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">
-        Read game QA insight
-      </a>
-    </div>
-  </article>
-</div>
-
-      <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
-        Early Build Game QA: Why Testing Everything Is a Waste of Time
-      </a>
-    </h3>
-    <p class="article-desc">
-      A game QA testing article explaining why exhaustive testing fails in early builds, how risk-based testing works, and how to find high-impact issues faster.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Early Build QA</span></li>
-      <li><span class="tag">Risk-Based Testing</span></li>
-      <li><span class="tag">QA Strategy</span></li>
-      <li><time datetime="2026-04-18">18 Apr 2026</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
-      Read game QA article
-    </a>
-  </div>
-</article>
-
-    <div class="divider" role="separator" aria-hidden="true"></div>
-
-    <!-- Methods -->
-  <section id="methods" class="hub-section" aria-labelledby="methods-title">
-  <h2 id="methods-title">Game QA Testing Methods & Workflows</h2>
-  <p class="section-hint">
-    Repeatable game QA testing methods and workflows, including exploratory testing, bug reporting, and structured QA processes.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> these articles show the repeatable QA workflows behind my testing, making the work structured, consistent, and auditable rather than improvised.
-  </p>
-</section>
-    
-<div class="article-list">
-  <article class="article-row">
-    <div class="article-main">
-      <h3 class="article-title">
-        <a href="./how-i-structure-game-qa-evidence.html">
-          Game QA Evidence Workflow: From Test Session to Jira Bug Report
-        </a>
-      </h3>
-      <p class="article-desc">
-        A practical game QA testing workflow showing how I capture gameplay footage, extract bug evidence, organise test data in Google Sheets, and create linked Jira bug reports across functional, exploratory, and regression testing.
-      </p>
-      <ul class="meta">
-        <li><span class="tag">Game QA</span></li>
-        <li><span class="tag">Bug Reporting</span></li>
-        <li><span class="tag">Jira</span></li>
-        <li><span class="tag">QA Workflow</span></li>
-        <li><time datetime="2026-04-21">21 Apr 2026</time></li>
-      </ul>
-    </div>
-    <div class="article-cta">
-      <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">
-        Read game QA workflow article
-      </a>
-    </div>
-  </article>
-</div>
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./when-a-game-feels-hard-but-isnt-broken.html">
+                Game QA: When Difficulty Isn’t a Bug (Cognitive Load & UI Clarity)
+              </a>
+            </h3>
+            <p class="article-desc">
+              A game QA insight on how UI clarity, typing pressure, and cognitive load can make a game feel difficult without a true system failure or bug.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Cognitive Load</span></li>
+              <li><span class="tag">Accessibility</span></li>
+              <li><span class="tag">UX QA</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./when-a-game-feels-hard-but-isnt-broken.html">
+              Read game QA insight
+            </a>
+          </div>
+        </article>
 
         <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./functional-testing.html">
-        Functional Testing in Game QA: The Basics That Catch Real Bugs
-      </a>
-    </h3>
-    <p class="article-desc">
-      A practical game QA functional testing workflow for a timeboxed QA pass, covering what to test first, how to prioritise risk, and what evidence to capture.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Functional Testing</span></li>
-      <li><span class="tag">QA Workflow</span></li>
-      <li><span class="tag">Risk-Based Testing</span></li>
-      <li><time datetime="2025-12-17">17 Dec 2025</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./functional-testing.html">
-      Read functional testing article
-    </a>
-  </div>
-</article>
-
-     <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./exploratory-testing.html">
-        Exploratory Testing in Game QA: The Method Behind the Chaos (Mobile)
-      </a>
-    </h3>
-    <p class="article-desc">
-      A practical game QA exploratory testing workflow on mobile (Android), covering timeboxed sessions, test charters, controlled variation, interruptions, recovery, and the bugs scripted testing misses.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Exploratory Testing</span></li>
-      <li><span class="tag">QA Workflow</span></li>
-      <li><span class="tag">Mobile Testing</span></li>
-      <li><time datetime="2025-12-18">18 Dec 2025</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./exploratory-testing.html">
-      Read exploratory testing article
-    </a>
-  </div>
-</article>
-
-      <article class="article-row">
-  <div class="article-main">
-    <h3 class="article-title">
-      <a href="./regression-testing.html">
-        Regression Testing in Game QA: Risk-Based Checks That Keep Releases Stable
-      </a>
-    </h3>
-    <p class="article-desc">
-      A practical game QA regression testing workflow showing how to turn patch notes into a targeted retest plan, prioritise risk, and make clear pass or fail decisions with supporting evidence.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Regression Testing</span></li>
-      <li><span class="tag">QA Workflow</span></li>
-      <li><span class="tag">Risk-Based Testing</span></li>
-      <li><time datetime="2025-12-19">19 Dec 2025</time></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <a class="btn-mini" href="./regression-testing.html">
-      Read regression testing article
-    </a>
-  </div>
-</article>
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
+                Early Build Game QA: Why Testing Everything Is a Waste of Time
+              </a>
+            </h3>
+            <p class="article-desc">
+              A game QA testing article explaining why exhaustive testing fails in early builds, how risk-based testing works, and how to find high-impact issues faster.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Early Build QA</span></li>
+              <li><span class="tag">Risk-Based Testing</span></li>
+              <li><span class="tag">QA Strategy</span></li>
+              <li><time datetime="2026-04-18">18 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./early-build-qa-why-testing-everything-is-a-waste-of-time.html">
+              Read game QA article
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- Accessibility -->
-   <section id="accessibility" class="hub-section" aria-labelledby="accessibility-title">
-  <h2 id="accessibility-title">Game QA Accessibility Testing & APX Patterns</h2>
-  <p class="section-hint">
-    Accessibility testing in games using APX patterns, player–game feedback loops, and practical QA methods for improving access, clarity, and player experience.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> these articles show how I apply accessibility in game QA testing, treating it as part of quality, risk, and player experience rather than a bolt-on feature.
-  </p>
-</section>
-    
-      <div class="article-list">
-  <article class="article-row">
-    <div class="article-main">
-      <h3 class="article-title">
-        <a href="./apx-practitioner-reflection.html">
-          Game QA Accessibility: What I Learned as an APX Practitioner
-        </a>
-      </h3>
-      <p class="article-desc">
-        A game QA accessibility article exploring the player–game feedback loop, APX design patterns, and how this training shapes my approach to accessibility testing and player experience.
+    <section id="methods" class="hub-section" aria-labelledby="methods-title">
+      <h2 id="methods-title">Game QA Testing Methods & Workflows</h2>
+      <p class="section-hint">
+        Repeatable game QA testing methods and workflows, including exploratory testing, bug reporting, and structured QA processes.
       </p>
-      <ul class="meta">
-        <li><span class="tag">Game QA</span></li>
-        <li><span class="tag">Accessibility Testing</span></li>
-        <li><span class="tag">APX Practitioner</span></li>
-        <li><span class="tag">UX QA</span></li>
-        <li><time datetime="2026-02-16">16 Feb 2026</time></li>
-      </ul>
-    </div>
-    <div class="article-cta">
-      <a class="btn-mini" href="./apx-practitioner-reflection.html">
-        Read accessibility QA article
-      </a>
-    </div>
-  </article>
-</div>
-    
-       <article class="article-row soon-row" aria-label="Coming soon: Game QA accessibility case study using APX patterns">
-  <div class="article-main">
-    <h3 class="article-title">
-      <span>
-        Game QA Accessibility Case Study: Applying APX Patterns in a Real Project <em>(coming soon)</em>
-      </span>
-    </h3>
-    <p class="article-desc">
-      A practical game QA accessibility case study showing how APX patterns influence test planning, bug reporting, and risk-based coverage in a real QA portfolio project.
-    </p>
-    <ul class="meta">
-      <li><span class="tag">Game QA</span></li>
-      <li><span class="tag">Accessibility Testing</span></li>
-      <li><span class="tag">APX Patterns</span></li>
-      <li><span class="tag">QA Case Study</span></li>
-    </ul>
-  </div>
-  <div class="article-cta">
-    <span class="btn-mini" aria-hidden="true">Coming soon</span>
-  </div>
-</article>
+      <p class="section-why">
+        <strong>Why this matters:</strong> these articles show the repeatable QA workflows behind my testing, making the work structured, consistent, and auditable rather than improvised.
+      </p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./how-i-structure-game-qa-evidence.html">
+                Game QA Evidence Workflow: From Test Session to Jira Bug Report
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical game QA testing workflow showing how I capture gameplay footage, extract bug evidence, organise test data in Google Sheets, and create linked Jira bug reports across functional, exploratory, and regression testing.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Bug Reporting</span></li>
+              <li><span class="tag">Jira</span></li>
+              <li><span class="tag">QA Workflow</span></li>
+              <li><time datetime="2026-04-21">21 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">
+              Read game QA workflow article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./functional-testing.html">
+                Functional Testing in Game QA: The Basics That Catch Real Bugs
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical game QA functional testing workflow for a timeboxed QA pass, covering what to test first, how to prioritise risk, and what evidence to capture.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Functional Testing</span></li>
+              <li><span class="tag">QA Workflow</span></li>
+              <li><span class="tag">Risk-Based Testing</span></li>
+              <li><time datetime="2025-12-17">17 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./functional-testing.html">
+              Read functional testing article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./exploratory-testing.html">
+                Exploratory Testing in Game QA: The Method Behind the Chaos (Mobile)
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical game QA exploratory testing workflow on mobile (Android), covering timeboxed sessions, test charters, controlled variation, interruptions, recovery, and the bugs scripted testing misses.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Exploratory Testing</span></li>
+              <li><span class="tag">QA Workflow</span></li>
+              <li><span class="tag">Mobile Testing</span></li>
+              <li><time datetime="2025-12-18">18 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./exploratory-testing.html">
+              Read exploratory testing article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./regression-testing.html">
+                Regression Testing in Game QA: Risk-Based Checks That Keep Releases Stable
+              </a>
+            </h3>
+            <p class="article-desc">
+              A practical game QA regression testing workflow showing how to turn patch notes into a targeted retest plan, prioritise risk, and make clear pass or fail decisions with supporting evidence.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Regression Testing</span></li>
+              <li><span class="tag">QA Workflow</span></li>
+              <li><span class="tag">Risk-Based Testing</span></li>
+              <li><time datetime="2025-12-19">19 Dec 2025</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./regression-testing.html">
+              Read regression testing article
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- Portfolio -->
-<section id="portfolio" class="hub-section" aria-labelledby="portfolio-title">
-  <h2 id="portfolio-title">Game QA Portfolio Articles & Project Write-Ups</h2>
-  <p class="section-hint">
-    Game QA articles linked directly to portfolio projects, including testing workflows, evidence, and project-specific QA analysis.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> this section connects QA write-ups to real project artefacts such as test cases, session notes, evidence clips, and bug reports, showing how my testing translates into documented results.
-  </p>
-</section>
-    
+    <section id="accessibility" class="hub-section" aria-labelledby="accessibility-title">
+      <h2 id="accessibility-title">Game QA Accessibility Testing & APX Patterns</h2>
+      <p class="section-hint">
+        Accessibility testing in games using APX patterns, player–game feedback loops, and practical QA methods for improving access, clarity, and player experience.
+      </p>
+      <p class="section-why">
+        <strong>Why this matters:</strong> these articles show how I apply accessibility in game QA testing, treating it as part of quality, risk, and player experience rather than a bolt-on feature.
+      </p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./apx-practitioner-reflection.html">
+                Game QA Accessibility: What I Learned as an APX Practitioner
+              </a>
+            </h3>
+            <p class="article-desc">
+              A game QA accessibility article exploring the player–game feedback loop, APX design patterns, and how this training shapes my approach to accessibility testing and player experience.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Accessibility Testing</span></li>
+              <li><span class="tag">APX Practitioner</span></li>
+              <li><span class="tag">UX QA</span></li>
+              <li><time datetime="2026-02-16">16 Feb 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./apx-practitioner-reflection.html">
+              Read accessibility QA article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row soon-row" aria-label="Coming soon: Game QA accessibility case study using APX patterns">
+          <div class="article-main">
+            <h3 class="article-title">
+              <span>
+                Game QA Accessibility Case Study: Applying APX Patterns in a Real Project <em>(coming soon)</em>
+              </span>
+            </h3>
+            <p class="article-desc">
+              A practical game QA accessibility case study showing how APX patterns influence test planning, bug reporting, and risk-based coverage in a real QA portfolio project.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Accessibility Testing</span></li>
+              <li><span class="tag">APX Patterns</span></li>
+              <li><span class="tag">QA Case Study</span></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <span class="btn-mini" aria-hidden="true">Coming soon</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <section id="portfolio" class="hub-section" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title">Game QA Portfolio Articles & Project Write-Ups</h2>
+      <p class="section-hint">
+        Game QA articles linked directly to portfolio projects, including testing workflows, evidence, and project-specific QA analysis.
+      </p>
+      <p class="section-why">
+        <strong>Why this matters:</strong> this section connects QA write-ups to real project artefacts such as test cases, session notes, evidence clips, and bug reports, showing how my testing translates into documented results.
+      </p>
+
       <div class="article-list">
         <article class="article-row empty-row">
           <div class="article-main">
@@ -726,58 +734,54 @@
 
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- VR and XR -->
-  <section id="vrxr" class="hub-section" aria-labelledby="vrxr-title">
-  <h2 id="vrxr-title">VR & XR Game QA Testing</h2>
-  <p class="section-hint">
-    VR and XR game QA testing covering comfort, locomotion, controller input, accessibility, and device-specific behaviour in immersive systems.
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> this section shows how I approach platform-specific QA testing for VR and XR, where comfort, clarity, input handling, and accessibility risks behave differently from traditional flat-screen games.
-  </p>
-</section>
-    
-      <div class="article-list">
-  <article class="article-row">
-    <div class="article-main">
-      <h3 class="article-title">
-        <a href="./vr-comfort-testing.html">
-          VR Comfort Testing in Game QA: Locomotion, Subtitles & Player Retention
-        </a>
-      </h3>
-      <p class="article-desc">
-        A VR QA testing article exploring how locomotion systems, subtitles, non-audio cues, and clarity impact comfort, accessibility, and early player retention in immersive games.
+    <section id="vrxr" class="hub-section" aria-labelledby="vrxr-title">
+      <h2 id="vrxr-title">VR & XR Game QA Testing</h2>
+      <p class="section-hint">
+        VR and XR game QA testing covering comfort, locomotion, controller input, accessibility, and device-specific behaviour in immersive systems.
       </p>
-      <ul class="meta">
-        <li><span class="tag">VR QA</span></li>
-        <li><span class="tag">Accessibility Testing</span></li>
-        <li><span class="tag">Game QA</span></li>
-        <li><span class="tag">VR Testing</span></li>
-        <li><time datetime="2026-04-20">20 Apr 2026</time></li>
-      </ul>
-    </div>
-    <div class="article-cta">
-      <a class="btn-mini" href="./vr-comfort-testing.html">
-        Read VR QA testing article
-      </a>
-    </div>
-  </article>
-</div>
-</section>
-    
+      <p class="section-why">
+        <strong>Why this matters:</strong> this section shows how I approach platform-specific QA testing for VR and XR, where comfort, clarity, input handling, and accessibility risks behave differently from traditional flat-screen games.
+      </p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./vr-comfort-testing.html">
+                VR Comfort Testing in Game QA: Locomotion, Subtitles & Player Retention
+              </a>
+            </h3>
+            <p class="article-desc">
+              A VR QA testing article exploring how locomotion systems, subtitles, non-audio cues, and clarity impact comfort, accessibility, and early player retention in immersive games.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">VR QA</span></li>
+              <li><span class="tag">Accessibility Testing</span></li>
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">VR Testing</span></li>
+              <li><time datetime="2026-04-20">20 Apr 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./vr-comfort-testing.html">
+              Read VR QA testing article
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <div class="divider" role="separator" aria-hidden="true"></div>
 
-    <!-- Tools -->
-  <section id="tools" class="hub-section" aria-labelledby="tools-title">
-  <h2 id="tools-title">Game QA Tools & Workflow Setup</h2>
-  <p class="section-hint">
-    Practical game QA tools and workflows for bug reporting, evidence capture, test documentation, and QA process setup. <em>(coming soon)</em>
-  </p>
-  <p class="section-why">
-    <strong>Why this matters:</strong> effective game QA testing depends not just on what you test, but how clearly you capture, label, organise, and communicate evidence using the right tools and workflows.
-  </p>
-</section>
-    
+    <section id="tools" class="hub-section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Game QA Tools & Workflow Setup</h2>
+      <p class="section-hint">
+        Practical game QA tools and workflows for bug reporting, evidence capture, test documentation, and QA process setup. <em>(coming soon)</em>
+      </p>
+      <p class="section-why">
+        <strong>Why this matters:</strong> effective game QA testing depends not just on what you test, but how clearly you capture, label, organise, and communicate evidence using the right tools and workflows.
+      </p>
+
       <div class="article-list">
         <article class="article-row empty-row">
           <div class="article-main">
