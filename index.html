@@ -149,20 +149,43 @@
     .metrics-look tbody tr + tr td,
     .metrics-look tbody tr + tr th{ border-top:1px solid var(--line); }
 
-    /* === Compact tags — SKILLS ONLY === */
-    .skills-block .chips{
-      display:flex; flex-wrap:wrap; gap:8px 10px; margin:0; padding:0; list-style:none;
-    }
-    .skills-block .chips li{
-      display:inline-flex; align-items:center;
-      padding:.35rem .6rem; border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:var(--text); line-height:1.2; font-weight:500;
-    }
-    .skills-block .chips li:focus-within{ outline:2px solid var(--teal); outline-offset:2px; }
-    .section .hint{ color:var(--muted); margin:.25rem 0 0; font-size:.95rem; }
-    .skills-block{ margin:12px 0 20px; }
+/* === Compact tags === */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.chips li{
+  display:inline-flex;
+  align-items:center;
+  padding:.35rem .6rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  line-height:1.2;
+  font-weight:500;
+}
+
+.chips li:focus-within{
+  outline:2px solid var(--teal);
+  outline-offset:2px;
+}
+
+/* keep these as they are */
+.section .hint{
+  color:var(--muted);
+  margin:.25rem 0 0;
+  font-size:.95rem;
+}
+
+.skills-block{
+  margin:12px 0 20px;
+}
 
     /* === Project case-study blocks === */
     .project-block{
@@ -999,7 +1022,9 @@
 
   <hr>
 
-  <footer>
+   <footer>
     © <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio  
     📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.
   </footer>
+</body>
+</html>
