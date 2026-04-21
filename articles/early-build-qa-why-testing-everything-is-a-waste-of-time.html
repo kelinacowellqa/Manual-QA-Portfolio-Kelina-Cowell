@@ -4,35 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
- <title>Game QA Testing Strategy: Why Testing Everything Is a Waste of Time | Kelina Cowell</title>
+  <title>Game QA Testing Strategy: Why Testing Everything Is a Waste of Time | Kelina Cowell</title>
 
-<meta name="description" content="Game QA testing strategy explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage." />
+  <meta name="description" content="Game QA testing strategy explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage." />
 
-<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html" />
-  
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html" />
+
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-<meta property="og:title" content="Game QA Testing Strategy: Why Testing Everything Is a Waste of Time">
+  <meta property="og:title" content="Game QA Testing Strategy: Why Testing Everything Is a Waste of Time">
+  <meta property="og:description" content="Game QA testing explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
 
-<meta property="og:description" content="Game QA testing explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.">
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html">
-<meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
-
-<meta name="twitter:card" content="summary_large_image">
-  
+  <meta name="twitter:card" content="summary_large_image">
   <meta property="article:published_time" content="2026-04-18">
   <meta property="article:modified_time" content="2026-04-18">
+  <meta name="twitter:title" content="Game QA Testing: Why Testing Everything Is a Waste of Time">
+  <meta name="twitter:description" content="Game QA testing strategy for early builds. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html">
 
-<meta name="twitter:title" content="Game QA Testing: Why Testing Everything Is a Waste of Time">
-
-<meta name="twitter:description" content="Game QA testing strategy for early builds. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.">
-
-<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
-
-<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html">
- 
   <style>
     .article-hero,
     .toc,
@@ -114,35 +107,32 @@
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Game QA Testing Strategy: Why Testing Everything Is a Waste of Time",
-  "description": "Game QA testing strategy explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.",
-  "datePublished": "2026-04-18",
-  "dateModified": "2026-04-18",
-  "inLanguage": "en-GB",
-
-  "author": {
-    "@type": "Person",
-    "name": "Kelina Cowell",
-    "url": "https://kelinacowellqa.github.io/"
-  },
-
-  "publisher": {
-    "@type": "Person",
-    "name": "Kelina Cowell",
-    "url": "https://kelinacowellqa.github.io/"
-  },
-
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Game QA Testing Strategy: Why Testing Everything Is a Waste of Time",
+    "description": "Game QA testing strategy explained using an early build case study. Learn risk-based testing, core loop prioritisation, and how to avoid wasting time on low-value test coverage.",
+    "datePublished": "2026-04-18",
+    "dateModified": "2026-04-18",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "name": "Kelina Cowell",
+      "url": "https://kelinacowellqa.github.io/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Kelina Cowell",
+      "url": "https://kelinacowellqa.github.io/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/early-build-qa-why-testing-everything-is-a-waste-of-time.html"
+    }
   }
-}
-</script>
-  </head>
+  </script>
+</head>
 
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -159,335 +149,337 @@
 
     <hr>
 
-   <header class="article-hero">
-  <h1>Game QA Testing Strategy: Why Testing Everything Is a Waste of Time</h1>
-  <p class="hint">An applied game QA testing article, not a definition page and not a case study.</p>
+    <header class="article-hero">
+      <h1>Game QA Testing Strategy: Why Testing Everything Is a Waste of Time</h1>
+      <p class="hint">An applied game QA testing article, not a definition page and not a case study.</p>
 
-  <p class="author-row small">
-    <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
-    <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
-  </p>
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
 
-  <p class="small">
-    This article is based on a short <strong>game QA testing</strong> pass on an early build of <strong>The Chef’s Shift (PC, v0.1.2a)</strong>.
-    It shows how I approach <strong>risk-based testing</strong>, prioritise the <strong>core gameplay loop</strong>, and avoid wasting time on low-value test coverage.
-    The goal is simple: find what breaks first, and focus testing effort where it actually matters.
-  </p>
-
-      <hr>
-
-   <figure class="article-figure plain-figure">
-  <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp" target="_blank" rel="noopener">
-    <img
-      src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp"
-      alt="Early build QA workflow diagram showing risk-based scope, core loop prioritisation, repetition testing, issue validation, and evidence-backed outcomes."
-      loading="eager"
-      decoding="async"
-    >
-  </a>
-<figcaption class="small">
-  Game QA testing workflow for an early build: risk-based testing, core loop prioritisation, baseline validation, repetition testing, issue confirmation, and evidence-backed outcomes. <span class="hint">(Click to enlarge)</span>
-</figcaption>
+      <p class="small">
+        This article is based on a short <strong>game QA testing</strong> pass on an early build of <strong>The Chef’s Shift (PC, v0.1.2a)</strong>.
+        It shows how I approach <strong>risk-based testing</strong>, prioritise the <strong>core gameplay loop</strong>, and avoid wasting time on low-value test coverage.
+        The goal is simple: find what breaks first, and focus testing effort where it actually matters.
+      </p>
 
       <hr>
 
-     <section class="callout" aria-label="Workflow proof points">
-  <h2 style="margin-top:0;">TL;DR</h2>
-  <ul class="tldr small">
-    <li><strong>Point:</strong> in <strong>game QA testing</strong>, early build passes should be selective, not exhaustive.</li>
-    <li><strong>Example context:</strong> The Chef’s Shift on PC, tested across 8 sessions in a 2-day pass.</li>
-    <li><strong>Main finding:</strong> a repeat-loop test exposed a core gameplay loop blocker quickly (CHEF-1).</li>
-    <li><strong>Method:</strong> <strong>risk-based testing</strong> — baseline first, repetition second, then targeted follow-up on the pressure points that mattered.</li>
-    <li><strong>Takeaway:</strong> the best early build tests are the ones most likely to break progression, not the ones that make your spreadsheet look busy.</li>
-  </ul>
-</section>
+      <figure class="article-figure plain-figure">
+        <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp" target="_blank" rel="noopener">
+          <img
+            src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/early-build-qa-risk-based-workflow.webp"
+            alt="Game QA testing workflow diagram showing risk-based testing, core loop prioritisation, and early build test strategy"
+            loading="eager"
+            decoding="async"
+          >
+        </a>
+        <figcaption class="small">
+          Game QA testing workflow for an early build: risk-based testing, core loop prioritisation, baseline validation, repetition testing, issue confirmation, and evidence-backed outcomes. <span class="hint">(Click to enlarge)</span>
+        </figcaption>
+      </figure>
 
       <hr>
 
-     <section class="callout" aria-label="About this work">
-  <h2 style="margin-top:0;">Game QA testing scope: what I tested and why</h2>
-  <p class="small">
-    This article is grounded in a self-directed <strong>game QA testing</strong> pass on an early build of <strong>The Chef’s Shift</strong> using the
-    <strong>PC build</strong> <code>v0.1.2a</code>, run as a <strong>2-day focused pass</strong>.
-    Scope was deliberately narrow using a <strong>risk-based testing</strong> approach: core gameplay loop stability, input handling, serving flow, recovery/progression, and
-    accessibility-related pressure points. The purpose was not “full coverage”, but to find the failures most likely
-    to disrupt progression or confuse a first-time player.
-  </p>
-</section>
+      <section class="callout" aria-label="Workflow proof points">
+        <h2 style="margin-top:0;">TL;DR</h2>
+        <ul class="tldr small">
+          <li><strong>Point:</strong> in <strong>game QA testing</strong>, early build passes should be selective, not exhaustive.</li>
+          <li><strong>Example context:</strong> The Chef’s Shift on PC, tested across 8 sessions in a 2-day pass.</li>
+          <li><strong>Main finding:</strong> a repeat-loop test exposed a core gameplay loop blocker quickly (CHEF-1).</li>
+          <li><strong>Method:</strong> <strong>risk-based testing</strong> - baseline first, repetition second, then targeted follow-up on the pressure points that mattered.</li>
+          <li><strong>Takeaway:</strong> the best early build tests are the ones most likely to break progression, not the ones that make your spreadsheet look busy.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section class="callout" aria-label="About this work">
+        <h2 style="margin-top:0;">Game QA testing scope: what I tested and why</h2>
+        <p class="small">
+          This article is grounded in a self-directed <strong>game QA testing</strong> pass on an early build of <strong>The Chef’s Shift</strong> using the
+          <strong>PC build</strong> <code>v0.1.2a</code>, run as a <strong>2-day focused pass</strong>.
+          Scope was deliberately narrow using a <strong>risk-based testing</strong> approach: core gameplay loop stability, input handling, serving flow, recovery/progression, and
+          accessibility-related pressure points. The purpose was not “full coverage”, but to find the failures most likely
+          to disrupt progression or confuse a first-time player.
+        </p>
+      </section>
+    </header>
 
     <hr>
 
-   <nav class="toc" aria-label="On this page">
-  <strong>On this page</strong>
-  <ul>
-    <li><a href="#what-it-means">What “testing everything” gets wrong in game QA testing</a></li>
-    <li><a href="#core-loop-first">Why the core gameplay loop comes first in early build QA</a></li>
-    <li><a href="#baseline">Why I start with a clean baseline in game QA testing</a></li>
-    <li><a href="#repetition">Why repetition matters more than variety in testing</a></li>
-    <li><a href="#signal-vs-noise">How I separate signal from noise in a short QA testing pass</a></li>
-    <li><a href="#system-vs-player">Broken systems vs player-facing friction in game QA</a></li>
-    <li><a href="#example">What The Chef’s Shift proved in practice</a></li>
-    <li><a href="#takeaways">Game QA testing takeaways for early builds</a></li>
-    <li><a href="#faq">Game QA testing FAQ (early builds)</a></li>
-    <li><a href="#links">Evidence and case study links</a></li>
-  </ul>
-</nav>
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#what-it-means">What “testing everything” gets wrong in game QA testing</a></li>
+        <li><a href="#core-loop-first">Why the core gameplay loop comes first in early build QA</a></li>
+        <li><a href="#baseline">Why I start with a clean baseline in game QA testing</a></li>
+        <li><a href="#repetition">Why repetition matters more than variety in testing</a></li>
+        <li><a href="#signal-vs-noise">How I separate signal from noise in a short QA testing pass</a></li>
+        <li><a href="#system-vs-player">Broken systems vs player-facing friction in game QA</a></li>
+        <li><a href="#example">What The Chef’s Shift proved in practice</a></li>
+        <li><a href="#takeaways">Game QA testing takeaways for early builds</a></li>
+        <li><a href="#faq">Game QA testing FAQ (early builds)</a></li>
+        <li><a href="#links">Evidence and case study links</a></li>
+      </ul>
+    </nav>
 
     <hr>
 
- <h2 id="what-it-means">What “testing everything” gets wrong in game QA testing</h2>
-<p>
-  In <strong>game QA testing</strong>, early builds often create the illusion that “test everything” is the safest approach, but it usually means the opposite.
-  It spreads effort too thin, hides priorities, and wastes time on checks that do not matter yet.
-</p>
-<p>
-  Early build QA is not about proving that every possible interaction has been covered.
-  It is about finding the problems most likely to break progression, confuse players, or expose unstable systems
-  before the build gives you a false sense of security.
-</p>
+    <h2 id="what-it-means">What “testing everything” gets wrong in game QA testing</h2>
+    <p>
+      In <strong>game QA testing</strong>, early builds often create the illusion that “test everything” is the safest approach, but it usually means the opposite.
+      It spreads effort too thin, hides priorities, and wastes time on checks that do not matter yet.
+    </p>
+    <p>
+      Early build QA is not about proving that every possible interaction has been covered.
+      It is about finding the problems most likely to break progression, confuse players, or expose unstable systems
+      before the build gives you a false sense of security.
+    </p>
 
-<section class="callout">
-  <h3>Early build QA output: signal, not volume</h3>
-  <p>
-    A good early QA testing pass does not produce the biggest checklist. It produces the clearest answer to:
-    <em>what breaks first, and how badly does it matter?</em>
-  </p>
-</section>
-
-    <hr>
-
-<h2 id="core-loop-first">Why the core gameplay loop comes first in game QA testing</h2>
-<p>
-  In <strong>game QA testing</strong>, the first thing I want to know in an early build is whether the game can sustain its own basic loop.
-  If the main player cycle is unstable, everything layered on top of it is secondary.
-</p>
-<p class="small">
-  For The Chef’s Shift, that meant focusing on:
-  <strong>prepare → tray → serve → collect → repeat</strong>.
-  If that core gameplay loop holds, I can push further. If it breaks, that is the real story of the build.
-</p>
-
-<section class="callout">
-  <h3>Core principle</h3>
-  <p class="small">
-    In early builds, the most valuable <strong>QA testing</strong> checks are the ones that stress the core gameplay loop,
-    not the ones that make coverage look wide.
-  </p>
-</section>
-
-<section class="callout">
-  <h3>Why this matters</h3>
-  <p class="small">
-    Players do not experience a build as a spreadsheet. They experience its loop. If the loop is unstable,
-    that is the problem worth finding first.
-  </p>
-</section>
-    
-    <hr>
-
-<h2 id="baseline">Why I start with a clean baseline in game QA testing</h2>
-<p>
-  In <strong>game QA testing</strong>, before stressing anything, I want one clean run.
-  Not because a single pass proves stability, but because it tells me whether the core gameplay loop works at all in isolation.
-</p>
-<p class="small">
-  In this project, TM-01 established that one full loop could complete cleanly. That mattered because it gave me a usable baseline:
-  the game was not completely broken, so later failures could be tied to pressure, repetition, or interaction between systems.
-</p>
-
-<section class="callout">
-  <h3>Baseline does not equal confidence</h3>
-  <p class="small">
-    A clean first run is not the result. It is just permission to move to the <strong>QA testing</strong> checks that matter more.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Early build QA output: signal, not volume</h3>
+      <p>
+        A good early QA testing pass does not produce the biggest checklist. It produces the clearest answer to:
+        <em>what breaks first, and how badly does it matter?</em>
+      </p>
+    </section>
 
     <hr>
 
- <h2 id="repetition">Why repetition matters more than variety in game QA testing</h2>
-<p>
-  In <strong>game QA testing</strong>, one of the fastest ways to expose instability in an early build is not “more features”.
-  It is <strong>more loops</strong>.
-</p>
-<p>
-  Repetition is where systems start interacting with their own state, where timing starts to matter, and where apparently stable flows begin to break down.
-</p>
-<p class="small">
-  In The Chef’s Shift, the blocking issue did not show up in the clean baseline.
-  It appeared when the core gameplay loop was repeated under pressure. Payment input was accepted, but behaviour became inconsistent,
-  which blocked progression entirely (<strong>CHEF-1</strong>).
-</p>
+    <h2 id="core-loop-first">Why the core gameplay loop comes first in game QA testing</h2>
+    <p>
+      In <strong>game QA testing</strong>, the first thing I want to know in an early build is whether the game can sustain its own basic loop.
+      If the main player cycle is unstable, everything layered on top of it is secondary.
+    </p>
+    <p class="small">
+      For The Chef’s Shift, that meant focusing on:
+      <strong>prepare → tray → serve → collect → repeat</strong>.
+      If that core gameplay loop holds, I can push further. If it breaks, that is the real story of the build.
+    </p>
 
-<section class="callout">
-  <h3>Repetition exposes real risk</h3>
-  <p class="small">
-    Variety can make a test plan look rich. Repetition is what tells you whether the game can survive its own design under repeated <strong>QA testing</strong> conditions.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Core principle</h3>
+      <p class="small">
+        In early builds, the most valuable <strong>QA testing</strong> checks are the ones that stress the core gameplay loop,
+        not the ones that make coverage look wide.
+      </p>
+    </section>
+
+    <section class="callout">
+      <h3>Why this matters</h3>
+      <p class="small">
+        Players do not experience a build as a spreadsheet. They experience its loop. If the loop is unstable,
+        that is the problem worth finding first.
+      </p>
+    </section>
 
     <hr>
 
-<h2 id="signal-vs-noise">How I separate signal from noise in a game QA testing pass</h2>
-<p>
-  In <strong>game QA testing</strong>, a short early build pass should not try to answer every question.
-  It should answer the questions most likely to change what you test next.
-</p>
-<ul>
-  <li><strong>Does the core gameplay loop work once?</strong></li>
-  <li><strong>Does it keep working when repeated?</strong></li>
-  <li><strong>Can invalid actions be rejected safely?</strong></li>
-  <li><strong>Can the game recover cleanly after a transition or failure state?</strong></li>
-  <li><strong>Do readability, prompts, and timing create player-facing friction?</strong></li>
-</ul>
-<p>
-  Anything outside that is noise unless the build gives me a reason to follow it.
-</p>
+    <h2 id="baseline">Why I start with a clean baseline in game QA testing</h2>
+    <p>
+      In <strong>game QA testing</strong>, before stressing anything, I want one clean run.
+      Not because a single pass proves stability, but because it tells me whether the core gameplay loop works at all in isolation.
+    </p>
+    <p class="small">
+      In this project, TM-01 established that one full loop could complete cleanly. That mattered because it gave me a usable baseline:
+      the game was not completely broken, so later failures could be tied to pressure, repetition, or interaction between systems.
+    </p>
 
-<section class="callout">
-  <h3>Scoping principle</h3>
-  <p class="small">
-    Good <strong>QA testing</strong> scoping is not about testing less. It is about testing the things that change your understanding of the build fastest.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Baseline does not equal confidence</h3>
+      <p class="small">
+        A clean first run is not the result. It is just permission to move to the <strong>QA testing</strong> checks that matter more.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="repetition">Why repetition matters more than variety in game QA testing</h2>
+    <p>
+      In <strong>game QA testing</strong>, one of the fastest ways to expose instability in an early build is not “more features”.
+      It is <strong>more loops</strong>.
+    </p>
+    <p>
+      Repetition is where systems start interacting with their own state, where timing starts to matter, and where apparently stable flows begin to break down.
+    </p>
+    <p class="small">
+      In The Chef’s Shift, the blocking issue did not show up in the clean baseline.
+      It appeared when the core gameplay loop was repeated under pressure. Payment input was accepted, but behaviour became inconsistent,
+      which blocked progression entirely (<strong>CHEF-1</strong>).
+    </p>
+
+    <section class="callout">
+      <h3>Repetition exposes real risk</h3>
+      <p class="small">
+        Variety can make a test plan look rich. Repetition is what tells you whether the game can survive its own design under repeated <strong>QA testing</strong> conditions.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="signal-vs-noise">How I separate signal from noise in a game QA testing pass</h2>
+    <p>
+      In <strong>game QA testing</strong>, a short early build pass should not try to answer every question.
+      It should answer the questions most likely to change what you test next.
+    </p>
+    <ul>
+      <li><strong>Does the core gameplay loop work once?</strong></li>
+      <li><strong>Does it keep working when repeated?</strong></li>
+      <li><strong>Can invalid actions be rejected safely?</strong></li>
+      <li><strong>Can the game recover cleanly after a transition or failure state?</strong></li>
+      <li><strong>Do readability, prompts, and timing create player-facing friction?</strong></li>
+    </ul>
+    <p>
+      Anything outside that is noise unless the build gives me a reason to follow it.
+    </p>
+
+    <section class="callout">
+      <h3>Scoping principle</h3>
+      <p class="small">
+        Good <strong>QA testing</strong> scoping is not about testing less. It is about testing the things that change your understanding of the build fastest.
+      </p>
+    </section>
 
     <hr>
 
     <h2 id="system-vs-player">Broken systems vs player-facing friction in game QA testing</h2>
-<p>
-  In <strong>game QA testing</strong>, one reason exhaustive testing is a waste early on is that it often treats every failure as the same kind of problem.
-  They are not.
-</p>
-<p>
-  In this pass, I had to separate two very different things:
-</p>
-<ul>
-  <li><strong>System failure:</strong> payment behaviour became inconsistent and blocked the core gameplay loop (<strong>CHEF-1</strong>).</li>
-  <li><strong>Player-facing friction:</strong> a prompt was difficult to see under pressure, leading to missed interaction and delayed service (<strong>CHEF-2</strong>).</li>
-</ul>
-<p>
-  Both matter, but they do not mean the same thing.
-  One says the system is unstable. The other says the player is being poorly informed.
-</p>
-<p class="small">
-  This is also where the accessibility lens helped.
-  At low complexity, performance was limited mostly by typing accuracy.
-  At higher complexity, the limiting factor shifted toward cognitive load, situational awareness, and task management.
-</p>
+    <p>
+      In <strong>game QA testing</strong>, one reason exhaustive testing is a waste early on is that it often treats every failure as the same kind of problem.
+      They are not.
+    </p>
+    <p>
+      In this pass, I had to separate two very different things:
+    </p>
+    <ul>
+      <li><strong>System failure:</strong> payment behaviour became inconsistent and blocked the core gameplay loop (<strong>CHEF-1</strong>).</li>
+      <li><strong>Player-facing friction:</strong> a prompt was difficult to see under pressure, leading to missed interaction and delayed service (<strong>CHEF-2</strong>).</li>
+    </ul>
+    <p>
+      Both matter, but they do not mean the same thing.
+      One says the system is unstable. The other says the player is being poorly informed.
+    </p>
+    <p class="small">
+      This is also where the accessibility lens helped.
+      At low complexity, performance was limited mostly by typing accuracy.
+      At higher complexity, the limiting factor shifted toward cognitive load, situational awareness, and task management.
+    </p>
 
-<section class="callout">
-  <h3>Not every hard moment is a bug</h3>
-  <p class="small">
-    <strong>QA testing</strong> gets stronger when it can tell the difference between a system breaking and a player being overloaded or poorly guided.
-  </p>
-</section>
-     
+    <section class="callout">
+      <h3>Not every hard moment is a bug</h3>
+      <p class="small">
+        <strong>QA testing</strong> gets stronger when it can tell the difference between a system breaking and a player being overloaded or poorly guided.
+      </p>
+    </section>
+
     <hr>
 
     <h2 id="example">What The Chef’s Shift proved in practice for game QA testing</h2>
 
-<section class="callout">
-  <h3>Example 1: a baseline pass is useful, but not enough</h3>
-  <p class="small">
-    In this <strong>game QA testing</strong> pass, TM-01 passed cleanly. One full core gameplay loop completed with stable input, serving, and collection flow.
-    Useful, but not meaningful on its own.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Example 1: a baseline pass is useful, but not enough</h3>
+      <p class="small">
+        In this <strong>game QA testing</strong> pass, TM-01 passed cleanly. One full core gameplay loop completed with stable input, serving, and collection flow.
+        Useful, but not meaningful on its own.
+      </p>
+    </section>
 
-<section class="callout">
-  <h3>Example 2: repeated loop testing exposed the real blocker</h3>
-  <p class="small">
-    TM-02 attempted repeated core gameplay loop execution and hit the key defect:
-    payment input was accepted, but behaviour became inconsistent under active multi-customer conditions.
-    This blocked progression and immediately changed the direction of the QA testing pass.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Example 2: repeated loop testing exposed the real blocker</h3>
+      <p class="small">
+        TM-02 attempted repeated core gameplay loop execution and hit the key defect:
+        payment input was accepted, but behaviour became inconsistent under active multi-customer conditions.
+        This blocked progression and immediately changed the direction of the QA testing pass.
+      </p>
+    </section>
 
-<section class="callout">
-  <h3>Example 3: stable systems were worth proving too</h3>
-  <p class="small">
-    Wrong-customer serving was correctly rejected. Retry and Continue reset or progressed state cleanly.
-    Mistype handling remained consistent. Order association stayed clear under pressure.
-    These were not flashy findings, but they made the overall <strong>QA testing</strong> pass more credible.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Example 3: stable systems were worth proving too</h3>
+      <p class="small">
+        Wrong-customer serving was correctly rejected. Retry and Continue reset or progressed state cleanly.
+        Mistype handling remained consistent. Order association stayed clear under pressure.
+        These were not flashy findings, but they made the overall <strong>QA testing</strong> pass more credible.
+      </p>
+    </section>
 
-<section class="callout">
-  <h3>Example 4: accessibility pressure points changed the interpretation</h3>
-  <p class="small">
-    Higher complexity did not break the system mechanically, but it changed the player burden.
-    Slower typing improved accuracy, but reduced awareness of concurrent events.
-    Readability and prompt visibility problems then became more significant because they affected decision speed under pressure.
-  </p>
-</section>
+    <section class="callout">
+      <h3>Example 4: accessibility pressure points changed the interpretation</h3>
+      <p class="small">
+        Higher complexity did not break the system mechanically, but it changed the player burden.
+        Slower typing improved accuracy, but reduced awareness of concurrent events.
+        Readability and prompt visibility problems then became more significant because they affected decision speed under pressure.
+      </p>
+    </section>
 
     <hr>
 
-  <h2 id="takeaways">Game QA testing takeaways for early builds</h2>
-<ul class="small">
-  <li>In <strong>game QA testing</strong>, early build passes should be selective. Wide coverage without priorities is usually wasted effort.</li>
-  <li>The core gameplay loop comes first because it tells you whether the build can sustain its own design.</li>
-  <li>A clean baseline is useful, but repetition is where unstable systems usually show themselves.</li>
-  <li>Fast, focused <strong>QA testing</strong> checks are more valuable than impressive-looking coverage if they change what you do next.</li>
-  <li>Not every painful player moment is a bug. Some are accessibility, readability, or cognitive load problems.</li>
-  <li>Stable systems deserve evidence too, because proving what held up strengthens the credibility of what broke.</li>
-</ul>
-     
+    <h2 id="takeaways">Game QA testing takeaways for early builds</h2>
+    <ul class="small">
+      <li>In <strong>game QA testing</strong>, early build passes should be selective. Wide coverage without priorities is usually wasted effort.</li>
+      <li>The core gameplay loop comes first because it tells you whether the build can sustain its own design.</li>
+      <li>A clean baseline is useful, but repetition is where unstable systems usually show themselves.</li>
+      <li>Fast, focused <strong>QA testing</strong> checks are more valuable than impressive-looking coverage if they change what you do next.</li>
+      <li>Not every painful player moment is a bug. Some are accessibility, readability, or cognitive load problems.</li>
+      <li>Stable systems deserve evidence too, because proving what held up strengthens the credibility of what broke.</li>
+    </ul>
+
     <hr>
 
     <section class="section" id="faq">
-  <h2>Game QA testing FAQ (early builds)</h2>
+      <h2>Game QA testing FAQ (early builds)</h2>
 
-  <h3>Shouldn’t game QA testing try to cover as much as possible?</h3>
-  <p>
-    No. In <strong>game QA testing</strong>, early builds need prioritisation, not maximum breadth. The goal is to find what breaks progression or trust fastest.
-  </p>
+      <h3>Shouldn’t game QA testing try to cover as much as possible?</h3>
+      <p>
+        No. In <strong>game QA testing</strong>, early builds need prioritisation, not maximum breadth. The goal is to find what breaks progression or trust fastest.
+      </p>
 
-  <h3>Is one clean run enough to call a system stable in QA testing?</h3>
-  <p>
-    No. A clean run is a baseline, not proof. Repetition and pressure are what test stability in a <strong>QA testing</strong> pass.
-  </p>
+      <h3>Is one clean run enough to call a system stable in QA testing?</h3>
+      <p>
+        No. A clean run is a baseline, not proof. Repetition and pressure are what test stability in a <strong>QA testing</strong> pass.
+      </p>
 
-  <h3>Why not start with edge cases in early build QA testing?</h3>
-  <p>
-    Because edge cases matter less if the core gameplay loop cannot survive normal use. Early <strong>QA testing</strong> should protect the core experience first.
-  </p>
+      <h3>Why not start with edge cases in early build QA testing?</h3>
+      <p>
+        Because edge cases matter less if the core gameplay loop cannot survive normal use. Early <strong>QA testing</strong> should protect the core experience first.
+      </p>
 
-  <h3>What counts as a useful early build bug in game QA testing?</h3>
-  <p>
-    Anything that blocks progression, corrupts state, breaks core interaction, or reliably misleads the player during normal use.
-  </p>
+      <h3>What counts as a useful early build bug in game QA testing?</h3>
+      <p>
+        Anything that blocks progression, corrupts state, breaks core interaction, or reliably misleads the player during normal use.
+      </p>
 
-  <h3>Are accessibility-related issues worth logging in an early QA testing pass?</h3>
-  <p>
-    Yes, if they create real player-facing friction or change decision-making under pressure. They are not “extra” if they affect progression.
-  </p>
+      <h3>Are accessibility-related issues worth logging in an early QA testing pass?</h3>
+      <p>
+        Yes, if they create real player-facing friction or change decision-making under pressure. They are not “extra” if they affect progression.
+      </p>
 
-  <h3>How do you know when to stop testing one issue and move on in QA testing?</h3>
-  <p>
-    When the behaviour is clear, reproducible enough to explain, and supported by evidence. Beyond that, time is usually better spent on the next risk.
-  </p>
-</section>
-
-    <hr>
-
-  <section class="section" id="links">
-  <h2>Game QA testing evidence and case study links</h2>
-  <ul>
-    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift game QA testing case study (full artefacts and evidence)</a></li>
-    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA testing articles hub</a></li>
-  </ul>
-  <p class="small">
-    This page stays focused on <strong>game QA testing workflow</strong> and judgement in early builds. The case study links out to the workbook tabs, session logs, bug log, Jira-style tickets, and evidence clips.
-  </p>
-</section>
+      <h3>How do you know when to stop testing one issue and move on in QA testing?</h3>
+      <p>
+        When the behaviour is clear, reproducible enough to explain, and supported by evidence. Beyond that, time is usually better spent on the next risk.
+      </p>
+    </section>
 
     <hr>
 
-   <p class="cta-row" style="text-align:center;">
-  <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
-  <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
-  <a class="cta-btn" href="./">Browse more game QA testing articles</a>
-</p>
+    <section class="section" id="links">
+      <h2>Game QA testing evidence and case study links</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift game QA testing case study (full artefacts and evidence)</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA testing articles hub</a></li>
+      </ul>
+      <p class="small">
+        This page stays focused on <strong>game QA testing workflow</strong> and judgement in early builds. The case study links out to the workbook tabs, session logs, bug log, Jira-style tickets, and evidence clips.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Browse more game QA testing articles</a>
+    </p>
 
   </main>
 
