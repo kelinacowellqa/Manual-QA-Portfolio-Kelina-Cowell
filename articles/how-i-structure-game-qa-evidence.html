@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>How I Structure Game QA Evidence: From Test Session to Jira Bug Report | Kelina Cowell</title>
+
+  <meta name="description" content="A practical game QA article showing how I capture gameplay evidence, organise test documentation, and create Jira bug reports for functional, exploratory, and regression testing in games." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-i-structure-game-qa-evidence.html" />
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta property="og:title" content="How I Structure Game QA Evidence: From Test Session to Jira Bug Report | Kelina Cowell">
+  <meta property="og:description" content="A practical game QA article showing how I capture gameplay evidence, organise test documentation, and create Jira bug reports for functional, exploratory, and regression testing in games.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-i-structure-game-qa-evidence.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta property="article:published_time" content="2026-04-21">
+  <meta property="article:modified_time" content="2026-04-21">
+
+  <meta name="twitter:title" content="How I Structure Game QA Evidence: From Test Session to Jira Bug Report | Kelina Cowell">
+  <meta name="twitter:description" content="A practical game QA article showing how I capture gameplay evidence, organise test documentation, and create Jira bug reports for functional, exploratory, and regression testing in games.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-i-structure-game-qa-evidence.html">
+
+  <style>
+    .article-hero,
+    .toc,
+    .callout{
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    .article-hero{
+      margin: 12px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toc{
+      margin: 10px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .callout{ margin: 16px 0; }
+
+    .meta{ margin: 0; opacity: .9; }
+
+    .small{ font-size: .95rem; opacity: .95; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    .tldr{
+      margin: 14px 0 0;
+      padding: 0;
+    }
+    .tldr li{ margin: 6px 0; }
+
+    .author-row{
+      margin-top: 10px;
+      opacity: .95;
+    }
+    .author-row a{ text-decoration: underline; }
+
+    .pullquote{
+      margin: 16px 0;
+      padding: 14px 16px 14px 18px;
+      border-left: 3px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+    }
+    .pullquote blockquote{
+      margin: 0;
+      padding: 0;
+    }
+    .pullquote blockquote p{
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .pullquote blockquote p:before{
+      content: "“";
+      font-size: 2.2rem;
+      line-height: 0;
+      vertical-align: -0.35em;
+      opacity: .55;
+      margin-right: 6px;
+    }
+    .pullquote cite{
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    .article-figure{
+      margin: 18px 0;
+    }
+
+    .plain-figure{
+      margin: 18px 0;
+    }
+
+    .plain-figure img{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .caption,
+    figcaption{
+      margin-top: 8px;
+      font-size: .95rem;
+      opacity: .92;
+    }
+
+    .comparison-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 18px 0;
+    }
+
+    @media (min-width: 900px){
+      .comparison-grid{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .comparison-grid .article-figure{
+      margin: 0;
+    }
+
+    .flow-arrow{
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 8px 0;
+      opacity: .8;
+    }
+
+    .simple-table{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: .98rem;
+    }
+
+    .simple-table th,
+    .simple-table td{
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      vertical-align: top;
+    }
+
+    .simple-table th{
+      font-weight: 700;
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How I Structure Game QA Evidence: From Test Session to Jira Bug Report",
+    "description": "A practical game QA article showing how I capture gameplay evidence, organise test documentation, and create Jira bug reports for functional, exploratory, and regression testing in games.",
+    "datePublished": "2026-04-21",
+    "dateModified": "2026-04-21",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "publisher": {
+      "@type": "Person",
+      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-i-structure-game-qa-evidence.html"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+      <h1>How I Structure Game QA Evidence</h1>
+      <p class="hint">From test session to recruiter-ready Jira bug report for game teams.</p>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell (self-directed game QA portfolio work) •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+
+      <p class="small">
+        This article explains the evidence workflow I use across my game QA portfolio projects:
+        recording full gameplay sessions, extracting focused clips, tracking findings in Google Sheets,
+        and creating linked Jira bug reports with clear traceability from game test session to final report.
+      </p>
+
+      <hr>
+
+      <section class="callout" aria-label="Article summary">
+        <h2 style="margin-top:0;">TL;DR</h2>
+        <ul class="tldr small">
+          <li><strong>Core workflow:</strong> Test → Capture → Clip → Label → Store → Report.</li>
+          <li><strong>Tools used:</strong> OBS Studio, Microsoft Clipchamp, Google Sheets, Jira, YouTube (unlisted), and external SSD backup.</li>
+          <li><strong>Main point:</strong> good game QA evidence is not just finding bugs, but making them easy to reproduce, understand, and act on.</li>
+          <li><strong>Traceability:</strong> my workbook, evidence clips, and Jira tickets are linked together as one pipeline.</li>
+          <li><strong>Examples shown:</strong> functional, exploratory, and regression game testing from Battletoads, Rebel Racing, Sworn, Shadow Point, and The Chef’s Shift.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section class="callout" aria-label="About this work">
+        <h2 style="margin-top:0;">What this article is for</h2>
+        <p class="small">
+          This page exists to show how I work in practice as an aspiring game QA tester. Rather than only showing finished bug reports,
+          I wanted to show the full chain behind them: how gameplay sessions are recorded, how evidence is trimmed,
+          how game test documentation is structured, and how issues are reported clearly in Jira with supporting clips and notes.
+        </p>
+      </section>
+    </header>
+
+    <hr>
+
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#why-evidence-matters">Why game QA evidence matters</a></li>
+        <li><a href="#workflow">My game QA evidence workflow</a></li>
+        <li><a href="#test">1. Test</a></li>
+        <li><a href="#capture">2. Capture</a></li>
+        <li><a href="#clip-extraction">3. Clip extraction</a></li>
+        <li><a href="#naming">4. Naming and labelling</a></li>
+        <li><a href="#storage-documentation">5. Storage and documentation</a></li>
+        <li><a href="#traceability">6. Traceability</a></li>
+        <li><a href="#jira-reporting">7. Bug reporting in Jira</a></li>
+        <li><a href="#pipeline">8. Game QA pipeline: Sheets and Jira integration</a></li>
+        <li><a href="#testing-styles">Different game testing styles in practice</a></li>
+        <li><a href="#backup">Backup strategy</a></li>
+        <li><a href="#why-this-works">Why this approach works</a></li>
+        <li><a href="#takeaway">Final thought</a></li>
+      </ul>
+    </nav>
+
+    <hr>
+
+    <h2 id="why-evidence-matters">Why Game QA Evidence Matters</h2>
+    <p>
+      Finding a bug isn’t enough.
+    </p>
+    <p>
+      If a game developer can’t see it, reproduce it, and understand it quickly, the bug slows the team down instead of helping it.
+    </p>
+    <p>
+      That’s why I focus on structured game QA evidence capture — turning raw gameplay into clear, reproducible, developer-ready bug reports for game teams.
+    </p>
+
+    <hr>
+
+    <h2 id="workflow">My Game QA Evidence Workflow</h2>
+    <p>
+      Every issue I log follows the same pipeline:
+    </p>
+
+    <section class="callout">
+      <h3>Core workflow</h3>
+      <p class="small"><strong>Test → Capture → Clip → Label → Store → Report</strong></p>
+    </section>
+
+    <p>
+      This ensures nothing is missed, and every game bug is backed by clear, usable evidence.
+    </p>
+
+    <hr>
+
+    <h2 id="test">1. Test (Structured or Exploratory)</h2>
+    <p>
+      I begin with either:
+    </p>
+    <ul>
+      <li><strong>Structured game testing</strong> (test matrix, defined scenarios)</li>
+      <li><strong>Exploratory game testing</strong> (charter-based sessions)</li>
+    </ul>
+    <p>
+      Each session is scoped and time-boxed to keep testing focused and intentional.
+    </p>
+
+    <hr>
+
+    <h2 id="capture">2. Capture (Full Session Recording)</h2>
+    <p>
+      All game testing sessions are recorded using <strong>OBS Studio</strong>.
+    </p>
+    <p>
+      This allows me to:
+    </p>
+    <ul>
+      <li>Capture issues in real time</li>
+      <li>Retain full context</li>
+      <li>Avoid relying on memory</li>
+    </ul>
+    <p>
+      When a bug occurs, the evidence already exists.
+    </p>
+
+    <hr>
+
+    <h2 id="clip-extraction">3. Clip Extraction (Turning Raw Gameplay into Evidence)</h2>
+    <p>
+      Raw recordings are not useful on their own.
+    </p>
+    <p>
+      Developers don’t want to watch 5–10 minutes of gameplay footage to find a bug.
+    </p>
+    <p>
+      I use <strong>Microsoft Clipchamp</strong> to extract short, focused clips that show:
+    </p>
+    <ul>
+      <li>The trigger</li>
+      <li>The failure</li>
+      <li>The result</li>
+    </ul>
+
+    <h3>Example: Evidence Refinement</h3>
+
+    <div class="comparison-grid">
+      <figure class="article-figure plain-figure">
+        <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/CHEF-1_01_RawSession_5m49s.png" target="_blank" rel="noopener">
+          <img
+            src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/CHEF-1_01_RawSession_5m49s.png"
+            alt="Game QA raw gameplay recording in Clipchamp showing a 5 minute 49 second unedited session before trimming for bug evidence"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+        <figcaption>
+          <strong>Raw Session (Unedited)</strong><br>
+          Raw gameplay session recording (~5m 49s). Full capture used to preserve complete context during game testing.
+        </figcaption>
+      </figure>
+
+      <figure class="article-figure plain-figure">
+        <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/CHEF-1_02_EvidenceClip_33s.png" target="_blank" rel="noopener">
+          <img
+            src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/CHEF-1_02_EvidenceClip_33s.png"
+            alt="Game QA evidence clip in Clipchamp showing a trimmed 33 second gameplay segment isolating a bug for reporting"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+        <figcaption>
+          <strong>Final Evidence Clip (Bug-Ready)</strong><br>
+          Focused gameplay evidence clip (~33s) isolating the exact moment of failure. This clip is linked directly to the bug report.
+        </figcaption>
+      </figure>
+    </div>
+
+    <section class="callout">
+      <h3>Before → After</h3>
+      <p class="small">
+        Full gameplay session reduced to a short, reproducible clip. This ensures game developers see only what matters, without wasting time searching through raw footage.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="naming">4. Naming &amp; Labelling (Making Evidence Traceable)</h2>
+    <p>
+      All clips follow a consistent naming convention:
+    </p>
+    <p><code>[PROJECT]_[BUG-ID]_[DESCRIPTION]</code></p>
+    <p>
+      Example:
+    </p>
+    <p><code>CHEF-1_PaymentFails_MultiCustomer_Run3.mp4</code></p>
+    <p>
+      This allows:
+    </p>
+    <ul>
+      <li>Instant identification</li>
+      <li>Direct mapping to bug reports</li>
+      <li>Clean organisation across game QA projects</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="storage-documentation">5. Storage &amp; Documentation</h2>
+    <p>
+      I separate game QA data across local storage, cloud access, and structured documentation.
+    </p>
+
+    <h3>Raw Sessions (Local)</h3>
+    <ul>
+      <li>Full gameplay recordings stored on my PC</li>
+      <li>Used to revisit context when needed</li>
+    </ul>
+
+    <h3>Edited Clips (YouTube – Unlisted)</h3>
+    <ul>
+      <li>Uploaded to a dedicated game QA evidence channel</li>
+      <li>Organised by project</li>
+      <li>Linked directly in bug reports</li>
+    </ul>
+
+    <p><strong>Why YouTube:</strong></p>
+    <ul>
+      <li>Avoids local storage overload</li>
+      <li>Fast sharing via link</li>
+      <li>Easy access for reviewers</li>
+      <li>Simulates controlled sharing (similar to NDA workflows)</li>
+    </ul>
+
+    <h3>Documentation (Google Sheets)</h3>
+    <p>
+      Each project uses a single Google Sheets workbook as the game QA hub.
+    </p>
+    <p><strong>Core tabs:</strong></p>
+    <ul>
+      <li><strong>README</strong> — scope, environment, constraints</li>
+      <li><strong>STAR Summary (Bugs)</strong> — key findings</li>
+    </ul>
+    <p><strong>Additional tabs vary by project:</strong></p>
+    <ul>
+      <li>Charter Matrix</li>
+      <li>Session Log</li>
+      <li>Bug Log</li>
+      <li>Device Matrix</li>
+      <li>Daily Smoke</li>
+    </ul>
+
+    <h3>Example: Game QA Workbook Structure</h3>
+
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SHADOWPOINT_01_Readme_WorkbookOverview.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SHADOWPOINT_01_Readme_WorkbookOverview.png"
+          alt="Game QA workbook README for Shadow Point showing project scope, environment, tools, and testing constraints"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        <strong>README Overview</strong><br>
+        Project README defining scope, environment, tools, and constraints. Acts as the entry point for the game QA workbook.
+      </figcaption>
+    </figure>
+
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SHADOWPOINT_02_Tabs_Traceability.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SHADOWPOINT_02_Tabs_Traceability.png"
+          alt="Game QA workbook tabs for Shadow Point showing README, Charter Matrix, Session Log, Bug Log, and STAR Summary"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        <strong>Tab Structure &amp; Traceability</strong><br>
+        All game QA activity is organised within a single workbook, allowing direct traceability from testing to reporting.
+      </figcaption>
+    </figure>
+
+    <hr>
+
+    <h2 id="traceability">6. Traceability (Connecting Everything)</h2>
+    <p>
+      All evidence is linked directly inside the workbook:
+    </p>
+    <ul>
+      <li>Bug IDs → video clips</li>
+      <li>Test sessions → notes and outcomes</li>
+      <li>Findings → summarised in STAR format</li>
+    </ul>
+    <p>
+      This creates a clear chain:
+    </p>
+
+    <section class="callout">
+      <h3>Traceability chain</h3>
+      <p class="small"><strong>Test → Observation → Evidence → Report</strong></p>
+    </section>
+
+    <hr>
+
+    <h2 id="jira-reporting">7. Bug Reporting (Jira)</h2>
+    <p>
+      I document all issues in <strong>Jira</strong> using a structured, consistent format.
+    </p>
+    <p>
+      Each bug includes:
+    </p>
+    <ul>
+      <li>Title</li>
+      <li>System / Area</li>
+      <li>Environment</li>
+      <li>Build</li>
+      <li>Reproduction Steps</li>
+      <li>Expected Result</li>
+      <li>Actual Result</li>
+      <li>Severity / Priority</li>
+      <li>Repro Rate</li>
+      <li>Evidence (linked video/screenshots)</li>
+    </ul>
+
+    <h3>Example: Jira Game Bug Report</h3>
+
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SWORN-15_BugReport_UI_Accessibility.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SWORN-15_BugReport_UI_Accessibility.png"
+          alt="Jira game bug report showing accessibility issue in Sworn with reproduction steps, expected and actual results, and attached gameplay evidence"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        Bug documented in Jira with clear reproduction steps, expected vs actual behaviour, severity, and attached gameplay evidence.
+      </figcaption>
+    </figure>
+
+    <p>
+      All Jira tickets are directly linked to evidence clips and tracked within my QA workbook for full traceability.
+    </p>
+
+    <hr>
+
+    <h2 id="pipeline">8. Game QA Pipeline: Sheets ↔ Jira Integration</h2>
+    <p>
+      My workflow connects documentation and reporting into a single system rather than treating them as separate tools.
+    </p>
+
+    <h3>How it connects</h3>
+
+    <h4>Google Sheets (Tracking &amp; Context)</h4>
+    <ul>
+      <li>Game test runs and session logs</li>
+      <li>Bug discovery and notes</li>
+      <li>Evidence links</li>
+      <li>Internal bug ID tracking</li>
+    </ul>
+
+    <div class="flow-arrow" aria-hidden="true">⬇</div>
+
+    <h4>Jira (Formal Reporting)</h4>
+    <ul>
+      <li>Structured game bug ticket</li>
+      <li>Developer-facing documentation</li>
+      <li>Severity and priority assignment</li>
+    </ul>
+
+    <h3>Field Alignment (Example)</h3>
+
+    <table class="simple-table">
+      <thead>
+        <tr>
+          <th scope="col">Google Sheets</th>
+          <th scope="col">Jira</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bug ID</td>
+          <td>Issue Key</td>
+        </tr>
+        <tr>
+          <td>Notes / Observation</td>
+          <td>Description</td>
+        </tr>
+        <tr>
+          <td>Test Steps / Actions</td>
+          <td>Reproduction Steps</td>
+        </tr>
+        <tr>
+          <td>Expected / Actual (logged)</td>
+          <td>Expected vs Actual</td>
+        </tr>
+        <tr>
+          <td>Severity / Priority</td>
+          <td>Severity / Priority</td>
+        </tr>
+        <tr>
+          <td>Evidence Link (YouTube)</td>
+          <td>Attachments / Links</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      This ensures:
+    </p>
+    <ul>
+      <li>No duplication of effort</li>
+      <li>Consistent data across tools</li>
+      <li>Clear traceability from game test session → evidence → bug report</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="testing-styles">Different Game Testing Styles in Practice</h2>
+    <p>
+      QA approach changes depending on the goal of the session.
+    </p>
+
+    <h3>Functional Testing (Battletoads)</h3>
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/BATTLETOADS_Functional_TestRun.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/BATTLETOADS_Functional_TestRun.png"
+          alt="Game QA functional test run in Battletoads showing linked test case, fail result, severity, priority, and bug ID"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        Structured game test execution validating expected behaviour with clear traceability to bugs and evidence.
+      </figcaption>
+    </figure>
+
+    <h3>Exploratory Testing (Rebel Racing)</h3>
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/REBELRACING_Exploratory_SessionLog.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/REBELRACING_Exploratory_SessionLog.png"
+          alt="Game QA exploratory testing session log for Rebel Racing showing test charter, actions, observations, and linked evidence"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        Charter-based game testing session capturing real-time actions, observations, and system behaviour.
+      </figcaption>
+    </figure>
+
+    <h3>Regression Testing (Sworn)</h3>
+    <figure class="article-figure plain-figure">
+      <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SWORN_Regression_Matrix.png" target="_blank" rel="noopener">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/articles/images/SWORN_Regression_Matrix.png"
+          alt="Game QA regression tracking sheet for Sworn showing patch validation, status tracking, and linked bug evidence"
+          loading="lazy"
+          decoding="async"
+        >
+      </a>
+      <figcaption>
+        Regression tracking using patch references, risk assessment, and validation of known issues in a game QA workflow.
+      </figcaption>
+    </figure>
+
+    <hr>
+
+    <h2 id="backup">Backup Strategy (Critical)</h2>
+    <p>
+      All game QA data is backed up to an external SSD, including:
+    </p>
+    <ul>
+      <li>Raw recordings</li>
+      <li>Supporting files</li>
+      <li>Documentation</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="why-this-works">Why This Approach Works</h2>
+    <p>
+      This workflow:
+    </p>
+    <ul>
+      <li>Mirrors real game QA processes</li>
+      <li>Produces clear, reproducible game bugs</li>
+      <li>Reduces developer friction</li>
+      <li>Demonstrates structured thinking</li>
+    </ul>
+    <p>
+      Most importantly:
+    </p>
+    <p>
+      It shows not just that I can find issues — but that I can communicate them effectively in a game production environment.
+    </p>
+
+    <hr>
+
+    <h2 id="takeaway">Final Thought</h2>
+    <p>
+      Good game QA isn’t about finding the most bugs.
+    </p>
+    <p>
+      It’s about making sure the right bugs get fixed quickly.
+    </p>
+    <p>
+      And that comes down to how well you capture and present evidence.
+    </p>
+
+    <hr>
+
+    <section class="section" id="links">
+      <h2>Related game QA links</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">Battletoads game QA case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">Rebel Racing game QA case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/">Sworn game QA case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">Shadow Point VR game QA case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift game QA case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA articles hub</a></li>
+      </ul>
+      <p class="small">
+        This article focuses on workflow and evidence structure. The linked game QA case studies show the underlying projects, artefacts, and supporting context.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Back to Articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • Game QA Portfolio</div>
+  </footer>
+</body>
+</html>
