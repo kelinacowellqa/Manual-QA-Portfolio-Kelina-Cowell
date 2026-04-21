@@ -267,7 +267,7 @@
 .portfolio-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 36px;
+  gap: 32px;
   margin: 30px 0 36px;
   align-items: start;
 }
@@ -299,7 +299,7 @@
 }
 
 .hook-list li {
-  margin-bottom: 16px;
+  margin-bottom: 14px; /* slightly tighter now */
 }
 
 .hook-list a {
@@ -311,15 +311,18 @@
   text-decoration: underline;
 }
 
+/* ✅ INLINE meta (fixed) */
 .hook-meta {
-  display: block;
-  margin-top: 3px;
-  font-size: 0.95rem;
+  display: inline;
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 0.95em;
   color: var(--muted);
 }
 
+/* description */
 .hook-list p {
-  margin: 6px 0 0;
+  margin: 4px 0 0; /* tighter so it hugs the title */
 }
 
 /* Mobile fallback */
@@ -454,32 +457,29 @@
     </ul>
   </section>
 
- <section class="recruiter-hook">
+<section class="recruiter-hook">
   <h2>Featured QA Evidence</h2>
 
   <ul class="hook-list">
 
     <li>
-      <a href="/your-chefs-shift-project-link">
-        <strong>Payment System Failure (Core Loop Blocked)</strong>
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
+        <strong>Payment System Failure (Core Loop Blocked) <span class="hook-meta">(The Chef’s Shift, PC)</span></strong>
       </a>
-      <span class="hook-meta">The Chef’s Shift (PC)</span>
       <p>Payment input is accepted but applies inconsistently across customers, blocking progression. 100% reproducible.</p>
     </li>
 
     <li>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">
-        <strong>Controller Input Break After Keyboard Interaction (Pause/Join)</strong>
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">
+        <strong>Controller Input Break After Keyboard Interaction (Pause/Join) <span class="hook-meta">(Battletoads, PC)</span></strong>
       </a>
-      <span class="hook-meta">Battletoads (PC)</span>
       <p>Triggering Join from Pause via keyboard disables controller input, breaking control flow.</p>
     </li>
 
     <li>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">
-        <strong>Subtitle Occlusion by UI (Dialogue Blocked)</strong>
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">
+        <strong>Subtitle Occlusion by UI (Dialogue Blocked) <span class="hook-meta">(Shadow Point, VR)</span></strong>
       </a>
-      <span class="hook-meta">Shadow Point (VR, Quest)</span>
       <p>Backpack popup covers subtitles, causing missed dialogue and accessibility issues.</p>
     </li>
 
