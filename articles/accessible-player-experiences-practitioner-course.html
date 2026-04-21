@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Game accessibility QA: what I learned from the APX Practitioner course | Kelina Cowell</title>
+  <title>Game Accessibility Testing: APX Practitioner Insights | Kelina Cowell</title>
 
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="Game accessibility QA reflections after completing the APX (Accessible Player Experiences) Practitioner course by AbleGamers, focused on inclusive game design and accessibility testing in games." />
+  <meta name="description" content="Game accessibility testing in QA: practical insights from the APX Practitioner course by AbleGamers. Learn how to test accessibility in games using design patterns, player–game loops, and real QA workflows." />
   <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html">
 
-  <meta property="og:title" content="Game accessibility QA: what I learned from the APX Practitioner course | Kelina Cowell">
-  <meta property="og:description" content="How the APX Practitioner course reshaped my approach to accessibility testing in games using the player–game loop and accessibility design patterns.">
+  <meta property="og:title" content="Game Accessibility Testing: APX Practitioner Insights | Kelina Cowell">
+  <meta property="og:description" content="Learn how to approach game accessibility testing in QA using APX design patterns, player–game loops, and practical testing strategies.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html">
   <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Game Accessibility Testing: APX Practitioner Insights">
+  <meta name="twitter:description" content="Practical game accessibility testing in QA using APX patterns and real workflows.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
@@ -25,12 +29,16 @@
   {
     "@context":"https://schema.org",
     "@type":"Article",
-    "headline":"Game accessibility QA: what I learned from the APX Practitioner course",
-    "author":{"@type":"Person","name":"Kelina Cowell"},
+    "headline":"Game Accessibility Testing: APX Practitioner Insights",
+    "author":{
+      "@type":"Person",
+      "name":"Kelina Cowell"
+    },
     "datePublished":"2026-02-16",
     "dateModified":"2026-02-16",
     "mainEntityOfPage":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
-    "description":"Game accessibility QA reflections after completing the APX Practitioner course by AbleGamers, focused on inclusive game design and accessibility testing in games."
+    "image":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp",
+    "description":"Game accessibility testing in QA: practical insights from the APX Practitioner course by AbleGamers. Learn how to test accessibility in games using design patterns, player–game loops, and real QA workflows."
   }
   </script>
 
@@ -40,21 +48,89 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"What is game accessibility?","acceptedAnswer":{"@type":"Answer","text":"Game accessibility refers to design and development practices that allow players with diverse physical, sensory, cognitive, or situational limitations to access and experience gameplay without unnecessary barriers."}},
-      {"@type":"Question","name":"What is accessibility testing in games?","acceptedAnswer":{"@type":"Answer","text":"Accessibility testing in games evaluates whether players can reliably input actions, receive feedback, and complete gameplay loops. It includes testing controls, feedback channels, UI clarity, pacing, and interaction flexibility."}},
-      {"@type":"Question","name":"What does a QA tester do for game accessibility?","acceptedAnswer":{"@type":"Answer","text":"A QA tester focused on accessibility identifies player blockers, evaluates accessibility design patterns, and writes structured bug reports that highlight experience barriers rather than just feature gaps."}},
-      {"@type":"Question","name":"What is the APX Practitioner course?","acceptedAnswer":{"@type":"Answer","text":"The APX Practitioner course by AbleGamers is a professional training programme that teaches accessibility design patterns and player-experience frameworks for inclusive game development and testing."}},
-      {"@type":"Question","name":"Is accessibility the same as difficulty settings?","acceptedAnswer":{"@type":"Answer","text":"No. Difficulty adjusts challenge level. Accessibility ensures players can access the interaction loop in the first place."}},
-      {"@type":"Question","name":"Why is accessibility important in game development?","acceptedAnswer":{"@type":"Answer","text":"Accessibility expands who can participate in a game's intended experience and improves usability, clarity, and inclusivity."}},
-      {"@type":"Question","name":"What are accessibility design patterns in games?","acceptedAnswer":{"@type":"Answer","text":"Accessibility design patterns are reusable solutions to common barriers, such as providing multiple feedback channels, control remapping, or reducing sustained input demands."}},
-      {"@type":"Question","name":"How do you test accessibility without having a disability?","acceptedAnswer":{"@type":"Answer","text":"QA testers evaluate systemic barriers such as input strain, feedback clarity, cognitive load, and flexibility rather than attempting to simulate lived experience."}},
-      {"@type":"Question","name":"Is accessibility only relevant for players with disabilities?","acceptedAnswer":{"@type":"Answer","text":"No. Accessibility improvements benefit ageing players, fatigued players, players in noisy environments, and those using varied hardware setups."}},
-      {"@type":"Question","name":"How can a QA portfolio demonstrate accessibility skills?","acceptedAnswer":{"@type":"Answer","text":"A QA portfolio can demonstrate accessibility skills by applying accessibility design patterns to real test cases, documenting player blockers, and writing structured accessibility-focused bug reports."}}
+      {
+        "@type":"Question",
+        "name":"What is game accessibility testing?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Game accessibility testing evaluates whether players can reliably interact with gameplay systems. It focuses on input accessibility, feedback clarity, UI readability, pacing, and interaction flexibility to ensure players can complete the core gameplay loop without unnecessary barriers."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What is accessibility testing in games?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Accessibility testing in games assesses whether players can input actions, receive feedback, and sustain interaction across different conditions. It includes testing controls, multiple feedback channels, UI clarity, pacing, and cognitive load."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What does a QA tester do for game accessibility?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"A QA tester focused on game accessibility identifies player blockers, evaluates accessibility design patterns, and writes structured bug reports that highlight barriers in the player–game interaction loop rather than just feature failures."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How do you test game accessibility?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Game accessibility testing involves evaluating input reliability, feedback channels (visual, audio, haptic), UI clarity, cognitive load, control remapping, and pacing. QA testers analyse whether players can access and sustain gameplay interactions under different conditions."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What is the APX Practitioner course?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"The APX Practitioner course by AbleGamers is a professional training programme that teaches accessibility design patterns and player–game interaction frameworks for inclusive game development and accessibility testing."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Is accessibility the same as difficulty settings?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"No. Difficulty adjusts challenge level, while accessibility ensures players can access and interact with gameplay systems in the first place. Without accessibility, difficulty settings are irrelevant."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Why is accessibility important in game development?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Accessibility in game development expands who can play and improves overall usability. It reduces barriers to interaction, making games more robust across different player abilities, environments, and hardware setups."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What are accessibility design patterns in games?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Accessibility design patterns are reusable solutions to common interaction barriers, such as providing multiple feedback channels, control remapping, reducing sustained input, and allowing adjustable pacing."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How do you test accessibility without having a disability?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"QA testers analyse gameplay systems for structural barriers such as input strain, unclear feedback, and cognitive overload. Accessibility testing focuses on identifying interaction limitations rather than simulating lived experience."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How can a QA portfolio demonstrate accessibility testing skills?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"A QA portfolio demonstrates accessibility testing skills by applying accessibility design patterns to real projects, identifying player blockers, and documenting accessibility-focused bug reports with clear impact on gameplay experience."
+        }
+      }
     ]
   }
   </script>
-
-    </script>
 
   <style>
     .certificate{
@@ -80,249 +156,292 @@
       border-top:1px solid var(--line);
     }
   </style>
-
 </head>
 
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
 
-  <main class="wrap">
+  <main id="content" class="wrap">
 
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/">Homepage</a>
-      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
     </p>
 
     <hr>
 
-    <main id="content">
+    <header class="page-header">
+      <h1>Game Accessibility Testing in QA: APX Practitioner Insights</h1>
+      <p class="hint">How to approach game accessibility testing using APX design patterns and QA workflows.</p>
 
-      <header class="page-header">
-        <h1>Game accessibility QA: what I learned from the APX (Accessible Player Experiences) Practitioner course</h1>
-        <p class="hint">A practical accessibility testing lens for Game QA.</p>
-
-        <p class="author-row small">
-          <strong>Author:</strong> Kelina Cowell •
-          <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
-        </p>
-
-        <hr>
-      </header>
-
-      <section>
-        <p>
-          I recently completed the <strong>APX Practitioner course (Accessible Player Experiences)</strong> by AbleGamers, a structured accessibility training programme focused on inclusive game design and accessibility testing in games.
-        </p>
-
-        <p>
-          The course fundamentally changed how I think about game accessibility as a QA tester.
-        </p>
-
-        <blockquote>
-          <p><strong>Accessibility isn’t about making games easier. It’s about making experiences reachable.</strong></p>
-        </blockquote>
-
-       <figure class="certificate">
-  <img
-    src="/Manual-QA-Portfolio-Kelina-Cowell/jira_training/screenshots/apx-certificate.jpg"
-    alt="APX Practitioner Certificate awarded to Kelina Cowell by AbleGamers"
-    loading="lazy"
-    decoding="async"
-  >
-  <figcaption>
-    APX Practitioner certification - February 2026
-  </figcaption>
-</figure>
-
-        <h2>The Core Insight: Accessibility and the Player–Game Loop</h2>
-
-        <p>APX frames games as a feedback loop between player and game:</p>
-
-        <ul>
-          <li>The player inputs an action.</li>
-          <li>The game responds with feedback.</li>
-          <li>The player interprets that feedback and acts again.</li>
-        </ul>
-
-        <p>
-          If a player cannot input reliably, or cannot receive feedback clearly, they are locked out of that loop entirely.
-        </p>
-
-        <p>
-          From a game QA and accessibility testing perspective, this is critical.
-        </p>
-
-        <p>
-          Accessibility work is about restoring that loop. Not removing challenge. Not lowering difficulty. Removing unnecessary barriers that prevent participation.
-        </p>
-
-        <p>
-          Instead of asking “Does this feature technically work?”  
-          I now ask “Can players actually access this interaction loop?”
-        </p>
-
-        <h2>Key Accessibility Testing Takeaways</h2>
-
-        <h3>1. Access Comes Before Challenge</h3>
-
-        <p>If a player:</p>
-        <ul>
-          <li>cannot remap controls</li>
-          <li>cannot perceive essential feedback</li>
-          <li>cannot sustain required physical input</li>
-        </ul>
-
-        <p>Then difficulty settings are irrelevant.</p>
-
-        <h3>2. Accessibility Patterns Over Checklists</h3>
-
-        <p>APX teaches accessibility design patterns, not rigid compliance checklists.</p>
-
-        <ul>
-          <li>Same Controls, But Different</li>
-          <li>Second Channel</li>
-          <li>Do More With Less</li>
-          <li>Slow It Down</li>
-        </ul>
-
-        <h3>3. One Barrier Can Affect Many Players</h3>
-
-        <ul>
-          <li>Permanent disability</li>
-          <li>Temporary injury</li>
-          <li>Ageing players</li>
-          <li>Fatigue</li>
-          <li>Environmental limitations</li>
-        </ul>
-
-        <h3>4. Accessibility Is an Experience Problem</h3>
-
-        <p>
-          The deeper QA question is:  
-          <strong>Can players still experience connection, challenge, mastery, escapism, and creativity?</strong>
-        </p>
-
-        <h2>How the APX Course Strengthens My QA Practice</h2>
-
-        <ul>
-          <li>Identify genuine player blockers</li>
-          <li>Write structured accessibility-focused bug reports</li>
-          <li>Apply accessibility design patterns to test charters</li>
-          <li>Raise accessibility risks earlier</li>
-          <li>Evaluate gameplay systems through an inclusive lens</li>
-        </ul>
-
-        <h2>What Comes Next</h2>
-
-        <p>
-          The APX certificate is not the achievement. Application is.
-        </p>
-
-        <p>
-          This is not a completed milestone. It is a new baseline for how I test.
-        </p>
-      </section>
-
-      <hr>
-
-    <section id="faq">
-  <h2>Game Accessibility & QA: Frequently Asked Questions</h2>
-
-  <h3>What is game accessibility?</h3>
-  <p>
-    Game accessibility is the practice of designing and testing games so players with a wide range of physical, sensory, cognitive, or situational limitations can meaningfully participate.
-  </p>
-  <p>
-    It is not about removing challenge or simplifying mechanics. It is about ensuring players can reliably interact with gameplay systems and receive the information they need to engage with the intended experience.
-  </p>
-
-  <h3>What is accessibility testing in games?</h3>
-  <p>
-    Accessibility testing evaluates whether players can reliably complete the player–game interaction loop.
-  </p>
-  <p>
-    This includes assessing whether players can input actions consistently, perceive and interpret feedback clearly, and sustain required interaction without excessive strain. It goes beyond checking whether options exist in a menu and instead examines whether gameplay systems remain usable under varied player conditions.
-  </p>
-
-  <h3>What does a QA tester do for accessibility?</h3>
-  <p>
-    A QA tester focused on accessibility identifies player blockers before they become production risks.
-  </p>
-  <p>
-    This can involve stress-testing input reliability, evaluating feedback clarity and redundancy, analysing interaction strain, and writing structured accessibility-focused bug reports that clearly describe the barrier and its impact on player experience.
-  </p>
-
-  <h3>What is the APX Practitioner course?</h3>
-<p>
-  The APX (Accessible Player Experiences) Practitioner course, developed by 
-  <a href="https://accessible.games/certified-apx-practitioner-course/" target="_blank" rel="noopener">
-    AbleGamers
-  </a>, 
-  is a structured accessibility training programme focused on inclusive game design and practical implementation in development and QA workflows.
-</p>
-
-  <h3>Is accessibility the same as difficulty?</h3>
-  <p>
-    No.
-  </p>
-  <p>
-    Accessibility ensures players can access and interact with gameplay systems. Difficulty adjusts how challenging those systems are once access exists. A player cannot benefit from difficulty settings if they cannot reliably input actions or perceive feedback.
-  </p>
-
-  <h3>Why is accessibility important in game development?</h3>
-  <p>
-    Accessibility expands who can participate in interactive experiences and improves overall usability and system resilience.
-  </p>
-  <p>
-    Many accessibility improvements, such as control remapping or clearer feedback, benefit a broad range of players. Addressing accessibility early in development also reduces redesign costs and strengthens overall product quality.
-  </p>
-
-  <h3>What are accessibility design patterns?</h3>
-  <p>
-    Accessibility design patterns are reusable solutions to common interaction barriers.
-  </p>
-  <p>
-    Examples include providing multiple feedback channels (visual, audio, haptic), allowing control remapping and input alternatives, reducing sustained input requirements, and supporting adjustable pacing. Patterns are adaptable across genres and engines, making them practical during both development and testing.
-  </p>
-
-  <h3>How do you test accessibility without having a disability?</h3>
-  <p>
-    Accessibility testing does not require personal lived experience of a specific condition. It requires analysing gameplay systems for structural barriers.
-  </p>
-  <p>
-    QA testers can evaluate whether inputs require excessive precision or repetition, whether feedback relies on a single sensory channel, whether cognitive load is unnecessarily high, and whether mechanics assume a narrow player profile.
-  </p>
-
-  <h3>Is accessibility only for disabled players?</h3>
-  <p>
-    No.
-  </p>
-  <p>
-    Accessibility benefits players beyond those with permanent disabilities. This includes ageing players, temporarily injured players, fatigued players, and those playing in non-ideal environments such as noisy rooms or on small screens. Accessibility improves interaction robustness, which benefits many real-world play conditions.
-  </p>
-
-  <h3>How can a QA portfolio show accessibility skills?</h3>
-  <p>
-    A strong QA portfolio demonstrates accessibility capability through applied analysis, not just certificates.
-  </p>
-  <p>
-    This may include identifying player blockers in real test cases, applying accessibility design patterns in test charters, documenting accessibility-focused bug reports, and clearly explaining the impact of barriers on different player groups.
-  </p>
-</section>
-
-
-      <hr>
-
-      <p class="cta-row" style="text-align:center;">
-        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
-        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
-        <a class="cta-btn" href="./">Back to Articles</a>
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
       </p>
 
-    </main>
+      <hr>
+    </header>
+
+    <section>
+      <p>
+        <strong>Game accessibility testing</strong> is an important part of modern QA because it helps identify barriers that can prevent players from fully engaging with gameplay systems.
+      </p>
+
+      <p>
+        I recently completed the <strong>APX Practitioner course (Accessible Player Experiences)</strong> by AbleGamers, a structured accessibility training programme focused on inclusive design, accessibility design patterns, and practical accessibility testing in games.
+      </p>
+
+      <p>
+        The course changed how I think about accessibility in QA. Instead of only asking whether a feature works, I now ask whether players can reliably access the player-game interaction loop.
+      </p>
+
+      <blockquote>
+        <p><strong>Accessibility isn’t about making games easier. It’s about making experiences reachable.</strong></p>
+      </blockquote>
+
+      <figure class="certificate">
+        <img
+          src="/Manual-QA-Portfolio-Kelina-Cowell/jira_training/screenshots/apx-certificate.jpg"
+          alt="APX Practitioner certificate from AbleGamers for game accessibility testing training"
+          loading="lazy"
+          decoding="async"
+        >
+        <figcaption>
+          APX Practitioner certification - February 2026
+        </figcaption>
+      </figure>
+
+      <h2>Game Accessibility Testing and the Player–Game Loop</h2>
+
+      <p>
+        In game accessibility testing, APX frames gameplay as a feedback loop between player and game:
+      </p>
+
+      <ul>
+        <li>The player inputs an action.</li>
+        <li>The game responds with feedback.</li>
+        <li>The player interprets that feedback and acts again.</li>
+      </ul>
+
+      <p>
+        If a player cannot input reliably, or cannot receive feedback clearly, they are effectively locked out of this loop.
+      </p>
+
+      <p>
+        From a game QA and accessibility testing perspective, this is critical. Accessibility testing is not just about whether systems function, but whether players can actually participate in that interaction.
+      </p>
+
+      <p>
+        Game accessibility testing focuses on restoring this loop. Not removing challenge. Not lowering difficulty. Removing unnecessary barriers that prevent participation.
+      </p>
+
+      <p>
+        Instead of asking “Does this feature technically work?”
+        I now ask “Can players actually access this interaction loop?”
+      </p>
+
+      <h2>Key Takeaways from Game Accessibility Testing</h2>
+
+      <h3>1. Access Comes Before Challenge</h3>
+
+      <p>
+        In game accessibility testing, access is always evaluated before difficulty.
+      </p>
+
+      <p>If a player:</p>
+      <ul>
+        <li>cannot remap controls</li>
+        <li>cannot perceive essential feedback</li>
+        <li>cannot sustain required physical input</li>
+      </ul>
+
+      <p>
+        Then difficulty settings are irrelevant, because the player cannot reliably interact with the gameplay system in the first place.
+      </p>
+
+      <h3>2. Accessibility Design Patterns Over Checklists</h3>
+
+      <p>
+        Accessibility testing in games is more effective when using design patterns rather than rigid checklists.
+      </p>
+
+      <ul>
+        <li>Same Controls, But Different</li>
+        <li>Second Channel</li>
+        <li>Do More With Less</li>
+        <li>Slow It Down</li>
+      </ul>
+
+      <p>
+        These patterns help QA testers identify systemic interaction barriers instead of isolated feature issues.
+      </p>
+
+      <h3>3. One Barrier Can Affect Many Players</h3>
+
+      <p>
+        Game accessibility testing considers a wide range of player conditions, not just permanent disabilities:
+      </p>
+
+      <ul>
+        <li>Permanent disability</li>
+        <li>Temporary injury</li>
+        <li>Ageing players</li>
+        <li>Fatigue</li>
+        <li>Environmental limitations</li>
+      </ul>
+
+      <h3>4. Accessibility Is an Experience Problem</h3>
+
+      <p>
+        Accessibility testing in QA is not just about features. It is about whether players can meaningfully experience the game.
+      </p>
+
+      <p>
+        The key question becomes:
+        <strong>Can players still experience connection, challenge, mastery, escapism, and creativity?</strong>
+      </p>
+
+      <hr>
+
+      <h2>How to Test Game Accessibility in QA</h2>
+
+      <p>
+        A practical game accessibility testing approach focuses on evaluating how players interact with systems under different conditions.
+      </p>
+
+      <ul>
+        <li><strong>Input:</strong> Can actions be performed reliably without strain?</li>
+        <li><strong>Feedback:</strong> Is information available through multiple channels (visual, audio, haptic)?</li>
+        <li><strong>UI clarity:</strong> Can players easily interpret menus, prompts, and status?</li>
+        <li><strong>Pacing:</strong> Can players control speed, timing, or pressure?</li>
+        <li><strong>Flexibility:</strong> Are control remapping and alternative interactions supported?</li>
+      </ul>
+
+      <p>
+        This shifts QA from checking whether features exist to evaluating whether gameplay systems are actually usable.
+      </p>
+
+      <hr>
+
+      <h2>How the APX Course Strengthens My QA Practice</h2>
+
+      <ul>
+        <li>Identify genuine player blockers in gameplay systems</li>
+        <li>Write structured accessibility-focused bug reports</li>
+        <li>Apply accessibility design patterns to test charters</li>
+        <li>Raise accessibility risks earlier in development</li>
+        <li>Evaluate gameplay systems through an inclusive testing lens</li>
+      </ul>
+
+      <hr>
+
+      <h2>What Comes Next</h2>
+
+      <p>
+        The APX certificate is not the achievement. Application is.
+      </p>
+
+      <p>
+        This is not a completed milestone. It is a new baseline for how I approach game accessibility testing in QA.
+      </p>
+    </section>
+
+    <hr>
+
+    <section id="faq">
+      <h2>Game Accessibility Testing & QA: Frequently Asked Questions</h2>
+
+      <h3>What is game accessibility testing?</h3>
+      <p>
+        Game accessibility testing evaluates whether players can reliably interact with gameplay systems.
+      </p>
+      <p>
+        It focuses on input accessibility, feedback clarity, UI readability, pacing, and interaction flexibility to ensure players can complete the core gameplay loop without unnecessary barriers.
+      </p>
+
+      <h3>What is accessibility testing in games?</h3>
+      <p>
+        Accessibility testing in games assesses whether players can input actions, receive feedback, and sustain interaction across different conditions.
+      </p>
+      <p>
+        This includes evaluating controls, multiple feedback channels, UI clarity, pacing, and cognitive load to ensure gameplay systems remain usable.
+      </p>
+
+      <h3>What does a QA tester do for game accessibility?</h3>
+      <p>
+        A QA tester focused on game accessibility testing identifies player blockers before they become production risks.
+      </p>
+      <p>
+        This involves evaluating input reliability, feedback clarity, interaction strain, and writing structured accessibility-focused bug reports that clearly describe the barrier and its impact on gameplay.
+      </p>
+
+      <h3>How do you test game accessibility?</h3>
+      <p>
+        Game accessibility testing involves analysing how players interact with gameplay systems under different conditions.
+      </p>
+      <p>
+        QA testers evaluate input reliability, feedback channels (visual, audio, haptic), UI clarity, pacing, control remapping, and cognitive load to identify barriers to interaction.
+      </p>
+
+      <h3>What is the APX Practitioner course?</h3>
+      <p>
+        The APX (Accessible Player Experiences) Practitioner course, developed by
+        <a href="https://accessible.games/certified-apx-practitioner-course/" target="_blank" rel="noopener">
+          AbleGamers
+        </a>,
+        is a structured accessibility training programme focused on inclusive game design and accessibility testing in QA workflows.
+      </p>
+
+      <h3>Is accessibility the same as difficulty?</h3>
+      <p>No.</p>
+      <p>
+        Accessibility ensures players can access and interact with gameplay systems, while difficulty adjusts challenge level. Without accessibility, difficulty settings are irrelevant.
+      </p>
+
+      <h3>Why is accessibility important in game development?</h3>
+      <p>
+        Accessibility in game development expands who can participate and improves overall usability.
+      </p>
+      <p>
+        Many accessibility improvements, such as control remapping or clearer feedback, benefit a wide range of players and strengthen overall system design.
+      </p>
+
+      <h3>What are accessibility design patterns in games?</h3>
+      <p>
+        Accessibility design patterns are reusable solutions to common interaction barriers.
+      </p>
+      <p>
+        Examples include multiple feedback channels, control remapping, reducing sustained input, and adjustable pacing to support different player needs.
+      </p>
+
+      <h3>How do you test accessibility without having a disability?</h3>
+      <p>
+        Game accessibility testing does not require simulating lived experience. It focuses on identifying structural barriers in gameplay systems.
+      </p>
+      <p>
+        QA testers evaluate input strain, feedback clarity, cognitive load, and system flexibility to determine whether players can reliably access gameplay.
+      </p>
+
+      <h3>How can a QA portfolio demonstrate accessibility testing skills?</h3>
+      <p>
+        A QA portfolio demonstrates accessibility testing skills through applied analysis rather than theory.
+      </p>
+      <p>
+        This includes identifying player blockers, applying accessibility design patterns, and documenting accessibility-focused bug reports with clear impact on gameplay experience.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Back to Articles</a>
+    </p>
+
   </main>
 
   <footer>
