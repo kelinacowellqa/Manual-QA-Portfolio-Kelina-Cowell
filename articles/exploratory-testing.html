@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Exploratory testing on mobile: how it works in practice | Kelina Cowell</title>
+  <title>Exploratory Testing in Mobile Apps: QA Workflow & Real Bug Examples | Kelina Cowell</title>
 
-  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta name="description" content="Applied manual QA article explaining exploratory testing on mobile: session structure, risk focus, interruptions, recovery, and why this approach finds bugs scripted checks miss." />
-  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
+<meta name="description" content="Exploratory testing in mobile apps explained with real QA examples. Learn exploratory testing workflow, session structure, and how testers find bugs that scripted tests miss." />
 
-  <meta property="og:title" content="Exploratory testing on mobile: how it works in practice | Kelina Cowell">
-  <meta property="og:description" content="Applied manual QA article on exploratory testing for mobile: session structure, risk focus, interruptions and recovery, and what it uncovers on real builds.">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
-  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
-  <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
+
+<meta property="og:title" content="Exploratory Testing in Mobile Apps: QA Workflow & Real Bug Examples | Kelina Cowell">
+
+<meta property="og:description" content="Exploratory testing in mobile apps using real QA workflows and bug examples. Learn session structure, risk-based testing, and how exploratory testing finds issues scripted checks miss.">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html">
+<meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+
+<meta name="twitter:card" content="summary_large_image">
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
@@ -147,19 +151,21 @@
   }
   </style>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Article",
-    "headline":"Exploratory testing on mobile: how it works in practice",
-    "author":{"@type":"Person","name":"Kelina Cowell"},
-    "datePublished":"2025-12-18",
-    "dateModified":"2025-12-18",
-    "mainEntityOfPage":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
-    "description":"Applied manual QA article on exploratory testing for mobile: session structure, risk focus, interruptions and recovery, and what it uncovers on real builds."
-  }
-  </script>
-</head>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Exploratory Testing in Mobile Apps: QA Workflow & Real Bug Examples",
+  "author":{
+    "@type":"Person",
+    "name":"Kelina Cowell"
+  },
+  "datePublished":"2025-12-18",
+  "dateModified":"2025-12-18",
+  "mainEntityOfPage":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/exploratory-testing.html",
+  "description":"Exploratory testing in mobile apps explained with real QA examples. Learn exploratory testing workflow, session structure, and how testers find bugs that scripted tests miss."
+}
+</script>
 
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -170,7 +176,7 @@
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/" class="nav-link is-active" aria-current="page">Back to Articles Hub</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/" class="nav-link">Homepage</a>
-      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/" class="nav-link">Portfolio Hub</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/" class="nav-link">Game QA Portfolio Hub</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html" class="nav-link">About Me</a>
       <a class="cta-btn" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/" class="nav-link">QA Chronicles</a>
       </p>
@@ -180,48 +186,59 @@
   <div class="wrap">
     <main id="content">
 
-      <header class="page-header">
-        <h1>Exploratory testing on mobile: the messy checks that find real bugs</h1>
-        <p class="hint">An applied QA article, not a definition page and not a case study.</p>
+    <header class="page-header">
+  <h1>Exploratory Testing in Mobile Apps: Real QA Workflow & Bug Examples</h1>
 
-        <p class="author-row small">
-        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
-        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
-      </p>
+  <p class="hint">
+    A practical, real-world look at exploratory testing on mobile — messy, risk-driven sessions that uncover bugs scripted tests miss.
+  </p>
+
+  <p class="author-row small">
+    <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+    <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+  </p>
+</header>
 
         <hr>
 
-        <nav class="toc" aria-label="On this page">
-          <strong>On this page</strong>
-          <ul>
-            <li><a href="#about">About this article</a></li>
-            <li><a href="#meaning">What exploratory testing actually means</a></li>
-            <li><a href="#mobile">Why exploratory testing matters on mobile</a></li>
-            <li><a href="#practice">Exploratory testing workflow in practice</a></li>
-            <li><a href="#findings">Common mobile bugs found with exploratory testing</a></li>
-            <li><a href="#example">Android exploratory testing example: reward claim soft lock</a></li>
-            <li><a href="#reporting">Bug reporting for exploratory testing: notes and evidence</a></li>
-            <li><a href="#skills">Exploratory testing skills shown in this mobile pass</a></li>
-            <li><a href="#takeaways">Key takeaways for mobile QA</a></li>
-            <li><a href="#faq">Exploratory testing FAQ (manual QA)</a></li>
-            <li><a href="#links">Exploratory testing evidence and case study links</a></li>
-          </ul>
-        </nav>
-      </header>
+      <nav class="toc" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#about">About this exploratory testing article</a></li>
+    <li><a href="#meaning">What is exploratory testing in manual QA</a></li>
+    <li><a href="#mobile">Why exploratory testing is important in mobile apps</a></li>
+    <li><a href="#practice">Exploratory testing workflow (mobile QA example)</a></li>
+    <li><a href="#findings">Exploratory testing bug examples in mobile apps</a></li>
+    <li><a href="#example">Android exploratory testing example: reward claim bug</a></li>
+    <li><a href="#reporting">Bug reporting in exploratory testing (notes and evidence)</a></li>
+    <li><a href="#skills">Exploratory testing skills in mobile QA</a></li>
+    <li><a href="#takeaways">Key takeaways for exploratory testing in mobile QA</a></li>
+    <li><a href="#faq">Exploratory testing FAQ (manual QA)</a></li>
+    <li><a href="#links">Exploratory testing case studies and evidence</a></li>
+  </ul>
+</nav>
 
       <hr>
 
-      <section class="section" id="about">
-        <p>
-          Exploratory testing is often summarised as “testing without scripts”.
-          In real mobile QA work, that description is incomplete.
-        </p>
-        <p>
-          This article explains <strong>exploratory testing on mobile</strong> as it is actually applied in a practical workflow:
-          <strong>session structure</strong>, <strong>risk focus</strong>, <strong>interruptions and recovery</strong>, and how this approach
-          consistently finds issues that scripted checks often miss.
-          Examples are drawn from a real Android mobile game pass, but the focus here is the <em>method</em>.
-        </p>
+     <section class="section" id="about">
+  <h2>What is exploratory testing in mobile QA?</h2>
+
+  <p>
+    <strong>Exploratory testing</strong> is a manual testing approach where test design, execution, and analysis happen at the same time.
+    Instead of following predefined test cases, testers explore the product using charters, focusing on risk, behaviour, and real user conditions.
+  </p>
+
+  <p>
+    In <strong>mobile apps</strong>, exploratory testing becomes especially important because real users do not follow clean, scripted paths.
+    They get interruptions, switch networks, background apps, and return mid-flow. These conditions create bugs that structured test cases often miss.
+  </p>
+
+  <p>
+    This article explains <strong>exploratory testing in mobile apps</strong> as it works in practice: session structure, risk-based decisions,
+    interruptions and recovery, and how this approach consistently finds bugs that scripted checks do not.
+    Examples are based on a real Android test pass, but the focus here is the <em>workflow and method</em>.
+  </p>
+</section>
 
         <figure class="hero-media">
   <img
@@ -230,257 +247,289 @@
     loading="lazy"
     decoding="async"
   >
-  <figcaption>
-    Exploratory testing on mobile in practice: chartered, timeboxed sessions with controlled variation, producing defects, context notes, bug reports, and evidence.
-  </figcaption>
+ <figcaption>
+  Exploratory testing in mobile apps in practice: chartered, timeboxed sessions with controlled variation, producing bug reports, defects, context notes, and reproducible QA evidence.
+</figcaption>
 </figure>
 
         <hr>
 
-        <div class="callout">
-          <p><strong>TL;DR</strong></p>
-          <ul>
-            <li><strong>What it is:</strong> risk-driven exploratory sessions where design, execution, and analysis happen together.</li>
-            <li><strong>Platform context:</strong> mobile (Android), where interruptions and device state changes are normal.</li>
-            <li><strong>Timebox:</strong> short focused sessions, not long wandering playthroughs.</li>
-            <li><strong>Approach:</strong> charters, controlled variation, observation-led decisions.</li>
-            <li><strong>Outputs:</strong> defects and observations that explain behaviour, with enough context to reproduce.</li>
-          </ul>
-        </div>
-      </section>
+        <<div class="callout">
+  <p><strong>TL;DR – Exploratory testing in mobile apps</strong></p>
+  <ul>
+    <li><strong>What it is:</strong> exploratory testing is a manual QA approach where test design, execution, and analysis happen together.</li>
+    <li><strong>Where it’s used:</strong> mobile apps (Android), where interruptions, backgrounding, and device state changes create real-world bugs.</li>
+    <li><strong>How it works:</strong> short, timeboxed exploratory testing sessions (20–45 minutes), not long unstructured playthroughs.</li>
+    <li><strong>Approach:</strong> test charters, controlled variation, and risk-based decisions guided by observed behaviour.</li>
+    <li><strong>Outputs:</strong> reproducible bugs, clear bug reports, and QA evidence with enough context to diagnose issues.</li>
+  </ul>
+</div>
 
       <hr>
 
       <div class="divider" role="separator" aria-hidden="true"></div>
 
-      <section class="section" id="meaning">
-        <h2>What exploratory testing actually means</h2>
-        <p>
-          In practice, exploratory testing is a way of working where test design,
-          execution, and analysis happen together.
-          You are not following a pre-written script.
-          You are observing behaviour and choosing the next action based on risk, evidence, and what the product is doing right now.
-        </p>
-        <p>
-          That does not mean “random testing”.
-          It means structured freedom: you keep a clear intent, and you keep your changes controlled so outcomes remain interpretable.
-        </p>
-      </section>
+    <section class="section" id="meaning">
+  <h2>What is exploratory testing in manual QA?</h2>
+
+  <p>
+    In <strong>manual QA</strong>, exploratory testing is a way of working where test design, execution, and analysis happen together in real time.
+    Instead of following predefined test cases, testers actively observe behaviour and decide what to test next based on risk, evidence, and system response.
+  </p>
+
+  <p>
+    This does not mean “random testing”.
+    Effective <strong>exploratory testing</strong> is structured: sessions are guided by a clear goal (a test charter), and changes are controlled so results remain interpretable and bugs are reproducible.
+  </p>
+
+  <p>
+    The key difference from scripted testing is adaptability. Rather than validating expected outcomes step by step, exploratory testing focuses on discovering unexpected behaviour, especially under real-world conditions.
+  </p>
+</section>
 
       <hr>
 
-      <section class="section" id="mobile">
-        <h2>Why exploratory testing matters on mobile</h2>
-        <p>
-          Mobile products rarely fail under perfect conditions. They fail when something changes unexpectedly.
-          On Android especially, many failure modes are contextual and lifecycle-driven.
-        </p>
-        <ul>
-          <li>Alarms, calls, and notifications interrupt active flows.</li>
-          <li>Apps are backgrounded and resumed repeatedly.</li>
-          <li>Network quality changes during critical moments (login, purchase, reward claim).</li>
-          <li>UI must remain usable on small screens and unusual aspect ratios.</li>
-        </ul>
+    <section class="section" id="mobile">
+  <h2>Why exploratory testing is important in mobile apps</h2>
 
-<aside class="pullquote" aria-label="Applied insight">
-  <blockquote>
-    <p>
-      For mobile exploration, compare performance across devices where possible and probe interruptions:
-      lock screen, phone calls, network drops, switching Wi-Fi/data, rotation, and kill/restart recovery.
-    </p>
-    <cite>- Radu Posoi, Founder, AlkoTech Labs (ex Ubisoft QA Lead)</cite>
-  </blockquote>
-</aside>
+  <p>
+    In <strong>mobile app testing</strong>, products rarely fail under perfect conditions. They fail when something changes unexpectedly.
+    On Android especially, many failure modes are contextual and lifecycle-driven.
+  </p>
+
+  <ul>
+    <li>Alarms, calls, and notifications interrupt active flows.</li>
+    <li>Apps are backgrounded and resumed repeatedly.</li>
+    <li>Network quality changes during critical moments (login, purchase, reward claim).</li>
+    <li>UI must remain usable on small screens and unusual aspect ratios.</li>
+  </ul>
+
+  <aside class="pullquote" aria-label="Applied insight">
+    <blockquote>
+      <p>
+        For mobile exploration, compare performance across devices where possible and probe interruptions:
+        lock screen, phone calls, network drops, switching Wi-Fi/data, rotation, and kill/restart recovery.
+      </p>
+      <cite>- Radu Posoi, Founder, AlkoTech Labs (ex Ubisoft QA Lead)</cite>
+    </blockquote>
+  </aside>
         
-        <p>
-          Exploratory sessions target these risks directly instead of assuming a clean uninterrupted journey.
-        </p>
-      </section>
+  <p>
+    <strong>Exploratory testing in mobile apps</strong> targets these real-world conditions directly, instead of assuming a clean, uninterrupted user journey.
+    This is why exploratory testing consistently finds bugs that scripted test cases often miss.
+  </p>
+</section>
 
       <hr>
 
-      <section class="section" id="practice">
-        <h2>Exploratory testing workflow in practice</h2>
+    <section class="section" id="practice">
+  <h2>Exploratory testing workflow (mobile QA example)</h2>
 
-        <div class="two-col">
-          <div>
-            <h3>Exploratory test charters, not scripts</h3>
-            <p>
-              Sessions start with a charter: a short statement of intent.
-              For example, “Explore reward claim behaviour under interruptions” or “Explore recovery after network loss”.
-              The charter defines <em>focus</em>, not steps.
-            </p>
+  <div class="two-col">
+    <div>
+      <h3>Exploratory test charters, not test cases</h3>
+      <p>
+        Exploratory testing sessions start with a <strong>test charter</strong>: a short statement of intent.
+        For example, “Explore reward claim behaviour under interruptions” or “Explore recovery after network loss”.
+        The charter defines <em>focus</em>, not step-by-step test cases.
+      </p>
 
-            <h3>Timeboxed exploratory testing sessions</h3>
-            <p>
-              Exploratory testing works best in short sessions.
-              Timeboxing forces prioritisation and prevents unfocused wandering.
-              Typical sessions range from 20 to 45 minutes.
-            </p>
+      <h3>Timeboxed exploratory testing sessions</h3>
+      <p>
+        Effective <strong>exploratory testing workflow</strong> relies on short, focused sessions.
+        Timeboxing forces prioritisation and prevents unfocused wandering.
+        Typical sessions range from 20 to 45 minutes.
+      </p>
 
-            <aside class="pullquote" aria-label="Applied insight">
-  <blockquote>
-    <p>
-      Before you go deep, verify the basics first. A short daily smoke test protects the golden path,
-      so deeper exploratory work is not wasted rediscovering obvious breakage.
-    </p>
-    <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
-  </blockquote>
-</aside>
+      <aside class="pullquote" aria-label="Applied insight">
+        <blockquote>
+          <p>
+            Before you go deep, verify the basics first. A short daily smoke test protects the golden path,
+            so deeper exploratory work is not wasted rediscovering obvious breakage.
+          </p>
+          <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
+        </blockquote>
+      </aside>
 
-            <h3>Controlled variation: one variable at a time</h3>
-            <p>
-              Rather than changing everything at once, one variable is altered at a time: lock state, network type, lifecycle state.
-              This keeps results interpretable and defects reproducible.
-            </p>
-          </div>
+      <h3>Controlled variation: one variable at a time</h3>
+      <p>
+        A core part of <strong>exploratory testing in mobile apps</strong> is controlled variation.
+        Rather than changing everything at once, one variable is altered at a time: lock state, network type, or lifecycle state.
+        This keeps results interpretable and defects reproducible.
+      </p>
+    </div>
 
-          <aside class="mini" aria-label="Session checklist">
-            <h3>Exploratory testing session checklist (charter, timebox, evidence)</h3>
-            <ul>
-              <li>Charter chosen (risk and focus)</li>
-              <li>Timebox set (20 to 45 mins)</li>
-              <li>Variables defined (one at a time)</li>
-              <li>Notes captured live</li>
-              <li>Evidence captured when it happens</li>
-              <li>Bug report drafted while context is fresh</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      <hr>
-
-      <section class="section" id="findings">
-        <h2>Common mobile bugs found with exploratory testing</h2>
-        <p>
-          Exploratory testing is effective at surfacing issues that are low-frequency but high-impact, especially on mobile.
-        </p>
-        <ul>
-          <li>Soft locks where the UI appears responsive but progression is blocked.</li>
-          <li>State inconsistencies after backgrounding or relaunch.</li>
-          <li>Audio or visual desynchronisation after OS-level events.</li>
-          <li>UI scaling or readability problems that only appear in specific contexts.</li>
-        </ul>
-      </section>
-
-    <p><strong>Scenario:</strong> reward claim flow under interruptions (Android).</p>
-<p>
-  During an exploratory session, repeatedly backgrounding and resuming the app while a reward flow was mid-animation
-  triggered a soft lock: the UI stayed visible, but the claim state never completed, blocking progression.
-  This did not appear during clean uninterrupted smoke testing because the trigger was lifecycle timing and state recovery.
-</p>
-<p>
-  <strong>Why this matters:</strong> it is a normal user behaviour on mobile, not a rare edge case. Exploratory sessions hit it because they are designed to.
-</p>
+    <aside class="mini" aria-label="Session checklist">
+      <h3>Exploratory testing session checklist</h3>
+      <ul>
+        <li>Charter defined (risk and focus)</li>
+        <li>Timebox set (20–45 minutes)</li>
+        <li>Variables controlled (one at a time)</li>
+        <li>Notes captured during the session</li>
+        <li>Evidence recorded when issues occur</li>
+        <li>Bug report drafted while context is fresh</li>
+      </ul>
+    </aside>
+  </div>
+</section>
 
       <hr>
 
-      <section class="section" id="reporting">
-        <h2>Bug reporting for exploratory testing: notes and evidence</h2>
-        <p>
-          Because exploratory testing is adaptive, notes and evidence matter more than in scripted runs.
-          Findings must be supported with enough context to reproduce and diagnose.
-        </p>
+    <section class="section" id="findings">
+  <h2>Exploratory testing bug examples in mobile apps</h2>
 
-<aside class="pullquote" aria-label="Applied insight">
-  <blockquote>
-    <p>
-      High impact exploratory bugs live or die by their evidence. Capture context (client and device state),
-      include frequency (for example 3/3 or 10/13), and attach a clear repro so the issue is actionable.
-    </p>
-    <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
-  </blockquote>
-</aside>
+  <p>
+    <strong>Exploratory testing in mobile apps</strong> is effective at surfacing low-frequency but high-impact bugs,
+    especially those caused by real-world conditions and lifecycle changes.
+  </p>
+
+  <ul>
+    <li>Soft locks where the UI appears responsive but progression is blocked.</li>
+    <li>State inconsistencies after backgrounding or relaunch.</li>
+    <li>Audio or visual desynchronisation after OS-level events.</li>
+    <li>UI scaling or readability issues that only appear in specific contexts.</li>
+  </ul>
+
+  <h3>Exploratory testing example (Android): reward claim soft lock</h3>
+
+  <p>
+    <strong>Scenario:</strong> reward claim flow under interruptions (Android).
+  </p>
+
+  <p>
+    During an exploratory testing session, repeatedly backgrounding and resuming the app while a reward flow was mid-animation
+    triggered a soft lock: the UI remained visible, but the claim state never completed, blocking progression.
+  </p>
+
+  <p>
+    This issue did not appear during clean, uninterrupted smoke testing because the trigger depended on lifecycle timing and state recovery.
+  </p>
+
+  <p>
+    <strong>Why this matters:</strong> this is normal user behaviour on mobile, not a rare edge case.
+    <strong>Exploratory testing</strong> exposes these issues because sessions are designed to probe interruptions and recovery conditions.
+  </p>
+</section>
+
+      <hr>
+
+     <section class="section" id="reporting">
+  <h2>Bug reporting in exploratory testing (notes, evidence, and repro steps)</h2>
+
+  <p>
+    In <strong>exploratory testing</strong>, bug reporting relies heavily on notes and evidence.
+    Because sessions are adaptive, findings must include enough context to reproduce and diagnose the issue reliably.
+  </p>
+
+  <aside class="pullquote" aria-label="Applied insight">
+    <blockquote>
+      <p>
+        High impact exploratory bugs live or die by their evidence. Capture context (client and device state),
+        include frequency (for example 3/3 or 10/13), and attach a clear repro so the issue is actionable.
+      </p>
+      <cite>- Nathan Glatus, ex Senior QA / Game Integrity Analyst (Fortnite, ex Epic Games)</cite>
+    </blockquote>
+  </aside>
         
-        <ul>
-          <li>Screen recordings captured during the session, not recreated later.</li>
-          <li>Notes that include context, not just actions (device state, network, lifecycle transitions).</li>
-          <li>Bug reports that clearly separate expected behaviour from actual behaviour.</li>
-        </ul>
-        <p>
-          The goal is to make exploratory findings actionable, not anecdotal.
-        </p>
-      </section>
+  <ul>
+    <li>Screen recordings captured during the session, not recreated later.</li>
+    <li>Notes that include context, not just actions (device state, network, lifecycle transitions).</li>
+    <li>Clear reproduction steps showing how the issue occurs.</li>
+    <li>Bug reports that separate expected behaviour from actual behaviour.</li>
+  </ul>
+
+  <p>
+    The goal of <strong>exploratory testing documentation</strong> is to make findings actionable and reproducible,
+    not anecdotal. Without clear evidence and context, even high-impact bugs are difficult to fix.
+  </p>
+</section>
+          
+      <hr>
+
+     <section class="section" id="skills">
+  <h2>Exploratory testing skills demonstrated in mobile QA</h2>
+  <ul>
+    <li><strong>Risk-based testing:</strong> prioritising high-impact areas over full coverage.</li>
+    <li><strong>Test charter design and execution:</strong> defining focused exploratory sessions.</li>
+    <li><strong>Bug analysis and reporting:</strong> clear defects with expected vs actual behaviour.</li>
+    <li><strong>Reproduction steps:</strong> isolating issues under variable conditions.</li>
+    <li><strong>Evidence-driven QA:</strong> using video, notes, and context to support findings.</li>
+    <li><strong>Mobile UI awareness:</strong> identifying usability and readability issues.</li>
+    <li><strong>Device and network testing:</strong> validating behaviour across real-world conditions.</li>
+  </ul>
+</section>
 
       <hr>
 
-      <section class="section" id="skills">
-        <h2>Exploratory testing skills shown in this mobile pass</h2>
-        <ul>
-          <li>Risk-based testing decisions</li>
-          <li>Test charter creation and execution</li>
-          <li>Defect analysis and clear bug reporting</li>
-          <li>Reproduction step clarity under variable conditions</li>
-          <li>Evidence-led communication</li>
-          <li>Mobile UI and interaction awareness</li>
-          <li>Device and network variation testing</li>
-        </ul>
-      </section>
-
-      <hr>
-
-      <section class="section" id="takeaways">
-        <h2>Key takeaways for mobile QA</h2>
-        <ul>
-          <li>Exploratory testing is structured, not random.</li>
-          <li>Mobile risk is contextual, not just functional.</li>
-          <li>Interruptions and recovery deserve dedicated exploration.</li>
-          <li>Good notes and evidence make exploratory work credible and actionable.</li>
-        </ul>
-      </section>
+     <section class="section" id="takeaways">
+  <h2>Key takeaways for exploratory testing in mobile QA</h2>
+  <ul>
+    <li><strong>Exploratory testing is structured:</strong> it uses charters, timeboxing, and controlled variation, not random testing.</li>
+    <li><strong>Mobile testing is contextual:</strong> real-world conditions like interruptions, backgrounding, and network changes drive bugs.</li>
+    <li><strong>Interruptions and recovery matter:</strong> lifecycle events are a major source of mobile app defects.</li>
+    <li><strong>Evidence makes bugs actionable:</strong> clear notes, reproduction steps, and video evidence turn observations into fixable issues.</li>
+  </ul>
+</section>
 
       <hr>
       
 <section class="section" id="faq">
-<h2>Exploratory testing FAQ (mobile QA)</h2>
+  <h2>Exploratory testing FAQ (mobile QA)</h2>
   
-<h3>How do you stop exploratory testing becoming random wandering?</h3>
-<p>
-  By using a clear charter, a strict timebox, and controlled variation.
-  If you can’t explain what you were trying to learn in that session, the charter is too vague.
-</p>
+  <h3>How do you do exploratory testing without it becoming random?</h3>
+  <p>
+    In <strong>exploratory testing</strong>, sessions are structured using a clear test charter, a strict timebox, and controlled variation.
+    If you cannot explain what you were trying to learn from the session, the charter is too vague.
+  </p>
 
-<h3>What do you write down during an exploratory session?</h3>
-<p>
-  The variables that matter for reproduction: device state, network, lifecycle transitions, and what changed between attempts.
-  Notes should capture context, not just button presses.
-</p>
+  <h3>What should you document during an exploratory testing session?</h3>
+  <p>
+    <strong>Exploratory testing documentation</strong> should focus on variables that affect reproduction: device state, network conditions,
+    lifecycle transitions, and what changed between attempts. Notes should capture context, not just button presses.
+  </p>
 
-<h3>How do you reproduce a bug found through exploration?</h3>
-<p>
-  First, reduce the scenario to the smallest set of steps that still triggers the issue.
-  Then rerun it while changing one variable at a time until the trigger conditions are clear.
-</p>
+  <h3>How do you reproduce bugs found in exploratory testing?</h3>
+  <p>
+    To reproduce an <strong>exploratory testing bug</strong>, reduce the scenario to the smallest set of steps that still triggers the issue.
+    Then rerun it while changing one variable at a time until the trigger conditions are clear and consistent.
+  </p>
 
-<h3>What makes mobile exploratory testing different from PC or console?</h3>
-<p>
-  Mobile failure modes are often lifecycle and OS-driven: backgrounding, notifications, lock/unlock, network switching,
-  permissions, battery and performance constraints.
-  Normal user behaviour creates timing and recovery issues that clean runs will miss.
+  <h3>What makes exploratory testing different in mobile apps?</h3>
+  <p>
+    In <strong>mobile app testing</strong>, failure modes are often lifecycle and OS-driven: backgrounding, notifications, lock/unlock,
+    network switching, permissions, and performance constraints. Normal user behaviour introduces timing and recovery issues that clean runs miss.
   </p>
 </section>
 
        <hr>
 
-    <section class="section" id="links">
-      <h2>Exploratory testing evidence and case study links</h2>
-      <ul>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">Rebel Racing Charter-based Exploratory & Edge-Case Testing (full artefacts and evidence)</a></li>
-        <li><a href="/QA-Chronicles-Kelina-Cowell/issues/issue-02-rebel-racing">QA Chronicles Issue 2: Rebel Racing</a></li>
-      </ul>
-      <p class="small">
-        This page stays focused on the testing workflow. The case study links out to the workbook structure, runs, and evidence.
-      </p>
-    </section>
+   <section class="section" id="links">
+  <h2>Exploratory testing case studies and QA evidence</h2>
+  <ul>
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">
+        Exploratory testing case study (mobile QA): Rebel Racing – full test artefacts and evidence
+      </a>
+    </li>
+    <li>
+      <a href="/QA-Chronicles-Kelina-Cowell/issues/issue-02-rebel-racing">
+        QA Chronicles: exploratory testing findings in Rebel Racing (mobile testing example)
+      </a>
+    </li>
+  </ul>
+  <p class="small">
+    This article focuses on <strong>exploratory testing workflow</strong>. These case studies provide full QA artefacts,
+    including test charters, session notes, bug reports, and recorded evidence from real mobile testing sessions.
+  </p>
+</section>
     
     <hr>
 
       <p class="cta-row" style="text-align:center;">
-        <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
-        <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
-        <a class="cta-btn" href="./">Back to Articles</a>
-      </p>
+  <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about QA testing</a>
+  <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">View my QA portfolio on LinkedIn</a>
+  <a class="cta-btn" href="./">Explore more QA articles</a>
+</p>
 
     </main>
   </div>
