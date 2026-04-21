@@ -725,6 +725,69 @@
 
     <hr>
 
+    <section class="section" id="faq">
+  <h2>Game QA evidence and reporting FAQ</h2>
+
+  <h3>Is recording full gameplay sessions necessary for QA?</h3>
+  <p>
+    Not always, but it is the most reliable way to avoid losing context. In practice,
+    having a full recording means any issue can be revisited, verified, and clipped
+    without relying on memory or trying to reproduce it from scratch.
+  </p>
+
+  <h3>Why not just upload raw footage instead of trimming clips?</h3>
+  <p>
+    Because it slows everyone down. Developers need to see the issue immediately.
+    A focused clip shows the trigger, failure, and result without forcing someone
+    to scrub through several minutes of gameplay.
+  </p>
+
+  <h3>Isn’t storing evidence in multiple places overkill?</h3>
+  <p>
+    No. Local recordings, cloud-hosted clips, and structured documentation serve
+    different purposes. Together, they create redundancy, accessibility, and a
+    clear audit trail from test session to final report.
+  </p>
+
+  <h3>Why use both Google Sheets and Jira?</h3>
+  <p>
+    They solve different problems. Sheets acts as the QA workspace for tracking
+    sessions, notes, and evidence, while Jira is the developer-facing system for
+    formal bug reporting. Linking them creates a single, traceable pipeline rather
+    than two disconnected tools.
+  </p>
+
+  <h3>What makes a bug report actually useful to a developer?</h3>
+  <p>
+    Clarity and reproducibility. A good report shows exactly what happened,
+    how to trigger it, what was expected, what actually occurred, and includes
+    evidence that confirms the issue without ambiguity.
+  </p>
+
+  <h3>Do all issues need video evidence?</h3>
+  <p>
+    Not always, but for gameplay, input, and UI behaviour, video removes
+    interpretation. It shows timing, context, and player interaction in a way
+    text alone cannot.
+  </p>
+
+  <h3>Is this workflow realistic for a studio environment?</h3>
+  <p>
+    The exact tools may vary, but the structure is standard: capture evidence,
+    document clearly, and maintain traceability between testing and reporting.
+    This workflow is designed to reflect that expectation.
+  </p>
+
+  <h3>Why emphasise traceability so much?</h3>
+  <p>
+    Because QA is not just about finding issues, it is about being able to
+    explain, verify, and revisit them. Traceability ensures every bug can be
+    tracked back to its origin, evidence, and testing context.
+  </p>
+</section>
+
+    <hr>
+
     <section class="section" id="links">
       <h2>Related game QA links</h2>
       <ul>
