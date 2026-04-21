@@ -4,29 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
- <title>Regression testing workflow (Sworn, PC Game Pass) | Kelina Cowell</title>
+ <title>Regression Testing Example: Manual QA Workflow for Games | Kelina Cowell</title>
 
- <meta name="description" content="Regression testing workflow from my Sworn (PC Game Pass) pass: how I scope regression from change signals, build a risk-based matrix, and verify golden-path stability." />
+<meta name="description" content="Regression testing example using a real manual QA workflow for games. Learn how I scope risk-based regression checks, build a regression matrix, and verify stability after change." />
 
-  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html" />
+<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html" />
 
-  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <meta property="og:title" content="Regression testing workflow example (Sworn, PC Game Pass) | Kelina Cowell">
-  <meta property="og:description" content="Regression testing workflow article backed by my Sworn (PC Game Pass) one-week pass: risk-based regression matrix, golden-path verification, save/continue anchors, audio sanity, and input handover on build 1.01.0.1039.">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html">
-  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
-  <meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Regression Testing Example: Manual QA Workflow for Games | Kelina Cowell">
+<meta property="og:description" content="Regression testing example based on a real manual QA workflow for games, including risk-based regression scope, matrix design, golden-path checks, and stability verification after change.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html">
+<meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:card" content="summary_large_image">
 
-  <!-- Update these when you publish/edit the page -->
-  <meta property="article:published_time" content="2025-12-19">
-  <meta property="article:modified_time" content="2025-12-19">
+<!-- Update these when you publish/edit the page -->
+<meta property="article:published_time" content="2025-12-19">
+<meta property="article:modified_time" content="2025-12-19">
 
-  <meta name="twitter:title" content="Regression testing workflow example (Sworn, PC Game Pass) | Kelina Cowell">
-  <meta name="twitter:description" content="Regression testing workflow article backed by my Sworn (PC Game Pass) one-week pass: risk-based matrix, golden-path verification, save/continue anchors, audio sanity, and input handover on build 1.01.0.1039.">
-  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
-  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html">
+<meta name="twitter:title" content="Regression Testing Example: Manual QA Workflow for Games | Kelina Cowell">
+<meta name="twitter:description" content="Regression testing example based on a real manual QA workflow for games, including risk-based regression scope, matrix design, golden-path checks, and stability verification after change.">
+<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html">
 
   <style>
     .article-hero,
@@ -110,29 +110,29 @@
           async src="//gc.zgo.at/count.js"></script>
 
   <!-- Page-specific structured data (keep ONE Article schema) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Regression testing workflow (Sworn, PC Game Pass)",
-    "description": "Regression testing workflow article backed by my Sworn (PC Game Pass) one-week pass: how I use SteamDB patch notes as an external oracle, build a risk-based regression matrix, and verify golden-path stability, save/continue integrity, audio sanity, and input handover on build 1.01.0.1039.",
-    "datePublished": "2025-12-19",
-    "dateModified": "2025-12-19",
-    "inLanguage": "en-GB",
-    "author": {
-      "@type": "Person",
-      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
-    },
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html"
-    }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Regression Testing Example: Manual QA Workflow for Games",
+  "description": "Regression testing example using a real manual QA workflow for games. Learn how to scope risk-based regression testing, build a regression matrix, and verify stability after changes using practical QA methods.",
+  "datePublished": "2025-12-19",
+  "dateModified": "2025-12-19",
+  "inLanguage": "en-GB",
+  "author": {
+    "@type": "Person",
+    "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/regression-testing.html"
   }
-  </script>
+}
+</script>
 </head>
 
 <body>
@@ -143,125 +143,126 @@
     <p class="cta-row" style="text-align:center;">
       <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
       <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
-      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
       <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
       <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
     </p>
 
     <hr>
 
-    <header class="article-hero">
-      <h1>Regression testing workflow: the risk-first checks that keep releases stable</h1>
-      <p class="hint">An applied QA article, not a definition page and not a case study.</p>
+ <header class="article-hero">
+  <h1>Regression Testing Example: A Risk-Based Workflow for Manual QA</h1>
+  <p class="hint">A practical regression testing example using a real QA workflow, not just theory.</p>
 
-        <p class="author-row small">
-        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
-        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
-      </p>
+  <p class="author-row small">
+    <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+    <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+  </p>
 
-      <p class="small">
-        This is an article on my regression testing workflow for manual QA, backed by a real one-week solo pass on
-        <strong>Sworn (PC Game Pass, Windows)</strong>. It exists to show how I design regression scope from change signals,
-        what I verify first (golden path), and how I record evidence that makes both passes and failures credible.
-      </p>
+  <p class="small">
+    This regression testing example shows my manual QA workflow in practice, backed by a real one-week solo pass on
+    <strong>Sworn (PC Game Pass, Windows)</strong>. I break down how I scope regression testing from change signals,
+    apply risk-based testing, verify the golden path first, and capture evidence that makes results credible.
+  </p>
 
       <hr>
 
-  <figure class="article-figure plain-figure">
+<figure class="article-figure plain-figure">
   <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/regression-testing-flow-live-builds.webp" target="_blank" rel="noopener">
     <img
       src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/regression-testing-flow-live-builds.webp"
-      alt="Regression testing workflow diagram for live builds: change introduced, risk-based scope, targeted regression checks, behaviour verification, and outputs (defects, confirmation notes, evidence, re-test results)."
+      alt="Regression testing example diagram showing a manual QA workflow for risk-based regression testing after change."
       loading="eager"
       decoding="async"
     >
   </a>
   <figcaption class="small">
-    Regression testing flow used to verify stability after change during a timeboxed Sworn (PC) pass. <span class="hint">(Click to enlarge)</span>
+    Regression testing example showing a risk-based manual QA workflow used to verify stability after change during a timeboxed Sworn (PC) pass. <span class="hint">(Click to enlarge)</span>
   </figcaption>
 </figure>
 
        <hr>
 
 <section class="callout" aria-label="Workflow proof points">
-  <h2 style="margin-top:0;">TL;DR</h2>
+  <h2 style="margin-top:0;">TL;DR: Regression Testing Example</h2>
   <ul class="tldr small">
-    <li><strong>Workflow shown:</strong> risk-first regression scoping → golden-path baseline → targeted probes → evidence-backed results.</li>
-    <li><strong>Example context:</strong> Sworn on PC Game Pass (Windows) used only as a real-world backing example.</li>
+    <li><strong>Workflow shown:</strong> a manual regression testing workflow using risk-based scoping → golden-path baseline → targeted probes → evidence-backed results.</li>
+    <li><strong>Example context:</strong> Sworn on PC Game Pass (Windows) used as a real regression testing example in game QA.</li>
     <li><strong>Build context:</strong> tested on the PC Game Pass build <code>1.01.0.1039</code>.</li>
-    <li><strong>Scope driver:</strong> public SteamDB patch notes used as an external change signal (no platform parity assumed).</li>
-    <li><strong>Outputs:</strong> a regression matrix with line-by-line outcomes, session timestamps, and bug tickets with evidence.</li>
+    <li><strong>Scope driver:</strong> public SteamDB patch notes used as an external change signal for regression testing (no platform parity assumed).</li>
+    <li><strong>Outputs:</strong> a regression testing matrix with line-by-line outcomes, session timestamps, and bug tickets with evidence.</li>
   </ul>
 </section>
 
       <hr>
 
-      <section class="callout" aria-label="About this work">
-        <h2 style="margin-top:0;">Regression testing scope: what I verified and why</h2>
-        <p class="small">
-          This article is grounded in a self-directed portfolio regression pass on <strong>Sworn</strong> using the
-          <strong>PC Game Pass (Windows)</strong> build <code>1.01.0.1039</code>, run in a one-week solo timebox.
-          Scope was <strong>change-driven</strong> and <strong>risk-based</strong>: golden-path stability
-          (launch → play → quit → relaunch), save/continue integrity, core menus, audio sanity, input handover,
-          plus side-effect probes suggested by upstream patch notes.
-          <strong>No Steam/Game Pass parity claim is made.</strong>
-        </p>
-      </section>
+     <section class="callout" aria-label="About this work">
+  <h2 style="margin-top:0;">Regression testing scope: what I verified and why</h2>
+  <p class="small">
+    This regression testing example is based on a self-directed manual QA regression testing pass on <strong>Sworn</strong> using the
+    <strong>PC Game Pass (Windows)</strong> build <code>1.01.0.1039</code>, run in a one-week solo timebox.
+    The regression testing process was <strong>change-driven</strong> and <strong>risk-based</strong>: golden-path stability
+    (launch → play → quit → relaunch), save/continue integrity, core menus, audio sanity, input handover,
+    plus side-effect probes suggested by upstream patch notes.
+    <strong>No Steam/Game Pass parity claim is made.</strong>
+  </p>
+</section>
     </header>
 
     <hr>
 
-    <nav class="toc" aria-label="On this page">
-      <strong>On this page</strong>
-      <ul>
-        <li><a href="#what-it-is">What regression testing is (in practice)</a></li>
-        <li><a href="#baseline">Golden-path smoke baseline for regression testing</a></li>
-        <li><a href="#scope">Regression testing scope: change signals and risk</a></li>
-        <li><a href="#matrix">How my regression matrix is structured</a></li>
-        <li><a href="#anchors">Save/Continue regression testing: anchors, not vibes</a></li>
-        <li><a href="#evidence">QA evidence for regression testing: what I capture and why</a></li>
-        <li><a href="#proof">Regression testing examples from the Sworn pass</a></li>
-        <li><a href="#takeaways">Regression testing takeaways (risk, evidence, and verification)</a></li>
-        <li><a href="#faq">Regression testing FAQ (manual QA)</a></li>
-        <li><a href="#links">Regression testing evidence and case study links</a></li>
-      </ul>
-    </nav>
+  <nav class="toc" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#what-it-is">What is regression testing (with example)</a></li>
+    <li><a href="#baseline">Regression testing baseline: golden-path smoke checks</a></li>
+    <li><a href="#scope">Regression testing scope: change signals and risk-based testing</a></li>
+    <li><a href="#matrix">Regression testing matrix example (manual QA)</a></li>
+    <li><a href="#anchors">Save/Continue regression testing: using anchors for verification</a></li>
+    <li><a href="#evidence">Regression testing evidence: what to capture in QA</a></li>
+    <li><a href="#proof">Regression testing example from a real QA pass</a></li>
+    <li><a href="#takeaways">Regression testing takeaways (risk, evidence, verification)</a></li>
+    <li><a href="#faq">Regression testing FAQ (manual QA)</a></li>
+    <li><a href="#links">Regression testing examples and case study links</a></li>
+  </ul>
+</nav>
 
     <hr>
 
-    <h2 id="what-it-is">What regression testing is (in practice)</h2>
-    <p>
-      For me, regression testing is simple: after change, does existing behaviour still hold?
-      Not “re-test everything”, and not “run a checklist because that’s what we do”.
-    </p>
-    <p>
-      A regression pass is selective by design. Coverage is driven by risk:
-      what is most likely to have been impacted, what is most expensive if broken,
-      and what must remain stable for the build to be trusted.
-    </p>
+ <h2 id="what-it-is">What is regression testing? (with example)</h2>
+<p>
+  In this regression testing example, regression testing means verifying that existing behaviour still works after a change.
+  In manual QA, this is not about re-testing everything or blindly following a checklist. It is about checking whether previously working systems still hold under new conditions.
+</p>
+<p>
+  A regression testing workflow is selective by design. Coverage is driven by risk:
+  what is most likely to have been impacted, what is most expensive if broken,
+  and what must remain stable for the build to be trusted.
+</p>
 
-    <section class="callout">
-      <h3>Regression testing outputs: pass/fail results with evidence</h3>
-      <p>
-        Clear outcomes: pass or fail, backed by evidence and repeatable verification.
-        Not opinions. Not vibes.
-      </p>
-    </section>
-
+<section class="callout">
+  <h3>Regression testing results: pass/fail outcomes with evidence</h3>
+  <p>
+    Regression testing produces clear outcomes: pass or fail, backed by evidence and repeatable verification.
+    Not opinions. Not vibes.
+  </p>
+</section>
+    
     <hr>
 
-    <h2 id="baseline">Golden-path smoke baseline for regression testing</h2>
-    <p>
-      I start every regression cycle with a repeatable “golden-path smoke” because it prevents wasted time.
-      If the baseline is unstable, deeper testing is noise.
-    </p>
-    <p class="small">
-      In this Sworn pass, the baseline line was <strong>BL-SMOKE-01</strong>:
-      cold launch → main menu → gameplay → quit to desktop → relaunch → main menu.
-      I also include a quick sanity listen for audio cutouts during this flow.
-    </p>
+   <h2 id="baseline">Regression testing baseline: golden-path smoke testing checks</h2>
+<p>
+  I start every regression testing cycle with a repeatable golden-path smoke testing baseline because it prevents wasted time.
+  Smoke testing in regression testing acts as a quick stability check before deeper testing begins.
+  If the baseline is unstable, everything that follows is noise.
+</p>
+<p class="small">
+  In this regression testing example, the baseline line was <strong>BL-SMOKE-01</strong>:
+  cold launch → main menu → gameplay → quit to desktop → relaunch → main menu.
+  I also include a quick sanity check for audio cutouts during this flow.
+</p>
 
-    <aside class="pullquote" aria-label="Applied insight">
+<aside class="pullquote" aria-label="Applied insight">
   <blockquote>
     <p>Some systems absolutely cannot break.
     Those are the ones you want to verify on every build before spending time on deeper testing.</p>
@@ -269,234 +270,250 @@
   </blockquote>
 </aside>
 
-    <section class="callout">
-      <h3>Why baseline stability matters in regression testing</h3>
-      <p class="small">
-        The golden path includes the most common player actions (launch, play, quit, resume).
-        If those are unstable, you will get cascading failures that masquerade as unrelated defects.
-      </p>
-    </section>
+<section class="callout">
+  <h3>Why smoke testing matters in regression testing</h3>
+  <p class="small">
+    The golden path covers the most common player actions (launch, play, quit, resume).
+    If these baseline checks fail, regression testing results become unreliable due to cascading failures that appear unrelated.
+  </p>
+</section>
 
     <hr>
 
-    <h2 id="scope">Regression testing scope: change signals and risk</h2>
-    <p>
-      For this project I used SteamDB patch notes as an <strong>external oracle</strong>:
-      <strong>SWORN 1.0 Patch #3 (v1.0.3.1111), 13 Nov 2025</strong>.
-      That does not mean I assumed those changes were present on PC Game Pass.
-    </p>
-    
-    <p>
-      Instead, I used the patch notes as a change signal to decide where to probe for side effects on the Game Pass build.
-      This is especially useful when you have no internal access, no studio data, and no changelog for your platform.
-    </p>
+  <h2 id="scope">Regression testing scope: risk-based testing and change signals</h2>
+<p>
+  In this regression testing example, I scoped regression testing using a risk-based testing approach driven by change signals.
+  For this project, I used SteamDB patch notes as an <strong>external oracle</strong>:
+  <strong>SWORN 1.0 Patch #3 (v1.0.3.1111), 13 Nov 2025</strong>.
+  This does not mean I assumed those changes were present on PC Game Pass.
+</p>
 
-  <aside class="pullquote" aria-label="Applied insight">
+<p>
+  Instead, I used the patch notes as a change signal to guide regression testing scope and decide where to probe for side effects on the Game Pass build.
+  This approach is useful when working in manual QA without internal access, studio data, or platform-specific changelogs.
+</p>
+
+<aside class="pullquote" aria-label="Applied insight">
   <blockquote>
     <p>Knowing what changed and where helps you focus regression on affected areas, rather than running very wide checks that probably won’t find anything valuable. It’s usually best to mix multiple oracles instead of relying on one source.</p>
     <cite>- Conrad Bettmann, QA Manager (Rovio Entertainment)</cite>
   </blockquote>
 </aside>
 
-    <section class="callout">
-      <h3>Regression outcomes: pass vs not applicable (with evidence)</h3>
-      <p class="small">
-        SteamDB notes mention a <strong>music cutting out fix</strong>, so I ran an audio runtime probe
-        (<strong>STEA-103-MUSIC</strong>) and verified music continuity across combat, pause/unpause, and a level load (pass).
-        SteamDB also mentions a <strong>Dialogue Volume</strong> slider. On the Game Pass build that control was not present,
-        so the check was recorded as <strong>not applicable</strong> with evidence of absence (<strong>STEA-103-AVOL</strong>).
-      </p>
-    </section>
-
-    <hr>
-
-    <h2 id="matrix">How my regression matrix is structured</h2>
-    <p>
-      My Regression Matrix lines are written to be auditable.
-      Each line includes a direct check, a side-effect check, a clear outcome, and an evidence link.
-      That keeps results reviewable and prevents “I think it’s fine” reporting.
-    </p>
-
-    <ul>
-      <li><strong>Baseline smoke:</strong> BL-SMOKE-01</li>
-      <li><strong>Settings persistence:</strong> BL-SET-01</li>
-      <li><strong>Save / Continue integrity:</strong> BL-SAVE-01</li>
-      <li><strong>Post-death flow sanity:</strong> BL-DEATH-01</li>
-      <li><strong>Audio runtime continuity probe:</strong> STEA-103-MUSIC</li>
-      <li><strong>Audio settings presence check:</strong> STEA-103-AVOL</li>
-      <li><strong>Codex / UI navigation sanity:</strong> STEA-103-CODEX</li>
-      <li><strong>Input handover + hot plug:</strong> BL-IO-01</li>
-      <li><strong>Alt+Tab sanity:</strong> BL-ALT-01</li>
-      <li><strong>Enhancement spend + ownership persistence:</strong> BL-ECON-01</li>
-    </ul>
-
-    <hr>
-
-    <h2 id="anchors">Save/Continue regression testing: anchors, not vibes</h2>
-    <p>
-      Save and Continue flows are a classic regression risk area because failures can look intermittent.
-      To reduce ambiguity, I verify using anchors.
-    </p>
-    <p class="small">
-      In this pass (<strong>BL-SAVE-01</strong>), I anchored:
-      room splash name (<em>Wirral Forest</em>), health bucket (<em>60/60</em>), weapon type (<em>sword</em>),
-      and the start of objective text. I then verified those anchors after:
-      <strong>menu Continue</strong> and after a <strong>full relaunch</strong>.
-      Outcome: pass, anchors matched throughout (session S2).
-    </p>
-
-    <section class="callout">
-      <h3>Why anchors make regression results repeatable</h3>
-      <p class="small">
-        “Continue worked” is not useful if someone else cannot verify what you resumed into.
-        Anchors turn “seems fine” into a repeatable verification result.
-      </p>
-    </section>
-
-    <hr>
-
-    <h2 id="evidence">QA evidence for regression testing: what I capture and why</h2>
-    <p>
-      For regression, evidence matters for passes as much as failures.
-      A pass is still a claim.
-    </p>
-    <ul>
-      <li><strong>Video clips:</strong> show input, timing, and outcome together (ideal for flow and audio checks).</li>
-      <li><strong>Screenshots:</strong> support UI state, menu presence/absence, and bug clarity.</li>
-      <li><strong>Session timestamps:</strong> keep verification reviewable without scrubbing long recordings.</li>
-      <li><strong>Environment notes:</strong> platform, build, input devices, network state (cloud saves enabled).</li>
-    </ul>
-    <p class="small">
-      If the evidence cannot answer what was done, what happened, and what should have happened, it is not evidence.
-    </p>
-
-    <hr>
-
-    <h2 id="proof">Regression testing examples from the Sworn pass</h2>
-
-    <section class="callout">
-      <h3>Example regression bug: Defeat overlay blocks the Stats screen (SWOR-6)</h3>
-      <p class="small">
-        <strong>Bug:</strong> <em>[PC][UI][Flow] Defeat overlay blocks Stats; Continue starts a new run</em> (<strong>SWOR-6</strong>).<br>
-        <strong>Expectation:</strong> after Defeat, pressing Continue reveals the full Stats screen in the foreground and waits for player confirmation.<br>
-        <strong>Actual:</strong> Defeat stays in the foreground, Stats renders underneath with a loading icon, then a new run starts automatically.
-        Outcome: you cannot review Stats.<br>
-        <strong>Repro rate:</strong> 3/3, observed during progression verification (S2) and reconfirmed in a dedicated re-test (S6).
-      </p>
-    </section>
-
-    <section class="callout">
-      <h3>Patch-note probe example: music continuity check (STEA-103-MUSIC)</h3>
-      <p class="small">
-        SteamDB notes mention a fix for music cutting out, so I ran <strong>STEA-103-MUSIC</strong>:
-        10 minutes runtime with combat transitions, plus pause/unpause and a level load.
-        Outcome: pass, music stayed continuous across those transitions (S3).
-      </p>
-    </section>
-
-    <section class="callout">
-      <h3>Evidence-based “not applicable” example: missing Dialogue Volume slider (STEA-103-AVOL)</h3>
-      <p class="small">
-        SteamDB notes mention a Dialogue Volume slider, but on the Game Pass build the Audio menu only showed Master, Music, and SFX.
-        Outcome: <strong>not applicable</strong> with evidence of absence (<strong>STEA-103-AVOL</strong>, S4).
-        This avoids inventing parity and keeps the matrix honest.
-      </p>
-    </section>
-
-    <section class="callout">
-      <h3>Accessibility issues logged as a known cluster (no new build to re-test)</h3>
-      <p class="small">
-        On Day 0 (S0), I captured onboarding accessibility issues as a known cluster (<strong>B-A11Y-01</strong>:
-        SWOR-1, SWOR-2, SWOR-3, SWOR-4). Because there was no newer build during the week,
-        regression re-test was not applicable until a new build exists. This is logged explicitly rather than implied.
-      </p>
-    </section>
-
-    <section class="callout">
-  <h3>Results snapshot (for transparency)</h3>
+<section class="callout">
+  <h3>Regression testing results: pass vs not applicable (with evidence)</h3>
   <p class="small">
-    In this backing pass, the matrix recorded: <strong>8 pass</strong>, <strong>1 fail</strong>, <strong>1 not applicable</strong>,
-    plus <strong>1 known accessibility cluster</strong> captured on Day 0 with no newer build available for re-test.
-    Counts are included here for context, not as the focus of the article.
+    SteamDB notes mention a <strong>music cutting out fix</strong>, so I ran an audio runtime probe
+    (<strong>STEA-103-MUSIC</strong>) and verified music continuity across combat, pause/unpause, and a level load (pass).
+    SteamDB also mentions a <strong>Dialogue Volume</strong> slider. On the Game Pass build that control was not present,
+    so the regression test was recorded as <strong>not applicable</strong> with evidence of absence (<strong>STEA-103-AVOL</strong>).
+  </p>
+</section>
+    
+    <hr>
+
+<h2 id="matrix">Regression testing matrix example (manual QA)</h2>
+<p>
+  In this regression testing example, my regression testing matrix is structured to be auditable and easy to review.
+  Each line in the matrix includes a direct check, a side-effect check, a clear outcome, and an evidence link.
+  This keeps regression testing results traceable and prevents “I think it’s fine” reporting.
+</p>
+
+<ul>
+  <li><strong>Baseline smoke test:</strong> BL-SMOKE-01</li>
+  <li><strong>Settings persistence check:</strong> BL-SET-01</li>
+  <li><strong>Save / Continue integrity:</strong> BL-SAVE-01</li>
+  <li><strong>Post-death flow sanity:</strong> BL-DEATH-01</li>
+  <li><strong>Audio runtime continuity test:</strong> STEA-103-MUSIC</li>
+  <li><strong>Audio settings presence check:</strong> STEA-103-AVOL</li>
+  <li><strong>Codex / UI navigation test:</strong> STEA-103-CODEX</li>
+  <li><strong>Input handover + hot plug:</strong> BL-IO-01</li>
+  <li><strong>Alt+Tab behaviour check:</strong> BL-ALT-01</li>
+  <li><strong>Enhancement spend + ownership persistence:</strong> BL-ECON-01</li>
+</ul>
+
+    <hr>
+
+  <h2 id="anchors">Save/Continue regression testing: repeatable verification using anchors</h2>
+<p>
+  Save and Continue flows are a common regression testing risk area because failures can appear intermittent.
+  In manual QA, regression testing needs repeatable verification, not assumptions. To reduce ambiguity, I verify using anchors.
+</p>
+<p class="small">
+  In this regression testing example (<strong>BL-SAVE-01</strong>), I anchored:
+  room splash name (<em>Wirral Forest</em>), health bucket (<em>60/60</em>), weapon type (<em>sword</em>),
+  and the start of objective text. I then verified those anchors after:
+  <strong>menu Continue</strong> and after a <strong>full relaunch</strong>.
+  Outcome: pass, anchors matched throughout (session S2).
+</p>
+
+<section class="callout">
+  <h3>Why anchors improve regression testing verification</h3>
+  <p class="small">
+    In regression testing, “Continue worked” is not a valid result if it cannot be reproduced.
+    Anchors turn vague outcomes into repeatable verification, making regression testing results consistent and reviewable.
+  </p>
+</section>
+    
+    <hr>
+
+  <h2 id="evidence">QA evidence for regression testing: what to capture and why</h2>
+<p>
+  In regression testing, QA evidence matters for passes as much as failures.
+  In manual QA, every result is a claim that needs to be supported by clear test evidence and documentation.
+</p>
+<ul>
+  <li><strong>Video clips:</strong> capture input, timing, and outcome together (ideal for regression testing flow and audio checks).</li>
+  <li><strong>Screenshots:</strong> support UI state, menu presence or absence, and bug report clarity.</li>
+  <li><strong>Session timestamps:</strong> keep regression testing verification reviewable without scrubbing long recordings.</li>
+  <li><strong>Environment notes:</strong> document platform, build, input devices, and network state (for reproducible QA testing conditions).</li>
+</ul>
+<p class="small">
+  If QA evidence cannot answer what was tested, what happened, and what should have happened, it is not useful test documentation.
+</p>
+
+    <hr>
+
+  <h2 id="proof">Regression testing example: real QA bugs and test results</h2>
+
+<section class="callout">
+  <h3>QA bug example: Defeat overlay blocks the Stats screen (SWOR-6)</h3>
+  <p class="small">
+    <strong>Bug:</strong> <em>[PC][UI][Flow] Defeat overlay blocks Stats; Continue starts a new run</em> (<strong>SWOR-6</strong>).<br>
+    <strong>Expectation:</strong> after Defeat, pressing Continue reveals the full Stats screen in the foreground and waits for player confirmation.<br>
+    <strong>Actual:</strong> Defeat stays in the foreground, Stats renders underneath with a loading icon, then a new run starts automatically.
+    Outcome: you cannot review Stats.<br>
+    <strong>Repro rate:</strong> 3/3, observed during regression testing verification (S2) and reconfirmed in a dedicated re-test (S6).
   </p>
 </section>
 
+<section class="callout">
+  <h3>Regression testing example: music continuity check (STEA-103-MUSIC)</h3>
+  <p class="small">
+    SteamDB notes mention a fix for music cutting out, so I ran <strong>STEA-103-MUSIC</strong>:
+    10 minutes runtime with combat transitions, plus pause/unpause and a level load.
+    Outcome: pass, music stayed continuous across those transitions (S3).
+  </p>
+</section>
+
+<section class="callout">
+  <h3>Regression testing result: “not applicable” example (STEA-103-AVOL)</h3>
+  <p class="small">
+    SteamDB notes mention a Dialogue Volume slider, but on the Game Pass build the Audio menu only showed Master, Music, and SFX.
+    Outcome: <strong>not applicable</strong> with evidence of absence (<strong>STEA-103-AVOL</strong>, S4).
+    This avoids inventing parity and keeps regression testing results accurate.
+  </p>
+</section>
+
+<section class="callout">
+  <h3>Accessibility issues logged as a known cluster (no new build to re-test)</h3>
+  <p class="small">
+    On Day 0 (S0), I captured onboarding accessibility issues as a known cluster (<strong>B-A11Y-01</strong>:
+    SWOR-1, SWOR-2, SWOR-3, SWOR-4). Because there was no newer build during the week,
+    regression testing re-test was not applicable until a new build exists. This is logged explicitly rather than implied.
+  </p>
+</section>
+
+<section class="callout">
+  <h3>Regression testing results snapshot (for transparency)</h3>
+  <p class="small">
+    In this regression testing example, the matrix recorded: <strong>8 pass</strong>, <strong>1 fail</strong>, <strong>1 not applicable</strong>,
+    plus <strong>1 known accessibility cluster</strong> captured on Day 0 with no newer build available for re-test.
+    Counts are included for context, not as the focus of the article.
+  </p>
+</section>
+    
 <hr>
     
-    <h2 id="takeaways">Regression testing takeaways (risk, evidence, and verification)</h2>
-    <ul class="small">
-      <li>Regression testing is change-driven verification, not “re-test everything”.</li>
-      <li>A repeatable golden-path baseline stops you wasting time on an unstable build.</li>
-      <li>External patch notes can be used as a risk signal without assuming platform parity.</li>
-      <li>Anchors make progression and resume verification credible and repeatable.</li>
-      <li>“Not applicable” is a valid outcome if it is evidenced, not hand-waved.</li>
-      <li>Pass results deserve evidence too, because they are still claims.</li>
-    </ul>
+  <h2 id="takeaways">Regression testing takeaways: key points from this QA example</h2>
+<ul class="small">
+  <li>Regression testing is change-driven verification, not “re-test everything”.</li>
+  <li>A manual regression testing workflow should start with a repeatable golden-path baseline.</li>
+  <li>Risk-based regression testing helps prioritise what to verify after changes.</li>
+  <li>External patch notes can be used as a change signal without assuming platform parity.</li>
+  <li>Anchors make regression testing verification credible and repeatable.</li>
+  <li>“Not applicable” is a valid regression testing result when supported with evidence.</li>
+  <li>Pass results require QA evidence too, because they are still claims.</li>
+</ul>
 
     <hr>
 
-    <section class="section" id="faq">
-  <h2>Regression testing FAQ (manual QA)</h2>
+ <section class="section" id="faq">
+  <h2>Regression testing FAQ (manual QA example)</h2>
+
+  <h3>What is regression testing in QA?</h3>
+  <p>
+    Regression testing verifies that existing behaviour still works after a change.
+    In manual QA, it focuses on previously working systems, whether or not bugs were ever logged against them.
+  </p>
 
   <h3>Is regression testing just re-testing old bugs?</h3>
   <p>
-    No. Regression testing verifies that existing behaviour still works after change.
-    It covers previously working systems, whether or not bugs were ever logged against them.
+    No. Regression testing includes re-checking previously fixed bugs, but its main purpose is to confirm that existing functionality has not been broken by new changes.
   </p>
 
-  <h3>Do you need to re-test everything in regression?</h3>
+  <h3>Do you need to re-test everything in regression testing?</h3>
   <p>
     No. Effective regression testing is selective.
-    Scope is driven by change and risk, not by feature count.
+    A risk-based regression testing approach focuses on areas most likely to be affected by change, rather than testing every feature.
   </p>
 
-  <h3>How do you scope regression without internal patch notes?</h3>
+  <h3>How do you scope regression testing without internal patch notes?</h3>
   <p>
     By using external change signals such as public patch notes, previous builds,
-    and observed behaviour as oracles, without assuming platform parity.
+    and observed behaviour as testing oracles, without assuming platform parity.
   </p>
 
-  <h3>What’s the difference between regression and exploratory testing?</h3>
+  <h3>What is the difference between regression testing and exploratory testing?</h3>
   <p>
     Regression testing verifies known behaviour after change.
-    Exploratory testing searches for unknown risk and emergent failure modes.
-    They complement each other but answer different questions.
+    Exploratory testing is used to discover unknown risks and unexpected behaviour.
+    Both are important in a complete QA testing workflow.
   </p>
 
   <h3>Is a “pass” result meaningful in regression testing?</h3>
   <p>
     Yes. A pass is still a claim.
-    That’s why regression passes should be supported with evidence, not just a checkbox.
+    In regression testing, pass results should be supported with QA evidence to ensure they are credible and repeatable.
   </p>
 
-  <h3>When is “not applicable” a valid regression outcome?</h3>
+  <h3>When is “not applicable” a valid regression testing result?</h3>
   <p>
     When a feature is not present on the build under test and that absence is confirmed with evidence.
-    Logging this explicitly is more honest than assuming parity or skipping the check silently.
+    Logging this explicitly is more accurate than assuming parity or skipping the test silently.
   </p>
 </section>
 
     <hr>
 
-     <section class="section" id="links">
-      <h2>Regression testing evidence and case study links</h2>
-      <ul>
-        <!-- Update these two links if your Sworn project path differs -->
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/">Sworn regression case study (full artefacts and evidence)</a></li>
-        <li><a href="https://steamdb.info/patchnotes/20786520/">SteamDB patch notes used as external oracle (SWORN 1.0 Patch #3, v1.0.3.1111)</a></li>
-      </ul>
-      <p class="small">
-        This page stays focused on the regression workflow. The case study links out to the workbook tabs (Regression Matrix, Sessions Log, Bug Log) and evidence clips.
-      </p>
-    </section>
+ <section class="section" id="links">
+  <h2>Regression testing example: evidence and case study links</h2>
+  <ul>
+    <!-- Update these two links if your Sworn project path differs -->
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/sworn/">
+        Regression testing case study (Sworn): full QA artefacts and evidence
+      </a>
+    </li>
+    <li>
+      <a href="https://steamdb.info/patchnotes/20786520/">
+        SWORN patch notes (external change signal for regression testing)
+      </a>
+    </li>
+  </ul>
+  <p class="small">
+    This regression testing example focuses on workflow and methodology.
+    The case study includes the full regression testing matrix, session logs, bug reports, and QA evidence used to support test results.
+  </p>
+</section>
 
     <hr>
 
-    <p class="cta-row" style="text-align:center;">
-      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
-      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
-      <a class="cta-btn" href="./">Back to Articles</a>
-    </p>
+   <p class="cta-row" style="text-align:center;">
+  <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about QA testing</a>
+  <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect with a Game QA tester on LinkedIn</a>
+  <a class="cta-btn" href="./">View more QA testing articles</a>
+</p>
 
   </main>
 
