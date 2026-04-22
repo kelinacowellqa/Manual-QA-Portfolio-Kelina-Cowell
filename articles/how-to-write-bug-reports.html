@@ -149,19 +149,19 @@
   margin: 8px 0;
 }
 
-   .example-table{
+.example-table{
   width:100%;
   border-collapse:collapse;
   margin-top:14px;
 }
 
 .example-table td{
-  vertical-align:top;
+  vertical-align:middle; /* merged */
   padding:10px 14px;
 }
 
 .example-media{
-  width:320px;
+  width:240px; /* final value */
 }
 
 .example-media img{
@@ -170,6 +170,16 @@
   border-radius:10px;
   display:block;
   cursor:zoom-in;
+}
+
+.example-media p{
+  margin:6px 0;
+}
+
+.example-text{
+  background: rgba(255,255,255,0.03);
+  border-radius:10px;
+  padding:14px 16px;
 }
 
 .example-text ul{
@@ -191,6 +201,7 @@
 
   .example-media{
     margin-bottom:12px;
+    width:100%; /* important for mobile */
   }
 }
   </style>
