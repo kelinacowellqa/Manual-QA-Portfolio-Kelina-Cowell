@@ -211,67 +211,49 @@
       </blockquote>
     </div>
 
-    <h2 id="what-devs-need">What developers actually need</h2>
+<h2 id="example">Real game QA reporting example</h2>
 
-    <p>
-      Developers want answers, not descriptions.
-    </p>
+<h3>Core Loop Break (The Chef’s Shift, PC)</h3>
 
-    <ul>
-      <li>What is broken?</li>
-      <li>How do I reproduce it?</li>
-      <li>What should happen?</li>
-      <li>What actually happens?</li>
-      <li>Where is the proof?</li>
-    </ul>
+<p>
+  This issue blocks progression by misapplying payment input to the wrong customer.
+</p>
 
-    <p>
-      If those five things are clear, the bug gets attention.
-    </p>
+<div class="video">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/ylX7bgVrK6Q"
+    title="QA Bug Example - Payment Failure"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
 
-    <h2 id="structure">QA bug report structure that works</h2>
+<p class="small">
+  Payment input is accepted, but applied to the wrong customer, leaving the first customer stuck and blocking progression.
+</p>
 
-    <h3>1. Title</h3>
-    <p>Specific and readable in one line.</p>
+<figure class="article-figure plain-figure" style="max-width:420px; margin-top:10px;">
+  <a class="zoomable"
+     href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+      alt="Jira bug report example showing structured QA report with steps, expected vs actual, and attachments"
+      loading="lazy"
+      decoding="async"
+      style="border-radius:8px; cursor:zoom-in;"
+    >
+  </a>
+  <figcaption class="small">
+    Jira bug report showing clear structure: title, reproducible steps, expected vs actual, and attached evidence. <span class="hint">(Click to enlarge)</span>
+  </figcaption>
+</figure>
 
-    <h3>2. Steps to reproduce</h3>
-    <p>Clear, ordered, and repeatable.</p>
-
-    <h3>3. Expected vs actual</h3>
-    <p>Defines the problem clearly.</p>
-
-    <h3>4. Evidence</h3>
-    <p>Video or screenshots showing the issue.</p>
-
-    <h3>5. Environment</h3>
-    <p>Platform, build, and input context.</p>
-
-    <h2 id="example">Real game QA reporting example</h2>
-
-    <h3>Core Loop Break (The Chef’s Shift, PC)</h3>
-
-    <p>
-      This issue blocks progression by misapplying payment input to the wrong customer.
-    </p>
-
-    <div class="video">
-      <iframe width="560" height="315"
-        src="https://www.youtube.com/embed/ylX7bgVrK6Q"
-        title="QA Bug Example - Payment Failure"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <p class="small">
-      Payment input is accepted, but applied to the wrong customer, leaving the first customer stuck and blocking progression.
-    </p>
-
-    <p>
-      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
-        View full bug report in portfolio
-      </a>
-    </p>
+<p>
+  <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
+    View full bug report in portfolio
+  </a>
+</p>
 
     <h3>Additional QA bug examples</h3>
 
