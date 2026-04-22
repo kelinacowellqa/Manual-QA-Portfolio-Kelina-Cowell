@@ -102,6 +102,23 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .compare-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:24px;
+    align-items:start;
+  }
+
+  .compare-grid > div{
+    min-width:0;
+  }
+
+  @media (max-width: 900px){
+    .compare-grid{
+      grid-template-columns:1fr;
+    }
+  }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -268,7 +285,6 @@
 
 <div class="compare-grid">
 
-  <!-- WEAK -->
   <div>
     <div class="callout" style="border-left:3px solid #c94f4f;">
       <h3 style="margin-top:0;">Weak</h3>
@@ -314,7 +330,6 @@
     </ul>
   </div>
 
-  <!-- STRONG -->
   <div>
     <div class="callout" style="border-left:3px solid #4fc96a;">
       <h3 style="margin-top:0;">Strong</h3>
