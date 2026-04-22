@@ -232,83 +232,30 @@
       </ul>
     </nav>
 
-    <h2 id="why-ignored">Why bad bug reports get ignored</h2>
-
     <p>
-      Most bug reports are not ignored because developers do not care.
-      They are ignored because they are unclear, incomplete, or slow to verify.
-    </p>
-
-    <ul>
-      <li>Missing steps</li>
-      <li>No expected result</li>
-      <li>No environment context</li>
-      <li>No evidence</li>
-    </ul>
-
-    <p>
-      At that point, the report becomes a guessing game.
-      Developers have to recreate the issue themselves, which wastes time.
-    </p>
-
-    <p><strong>A bad bug report creates more work. A good one removes it.</strong></p>
-
-<h2 id="example">Real game QA reporting example</h2>
-
-<h3>Core Loop Break (The Chef’s Shift, PC)</h3>
+At that point, the report becomes a guessing game.
+Developers have to recreate the issue themselves, which wastes time.
+</p>
 
 <p>
-  This issue blocks progression by misapplying payment input to the wrong customer.
+A bad bug report does not just lack detail. It actively slows development.
+Instead of moving straight to a fix, the developer has to:
 </p>
 
-<div class="video">
-  <iframe width="560" height="315"
-    src="https://www.youtube.com/embed/ylX7bgVrK6Q"
-    title="QA Bug Example - Payment Failure"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
-
-<p class="small">
-  Payment input is accepted, but applied to the wrong customer, leaving the first customer stuck and blocking progression.
-</p>
-
-<figure class="article-figure plain-figure" style="max-width:420px; margin-top:10px;">
-  <a class="zoomable"
-     href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
-     target="_blank" rel="noopener">
-    <img
-      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
-      alt="Jira bug report example showing structured QA report with steps, expected vs actual, and attachments"
-      loading="lazy"
-      decoding="async"
-      style="border-radius:8px; cursor:zoom-in;"
-    >
-  </a>
-  <figcaption class="small">
-    Jira bug report showing clear structure: title, reproducible steps, expected vs actual, and attached evidence. <span class="hint">(Click to enlarge)</span>
-  </figcaption>
-</figure>
+<ul>
+  <li>figure out what the issue actually is</li>
+  <li>guess how to reproduce it</li>
+  <li>test multiple scenarios to confirm behaviour</li>
+</ul>
 
 <p>
-  <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
-    View full bug report in portfolio
-  </a>
+That is exactly what the <strong>weak example below</strong> demonstrates.
+It looks structured, but still forces the developer to do the investigation work.
 </p>
 
-    <h3>Additional QA bug examples</h3>
-
-    <ul>
-      <li>
-        Controller Input Break After Keyboard Interaction (Battletoads, PC)
-        – <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">View case study</a>
-      </li>
-      <li>
-        Subtitle Occlusion Blocks Dialogue (Shadow Point, VR)
-        – <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">View case study</a>
-      </li>
-    </ul>
+<p><strong>
+A good bug report removes that work. It turns a problem into something immediately testable and actionable.
+</strong></p>
 
 <h2 id="weak-vs-strong">Weak vs strong QA bug report example</h2>
 
@@ -351,16 +298,16 @@
 
     <hr>
 
-    <p class="small">This report fails because:</p>
-    <ul class="small">
-      <li>Vague trigger (“at some point”, “sometimes”) makes the issue unreliable</li>
-      <li>No clear reproduction path, so the bug cannot be consistently verified</li>
-      <li>Subjective language (“feels broken”, “seems to”) instead of observable behaviour</li>
-      <li>Missing detail (build, input method, conditions) limits reproducibility</li>
-      <li>No evidence to confirm the issue actually occurs</li>
-      <li>Notes are speculative (“might be”, “could be”), adding noise instead of useful context</li>
-    </ul>
-  </div>
+<p class="small">This report fails because:</p>
+<ul class="small">
+  <li>Vague trigger (“at some point”, “sometimes”) makes the issue unreliable</li>
+  <li>No clear reproduction path, so the bug cannot be consistently verified</li>
+  <li>No repro rate, so frequency and reliability are unknown</li>
+  <li>Subjective language (“feels broken”, “seems to”) instead of observable behaviour</li>
+  <li>Missing detail (build, input method, conditions) limits reproducibility</li>
+  <li>No evidence to confirm the issue actually occurs</li>
+  <li>Notes are speculative (“might be”, “could be”), adding noise instead of useful context</li>
+</ul>
 
   <!-- STRONG -->
   <div class="compare-card strong">
@@ -384,6 +331,10 @@
     Attack input does not trigger any action
     </p>
 
+    <p><strong>Repro Rate</strong><br>
+100% (5/5 attempts)
+</p>
+
     <p><strong>Evidence</strong><br>
     8s clip attached showing attack input with no response
     </p>
@@ -398,20 +349,85 @@
 
     <hr>
 
-    <p class="small">This report works because:</p>
-    <ul class="small">
-      <li>Clear, specific summary that identifies the exact failure state (not just a symptom)</li>
-      <li>Controlled, repeatable steps with no ambiguity</li>
-      <li>Expected vs actual defines the problem precisely</li>
-      <li>Objective language (no “feels” or guesswork)</li>
-      <li>Evidence confirms the issue instantly</li>
-      <li>Full environment context makes reproduction easier</li>
-      <li>Notes add useful context (scope, persistence, input conditions) without repeating the report</li>
-      <li>Provides a clear starting point for debugging rather than forcing investigation</li>
-    </ul>
-  </div>
+ <p class="small">This report works because:</p>
+<ul class="small">
+  <li>Clear, specific summary that identifies the exact failure state (not just a symptom)</li>
+  <li>Controlled, repeatable steps with no ambiguity</li>
+  <li>Expected vs actual defines the problem precisely</li>
+  <li>Repro rate confirms the issue is consistent and reliable</li>
+  <li>Objective language (no “feels” or guesswork)</li>
+  <li>Evidence confirms the issue instantly</li>
+  <li>Full environment context makes reproduction easier</li>
+  <li>Notes add useful context (scope, persistence, input conditions) without repeating the report</li>
+  <li>Provides a clear starting point for debugging rather than forcing investigation</li>
+</ul>
 
+    <h2 id="example">Real game QA reporting example</h2>
+
+<h3>Core Loop Break (The Chef’s Shift, PC)</h3>
+
+<p>
+  This issue blocks progression by misapplying payment input to the wrong customer.
+</p>
+
+<div class="video">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/ylX7bgVrK6Q"
+    title="QA Bug Example - Payment Failure"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
 </div>
+
+<p class="small">
+  Payment input is accepted, but applied to the wrong customer, leaving the first customer stuck and blocking progression.
+</p>
+
+<figure class="article-figure plain-figure" style="max-width:420px; margin-top:10px;">
+  <a class="zoomable"
+     href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+      alt="Jira bug report example showing structured QA report with steps, expected vs actual, and attachments"
+      loading="lazy"
+      decoding="async"
+      style="border-radius:8px; cursor:zoom-in;"
+    >
+  </a>
+ <figcaption class="small">
+Jira bug report showing clear structure: summary, reproducible steps, expected vs actual, repro rate, environment, notes, and attached evidence. <span class="hint">(Click to enlarge)</span>
+</figcaption>
+
+<p>
+  <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
+    View full QA case study and bug report
+  </a>
+</p>
+
+    <p class="small">
+This report works because the issue is:
+</p>
+
+<ul class="small">
+  <li><strong>Reproducible</strong> – same steps produce the same result</li>
+  <li><strong>Observable</strong> – the incorrect behaviour is clearly visible in the clip</li>
+  <li><strong>Scoped</strong> – tied to a specific state (post-respawn / active customers)</li>
+  <li><strong>Actionable</strong> – points directly to a likely system (payment targeting / state handling)</li>
+</ul>
+
+    <h3>Additional QA bug examples</h3>
+
+    <ul>
+      <li>
+        Controller Input Break After Keyboard Interaction (Battletoads, PC)
+        – <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">View case study</a>
+      </li>
+      <li>
+        Subtitle Occlusion Blocks Dialogue (Shadow Point, VR)
+        – <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">View case study</a>
+      </li>
+    </ul>
     
     <section id="faq">
       <h2>FAQ</h2>
