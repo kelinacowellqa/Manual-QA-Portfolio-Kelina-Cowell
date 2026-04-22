@@ -264,27 +264,99 @@
       </li>
     </ul>
 
-    <h2 id="weak-vs-strong">Weak vs strong QA bug report example</h2>
+<h2 id="weak-vs-strong">Weak vs strong QA bug report example</h2>
 
-    <h3>Weak</h3>
-    <p>The game is bugged and doesn’t work after dying.</p>
+<div style="display:grid; gap:20px; grid-template-columns:1fr;">
 
-    <h3>Strong</h3>
-    <p><strong>Title:</strong> Player cannot attack after respawn (PC, controller)</p>
-    <p><strong>Steps:</strong> Respawn → press attack</p>
-    <p><strong>Expected:</strong> Attack works</p>
-    <p><strong>Actual:</strong> No response</p>
-    <p><strong>Evidence:</strong> Clip attached</p>
+  <!-- WEAK -->
+  <div class="callout" style="border-left:3px solid #c94f4f;">
+    <h3 style="margin-top:0;">Weak</h3>
 
-    <h2 id="takeaways">Key takeaways</h2>
+    <p><strong>Summary</strong><br>
+    After dying the combat feels kind of broken and the character doesn’t really respond properly
+    </p>
 
-    <ul>
-      <li>Clear structure beats long explanations</li>
-      <li>Repro steps are the most important part</li>
-      <li>Evidence removes doubt</li>
-      <li>Good reports save developer time</li>
-    </ul>
+    <p><strong>Steps to Reproduce</strong><br>
+    1. Play the level normally<br>
+    2. Die at some point during combat<br>
+    3. Respawn and try to continue fighting<br>
+    4. Sometimes the attack doesn’t seem to work properly
+    </p>
 
+    <p><strong>Expected Result</strong><br>
+    Player should be able to continue playing normally after respawn
+    </p>
+
+    <p><strong>Actual Result</strong><br>
+    The game feels unresponsive and attacks don’t seem to register correctly
+    </p>
+
+    <p><strong>Evidence</strong><br>
+    No clip, but it happens quite often during gameplay
+    </p>
+
+    <p><strong>Environment</strong><br>
+    PC
+    </p>
+  </div>
+
+  <p class="small">
+    This report looks structured, but it fails because:
+  </p>
+
+  <ul class="small">
+    <li>Vague trigger (“at some point”, “sometimes”)</li>
+    <li>No clear reproduction path</li>
+    <li>Subjective language (“feels broken”, “seems to”)</li>
+    <li>Missing detail (build, input, conditions)</li>
+    <li>No proof</li>
+  </ul>
+
+  <!-- STRONG -->
+  <div class="callout" style="border-left:3px solid #4fc96a;">
+    <h3 style="margin-top:0;">Strong</h3>
+
+    <p><strong>Summary</strong><br>
+    Player cannot attack after respawn (PC, controller)</p>
+
+    <p><strong>Steps to Reproduce</strong><br>
+    1. Start Level 1<br>
+    2. Lose all health and respawn<br>
+    3. Press attack button on controller
+    </p>
+
+    <p><strong>Expected Result</strong><br>
+    Player can attack immediately after respawn
+    </p>
+
+    <p><strong>Actual Result</strong><br>
+    Attack input does not trigger any action
+    </p>
+
+    <p><strong>Evidence</strong><br>
+    8s clip attached showing attack input with no response
+    </p>
+
+    <p><strong>Environment</strong><br>
+    PC (Game Pass), Windows 11, Xbox controller
+    </p>
+  </div>
+
+  <p class="small">
+    This report works because:
+  </p>
+
+  <ul class="small">
+    <li>Clear, specific summary that identifies the exact failure state (not just a symptom)</li>
+    <li>Controlled, repeatable steps with no ambiguity</li>
+    <li>Expected vs actual defines the problem precisely</li>
+    <li>Objective language (no “feels” or guesswork)</li>
+    <li>Evidence confirms the issue instantly</li>
+    <li>Full environment context makes reproduction easier</li>
+  </ul>
+
+</div>
+    
     <section id="faq">
       <h2>FAQ</h2>
 
