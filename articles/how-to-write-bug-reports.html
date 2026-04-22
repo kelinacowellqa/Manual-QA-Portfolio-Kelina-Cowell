@@ -148,6 +148,51 @@
 .compare-card p{
   margin: 8px 0;
 }
+
+   .example-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:14px;
+}
+
+.example-table td{
+  vertical-align:top;
+  padding:10px 14px;
+}
+
+.example-media{
+  width:320px;
+}
+
+.example-media img{
+  width:100%;
+  height:auto;
+  border-radius:10px;
+  display:block;
+  cursor:zoom-in;
+}
+
+.example-text ul{
+  margin:8px 0 0 1.2rem;
+}
+
+.example-text li{
+  margin:8px 0;
+}
+
+/* Mobile fallback */
+@media (max-width: 800px){
+  .example-table,
+  .example-table tr,
+  .example-table td{
+    display:block;
+    width:100%;
+  }
+
+  .example-media{
+    margin-bottom:12px;
+  }
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -385,38 +430,43 @@ The game feels unresponsive and my attacks don’t seem to register correctly
   Payment input is accepted, but applied to the wrong customer, leaving the first customer stuck and blocking progression.
 </p>
 
-<figure class="article-figure plain-figure" style="max-width:420px; margin-top:10px;">
-  <a class="zoomable"
-     href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
-     target="_blank" rel="noopener">
-    <img
-      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
-      alt="Jira bug report example showing structured QA report with steps, expected vs actual, and attachments"
-      loading="lazy"
-      decoding="async"
-      style="border-radius:8px; cursor:zoom-in;"
-    >
-  </a>
- <figcaption class="small">
-Jira bug report showing clear structure: summary, reproducible steps, expected vs actual, repro rate, environment, notes, and attached evidence. <span class="hint">(Click to enlarge)</span>
-</figcaption>
+<table class="example-table">
+  <tr>
+    <!-- LEFT: Jira thumbnail -->
+    <td class="example-media">
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+         target="_blank" rel="noopener">
+        <img
+          src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/Jira%20Bug1%20CHEF-1.png"
+          alt="Jira bug report showing summary, steps, expected vs actual, repro rate, environment, notes, and evidence"
+          loading="lazy"
+          decoding="async">
+      </a>
 
-<p>
-  <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
-    View full QA case study and bug report
-  </a>
-</p>
+      <p class="small">
+        Jira bug report showing clear structure: summary, reproducible steps, expected vs actual, repro rate, environment, notes, and attached evidence.
+      </p>
 
-    <p class="small">
-This report works because the issue is:
-</p>
+      <p class="small">
+        <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">
+          View full QA case study and bug report
+        </a>
+      </p>
+    </td>
 
-<ul class="small">
-  <li><strong>Reproducible</strong> – same steps produce the same result</li>
-  <li><strong>Observable</strong> – the incorrect behaviour is clearly visible in the clip</li>
-  <li><strong>Scoped</strong> – tied to a specific state (post-respawn / active customers)</li>
-  <li><strong>Actionable</strong> – points directly to a likely system (payment targeting / state handling)</li>
-</ul>
+    <!-- RIGHT: Explanation -->
+    <td class="example-text">
+      <p><strong>This report works because the issue is:</strong></p>
+
+      <ul class="small">
+        <li><strong>Reproducible</strong> – the same steps produce the same result</li>
+        <li><strong>Observable</strong> – the incorrect behaviour is clearly visible in the clip</li>
+        <li><strong>Scoped</strong> – tied to a specific gameplay state (active customers)</li>
+        <li><strong>Actionable</strong> – points toward payment targeting or state handling</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
     <h3>Additional QA bug examples</h3>
 
