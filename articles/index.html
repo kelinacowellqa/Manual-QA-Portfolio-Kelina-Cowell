@@ -299,6 +299,67 @@
     grid-template-columns: 1fr;
   }
 }
+
+.latest-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+}
+
+.latest-card{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background: rgba(255,255,255,.02);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:180px;
+}
+
+.latest-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.035);
+}
+
+.latest-title{
+  font-size:0.95rem;
+  line-height:1.3;
+  margin:0 0 6px;
+}
+
+.latest-desc{
+  font-size:0.9rem;
+  opacity:.85;
+  line-height:1.4;
+  margin:0 0 10px;
+
+  /* clamp to 2 lines */
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.latest-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  font-size:.8rem;
+  opacity:.8;
+  margin-bottom:8px;
+}
+
+.latest-cta{
+  margin-top:auto;
+}
+
+@media (max-width: 900px){
+  .latest-grid{
+    grid-template-columns:1fr;
+  }
+}
   </style>
 
   <script type="application/ld+json">
@@ -399,83 +460,81 @@
         The most recently published articles across my game QA portfolio.
       </p>
 
-      <div class="article-list">
-        <article class="article-row">
-          <div class="article-main">
-            <h3 class="article-title">
-              <a href="./how-to-write-bug-reports.html">
-                How to Write Game QA Bug Reports Developers Don’t Ignore
-              </a>
-            </h3>
-            <p class="article-desc">
-              A practical guide to writing clear, reproducible QA bug reports using real examples. Covers structured reporting, repro rate, evidence, and how strong bug reports reduce friction between QA and development.
-            </p>
-            <ul class="meta">
-              <li><span class="tag">Game QA</span></li>
-              <li><span class="tag">Bug Reporting</span></li>
-              <li><span class="tag">Jira</span></li>
-              <li><span class="tag">QA Workflow</span></li>
-              <li><time datetime="2026-04-22">22 Apr 2026</time></li>
-            </ul>
-          </div>
-          <div class="article-cta">
-            <a class="btn-mini" href="./how-to-write-bug-reports.html">
-              Read bug reporting article
-            </a>
-          </div>
-        </article>
+<div class="latest-grid">
 
-        <article class="article-row">
-          <div class="article-main">
-            <h3 class="article-title">
-              <a href="./how-i-structure-game-qa-evidence.html">
-                Game QA Evidence Workflow: From Test Session to Jira Bug Report
-              </a>
-            </h3>
-            <p class="article-desc">
-              A practical game QA testing workflow showing how I capture gameplay footage, extract bug evidence, organise test data in Google Sheets, and create linked Jira bug reports across functional, exploratory, and regression testing.
-            </p>
-            <ul class="meta">
-              <li><span class="tag">Game QA</span></li>
-              <li><span class="tag">Bug Reporting</span></li>
-              <li><span class="tag">Jira</span></li>
-              <li><span class="tag">QA Workflow</span></li>
-              <li><time datetime="2026-04-21">21 Apr 2026</time></li>
-            </ul>
-          </div>
-          <div class="article-cta">
-            <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">
-              Read game QA workflow article
-            </a>
-          </div>
-        </article>
+  <article class="latest-card">
+    <div>
+      <h3 class="latest-title">
+        <a href="./how-to-write-bug-reports.html">
+          How to Write Game QA Bug Reports Developers Don’t Ignore
+        </a>
+      </h3>
 
-        <article class="article-row">
-          <div class="article-main">
-            <h3 class="article-title">
-              <a href="./vr-comfort-testing.html">
-                VR Comfort Testing in Game QA: Locomotion, Subtitles &amp; Player Retention
-              </a>
-            </h3>
-            <p class="article-desc">
-              An applied VR QA testing article using Shadow Point (Quest 3), exploring how locomotion systems, subtitle accessibility, non-audio cues, and cognitive clarity impact player comfort, accessibility, and early retention in VR games.
-            </p>
-            <ul class="meta">
-              <li><span class="tag">VR QA</span></li>
-              <li><span class="tag">Accessibility</span></li>
-              <li><span class="tag">Game QA</span></li>
-              <li><span class="tag">VR Testing</span></li>
-              <li><time datetime="2026-04-20">20 Apr 2026</time></li>
-            </ul>
-          </div>
-          <div class="article-cta">
-            <a class="btn-mini" href="./vr-comfort-testing.html">
-              Read VR QA testing article
-            </a>
-          </div>
-        </article>
+      <p class="latest-desc">
+        Clear, reproducible bug reports with real examples. Focus on structure, repro rate, and evidence.
+      </p>
+
+      <div class="latest-meta">
+        <span class="tag">Game QA</span>
+        <span class="tag">Bug Reporting</span>
+        <span class="tag">Jira</span>
       </div>
-    </section>
+    </div>
+
+    <div class="latest-cta">
+      <a class="btn-mini" href="./how-to-write-bug-reports.html">Read</a>
+    </div>
+  </article>
+
+  <article class="latest-card">
+    <div>
+      <h3 class="latest-title">
+        <a href="./how-i-structure-game-qa-evidence.html">
+          Game QA Evidence Workflow
+        </a>
+      </h3>
+
+      <p class="latest-desc">
+        Capturing gameplay, extracting bug evidence, and linking reports into a clean QA workflow.
+      </p>
+
+      <div class="latest-meta">
+        <span class="tag">Game QA</span>
+        <span class="tag">Workflow</span>
+        <span class="tag">Jira</span>
+      </div>
+    </div>
+
+    <div class="latest-cta">
+      <a class="btn-mini" href="./how-i-structure-game-qa-evidence.html">Read</a>
+    </div>
+  </article>
+
+  <article class="latest-card">
+    <div>
+      <h3 class="latest-title">
+        <a href="./vr-comfort-testing.html">
+          VR Comfort Testing in Game QA
+        </a>
+      </h3>
+
+      <p class="latest-desc">
+        Locomotion, subtitles, and clarity issues that impact comfort and retention in VR.
+      </p>
+
+      <div class="latest-meta">
+        <span class="tag">VR QA</span>
+        <span class="tag">Accessibility</span>
+        <span class="tag">Game QA</span>
+      </div>
+    </div>
+
+    <div class="latest-cta">
+      <a class="btn-mini" href="./vr-comfort-testing.html">Read</a>
+    </div>
+  </article>
+
+</div>
 
  <div class="divider" role="separator" aria-hidden="true"></div>
 
