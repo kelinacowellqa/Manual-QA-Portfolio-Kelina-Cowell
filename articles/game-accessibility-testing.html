@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Game Accessibility Testing | Kelina Cowell</title>
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta name="description" content="Game accessibility testing articles covering accessibility QA, inclusive testing approaches, and practical methods for evaluating access, clarity, and usability in games." />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-accessibility-testing.html">
+
+  <meta property="og:title" content="Game Accessibility Testing | Kelina Cowell">
+  <meta property="og:description" content="Game accessibility testing articles covering accessibility QA, inclusive testing approaches, and practical methods for evaluating access, clarity, and usability in games.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-accessibility-testing.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    .visually-hidden{
+      position:absolute !important;
+      height:1px; width:1px;
+      overflow:hidden;
+      clip:rect(1px, 1px, 1px, 1px);
+      white-space:nowrap;
+      clip-path: inset(50%);
+      border:0;
+      padding:0;
+      margin:-1px;
+    }
+
+    .hero{
+      position: relative;
+      margin: 14px 0 12px;
+      border-radius: 16px;
+      overflow: visible;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset: 10px 14px 10px 14px;
+      border-radius: 18px;
+      background: rgba(0, 242, 201, .14);
+      filter: blur(22px);
+      opacity: .55;
+      z-index: 0;
+      animation: tealPulse 3.2s ease-in-out infinite;
+    }
+
+    @keyframes tealPulse{
+      0%   { opacity: .35; transform: scale(0.995); }
+      50%  { opacity: .62; transform: scale(1.01); }
+      100% { opacity: .40; transform: scale(1.0); }
+    }
+
+    .hero img{
+      position: relative;
+      z-index: 1;
+      display:block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    .hub-nav{
+      margin: 10px 0 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.02);
+      text-decoration:none;
+      font-size:.95rem;
+      opacity:.95;
+      transition: background .18s ease, transform .18s ease, opacity .18s ease, border-color .18s ease;
+    }
+
+    .pill:hover,
+    .pill:focus-visible{
+      background: rgba(255,255,255,.05);
+      opacity:1;
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.18);
+      outline: none;
+    }
+
+    .hub-section{
+      margin: 0;
+      padding: 18px 0 2px;
+      border-radius: 18px;
+      position: relative;
+    }
+
+    .hub-section h2{
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+
+    .hint,
+    .section-hint{
+      margin: 0 0 8px;
+      opacity: .82;
+      line-height: 1.55;
+    }
+
+    .section-why{
+      margin: 0 0 14px;
+      font-size: .96rem;
+      line-height: 1.55;
+      opacity: .96;
+      padding-left: 12px;
+      border-left: 2px solid rgba(0, 242, 201, .30);
+    }
+
+    .bullets{
+      margin: 0 0 14px 1.2rem;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .article-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items: stretch;
+    }
+
+    .article-row{
+      width: 100%;
+      box-sizing: border-box;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.02);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .article-row:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.035);
+      box-shadow: 0 10px 24px rgba(0,0,0,.16);
+    }
+
+    .article-main{
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .article-title{
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .article-title a{
+      text-decoration:none;
+    }
+
+    .article-title a:hover,
+    .article-title a:focus-visible{
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .article-desc{
+      margin: 0 0 10px;
+      opacity: .92;
+      line-height: 1.55;
+    }
+
+    .meta{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 10px;
+      align-items:center;
+      opacity: .86;
+      font-size: .92rem;
+      line-height: 1.35;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:3px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .article-cta{
+      display:flex;
+      align-items:flex-start;
+      flex: 0 0 auto;
+    }
+
+    .btn-mini{
+      display:inline-block;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      text-decoration:none;
+      font-size:.95rem;
+      opacity:.95;
+      white-space: nowrap;
+      transition: opacity .18s ease, background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .btn-mini:hover,
+    .btn-mini:focus-visible{
+      opacity:1;
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 22px 0;
+      opacity: .9;
+    }
+
+    .back-link{
+      margin: 0 0 12px;
+    }
+
+    .back-link a{
+      text-decoration:none;
+    }
+
+    .back-link a:hover,
+    .back-link a:focus-visible{
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+
+    .soon-row{
+      opacity: .94;
+    }
+
+    @media (max-width: 720px){
+      .article-row{ flex-direction:column; }
+      .article-cta{ justify-content:flex-start; }
+      .btn-mini{ width: fit-content; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Game Accessibility Testing",
+    "url":"https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-accessibility-testing.html",
+    "description":"Game accessibility testing articles covering accessibility QA, inclusive testing approaches, and practical methods for evaluating access, clarity, and usability in games.",
+    "author":{"@type":"Person","name":"Kelina Cowell"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Game Accessibility Testing Articles",
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/apx-practitioner-reflection.html",
+        "name": "Game Accessibility Testing: APX Practitioner Insights"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <div class="hero" aria-label="Game Accessibility Testing banner">
+      <img
+        src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/qa_articles_banner1.png"
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+      >
+    </div>
+
+    <nav class="site-nav cta-row"
+     style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin:10px auto 0;text-align:initial;">
+      <a class="cta-btn" href="/">Home</a>
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/" aria-current="page">Game QA Articles</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/education/">Education &amp; Professional Development</a>
+      <a class="cta-btn" href="/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
+    </nav>
+
+    <hr>
+
+    <p class="back-link">
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">← Back to Game QA Articles</a>
+    </p>
+
+    <h1>Game Accessibility Testing</h1>
+
+    <p class="hint">
+      This section collects articles focused on game accessibility testing, including accessibility QA, inclusive testing approaches, and practical ways of evaluating access, clarity, and usability in games.
+    </p>
+
+    <section class="section" aria-labelledby="what-youll-find">
+      <h2 id="what-youll-find">What you’ll find here</h2>
+      <ul class="bullets">
+        <li>Articles focused on accessibility testing in games</li>
+        <li>Accessibility QA approaches grounded in practical testing work</li>
+        <li>Methods for evaluating access, clarity, and usability</li>
+        <li>Game QA thinking that treats accessibility as part of quality, not an afterthought</li>
+      </ul>
+    </section>
+
+    <nav class="hub-nav" aria-label="On this page">
+      <a class="pill" href="#accessibility-articles">Accessibility Testing Articles</a>
+    </nav>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <section id="accessibility-articles" class="hub-section" aria-labelledby="accessibility-articles-title">
+      <h2 id="accessibility-articles-title">Game Accessibility Testing Articles</h2>
+      <p class="section-hint">
+        Articles focused on accessibility QA, inclusive testing approaches, and practical accessibility thinking in games.
+      </p>
+      <p class="section-why">
+        <strong>Why this matters:</strong> these articles show how I apply accessibility in game QA testing, treating it as part of quality, risk, and player experience rather than a bolt-on feature.
+      </p>
+
+      <div class="article-list">
+        <article class="article-row">
+          <div class="article-main">
+            <h3 class="article-title">
+              <a href="./apx-practitioner-reflection.html">
+                Game Accessibility Testing: APX Practitioner Insights
+              </a>
+            </h3>
+            <p class="article-desc">
+              A game QA accessibility article exploring how accessibility-focused training shapes my approach to testing for access, clarity, and player experience in games.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Accessibility Testing</span></li>
+              <li><span class="tag">APX Practitioner</span></li>
+              <li><span class="tag">UX QA</span></li>
+              <li><time datetime="2026-02-16">16 Feb 2026</time></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <a class="btn-mini" href="./apx-practitioner-reflection.html">
+              Read accessibility QA article
+            </a>
+          </div>
+        </article>
+
+        <article class="article-row soon-row" aria-label="Coming soon: Game QA accessibility case study">
+          <div class="article-main">
+            <h3 class="article-title">
+              <span>
+                Game QA Accessibility Case Study <em>(coming soon)</em>
+              </span>
+            </h3>
+            <p class="article-desc">
+              A practical accessibility-focused QA case study showing how accessibility testing can shape test planning, risk coverage, and reporting in a real portfolio project.
+            </p>
+            <ul class="meta">
+              <li><span class="tag">Game QA</span></li>
+              <li><span class="tag">Accessibility Testing</span></li>
+              <li><span class="tag">QA Case Study</span></li>
+              <li><span class="tag">Inclusive Testing</span></li>
+            </ul>
+          </div>
+          <div class="article-cta">
+            <span class="btn-mini" aria-hidden="true">Coming soon</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <footer>
+      <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+    </footer>
+  </main>
+</body>
+</html>
