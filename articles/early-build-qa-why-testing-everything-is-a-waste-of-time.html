@@ -344,6 +344,110 @@
 
     <hr>
 
+<h2 id="what-i-do-not-test-first">What I deliberately do NOT test first in early builds</h2>
+
+<p>
+  This is where prioritisation usually breaks down in early <strong>game QA testing</strong>.
+</p>
+
+<h3>1. Edge cases and rare scenarios</h3>
+<p>I do not start with:</p>
+<ul>
+  <li>Extreme input combinations</li>
+  <li>Long-session endurance</li>
+  <li>Unusual player behaviour</li>
+</ul>
+
+<p class="small">
+  In <strong>The Chef’s Shift</strong>, I focused on repeatable core loop execution, not edge-case exploration.
+  That decision paid off immediately. <strong>CHEF-1</strong> was found through repetition (3/3 repro),
+  not through obscure or unusual scenarios.
+</p>
+
+<p class="small">
+  If the main loop fails consistently, edge cases do not matter yet.
+</p>
+
+<h3>2. Cosmetic and visual polish</h3>
+<p>I deprioritise:</p>
+<ul>
+  <li>Minor animation issues</li>
+  <li>Visual polish</li>
+  <li>Small UI misalignment</li>
+</ul>
+
+<p class="small">
+  The nuance that is often missed is that visual issues become priority if they affect gameplay clarity.
+</p>
+
+<p class="small">
+  In <strong>The Chef’s Shift</strong>, <strong>CHEF-2</strong> showed this clearly. The oven interaction prompt was
+  difficult to see against the background under pressure. Technically visual, but in practice it caused:
+</p>
+
+<ul>
+  <li>Missed interactions</li>
+  <li>Delayed service</li>
+  <li>Player confusion under pressure</li>
+</ul>
+
+<p class="small">
+  That moved it from “cosmetic” to a gameplay-impacting UI issue.
+</p>
+
+<h3>3. Full feature coverage</h3>
+<p>
+  I do not try to test everything equally in an early build.
+</p>
+
+<p>I deliberately avoided:</p>
+<ul>
+  <li>Deep coverage of non-core behaviours</li>
+  <li>Exhaustive system permutations</li>
+  <li>Broad exploratory passes across all features</li>
+</ul>
+
+<p class="small">
+  Instead, I used charter-driven sessions (S1 to S8) focused on loop stability, input, and system interaction.
+</p>
+
+<p class="small">
+  The result was 8 structured sessions, 2 meaningful issues, and clear signal without noise.
+  That is more valuable than 20 shallow findings nobody cares about.
+</p>
+
+<h3>4. Full accessibility audits</h3>
+<p>
+  I include accessibility as a lens, not a checklist.
+</p>
+
+<p class="small">
+  In <strong>The Chef’s Shift</strong>, I applied APX-informed thinking to:
+</p>
+
+<ul>
+  <li>Typing under pressure</li>
+  <li>Readability and recognition speed</li>
+  <li>Multitasking and cognitive load</li>
+  <li>Prompt visibility and clarity</li>
+</ul>
+
+<p class="small">
+  This revealed a key shift in performance. At low complexity, performance was limited by typing accuracy.
+  At higher complexity, it shifted to cognitive load and task management.
+</p>
+
+<p class="small">
+  That distinction matters because not all difficulty is a bug.
+  Some issues are player-facing friction, not system failure.
+</p>
+
+<p class="small">
+  Instead of running a full audit, I focused on where accessibility directly affected core gameplay performance.
+</p>
+    
+    <hr>
+
     <h2 id="system-vs-player">Broken systems vs player-facing friction in game QA testing</h2>
     <p>
       In <strong>game QA testing</strong>, one reason exhaustive testing is a waste early on is that it often treats every failure as the same kind of problem.
