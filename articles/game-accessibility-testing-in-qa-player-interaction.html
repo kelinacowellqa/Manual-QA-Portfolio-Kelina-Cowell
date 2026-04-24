@@ -507,8 +507,8 @@
 <ul>
   <li>Small POS label with no visual container</li>
   <li>Small white timer that was hard to read</li>
-  <li>Rival name displayed in small, unboxed white text</li>
-  <li>Objective text such as “BEAT JASMINE” not strongly emphasised</li>
+  <li>Rival name top centre in unboxed white text</li>
+  <li>Objective in the top left displayed in small, unboxed white text</li>
 </ul>
 
 <figure class="article-figure plain-figure">
@@ -525,13 +525,27 @@
   </figcaption>
 </figure>
 
-<p>
-  This creates <strong>game HUD readability issues under pressure</strong>.
+<p class="small">
+  The screenshot above makes these elements look more readable than they are in reality.
+  On a mobile device, the HUD is significantly smaller, and these elements compete with motion, speed, and player focus.
 </p>
 
+<p class="small">
+  As a dyslexic player, low-contrast white text is especially difficult to process.
+  During testing, I did not register some of these UI elements at all during gameplay.
+  They only became visible when reviewing recorded footage.
+</p>
+
+<section class="callout">
+  <h3>What this actually means in gameplay</h3>
+  <p class="small">
+    If a player cannot perceive critical HUD information during active play, the system is not effectively communicating.
+    This directly affects decision-making, reaction time, and performance.
+  </p>
+</section>
+
 <p>
-  During a race, the player is not calmly reading a static screen. They are steering, reacting, tracking position, and processing goals at speed.
-  That turns small UI clarity issues into real gameplay friction.
+  This creates <strong>game HUD readability issues under pressure</strong>.
 </p>
 
 <section class="callout">
@@ -544,7 +558,6 @@
 <p>
   This is especially relevant for <strong>mobile game QA testing</strong>, where screen size, motion, timing pressure, and touch interaction all compete for attention.
 </p>
-
     <hr>
 
     <h2 id="examples-table">Game QA accessibility bug examples</h2>
