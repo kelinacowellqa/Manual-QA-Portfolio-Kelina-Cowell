@@ -273,6 +273,71 @@
     text-align:center;font-size:.85em;opacity:.8;
     border-top:1px solid rgba(255,255,255,.05)
   }
+
+  /* FAQ Accordion Container */
+.faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover state */
+.faq-accordion details:hover{
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Question (clickable) */
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--teal);
+  line-height: 1.4;
+  list-style: none;
+}
+
+/* Remove default arrow (optional, cleaner look) */
+.faq-accordion summary::-webkit-details-marker{
+  display: none;
+}
+
+/* Custom arrow */
+.faq-accordion summary::before{
+  content: "▸";
+  margin-right: 8px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when open */
+.faq-accordion details[open] summary::before{
+  transform: rotate(90deg);
+}
+
+/* Answer content */
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+  line-height: 1.6;
+}
+
+/* Spacing inside answers */
+.faq-answer p{
+  margin: 0 0 10px;
+}
+
+.faq-answer ul{
+  margin: 8px 0;
+  padding-left: 18px;
+}
+
+.faq-answer li{
+  margin: 6px 0;
+}
 </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -433,33 +498,54 @@
       
       <hr>
 
-    <section class="section faq" aria-labelledby="faq">
-  <h2 id="faq">FAQ</h2>
+<section class="section faq-accordion" id="faq">
+  <h2>FAQ</h2>
 
-  <h3>How is this section different from the main portfolio?</h3>
-  <p>
-    The main portfolio focuses on structured, timeboxed case studies with full documentation and deeper analysis. This section is intentionally lighter, grouping course-based QA work, game jam testing, and live build testing to show practical QA activity across different environments.
-  </p>
+  <details>
+    <summary>How is this section different from the main portfolio?</summary>
+    <div class="faq-answer">
+      <p>
+        The main portfolio focuses on structured, timeboxed case studies with full documentation and deeper analysis. This section is intentionally lighter, grouping course-based QA work, game jam testing, and live build testing to show practical QA activity across different environments.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why include course projects at all?</h3>
-  <p>
-    Because the value is in how they’re used. These are not included as certificates or passive learning, but as applied QA work where guided exercises are turned into structured testing, bug reports, and usable outputs.
-  </p>
+  <details>
+    <summary>Why include course projects at all?</summary>
+    <div class="faq-answer">
+      <p>
+        Because the value is in how they’re used. These are not included as certificates or passive learning, but as applied QA work where guided exercises are turned into structured testing, bug reports, and usable outputs.
+      </p>
+    </div>
+  </details>
 
-  <h3>What makes game jam QA valuable?</h3>
-  <p>
-    Game jams simulate fast, unstable development conditions. Testing here focuses on identifying high-impact issues quickly, prioritising effectively, and communicating clearly under time pressure.
-  </p>
+  <details>
+    <summary>What makes game jam QA valuable?</summary>
+    <div class="faq-answer">
+      <p>
+        Game jams simulate fast, unstable development conditions. Testing here focuses on identifying high-impact issues quickly, prioritising effectively, and communicating clearly under time pressure.
+      </p>
+    </div>
+  </details>
 
-  <h3>What counts as live testing?</h3>
-  <p>
-    Demos, alpha builds, beta builds, and other limited-access environments where testing reflects real player conditions, with a focus on player-facing defects, usability issues, and stability.
-  </p>
+  <details>
+    <summary>What counts as live testing?</summary>
+    <div class="faq-answer">
+      <p>
+        Demos, alpha builds, beta builds, and other limited-access environments where testing reflects real player conditions, with a focus on player-facing defects, usability issues, and stability.
+      </p>
+    </div>
+  </details>
 
-  <h3>Will every entry here have full documentation?</h3>
-  <p>
-    No. Some entries are intentionally lightweight. The purpose of this section is to show consistent QA practice and adaptability, not to present every short session as a full case study.
-  </p>
+  <details>
+    <summary>Will every entry here have full documentation?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Some entries are intentionally lightweight. The purpose of this section is to show consistent QA practice and adaptability, not to present every short session as a full case study.
+      </p>
+    </div>
+  </details>
+
 </section>
       
       <hr>
