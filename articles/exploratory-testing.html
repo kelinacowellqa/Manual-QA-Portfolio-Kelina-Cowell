@@ -146,6 +146,32 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script type="application/ld+json">
@@ -467,33 +493,50 @@
 
       <hr>
 
-      <section class="section" id="faq">
-        <h2>Exploratory testing FAQ (mobile QA)</h2>
+<section class="section faq-accordion" id="faq">
+  <h2>Exploratory testing FAQ (mobile QA)</h2>
 
-        <h3>How do you do exploratory testing without it becoming random?</h3>
-        <p>
-          In <strong>exploratory testing</strong>, sessions are structured using a clear test charter, a strict timebox, and controlled variation.
-          If you cannot explain what you were trying to learn from the session, the charter is too vague.
-        </p>
+  <details>
+    <summary>How do you do exploratory testing without it becoming random?</summary>
+    <div class="faq-answer">
+      <p>
+        In <strong>exploratory testing</strong>, sessions are structured using a clear test charter, a strict timebox, and controlled variation.
+        If you cannot explain what you were trying to learn from the session, the charter is too vague.
+      </p>
+    </div>
+  </details>
 
-        <h3>What should you document during an exploratory testing session?</h3>
-        <p>
-          <strong>Exploratory testing documentation</strong> should focus on variables that affect reproduction: device state, network conditions,
-          lifecycle transitions, and what changed between attempts. Notes should capture context, not just button presses.
-        </p>
+  <details>
+    <summary>What should you document during an exploratory testing session?</summary>
+    <div class="faq-answer">
+      <p>
+        <strong>Exploratory testing documentation</strong> should focus on variables that affect reproduction: device state, network conditions,
+        lifecycle transitions, and what changed between attempts. Notes should capture context, not just button presses.
+      </p>
+    </div>
+  </details>
 
-        <h3>How do you reproduce bugs found in exploratory testing?</h3>
-        <p>
-          To reproduce an <strong>exploratory testing bug</strong>, reduce the scenario to the smallest set of steps that still triggers the issue.
-          Then rerun it while changing one variable at a time until the trigger conditions are clear and consistent.
-        </p>
+  <details>
+    <summary>How do you reproduce bugs found in exploratory testing?</summary>
+    <div class="faq-answer">
+      <p>
+        To reproduce an <strong>exploratory testing bug</strong>, reduce the scenario to the smallest set of steps that still triggers the issue.
+        Then rerun it while changing one variable at a time until the trigger conditions are clear and consistent.
+      </p>
+    </div>
+  </details>
 
-        <h3>What makes exploratory testing different in mobile apps?</h3>
-        <p>
-          In <strong>mobile app testing</strong>, failure modes are often lifecycle and OS-driven: backgrounding, notifications, lock/unlock,
-          network switching, permissions, and performance constraints. Normal user behaviour introduces timing and recovery issues that clean runs miss.
-        </p>
-      </section>
+  <details>
+    <summary>What makes exploratory testing different in mobile apps?</summary>
+    <div class="faq-answer">
+      <p>
+        In <strong>mobile app testing</strong>, failure modes are often lifecycle and OS-driven: backgrounding, notifications, lock/unlock,
+        network switching, permissions, and performance constraints. Normal user behaviour introduces timing and recovery issues that clean runs miss.
+      </p>
+    </div>
+  </details>
+
+</section>
 
       <hr>
 
