@@ -145,6 +145,32 @@
   .toc ul{
     grid-template-columns: 1fr;
   }
+
+  .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
+
+.faq-answer{
+  margin-top: 12px;
+}
+
+.faq-answer p:first-child{
+  margin-top: 0;
+}
 }
   </style>
 
@@ -737,147 +763,157 @@
 
     <hr>
 
-<section class="section" id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>FAQ: Game QA Testing Systems Interaction</h2>
 
-  <h3>What is game QA testing systems interaction?</h3>
-  <p>
-    <strong>Game QA testing systems interaction</strong> is the process of testing how different systems in a game behave when used together, rather than in isolation.
-  </p>
-  <p>
-    Instead of only checking if a feature works on its own, this approach focuses on how systems interact, such as:
-  </p>
-  <ul>
-    <li>Input and UI working together</li>
-    <li>Gameplay and pause states overlapping</li>
-    <li>UI and accessibility features colliding</li>
-    <li>Game systems reacting to device or OS events</li>
-  </ul>
-  <p>
-    Most real bugs appear at these interaction points, not within a single system.
-  </p>
+  <details>
+    <summary>What is game QA testing systems interaction?</summary>
+    <div class="faq-answer">
+      <p>
+        <strong>Game QA testing systems interaction</strong> is the process of testing how different systems in a game behave when used together, rather than in isolation.
+      </p>
+      <p>
+        Instead of only checking if a feature works on its own, this approach focuses on how systems interact, such as:
+      </p>
+      <ul>
+        <li>Input and UI working together</li>
+        <li>Gameplay and pause states overlapping</li>
+        <li>UI and accessibility features colliding</li>
+        <li>Game systems reacting to device or OS events</li>
+      </ul>
+      <p>
+        Most real bugs appear at these interaction points, not within a single system.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why do bugs happen between systems in games?</h3>
-  <p>
-    This is the core reason behind <strong>why bugs happen in game QA</strong>.
-  </p>
-  <p>
-    Game systems are:
-  </p>
-  <ul>
-    <li>State-dependent</li>
-    <li>Layered</li>
-    <li>Reactive to player input</li>
-    <li>Influenced by platform behaviour</li>
-  </ul>
-  <p>
-    A system can work perfectly on its own but fail when combined with another system.
-  </p>
-  <p>
-    These failures are known as <strong>game QA system interaction bugs</strong>, and they are often missed if testing only focuses on isolated features.
-  </p>
+  <details>
+    <summary>Why do bugs happen between systems in games?</summary>
+    <div class="faq-answer">
+      <p>
+        This is the core reason behind <strong>why bugs happen in game QA</strong>.
+      </p>
+      <p>Game systems are:</p>
+      <ul>
+        <li>State-dependent</li>
+        <li>Layered</li>
+        <li>Reactive to player input</li>
+        <li>Influenced by platform behaviour</li>
+      </ul>
+      <p>
+        A system can work perfectly on its own but fail when combined with another system.
+      </p>
+      <p>
+        These failures are known as <strong>game QA system interaction bugs</strong>, and they are often missed if testing only focuses on isolated features.
+      </p>
+    </div>
+  </details>
 
-  <h3>What is the difference between functional testing and integration testing in game QA?</h3>
-  <p>
-    In <strong>functional testing in games</strong>, you verify that a feature works on its own.
-  </p>
-  <p>
-    Example:
-  </p>
-  <ul>
-    <li>Does the pause menu open?</li>
-    <li>Does input respond correctly?</li>
-  </ul>
-  <p>
-    In <strong>game QA integration testing</strong>, you verify that multiple systems work together.
-  </p>
-  <p>
-    Example:
-  </p>
-  <ul>
-    <li>Does the pause menu still behave correctly when switching from controller to keyboard?</li>
-    <li>Does the game recover properly after an interruption?</li>
-  </ul>
-  <p>
-    Both are important, but integration testing is where many high-impact bugs are found.
-  </p>
+  <details>
+    <summary>What is the difference between functional testing and integration testing in game QA?</summary>
+    <div class="faq-answer">
+      <p>
+        In <strong>functional testing in games</strong>, you verify that a feature works on its own.
+      </p>
+      <p>Example:</p>
+      <ul>
+        <li>Does the pause menu open?</li>
+        <li>Does input respond correctly?</li>
+      </ul>
+      <p>
+        In <strong>game QA integration testing</strong>, you verify that multiple systems work together.
+      </p>
+      <p>Example:</p>
+      <ul>
+        <li>Does the pause menu still behave correctly when switching from controller to keyboard?</li>
+        <li>Does the game recover properly after an interruption?</li>
+      </ul>
+      <p>
+        Both are important, but integration testing is where many high-impact bugs are found.
+      </p>
+    </div>
+  </details>
 
-  <h3>How do you test game systems together instead of in isolation?</h3>
-  <p>
-    To improve <strong>game QA testing techniques</strong>, you need to focus on interactions, not just features.
-  </p>
-  <p>
-    Practical ways to do this:
-  </p>
-  <ul>
-    <li>Switch input methods mid-action</li>
-    <li>Trigger UI while gameplay is active</li>
-    <li>Test pause/resume during different states</li>
-    <li>Simulate interruptions, including mobile and OS events</li>
-    <li>Test accessibility conditions like volume off or seated play</li>
-  </ul>
-  <p>
-    This is how you move from basic checks to <strong>game QA real world testing</strong>.
-  </p>
+  <details>
+    <summary>How do you test game systems together instead of in isolation?</summary>
+    <div class="faq-answer">
+      <p>
+        To improve <strong>game QA testing techniques</strong>, you need to focus on interactions, not just features.
+      </p>
+      <p>Practical ways to do this:</p>
+      <ul>
+        <li>Switch input methods mid-action</li>
+        <li>Trigger UI while gameplay is active</li>
+        <li>Test pause/resume during different states</li>
+        <li>Simulate interruptions, including mobile and OS events</li>
+        <li>Test accessibility conditions like volume off or seated play</li>
+      </ul>
+      <p>
+        This is how you move from basic checks to <strong>game QA real world testing</strong>.
+      </p>
+    </div>
+  </details>
 
-  <h3>What are examples of system interaction bugs in games?</h3>
-  <p>
-    Some real <strong>game QA bug examples</strong> include:
-  </p>
-  <ul>
-    <li>Input ownership breaking when switching between keyboard and controller</li>
-    <li>UI buttons becoming unresponsive after app interruptions</li>
-    <li>Subtitles being blocked by UI overlays or objects</li>
-    <li>Gameplay continuing but feedback systems failing, such as audio or visual cues</li>
-  </ul>
-  <p>
-    These are all <strong>system interaction bugs in games</strong>, where multiple systems conflict.
-  </p>
+  <details>
+    <summary>What are examples of system interaction bugs in games?</summary>
+    <div class="faq-answer">
+      <p>
+        Some real <strong>game QA bug examples</strong> include:
+      </p>
+      <ul>
+        <li>Input ownership breaking when switching between keyboard and controller</li>
+        <li>UI buttons becoming unresponsive after app interruptions</li>
+        <li>Subtitles being blocked by UI overlays or objects</li>
+        <li>Gameplay continuing but feedback systems failing, such as audio or visual cues</li>
+      </ul>
+      <p>
+        These are all <strong>system interaction bugs in games</strong>, where multiple systems conflict.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why is interaction testing important in mobile and VR QA?</h3>
-  <p>
-    In <strong>mobile game QA testing</strong>, interaction testing is critical because:
-  </p>
-  <ul>
-    <li>Apps are frequently interrupted</li>
-    <li>Network conditions change</li>
-    <li>Players switch apps constantly</li>
-  </ul>
-  <p>
-    In <strong>VR QA testing</strong> and <strong>accessibility testing in games</strong>, interaction testing matters because:
-  </p>
-  <ul>
-    <li>UI exists in 3D space</li>
-    <li>Player position affects visibility</li>
-    <li>Multiple systems, including audio, visual, and input, must work together</li>
-  </ul>
-  <p>
-    In both cases, isolated testing misses real-world behaviour.
-  </p>
+  <details>
+    <summary>Why is interaction testing important in mobile and VR QA?</summary>
+    <div class="faq-answer">
+      <p>
+        In <strong>mobile game QA testing</strong>, interaction testing is critical because:
+      </p>
+      <ul>
+        <li>Apps are frequently interrupted</li>
+        <li>Network conditions change</li>
+        <li>Players switch apps constantly</li>
+      </ul>
+      <p>
+        In <strong>VR QA testing</strong> and <strong>accessibility testing in games</strong>, interaction testing matters because:
+      </p>
+      <ul>
+        <li>UI exists in 3D space</li>
+        <li>Player position affects visibility</li>
+        <li>Multiple systems, including audio, visual, and input, must work together</li>
+      </ul>
+      <p>
+        In both cases, isolated testing misses real-world behaviour.
+      </p>
+    </div>
+  </details>
 
-  <h3>What is the biggest mistake beginners make in game QA testing?</h3>
-  <p>
-    The most common mistake in <strong>manual QA testing in games</strong> is:
-  </p>
-
-  <section class="callout">
-    <h4>Beginner mistake</h4>
-    <p class="small">
-      Only testing features individually and not testing how they interact.
-    </p>
-  </section>
-
-  <p>
-    This leads to:
-  </p>
-  <ul>
-    <li>Missed edge cases</li>
-    <li>Weak bug reports</li>
-    <li>Lack of real-world testing coverage</li>
-  </ul>
-  <p>
-    Strong testers focus on <strong>how bugs happen between systems in games</strong>, not just whether a feature works.
-  </p>
+  <details>
+    <summary>What is the biggest mistake beginners make in game QA testing?</summary>
+    <div class="faq-answer">
+      <p>
+        The most common mistake in <strong>manual QA testing in games</strong> is only testing features individually and not testing how they interact.
+      </p>
+      <p>This leads to:</p>
+      <ul>
+        <li>Missed edge cases</li>
+        <li>Weak bug reports</li>
+        <li>Lack of real-world testing coverage</li>
+      </ul>
+      <p>
+        Strong testers focus on <strong>how bugs happen between systems in games</strong>, not just whether a feature works.
+      </p>
+    </div>
+  </details>
 </section>
 
     <hr>
