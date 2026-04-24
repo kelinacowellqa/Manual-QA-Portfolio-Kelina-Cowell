@@ -168,6 +168,32 @@
     .simple-table th{
       font-weight: 700;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -793,59 +819,92 @@
 
     <hr>
 
-<section class="section" id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>Game QA Testing and Bug Reporting FAQ</h2>
 
-  <h3>Do game QA testers need to record full gameplay sessions?</h3>
-  <p>
-    Not always, but recording full sessions is one of the most reliable <strong>game QA testing</strong> practices. 
-    It ensures gameplay bugs can be revisited, verified, and turned into clear <strong>bug reporting</strong> evidence 
-    without relying on memory.
-  </p>
+  <details>
+    <summary>Do game QA testers need to record full gameplay sessions?</summary>
+    <div class="faq-answer">
+      <p>
+        Not always, but recording full sessions is one of the most reliable <strong>game QA testing</strong> practices. 
+        It ensures gameplay bugs can be revisited, verified, and turned into clear <strong>bug reporting</strong> evidence 
+        without relying on memory.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why not upload raw gameplay instead of trimming clips?</h3>
-  <p>
-    Raw footage slows down <strong>bug reporting in games</strong>. Developers need to see the issue immediately. 
-    A focused clip shows the trigger, failure, and result without forcing someone to scrub through long recordings.
-  </p>
+  <details>
+    <summary>Why not upload raw gameplay instead of trimming clips?</summary>
+    <div class="faq-answer">
+      <p>
+        Raw footage slows down <strong>bug reporting in games</strong>. Developers need to see the issue immediately. 
+        A focused clip shows the trigger, failure, and result without forcing someone to scrub through long recordings.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is storing QA evidence in multiple places overkill?</h3>
-  <p>
-    No. Local recordings, cloud-hosted clips, and structured <strong>game QA documentation</strong> serve different purposes. 
-    Together, they protect data, allow fast access to <strong>gameplay bug evidence</strong>, and maintain a clear audit trail 
-    within a <strong>game QA workflow</strong>.
-  </p>
+  <details>
+    <summary>Is storing QA evidence in multiple places overkill?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Local recordings, cloud-hosted clips, and structured <strong>game QA documentation</strong> serve different purposes. 
+        Together, they protect data, allow fast access to <strong>gameplay bug evidence</strong>, and maintain a clear audit trail 
+        within a <strong>game QA workflow</strong>.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why use both Google Sheets and Jira in game QA?</h3>
-  <p>
-    They solve different problems. Google Sheets supports <strong>QA testing workflow</strong> tracking, while 
-    <strong>Jira bug reporting</strong> is used for developer-facing issues. Linking them creates a single, traceable pipeline 
-    instead of disconnected tools.
-  </p>
+  <details>
+    <summary>Why use both Google Sheets and Jira in game QA?</summary>
+    <div class="faq-answer">
+      <p>
+        They solve different problems. Google Sheets supports <strong>QA testing workflow</strong> tracking, while 
+        <strong>Jira bug reporting</strong> is used for developer-facing issues. Linking them creates a single, traceable pipeline 
+        instead of disconnected tools.
+      </p>
+    </div>
+  </details>
 
-  <h3>What makes a good game QA bug report?</h3>
-  <p>
-    A strong <strong>game QA bug report</strong> is clear and reproducible. It shows what happened, how to trigger it, 
-    what was expected, what actually occurred, and includes <strong>gameplay evidence</strong> that confirms the issue.
-  </p>
+  <details>
+    <summary>What makes a good game QA bug report?</summary>
+    <div class="faq-answer">
+      <p>
+        A strong <strong>game QA bug report</strong> is clear and reproducible. It shows what happened, how to trigger it, 
+        what was expected, what actually occurred, and includes <strong>gameplay evidence</strong> that confirms the issue.
+      </p>
+    </div>
+  </details>
 
-  <h3>Do all game QA bugs need video evidence?</h3>
-  <p>
-    Not always, but for gameplay, input, and UI issues, video is extremely valuable. It shows timing, context, 
-    and player interaction in a way text alone cannot, improving <strong>bug reporting accuracy</strong>.
-  </p>
+  <details>
+    <summary>Do all game QA bugs need video evidence?</summary>
+    <div class="faq-answer">
+      <p>
+        Not always, but for gameplay, input, and UI issues, video is extremely valuable. It shows timing, context, 
+        and player interaction in a way text alone cannot, improving <strong>bug reporting accuracy</strong>.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is this game QA workflow realistic in a studio environment?</h3>
-  <p>
-    The exact tools may vary, but the structure is standard. Most studios expect a <strong>game QA workflow</strong> 
-    that captures evidence, documents clearly, and maintains traceability between testing and reporting.
-  </p>
+  <details>
+    <summary>Is this game QA workflow realistic in a studio environment?</summary>
+    <div class="faq-answer">
+      <p>
+        The exact tools may vary, but the structure is standard. Most studios expect a <strong>game QA workflow</strong> 
+        that captures evidence, documents clearly, and maintains traceability between testing and reporting.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why is traceability important in game QA testing?</h3>
-  <p>
-    <strong>QA traceability</strong> ensures every bug can be tracked back to its origin, evidence, and testing context. 
-    This makes verification, regression testing, and communication much more efficient.
-  </p>
+  <details>
+    <summary>Why is traceability important in game QA testing?</summary>
+    <div class="faq-answer">
+      <p>
+        <strong>QA traceability</strong> ensures every bug can be tracked back to its origin, evidence, and testing context. 
+        This makes verification, regression testing, and communication much more efficient.
+      </p>
+    </div>
+  </details>
+
 </section>
 
     <hr>
