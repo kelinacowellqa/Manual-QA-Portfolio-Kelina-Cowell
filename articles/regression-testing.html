@@ -130,6 +130,30 @@
 .faq-accordion summary:hover{
   text-decoration: underline;
 }
+
+        .tldr{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.tldr li{
+  list-style: disc;
+  margin-left: 18px;
+}
+
+    .tldr li{
+  line-height: 1.5;
+}
+
+/* Mobile fallback */
+@media (max-width: 640px){
+  .tldr{
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
