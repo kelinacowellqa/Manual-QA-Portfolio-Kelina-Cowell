@@ -144,38 +144,32 @@
 
     .tldr li{
   line-height: 1.5;
-}
-
-/* Mobile fallback */
-@media (max-width: 640px){
-  .tldr{
-    grid-template-columns: 1fr;
   }
 
   .toc ul{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 28px;
-  margin: 10px 0 0;
-  padding-left: 18px;
-}
-
-.toc li{
-  line-height: 1.4;
-}
-
-.toc a{
-  display: inline-block;
-  padding: 2px 0;
-}  
-
-/* Mobile fallback */
-@media (max-width: 640px){
-  .toc ul{
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 28px;
+    margin: 10px 0 0;
+    padding-left: 18px;
   }
-}
-  </style>
+
+  .toc li{
+    line-height: 1.4;
+  }
+
+  .toc a{
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  @media (max-width: 640px){
+    .tldr,
+    .toc ul{
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
