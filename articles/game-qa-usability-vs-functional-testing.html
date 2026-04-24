@@ -102,6 +102,32 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -548,10 +574,12 @@
 
     <hr>
 
-    <section class="section" id="faq">
-      <h2>FAQ: Game QA usability vs functional testing</h2>
+ <section class="section faq-accordion" id="faq">
+  <h2>FAQ: Game QA usability vs functional testing</h2>
 
-      <h3>What is the difference between a bug and a usability issue in game QA?</h3>
+  <details>
+    <summary>What is the difference between a bug and a usability issue in game QA?</summary>
+    <div class="faq-answer">
       <p>
         A bug is when the system does not work as intended.
         A usability issue is when the system works, but the player struggles to understand or use it.
@@ -560,64 +588,80 @@
         <li><strong>Bug:</strong> system failure</li>
         <li><strong>Usability issue:</strong> player friction</li>
       </ul>
+    </div>
+  </details>
 
-      <h3>When is something not a bug in game QA?</h3>
+  <details>
+    <summary>When is something not a bug in game QA?</summary>
+    <div class="faq-answer">
       <p>
         If the system behaves correctly according to its design, but the player finds it confusing, unclear, or difficult to use,
         it is not a bug. It is a usability issue.
       </p>
+    </div>
+  </details>
 
-      <h3>How do you tell if something is a bug or a usability issue in games?</h3>
+  <details>
+    <summary>How do you tell if something is a bug or a usability issue in games?</summary>
+    <div class="faq-answer">
       <p>
         Ask whether the system is failing or whether the player is struggling.
         If the system fails, log a functional defect. If the system works but creates confusion, report a usability issue.
       </p>
+    </div>
+  </details>
 
-      <h3>Should usability issues be logged in Jira?</h3>
+  <details>
+    <summary>Should usability issues be logged in Jira?</summary>
+    <div class="faq-answer">
       <p>
         Yes, but not as standard bug reports. Usability issues should be clearly labelled as UX, usability, or accessibility issues,
         and should focus on player impact rather than system failure.
       </p>
+    </div>
+  </details>
 
-      <h3>What are examples of usability issues in games QA?</h3>
+  <details>
+    <summary>What are examples of usability issues in games QA?</summary>
+    <div class="faq-answer">
       <p>
         Examples include HUD readability issues, unclear prompts, information spread across the screen, controls that work but feel unintuitive,
         and systems that lack clear feedback.
       </p>
+    </div>
+  </details>
 
-      <h3>What are examples of functional bugs in game QA?</h3>
+  <details>
+    <summary>What are examples of functional bugs in game QA?</summary>
+    <div class="faq-answer">
       <p>
         Examples include input being ignored, keyboard/controller hand-off failures, broken Pause menu behaviour,
         missing functionality, or systems producing incorrect results.
       </p>
+    </div>
+  </details>
 
-      <h3>Why is separating usability and functional issues important?</h3>
+  <details>
+    <summary>Why is separating usability and functional issues important?</summary>
+    <div class="faq-answer">
       <p>
         Separating the two prevents backlog noise, protects QA credibility, and helps usability problems get addressed properly
         instead of being dismissed as “not a bug”.
       </p>
+    </div>
+  </details>
 
-      <h3>How should usability issues be reported in game QA?</h3>
+  <details>
+    <summary>How should usability issues be reported in game QA?</summary>
+    <div class="faq-answer">
       <p>
         Usability issues should describe what the player experienced, what the system did, why it created friction,
         and how it affected gameplay. The focus should be player impact, not pretending the system is broken.
       </p>
-    </section>
+    </div>
+  </details>
 
-    <hr>
-
-    <section class="section" id="links">
-      <h2>Evidence and related links</h2>
-      <ul>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">Battletoads functional testing case study</a></li>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/how-to-write-game-qa-bug-reports-developers-dont-ignore.html">How to write game QA bug reports developers don’t ignore</a></li>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA articles hub</a></li>
-      </ul>
-      <p class="small">
-        This page focuses on <strong>game QA usability vs functional testing</strong>. The Battletoads case study contains the wider project context,
-        test scope, bug summaries, Jira screenshots, and evidence links.
-      </p>
-    </section>
+</section>
 
     <hr>
 
