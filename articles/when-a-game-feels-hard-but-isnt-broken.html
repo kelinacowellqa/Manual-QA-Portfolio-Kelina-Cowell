@@ -103,6 +103,32 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -497,38 +523,63 @@
     
     <hr>
 
- <section class="section" id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>Game QA and Accessibility Testing FAQ</h2>
 
-  <h3>Is every frustrating moment in a game an accessibility issue?</h3>
-  <p>
-    No. In <strong>game QA testing</strong>, some moments are meant to be challenging. The goal is to distinguish between intended difficulty and <strong>player-facing friction caused by UI clarity or usability issues</strong>.
-  </p>
+  <details>
+    <summary>Is every frustrating moment in a game an accessibility issue?</summary>
+    <div class="faq-answer">
+      <p>
+        No. In <strong>game QA testing</strong>, some moments are meant to be challenging. The goal is to distinguish between intended difficulty and <strong>player-facing friction caused by UI clarity or usability issues</strong>.
+      </p>
+    </div>
+  </details>
 
-  <h3>Can a system be functional but still create a real gameplay issue?</h3>
-  <p>
-    Yes. This is a common finding in <strong>game QA testing</strong>. In CHEF-2, the interaction worked correctly, but poor <strong>UI prompt visibility</strong> made it harder to recognise under pressure, affecting player performance.
-  </p>
+  <details>
+    <summary>Can a system be functional but still create a real gameplay issue?</summary>
+    <div class="faq-answer">
+      <p>
+        Yes. This is a common finding in <strong>game QA testing</strong>. In CHEF-2, the interaction worked correctly, but poor <strong>UI prompt visibility</strong> made it harder to recognise under pressure, affecting player performance.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why does cognitive load matter in game QA testing?</h3>
-  <p>
-    Because players process multiple inputs at once. <strong>Cognitive load in games</strong> affects how quickly players can recognise prompts, make decisions, and act, which directly impacts perceived difficulty and player experience.
-  </p>
+  <details>
+    <summary>Why does cognitive load matter in game QA testing?</summary>
+    <div class="faq-answer">
+      <p>
+        Because players process multiple inputs at once. <strong>Cognitive load in games</strong> affects how quickly players can recognise prompts, make decisions, and act, which directly impacts perceived difficulty and player experience.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is this the same as a full game accessibility audit?</h3>
-  <p>
-    No. This was an <strong>early build QA testing pass</strong> with an accessibility-informed approach, not a full audit. The goal was to identify <strong>usability, UI clarity, and cognitive load issues</strong>, not provide complete accessibility coverage.
-  </p>
+  <details>
+    <summary>Is this the same as a full game accessibility audit?</summary>
+    <div class="faq-answer">
+      <p>
+        No. This was an <strong>early build QA testing pass</strong> with an accessibility-informed approach, not a full audit. The goal was to identify <strong>usability, UI clarity, and cognitive load issues</strong>, not provide complete accessibility coverage.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why not just say the player needs more practice?</h3>
-  <p>
-    Because that can hide real <strong>game design and usability issues</strong>. If the player is struggling due to poor communication or unclear UI, practice does not solve the underlying problem.
-  </p>
+  <details>
+    <summary>Why not just say the player needs more practice?</summary>
+    <div class="faq-answer">
+      <p>
+        Because that can hide real <strong>game design and usability issues</strong>. If the player is struggling due to poor communication or unclear UI, practice does not solve the underlying problem.
+      </p>
+    </div>
+  </details>
 
-  <h3>What does this show about your QA approach?</h3>
-  <p>
-    It shows an approach to <strong>game QA testing</strong> that goes beyond logging bugs. I also analyse <strong>player experience, UI clarity, and cognitive load</strong> to explain why a game feels difficult, not just whether it functions.
-  </p>
+  <details>
+    <summary>What does this show about your QA approach?</summary>
+    <div class="faq-answer">
+      <p>
+        It shows an approach to <strong>game QA testing</strong> that goes beyond logging bugs. I also analyse <strong>player experience, UI clarity, and cognitive load</strong> to explain why a game feels difficult, not just whether it functions.
+      </p>
+    </div>
+  </details>
+
 </section>
     
     <hr>
