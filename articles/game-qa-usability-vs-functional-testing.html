@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Game QA Usability vs Functional Testing: When a Bug Isn’t a Bug | Kelina Cowell</title>
+
+  <meta name="description" content="Game QA usability vs functional testing explained using a real Battletoads functional testing project. Learn the difference between functional defects, usability issues, and how to report both properly." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-qa-usability-vs-functional-testing.html" />
+
+  <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+  <meta property="og:title" content="Game QA Usability vs Functional Testing: When a Bug Isn’t a Bug">
+  <meta property="og:description" content="Learn the difference between functional defects and usability issues in game QA using a real Battletoads PC Game Pass testing project.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-qa-usability-vs-functional-testing.html">
+  <meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="article:published_time" content="2026-04-24">
+  <meta property="article:modified_time" content="2026-04-24">
+  <meta name="twitter:title" content="Game QA Usability vs Functional Testing: When a Bug Isn’t a Bug">
+  <meta name="twitter:description" content="Game QA usability vs functional testing explained using a real Battletoads functional testing project.">
+  <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+  <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-qa-usability-vs-functional-testing.html">
+
+  <style>
+    .article-hero,
+    .toc,
+    .callout{
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    .article-hero{
+      margin: 12px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toc{
+      margin: 10px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .callout{ margin: 16px 0; }
+
+    .meta{ margin: 0; opacity: .9; }
+
+    .small{ font-size: .95rem; opacity: .95; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    .tldr{
+      margin: 14px 0 0;
+      padding: 0;
+    }
+    .tldr li{ margin: 6px 0; }
+
+    .author-row{
+      margin-top: 10px;
+      opacity: .95;
+    }
+    .author-row a{ text-decoration: underline; }
+
+    .pullquote{
+      margin: 16px 0;
+      padding: 14px 16px 14px 18px;
+      border-left: 3px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+    }
+    .pullquote blockquote{
+      margin: 0;
+      padding: 0;
+    }
+    .pullquote blockquote p{
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .pullquote blockquote p:before{
+      content: "“";
+      font-size: 2.2rem;
+      line-height: 0;
+      vertical-align: -0.35em;
+      opacity: .55;
+      margin-right: 6px;
+    }
+    .pullquote cite{
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      opacity: .85;
+      font-size: .95rem;
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Game QA Usability vs Functional Testing: When a Bug Isn’t a Bug",
+        "description": "Game QA usability vs functional testing explained using a real Battletoads functional testing project. Learn the difference between functional defects, usability issues, and how to report both properly.",
+        "datePublished": "2026-04-24",
+        "dateModified": "2026-04-24",
+        "inLanguage": "en-GB",
+        "author": {
+          "@type": "Person",
+          "name": "Kelina Cowell",
+          "url": "https://kelinacowellqa.github.io/"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Kelina Cowell",
+          "url": "https://kelinacowellqa.github.io/"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/game-qa-usability-vs-functional-testing.html"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between a bug and a usability issue in game QA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A bug is when the system does not work as intended. A usability issue is when the system works, but the player struggles to understand or use it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When is something not a bug in game QA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the system behaves correctly but the player finds it confusing, unclear, or difficult to use, it is not a functional bug. It is a usability issue."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you tell if something is a bug or a usability issue in games?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ask whether the system is failing or the player is struggling. If the system fails, log a functional defect. If the player struggles while the system works as designed, report a usability issue."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should usability issues be logged in Jira?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Usability issues can be tracked in Jira, but they should be labelled clearly as UX, usability, or accessibility issues rather than standard functional bugs."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+      <h1>Game QA Usability vs Functional Testing: When a Bug Isn’t a Bug</h1>
+      <p class="hint">An applied game QA article about separating functional defects from usability issues.</p>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+
+      <p class="small">
+        This article explains <strong>game QA usability vs functional testing</strong> using a real portfolio project.
+        It shows how to tell the <strong>difference between a bug and a usability issue</strong>, why misclassification creates noise,
+        and how to report both properly in game QA.
+      </p>
+
+      <hr>
+
+      <section class="callout" aria-label="Article summary">
+        <h2 style="margin-top:0;">TL;DR</h2>
+        <ul class="tldr small">
+          <li>Not every player problem is a bug.</li>
+          <li><strong>Functional testing</strong> finds systems that do not work.</li>
+          <li><strong>Usability testing</strong> reveals where players struggle.</li>
+          <li>Confusing the two weakens QA reporting.</li>
+          <li>Strong QA separates defects from player friction.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <section class="callout" aria-label="Project context">
+        <h2 style="margin-top:0;">Context: a real game QA functional testing example</h2>
+        <p class="small">
+          This article is based on a one-week <strong>game QA functional testing</strong> project on
+          <strong>Battletoads (PC Game Pass)</strong>. The project focused on core gameplay flows, Pause/Resume behaviour,
+          keyboard and controller hand-off, local co-op join/leave, and HUD readability.
+        </p>
+      </section>
+    </header>
+
+    <hr>
+
+    <nav class="toc" aria-label="On this page">
+      <strong>On this page</strong>
+      <ul>
+        <li><a href="#context">Context: Battletoads functional testing project</a></li>
+        <li><a href="#functional-issue">What is a functional issue in game QA?</a></li>
+        <li><a href="#usability-issue">What is a usability issue in game QA?</a></li>
+        <li><a href="#why-it-matters">Why game QA usability vs functional testing matters</a></li>
+        <li><a href="#tell-the-difference">How to tell if something is a bug or usability issue</a></li>
+        <li><a href="#report-usability">How to report usability issues in game QA</a></li>
+        <li><a href="#bug-vs-design">Game QA bug vs design issue: Battletoads example</a></li>
+        <li><a href="#final-thought">Final thought</a></li>
+        <li><a href="#faq">FAQ: game QA usability vs functional testing</a></li>
+        <li><a href="#links">Evidence and related links</a></li>
+      </ul>
+    </nav>
+
+    <hr>
+
+    <h2 id="context">Context: Battletoads functional testing project</h2>
+
+    <p>
+      This article is based on a one-week <strong>game QA functional testing</strong> project on
+      <strong>Battletoads (PC Game Pass)</strong>.
+    </p>
+
+    <ul>
+      <li><strong>Platform:</strong> Windows 11 (1080p, 144Hz)</li>
+      <li><strong>Focus:</strong> Core gameplay flows and input ownership</li>
+      <li><strong>Scope included:</strong>
+        <ul>
+          <li>Start → first control</li>
+          <li>Pause / Resume</li>
+          <li>Keyboard ↔ controller hand-off</li>
+          <li>Local co-op join / leave</li>
+          <li>HUD readability</li>
+        </ul>
+      </li>
+    </ul>
+
+    <section class="callout">
+      <h3>Outcome</h3>
+      <ul class="small">
+        <li>4 high-severity <strong>game QA functional defects</strong></li>
+        <li>100% reproducibility</li>
+        <li>All issues linked to <strong>input handling bugs in games</strong></li>
+      </ul>
+    </section>
+
+    <p>
+      Alongside these functional defects, <strong>game QA usability issues</strong> were also identified.
+      These were not bugs, but they still affected the player experience.
+    </p>
+
+    <p>
+      This is exactly where confusion often happens in <strong>game QA usability vs functional testing</strong>.
+    </p>
+
+    <hr>
+
+    <h2 id="functional-issue">What is a functional issue in game QA?</h2>
+
+    <p>
+      A functional issue means the system is not behaving correctly.
+      It is broken, inconsistent, or producing the wrong result.
+    </p>
+
+    <section class="callout">
+      <h3>Example: real bug from the Battletoads project</h3>
+
+      <p class="small">
+        <strong>Title:</strong><br>
+        Keyboard navigation ignored on Pause menu when controller is active
+      </p>
+
+      <p class="small"><strong>Observed behaviour:</strong></p>
+      <ul class="small">
+        <li>Controller connected</li>
+        <li>Pause menu opened</li>
+        <li>Keyboard input does nothing</li>
+      </ul>
+
+      <p class="small">
+        <strong>Expected:</strong><br>
+        Keyboard should work based on control bindings.
+      </p>
+
+      <p class="small">
+        <strong>Actual:</strong><br>
+        Keyboard input ignored.
+      </p>
+
+      <p class="small">
+        <strong>Repro rate:</strong><br>
+        100%
+      </p>
+    </section>
+
+    <h3>Why this is a functional defect</h3>
+    <ul>
+      <li>The system fails to respond to valid input.</li>
+      <li>Behaviour contradicts in-game settings.</li>
+      <li>It breaks input consistency.</li>
+    </ul>
+
+    <p>
+      This is a clear example of a <strong>game QA functional testing issue</strong>.
+    </p>
+
+    <hr>
+
+    <h2 id="usability-issue">What is a usability issue in game QA?</h2>
+
+    <p>
+      A usability issue means the system works, but the player struggles to understand or use it.
+      Nothing is technically broken, but the experience creates friction.
+    </p>
+
+    <section class="callout">
+      <h3>Example: usability observation from the same project</h3>
+
+      <p class="small">
+        <strong>Scenario:</strong><br>
+        HUD readability during combat
+      </p>
+
+      <p class="small"><strong>Observed behaviour:</strong></p>
+      <ul class="small">
+        <li>UI elements display correctly.</li>
+        <li>Health, combo, and rank are visible.</li>
+        <li>Information is spread across screen corners.</li>
+      </ul>
+
+      <p class="small"><strong>Problem:</strong></p>
+      <ul class="small">
+        <li>Hard to track during combat.</li>
+        <li>Increases cognitive load.</li>
+        <li>Slows player reaction.</li>
+      </ul>
+    </section>
+
+    <h3>Why this is not a bug</h3>
+    <ul>
+      <li>No system failure</li>
+      <li>No missing functionality</li>
+      <li>UI behaves as designed</li>
+    </ul>
+
+    <p>
+      This is a <strong>UI readability issue in games</strong>, not a defect.
+    </p>
+
+    <hr>
+
+    <h2 id="why-it-matters">Game QA usability vs functional testing: why it matters</h2>
+
+    <p>
+      Understanding <strong>game QA usability vs functional testing</strong> directly affects how useful QA reports are.
+      If issues are misclassified, the reporting quality drops.
+    </p>
+
+    <h3>1. Noise in the backlog</h3>
+    <p>
+      Developers spend time investigating issues that are not actually broken.
+    </p>
+
+    <h3>2. Reduced trust in QA</h3>
+    <p>
+      Too many “not a bug” reports lower confidence in QA output.
+    </p>
+
+    <h3>3. Missed design problems</h3>
+    <p>
+      Real usability issues can be ignored instead of being framed as player-facing friction.
+    </p>
+
+    <section class="callout">
+      <h3>Core principle</h3>
+      <p class="small">
+        Functional defects and usability issues can both matter, but they should not be reported as the same type of problem.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="tell-the-difference">How to tell if something is a bug or a usability issue</h2>
+
+    <p>
+      The practical test is simple:
+    </p>
+
+    <div class="pullquote">
+      <blockquote>
+        <p>Is the system failing, or is the player struggling?</p>
+      </blockquote>
+      <cite>Functional vs usability issue decision point</cite>
+    </div>
+
+    <ul>
+      <li>If the system fails, it is a <strong>functional defect</strong>.</li>
+      <li>If the player struggles while the system works, it is a <strong>usability issue</strong>.</li>
+    </ul>
+
+    <p>
+      This distinction helps answer a common QA question:
+      <strong>how to tell if something is a bug or usability issue in games</strong>.
+    </p>
+
+    <hr>
+
+    <h2 id="report-usability">How to report usability issues in game QA</h2>
+
+    <p>
+      Usability issues should not be forced into standard bug reports, but they should still be documented clearly.
+      Ignoring them is just as unhelpful as mislabelling them.
+    </p>
+
+    <h3>Bad report</h3>
+    <p>
+      <em>“HUD is broken and confusing.”</em>
+    </p>
+
+    <p>
+      This does not explain what happened, what the system did, or why the player experience was affected.
+    </p>
+
+    <section class="callout">
+      <h3>Better usability report structure</h3>
+
+      <p class="small">
+        <strong>Title:</strong><br>
+        HUD readability creates cognitive load during combat
+      </p>
+
+      <p class="small">
+        <strong>Observation:</strong><br>
+        Player tracks multiple UI elements across screen corners.
+      </p>
+
+      <p class="small">
+        <strong>System behaviour:</strong><br>
+        UI elements function correctly.
+      </p>
+
+      <p class="small"><strong>Impact:</strong></p>
+      <ul class="small">
+        <li>Slower reaction time</li>
+        <li>Increased mental load</li>
+        <li>Reduced clarity in combat</li>
+      </ul>
+
+      <p class="small">
+        <strong>Why it matters:</strong><br>
+        Affects gameplay performance and player perception.
+      </p>
+    </section>
+
+    <p>
+      This is how to report <strong>game QA usability issues</strong> without pretending they are functional bugs.
+    </p>
+
+    <hr>
+
+    <h2 id="bug-vs-design">Game QA bug vs design issue: Battletoads project example</h2>
+
+    <p>
+      The Battletoads functional testing pass highlights the distinction between functional defects and usability issues within the same test scope.
+    </p>
+
+    <h3>Functional bugs logged</h3>
+    <ul>
+      <li>Input ignored on Pause</li>
+      <li>Keyboard and controller hand-off failures</li>
+      <li>Join-in flow breaking input ownership</li>
+    </ul>
+
+    <p>
+      These are <strong>game QA functional defects</strong> requiring system-level fixes.
+    </p>
+
+    <h3>Usability issues observed</h3>
+    <ul>
+      <li>HUD readability during combat</li>
+      <li>Information spread reduces clarity</li>
+    </ul>
+
+    <p>
+      These are <strong>game QA usability issues</strong> where the system works but creates player friction.
+    </p>
+
+    <section class="callout">
+      <h3>Key distinction</h3>
+      <p class="small">
+        Both issue types were identified during the same sessions. Only functional defects were logged as bugs,
+        while usability issues were documented separately as player experience risks.
+      </p>
+    </section>
+
+    <hr>
+
+    <h2 id="final-thought">Final thought</h2>
+
+    <p>
+      Strong QA is not just about finding bugs.
+      It is about understanding the difference between broken systems and broken experiences.
+    </p>
+
+    <p>
+      Players do not distinguish between the two. If something feels wrong, it affects the experience either way.
+    </p>
+
+    <p>
+      The role of QA is to make that visible without turning every issue into a bug.
+    </p>
+
+    <hr>
+
+    <section class="section" id="faq">
+      <h2>FAQ: Game QA usability vs functional testing</h2>
+
+      <h3>What is the difference between a bug and a usability issue in game QA?</h3>
+      <p>
+        A bug is when the system does not work as intended.
+        A usability issue is when the system works, but the player struggles to understand or use it.
+      </p>
+      <ul>
+        <li><strong>Bug:</strong> system failure</li>
+        <li><strong>Usability issue:</strong> player friction</li>
+      </ul>
+
+      <h3>When is something not a bug in game QA?</h3>
+      <p>
+        If the system behaves correctly according to its design, but the player finds it confusing, unclear, or difficult to use,
+        it is not a bug. It is a usability issue.
+      </p>
+
+      <h3>How do you tell if something is a bug or a usability issue in games?</h3>
+      <p>
+        Ask whether the system is failing or whether the player is struggling.
+        If the system fails, log a functional defect. If the system works but creates confusion, report a usability issue.
+      </p>
+
+      <h3>Should usability issues be logged in Jira?</h3>
+      <p>
+        Yes, but not as standard bug reports. Usability issues should be clearly labelled as UX, usability, or accessibility issues,
+        and should focus on player impact rather than system failure.
+      </p>
+
+      <h3>What are examples of usability issues in games QA?</h3>
+      <p>
+        Examples include HUD readability issues, unclear prompts, information spread across the screen, controls that work but feel unintuitive,
+        and systems that lack clear feedback.
+      </p>
+
+      <h3>What are examples of functional bugs in game QA?</h3>
+      <p>
+        Examples include input being ignored, keyboard/controller hand-off failures, broken Pause menu behaviour,
+        missing functionality, or systems producing incorrect results.
+      </p>
+
+      <h3>Why is separating usability and functional issues important?</h3>
+      <p>
+        Separating the two prevents backlog noise, protects QA credibility, and helps usability problems get addressed properly
+        instead of being dismissed as “not a bug”.
+      </p>
+
+      <h3>How should usability issues be reported in game QA?</h3>
+      <p>
+        Usability issues should describe what the player experienced, what the system did, why it created friction,
+        and how it affected gameplay. The focus should be player impact, not pretending the system is broken.
+      </p>
+    </section>
+
+    <hr>
+
+    <section class="section" id="links">
+      <h2>Evidence and related links</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">Battletoads functional testing case study</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/how-to-write-game-qa-bug-reports-developers-dont-ignore.html">How to write game QA bug reports developers don’t ignore</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA articles hub</a></li>
+      </ul>
+      <p class="small">
+        This page focuses on <strong>game QA usability vs functional testing</strong>. The Battletoads case study contains the wider project context,
+        test scope, bug summaries, Jira screenshots, and evidence links.
+      </p>
+    </section>
+
+    <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Browse more game QA testing articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
