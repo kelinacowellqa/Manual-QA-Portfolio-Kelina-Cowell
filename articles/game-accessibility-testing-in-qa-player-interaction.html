@@ -450,64 +450,126 @@
 
     <hr>
 
-    <h2 id="shadow">Subtitle occlusion issues in VR games: Shadow Point</h2>
+  <h2 id="shadow">Subtitle occlusion issues in VR games: Shadow Point</h2>
 
-    <p>
-      In <strong>VR accessibility testing</strong>, accessibility issues often appear when systems overlap.
-      My <strong>Shadow Point</strong> project produced several useful examples.
-    </p>
+<p>
+  In <strong>VR accessibility testing</strong>, accessibility issues often appear when systems overlap.
+  My <strong>Shadow Point</strong> project produced several clear examples.
+</p>
 
-    <p>
-      Subtitles worked in isolation.
-    </p>
+<p>
+  Subtitles worked in isolation.
+</p>
 
-    <p>
-      They failed when combined with other systems.
-    </p>
+<p>
+  They failed when combined with other systems.
+</p>
 
-    <h3>UI blocking subtitles: SP-12</h3>
+<hr>
 
-    <p>
-      In SP-12, a backpack item popup appeared after picking up a book. At the same time, subtitle text appeared in the lower screen area.
-      The popup covered the subtitles for around two seconds.
-    </p>
+<h3>UI blocking subtitles: SP-12</h3>
 
-    <p>
-      The result was simple: dialogue was missed.
-    </p>
+<p>
+  In SP-12, a backpack item popup appeared after picking up a book at the same time subtitle text appeared in the lower screen area.
+  The popup covered the subtitles for around two seconds.
+</p>
 
-    <h3>Held object blocking subtitles: SP-24</h3>
+<figure class="article-figure plain-figure">
+  <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/shadow-point-subtitles-occluded-by-backpack-popup-vr-qa.png" target="_blank" rel="noopener">
+    <img
+      src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/shadow-point-subtitles-occluded-by-backpack-popup-vr-qa.png"
+      alt="Shadow Point VR backpack popup covering subtitle text during dialogue"
+      loading="lazy"
+      decoding="async"
+    >
+  </a>
+  <figcaption class="small">
+    SP-12: Backpack popup overlaps subtitle panel, blocking dialogue at the moment it appears.
+  </figcaption>
+</figure>
 
-    <p>
-      In SP-24, the player could hold a book in front of them while subtitles appeared behind it.
-      The subtitle panel became unreadable until the object was moved aside.
-    </p>
+<p>
+  The result was simple: dialogue was missed.
+</p>
 
-    <p>
-      That is a clear <strong>subtitle occlusion issue in VR games</strong>. The subtitle system exists, but the player cannot rely on it.
-    </p>
+<hr>
 
-    <h3>Missing non-audio feedback: SP-27</h3>
+<h3>Held object blocking subtitles: SP-24</h3>
 
-    <p>
-      In SP-27, tutorial steps relied on audio confirmation. With Music, Game, and Voice audio set to 0, there was no clear visual or haptic confirmation for key tutorial steps.
-    </p>
+<p>
+  In SP-24, the player could hold a book in front of them while subtitles appeared behind it.
+  The subtitle panel became unreadable until the object was moved aside.
+</p>
 
-    <p>
-      This matters because the player still needs confirmation when audio is unavailable.
-    </p>
+<figure class="article-figure plain-figure">
+  <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/shadow-point-subtitles-occluded-by-held-book-vr-qa.png" target="_blank" rel="noopener">
+    <img
+      src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/shadow-point-subtitles-occluded-by-held-book-vr-qa.png"
+      alt="Shadow Point VR subtitles hidden behind held book object"
+      loading="lazy"
+      decoding="async"
+    >
+  </a>
+  <figcaption class="small">
+    SP-24: Held object occludes subtitle panel, making dialogue unreadable until the player moves it.
+  </figcaption>
+</figure>
 
-    <section class="callout">
-      <h3>What Shadow Point shows</h3>
-      <p class="small">
-        Subtitles, UI overlays, held objects, audio feedback, and player position all interact. If those systems overlap badly, the player loses access to information.
-      </p>
-    </section>
+<p>
+  This is a clear <strong>subtitle occlusion issue in VR games</strong>.
+  The subtitle system exists, but the player cannot rely on it.
+</p>
 
-    <p>
-      These are <strong>accessibility bugs in games</strong> because they block comprehension, not because a single feature is missing.
-      This is exactly where <strong>accessibility design patterns QA</strong> becomes useful.
-    </p>
+<hr>
+
+<h3>Missing non-audio feedback: SP-27</h3>
+
+<p>
+  In SP-27, tutorial steps relied on audio confirmation.
+  With Music, Game, and Voice audio set to 0, there was no clear visual or haptic confirmation for key steps.
+</p>
+
+<figure class="article-figure plain-figure">
+  <div class="video-embed">
+    <iframe
+      src="https://www.youtube.com/embed/BLN0tsJyDQw"
+      title="Shadow Point VR tutorial missing visual and haptic feedback with audio disabled"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <figcaption class="small">
+    SP-27: Tutorial progression relies on audio. With audio disabled, no visual or haptic confirmation is provided.
+  </figcaption>
+</figure>
+
+<p>
+  This matters because the player still needs confirmation when audio is unavailable.
+</p>
+
+<section class="callout">
+  <h3>What this actually means in gameplay</h3>
+  <p class="small">
+    If feedback is not accessible through multiple channels, the player loses the ability to confirm actions.
+    This breaks the player–game interaction loop, even when the underlying system is working correctly.
+  </p>
+</section>
+
+<hr>
+
+<section class="callout">
+  <h3>What Shadow Point shows</h3>
+  <p class="small">
+    Subtitles, UI overlays, held objects, audio feedback, and player position all interact.
+    When those systems overlap poorly, the player loses access to information.
+  </p>
+</section>
+
+<p>
+  These are <strong>accessibility bugs in games</strong> because they block comprehension, not because a feature is missing.
+  This is where <strong>accessibility design patterns QA</strong> becomes essential in identifying interaction failures between systems.
+</p>
 
     <hr>
 
