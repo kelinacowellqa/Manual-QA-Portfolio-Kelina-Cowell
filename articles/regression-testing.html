@@ -104,6 +104,32 @@
     opacity: .85;
     font-size: .95rem;
   }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -438,50 +464,79 @@
 
     <hr>
 
- <section class="section" id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>Regression testing FAQ (manual QA example)</h2>
 
-  <h3>What is regression testing in QA?</h3>
-  <p>
-    Regression testing verifies that existing behaviour still works after a change.
-    In manual QA, it focuses on previously working systems, whether or not bugs were ever logged against them.
-  </p>
+  <details>
+    <summary>What is regression testing in QA?</summary>
+    <div class="faq-answer">
+      <p>
+        Regression testing verifies that existing behaviour still works after a change.
+        In manual QA, it focuses on previously working systems, whether or not bugs were ever logged against them.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is regression testing just re-testing old bugs?</h3>
-  <p>
-    No. Regression testing includes re-checking previously fixed bugs, but its main purpose is to confirm that existing functionality has not been broken by new changes.
-  </p>
+  <details>
+    <summary>Is regression testing just re-testing old bugs?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Regression testing includes re-checking previously fixed bugs, but its main purpose is to confirm that existing functionality has not been broken by new changes.
+      </p>
+    </div>
+  </details>
 
-  <h3>Do you need to re-test everything in regression testing?</h3>
-  <p>
-    No. Effective regression testing is selective.
-    A risk-based regression testing approach focuses on areas most likely to be affected by change, rather than testing every feature.
-  </p>
+  <details>
+    <summary>Do you need to re-test everything in regression testing?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Effective regression testing is selective.
+        A risk-based regression testing approach focuses on areas most likely to be affected by change, rather than testing every feature.
+      </p>
+    </div>
+  </details>
 
-  <h3>How do you scope regression testing without internal patch notes?</h3>
-  <p>
-    By using external change signals such as public patch notes, previous builds,
-    and observed behaviour as testing oracles, without assuming platform parity.
-  </p>
+  <details>
+    <summary>How do you scope regression testing without internal patch notes?</summary>
+    <div class="faq-answer">
+      <p>
+        By using external change signals such as public patch notes, previous builds,
+        and observed behaviour as testing oracles, without assuming platform parity.
+      </p>
+    </div>
+  </details>
 
-  <h3>What is the difference between regression testing and exploratory testing?</h3>
-  <p>
-    Regression testing verifies known behaviour after change.
-    Exploratory testing is used to discover unknown risks and unexpected behaviour.
-    Both are important in a complete QA testing workflow.
-  </p>
+  <details>
+    <summary>What is the difference between regression testing and exploratory testing?</summary>
+    <div class="faq-answer">
+      <p>
+        Regression testing verifies known behaviour after change.
+        Exploratory testing is used to discover unknown risks and unexpected behaviour.
+        Both are important in a complete QA testing workflow.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is a “pass” result meaningful in regression testing?</h3>
-  <p>
-    Yes. A pass is still a claim.
-    In regression testing, pass results should be supported with QA evidence to ensure they are credible and repeatable.
-  </p>
+  <details>
+    <summary>Is a “pass” result meaningful in regression testing?</summary>
+    <div class="faq-answer">
+      <p>
+        Yes. A pass is still a claim.
+        In regression testing, pass results should be supported with QA evidence to ensure they are credible and repeatable.
+      </p>
+    </div>
+  </details>
 
-  <h3>When is “not applicable” a valid regression testing result?</h3>
-  <p>
-    When a feature is not present on the build under test and that absence is confirmed with evidence.
-    Logging this explicitly is more accurate than assuming parity or skipping the test silently.
-  </p>
+  <details>
+    <summary>When is “not applicable” a valid regression testing result?</summary>
+    <div class="faq-answer">
+      <p>
+        When a feature is not present on the build under test and that absence is confirmed with evidence.
+        Logging this explicitly is more accurate than assuming parity or skipping the test silently.
+      </p>
+    </div>
+  </details>
+
 </section>
 
     <hr>
