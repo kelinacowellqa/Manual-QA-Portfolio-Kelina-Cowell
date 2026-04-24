@@ -194,6 +194,31 @@
     margin-bottom:12px;
     width:100%; /* important for mobile */
   }
+
+  .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
 }
   </style>
 
@@ -530,44 +555,69 @@ The game feels unresponsive and my attacks don’t seem to register correctly
   </li>
 </ul>
     
-<section id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>Bug Reporting FAQ</h2>
 
-  <h3>How do you write a good bug report?</h3>
-  <p>
-    A good bug report is clear, structured, and reproducible. It should include a specific summary, step-by-step reproduction,
-    expected vs actual behaviour, and supporting evidence. The goal is to make the issue easy to verify without extra investigation.
-  </p>
+  <details>
+    <summary>How do you write a good bug report?</summary>
+    <div class="faq-answer">
+      <p>
+        A good bug report is clear, structured, and reproducible. It should include a specific summary, step-by-step reproduction,
+        expected vs actual behaviour, and supporting evidence. The goal is to make the issue easy to verify without extra investigation.
+      </p>
+    </div>
+  </details>
 
-  <h3>What makes a bug report useful for developers?</h3>
-  <p>
-    A useful report reduces guesswork. Clear steps to reproduce, consistent results, and relevant context (such as environment and input method)
-    allow developers to confirm the issue quickly and move straight to debugging.
-  </p>
+  <details>
+    <summary>What makes a bug report useful for developers?</summary>
+    <div class="faq-answer">
+      <p>
+        A useful report reduces guesswork. Clear steps to reproduce, consistent results, and relevant context (such as environment and input method)
+        allow developers to confirm the issue quickly and move straight to debugging.
+      </p>
+    </div>
+  </details>
 
-  <h3>Do bug reports always need video evidence?</h3>
-  <p>
-    Not always, but evidence is recommended for unclear or high-impact issues. A short clip or screenshot can confirm behaviour instantly
-    and prevent back-and-forth during testing.
-  </p>
+  <details>
+    <summary>Do bug reports always need video evidence?</summary>
+    <div class="faq-answer">
+      <p>
+        Not always, but evidence is recommended for unclear or high-impact issues. A short clip or screenshot can confirm behaviour instantly
+        and prevent back-and-forth during testing.
+      </p>
+    </div>
+  </details>
 
-  <h3>What is the most important part of a bug report?</h3>
-  <p>
-    Steps to reproduce are the most critical part. If an issue cannot be reproduced, it cannot be verified or fixed.
-    A clear reproduction path turns a vague problem into something actionable.
-  </p>
+  <details>
+    <summary>What is the most important part of a bug report?</summary>
+    <div class="faq-answer">
+      <p>
+        Steps to reproduce are the most critical part. If an issue cannot be reproduced, it cannot be verified or fixed.
+        A clear reproduction path turns a vague problem into something actionable.
+      </p>
+    </div>
+  </details>
 
-  <h3>Why is repro rate important?</h3>
-  <p>
-    Repro rate shows how reliable the issue is. A bug that occurs consistently is easier to prioritise and fix than one that is intermittent.
-    It helps teams understand stability and risk.
-  </p>
+  <details>
+    <summary>Why is repro rate important?</summary>
+    <div class="faq-answer">
+      <p>
+        Repro rate shows how reliable the issue is. A bug that occurs consistently is easier to prioritise and fix than one that is intermittent.
+        It helps teams understand stability and risk.
+      </p>
+    </div>
+  </details>
 
-  <h3>Should bug reports include notes?</h3>
-  <p>
-    Yes, when they add useful context. Notes can highlight patterns, conditions, or limitations without repeating the report.
-    They should stay factual and avoid speculation.
-  </p>
+  <details>
+    <summary>Should bug reports include notes?</summary>
+    <div class="faq-answer">
+      <p>
+        Yes, when they add useful context. Notes can highlight patterns, conditions, or limitations without repeating the report.
+        They should stay factual and avoid speculation.
+      </p>
+    </div>
+  </details>
+
 </section>
       
     <section id="links">
