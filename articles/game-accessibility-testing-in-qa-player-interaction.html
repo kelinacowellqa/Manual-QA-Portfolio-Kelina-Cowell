@@ -274,152 +274,152 @@
 
     <hr>
 
-    <header class="article-hero">
-      <h1>Game Accessibility Testing in QA: How Accessibility Failures Block Player Interaction</h1>
+<header class="article-hero">
+  <h1>Game Accessibility Testing in QA: How Accessibility Failures Block Player Interaction</h1>
 
-      <p class="hint">An applied game accessibility testing article using real QA portfolio findings, not a theory page and not a course summary.</p>
+  <p class="hint">An applied game accessibility testing article using real QA portfolio findings, not a theory page and not a course summary.</p>
 
-      <p class="author-row small">
-        <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
-        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
-      </p>
+  <p class="author-row small">
+    <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+    <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+  </p>
 
-      <p class="small">
-        This article explains <strong>game accessibility testing in QA</strong> using findings from my 
-        <strong>QA portfolio projects</strong>. Instead of only asking whether systems work, it shows how 
-        <strong>accessibility failures block players from interacting with gameplay systems</strong>, even when nothing is technically broken.
-      </p>
+  <p class="small">
+    This article explains <strong>game accessibility testing in QA</strong> using findings from my 
+    <strong>QA portfolio projects</strong>. Instead of only asking whether systems work, it shows how 
+    <strong>accessibility failures block players from interacting with gameplay systems</strong>, even when nothing is technically broken.
+  </p>
 
-      <p class="small">
-        Using examples from <strong>The Chef’s Shift</strong>, <strong>Shadow Point</strong>, and <strong>Rebel Racing</strong>, 
-        this article explores how <strong>cognitive load, UI readability issues in games, subtitle occlusion, and feedback failures</strong> create real player-facing barriers.
-      </p>
+  <p class="small">
+    Using examples from <strong>The Chef’s Shift</strong>, <strong>Shadow Point</strong>, and <strong>Rebel Racing</strong>, 
+    this article explores how <strong>cognitive load, UI readability issues in games, subtitle occlusion, and feedback failures</strong> create real player-facing barriers.
+  </p>
 
-      <hr>
+  <hr>
 
-      <section class="callout" aria-label="Article summary">
-        <h2 style="margin-top:0;">TL;DR</h2>
-        <ul class="tldr small">
-          <li><strong>Point:</strong> <strong>game accessibility testing in QA</strong> is about whether players can reliably interact, not just whether features technically work.</li>
-          <li><strong>Main idea:</strong> accessibility failures can block the player-game loop through poor visibility, missing feedback, cognitive load, or unreadable UI.</li>
-          <li><strong>Examples used:</strong> The Chef’s Shift for prompt visibility, Shadow Point for VR subtitles and feedback, and Rebel Racing for HUD readability under pressure.</li>
-          <li><strong>QA value:</strong> strong <strong>game QA accessibility testing</strong> identifies how players fail when systems work in games.</li>
-          <li><strong>Takeaway:</strong> if a player cannot perceive, understand, or act on information reliably, the issue is not difficulty. It is access.</li>
-        </ul>
-      </section>
-
-      <hr>
-
-      <section class="callout" aria-label="About this work">
-        <h2 style="margin-top:0;">Game accessibility testing scope: what this article covers</h2>
-        <p class="small">
-          This article is based on applied findings from several self-directed <strong>manual QA testing in games</strong> projects.
-          It focuses on <strong>accessibility testing in games</strong> as a practical QA lens: prompt visibility, feedback clarity,
-          subtitle readability, UI priority, cognitive load, and how player-facing barriers affect interaction.
-        </p>
-        <p class="small">
-          This is not a full accessibility audit. It is a practical article about <strong>how accessibility issues affect gameplay systems</strong>
-          and how QA can identify barriers that stop players from reliably interacting with the game.
-        </p>
-      </section>
-    </header>
-
-    <hr>
-
-    <nav class="toc" aria-label="On this page">
-      <strong>On this page</strong>
-      <ul>
-        <li><a href="#access-not-difficulty">Why accessibility is not about difficulty in games</a></li>
-        <li><a href="#player-game-loop">Game accessibility testing in QA and the player-game loop</a></li>
-        <li><a href="#chef">Cognitive load and UI clarity in games QA: The Chef’s Shift</a></li>
-        <li><a href="#shadow">Subtitle occlusion issues in VR games: Shadow Point</a></li>
-        <li><a href="#rebel">Game HUD readability issues under pressure: Rebel Racing</a></li>
-        <li><a href="#examples-table">Game QA accessibility bug examples</a></li>
-        <li><a href="#how-to-test">How to test accessibility in games without turning it into theory</a></li>
-        <li><a href="#without-disabilities">How to test accessibility without disabilities</a></li>
-        <li><a href="#takeaways">Game accessibility testing takeaways for QA</a></li>
-        <li><a href="#faq">FAQ: Game accessibility testing in QA</a></li>
-        <li><a href="#links">Evidence and case study links</a></li>
-      </ul>
-    </nav>
-
-    <hr>
-
-    <h2 id="access-not-difficulty">Why accessibility is not about difficulty in games</h2>
-
-    <p>
-      One of the biggest misunderstandings in <strong>accessibility testing in games</strong> is assuming that if a player struggles,
-      the game must simply be difficult.
-    </p>
-
-    <p>
-      Sometimes the challenge is intended. Sometimes the player needs practice. Fine.
-    </p>
-
-    <p>
-      But in <strong>game accessibility testing in QA</strong>, many important issues appear when:
-    </p>
-
-    <ul>
-      <li>The system technically works</li>
-      <li>The player still cannot interact reliably</li>
-      <li>The game fails to communicate clearly enough for the player to act</li>
+  <section class="callout" aria-label="Article summary">
+    <h2 style="margin-top:0;">TL;DR</h2>
+    <ul class="tldr small">
+      <li><strong>Point:</strong> <strong>game accessibility testing in QA</strong> is about whether players can reliably interact, not just whether features technically work.</li>
+      <li><strong>Main idea:</strong> accessibility failures can block the player-game loop through poor visibility, missing feedback, cognitive load, or unreadable UI.</li>
+      <li><strong>Examples used:</strong> The Chef’s Shift for prompt visibility, Shadow Point for VR subtitles and feedback, and Rebel Racing for HUD readability under pressure.</li>
+      <li><strong>QA value:</strong> strong <strong>game QA accessibility testing</strong> identifies how players fail when systems work in games.</li>
+      <li><strong>Takeaway:</strong> if a player cannot perceive, understand, or act on information reliably, the issue is not difficulty. It is access.</li>
     </ul>
+  </section>
 
-    <section class="callout">
-      <h3>Core accessibility principle</h3>
-      <p class="small">
-        Accessibility is not about making games easier. It is about making interaction possible.
-      </p>
-    </section>
+  <hr>
 
-    <p>
-      If a player cannot perceive, process, or act on critical information quickly enough, they are effectively blocked from the gameplay loop.
-      That is why <strong>accessibility in game QA</strong> matters.
+  <section class="callout" aria-label="About this work">
+    <h2 style="margin-top:0;">Game accessibility testing scope: what this article covers</h2>
+    <p class="small">
+      This article is based on applied findings from several self-directed <strong>manual QA testing in games</strong> projects.
+      It focuses on <strong>accessibility testing in games</strong> as a practical QA lens: prompt visibility, feedback clarity,
+      subtitle readability, UI priority, cognitive load, and how player-facing barriers affect interaction.
     </p>
-
-    <hr>
-
-    <h2 id="player-game-loop">Game accessibility testing in QA and the player-game loop</h2>
-
-    <p>
-      A useful way to think about <strong>game accessibility testing in QA</strong> is through the player-game loop:
+    <p class="small">
+      This is not a full accessibility audit. It is a practical article about <strong>how accessibility issues affect gameplay systems</strong>
+      and how QA can identify barriers that stop players from reliably interacting with the game.
     </p>
+  </section>
+</header>
 
-    <ul>
-      <li>The player inputs an action</li>
-      <li>The game responds with feedback</li>
-      <li>The player interprets that feedback</li>
-      <li>The player acts again</li>
-    </ul>
+<hr>
 
-    <p>
-      When that loop is blocked, the player is not meaningfully participating.
-    </p>
+<nav class="toc" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#access-not-difficulty">Why accessibility is not about difficulty in games</a></li>
+    <li><a href="#player-game-loop">Game accessibility testing in QA and the player-game loop</a></li>
+    <li><a href="#chef">Cognitive load and UI clarity in games QA: The Chef’s Shift</a></li>
+    <li><a href="#shadow">Subtitle occlusion issues in VR games: Shadow Point</a></li>
+    <li><a href="#rebel">Game HUD readability issues under pressure: Rebel Racing</a></li>
+    <li><a href="#examples-table">Game QA accessibility bug examples</a></li>
+    <li><a href="#how-to-test">How to test accessibility in games without turning it into theory</a></li>
+    <li><a href="#without-disabilities">How to test accessibility without disabilities</a></li>
+    <li><a href="#takeaways">Game accessibility testing takeaways for QA</a></li>
+    <li><a href="#faq">FAQ: Game accessibility testing in QA</a></li>
+    <li><a href="#links">Evidence and case study links</a></li>
+  </ul>
+</nav>
 
-    <p>
-      That block can happen through:
-    </p>
+<hr>
 
-    <ul>
-      <li>Poor prompt visibility</li>
-      <li>Unreadable HUD elements</li>
-      <li>Subtitle occlusion</li>
-      <li>Missing non-audio feedback</li>
-      <li>Excessive cognitive load</li>
-      <li>Input and feedback systems testing failures</li>
-    </ul>
+<h2 id="access-not-difficulty">Why accessibility is not about difficulty in games</h2>
 
-    <section class="callout">
-      <h3>QA decision point</h3>
-      <p class="small">
-        The question is not only “does the feature work?” It is “can the player reliably access the interaction?”
-      </p>
-    </section>
+<p>
+  One of the biggest misunderstandings in <strong>accessibility testing in games</strong> is assuming that if a player struggles,
+  the game must simply be difficult.
+</p>
 
-    <hr>
+<p>
+  Sometimes the challenge is intended. Sometimes the player needs practice. Fine.
+</p>
 
-  <h2 id="chef">Game HUD readability under pressure: The Chef’s Shift</h2>
+<p>
+  But in <strong>game accessibility testing in QA</strong>, many important issues appear when:
+</p>
+
+<ul>
+  <li>The system technically works</li>
+  <li>The player still cannot interact reliably</li>
+  <li>The game fails to communicate clearly enough for the player to act</li>
+</ul>
+
+<section class="callout">
+  <h3>Core accessibility principle</h3>
+  <p class="small">
+    Accessibility is not about making games easier. It is about making interaction possible.
+  </p>
+</section>
+
+<p>
+  If a player cannot perceive, process, or act on critical information quickly enough, they are effectively blocked from the gameplay loop.
+  That is why <strong>accessibility in game QA</strong> matters.
+</p>
+
+<hr>
+
+<h2 id="player-game-loop">Game accessibility testing in QA and the player-game loop</h2>
+
+<p>
+  A useful way to think about <strong>game accessibility testing in QA</strong> is through the player-game loop:
+</p>
+
+<ul>
+  <li>The player inputs an action</li>
+  <li>The game responds with feedback</li>
+  <li>The player interprets that feedback</li>
+  <li>The player acts again</li>
+</ul>
+
+<p>
+  When that loop is blocked, the player is not meaningfully participating.
+</p>
+
+<p>
+  That block can happen through:
+</p>
+
+<ul>
+  <li>Poor prompt visibility</li>
+  <li>Unreadable HUD elements</li>
+  <li>Subtitle occlusion</li>
+  <li>Missing non-audio feedback</li>
+  <li>Excessive cognitive load</li>
+  <li>Input and feedback systems testing failures</li>
+</ul>
+
+<section class="callout">
+  <h3>QA decision point</h3>
+  <p class="small">
+    The question is not only “does the feature work?” It is “can the player reliably access the interaction?”
+  </p>
+</section>
+
+<hr>
+
+<h2 id="chef">Cognitive load and UI clarity in games QA: The Chef’s Shift</h2>
 
 <p>
   In <strong>The Chef’s Shift</strong>, the system worked. The interaction existed.
@@ -469,7 +469,7 @@
 </section>
 
 <p>
-  This is not a functional bug. It is a <strong>game HUD readability issue under pressure</strong>.
+  This is not a functional bug. It is a <strong>UI prompt visibility issue under pressure</strong>.
 </p>
 
 <p>
@@ -477,9 +477,9 @@
   They are often about whether players can process information quickly enough to act on it.
 </p>
 
-    <hr>
+<hr>
 
-  <h2 id="shadow">Subtitle occlusion issues in VR games: Shadow Point</h2>
+<h2 id="shadow">Subtitle occlusion issues in VR games: Shadow Point</h2>
 
 <p>
   In <strong>VR accessibility testing</strong>, accessibility issues often appear when systems overlap.
@@ -494,7 +494,9 @@
   They failed when combined with other systems.
 </p>
 
-<hr>
+<p>
+  The examples below show three different ways feedback became unreliable: UI overlap, object occlusion, and missing non-audio confirmation.
+</p>
 
 <h3>UI blocking subtitles: SP-12</h3>
 
@@ -521,8 +523,6 @@
   The result was simple: dialogue was missed.
 </p>
 
-<hr>
-
 <h3>Held object blocking subtitles: SP-24</h3>
 
 <p>
@@ -548,8 +548,6 @@
   This is a clear <strong>subtitle occlusion issue in VR games</strong>.
   The subtitle system exists, but the player cannot rely on it.
 </p>
-
-<hr>
 
 <h3>Missing non-audio feedback: SP-27</h3>
 
@@ -581,7 +579,7 @@
   <h3>What this actually means in gameplay</h3>
   <p class="small">
     If feedback is not accessible through multiple channels, the player loses the ability to confirm actions.
-    This breaks the player–game interaction loop, even when the underlying system is working correctly.
+    This breaks the player-game interaction loop, even when the underlying system is working correctly.
   </p>
 </section>
 
@@ -598,7 +596,7 @@
   This is where <strong>accessibility design patterns QA</strong> becomes essential in identifying interaction failures between systems.
 </p>
 
-    <hr>
+<hr>
 
 <h2 id="rebel">Game HUD readability issues under pressure: Rebel Racing</h2>
 
@@ -664,203 +662,204 @@
 <p>
   This is especially relevant for <strong>mobile game QA testing</strong>, where screen size, motion, timing pressure, and touch interaction all compete for attention.
 </p>
-    <hr>
 
-    <h2 id="examples-table">Game QA accessibility bug examples</h2>
+<hr>
 
-    <p>
-      Across these projects, the pattern is clear. The system may work, but the player interaction still breaks.
-    </p>
+<h2 id="examples-table">Game QA accessibility bug examples</h2>
 
-    <table class="article-table">
-      <thead>
-        <tr>
-          <th scope="col">Project</th>
-          <th scope="col">Accessibility issue</th>
-          <th scope="col">Player impact</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>The Chef’s Shift</strong></td>
-          <td>Oven prompt difficult to see against a busy background under pressure</td>
-          <td>Player misses the step, delays service, and loses flow</td>
-        </tr>
-        <tr>
-          <td><strong>Shadow Point</strong></td>
-          <td>Subtitles occluded by UI popups and held objects</td>
-          <td>Dialogue and tutorial information become unreadable</td>
-        </tr>
-        <tr>
-          <td><strong>Shadow Point</strong></td>
-          <td>Tutorial confirmation relies on audio without visual or haptic fallback</td>
-          <td>Player cannot confirm progress when audio is off</td>
-        </tr>
-        <tr>
-          <td><strong>Rebel Racing</strong></td>
-          <td>Small, low-emphasis HUD text during active racing</td>
-          <td>Player has to process key information under speed and pressure</td>
-        </tr>
-      </tbody>
-    </table>
+<p>
+  Across these projects, the pattern is clear. The system may work, but the player interaction still breaks.
+</p>
 
-    <p>
-      These are practical <strong>game QA accessibility bug examples</strong>, not abstract theory.
-      They show how <strong>accessibility issues in games QA</strong> affect actual gameplay systems.
-    </p>
+<table class="article-table">
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Accessibility issue</th>
+      <th scope="col">Player impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>The Chef’s Shift</strong></td>
+      <td>Oven prompt difficult to see against a busy background under pressure</td>
+      <td>Player misses the step, delays service, and loses flow</td>
+    </tr>
+    <tr>
+      <td><strong>Shadow Point: subtitles</strong></td>
+      <td>Subtitles occluded by UI popups and held objects</td>
+      <td>Dialogue and tutorial information become unreadable</td>
+    </tr>
+    <tr>
+      <td><strong>Shadow Point: feedback</strong></td>
+      <td>Tutorial confirmation relies on audio without visual or haptic fallback</td>
+      <td>Player cannot confirm progress when audio is off</td>
+    </tr>
+    <tr>
+      <td><strong>Rebel Racing</strong></td>
+      <td>Small, low-emphasis HUD text during active racing</td>
+      <td>Player has to process key information under speed and pressure</td>
+    </tr>
+  </tbody>
+</table>
 
-    <hr>
+<p>
+  These are practical <strong>game QA accessibility bug examples</strong>, not abstract theory.
+  They show how <strong>accessibility issues in games QA</strong> affect actual gameplay systems.
+</p>
 
-    <h2 id="how-to-test">How to test accessibility in games without turning it into theory</h2>
+<hr>
 
-    <p>
-      If you want to know <strong>how to test accessibility in games</strong>, do not start by making a giant checklist for the sake of looking busy.
-    </p>
+<h2 id="how-to-test">How to test accessibility in games without turning it into theory</h2>
 
-    <p>
-      Start with the player-game loop.
-    </p>
+<p>
+  If you want to know <strong>how to test accessibility in games</strong>, do not start by making a giant checklist for the sake of looking busy.
+</p>
 
-    <ul>
-      <li>Can the player see the required information?</li>
-      <li>Can the player understand what the game is asking?</li>
-      <li>Can the player act without unnecessary strain?</li>
-      <li>Does the game provide feedback through more than one channel?</li>
-      <li>What happens when UI, gameplay, audio, and player movement overlap?</li>
-    </ul>
+<p>
+  Start with the player-game loop.
+</p>
 
-    <p>
-      These are practical <strong>game QA testing techniques</strong> because they focus on player access, not just feature existence.
-    </p>
+<ul>
+  <li>Can the player see the required information?</li>
+  <li>Can the player understand what the game is asking?</li>
+  <li>Can the player act without unnecessary strain?</li>
+  <li>Does the game provide feedback through more than one channel?</li>
+  <li>What happens when UI, gameplay, audio, and player movement overlap?</li>
+</ul>
 
-    <section class="callout">
-      <h3>Testing accessibility in games</h3>
-      <p class="small">
-        The goal is not to prove the game has accessibility features. The goal is to find where players lose access to interaction, feedback, or understanding.
+<p>
+  These are practical <strong>game QA testing techniques</strong> because they focus on player access, not just feature existence.
+</p>
+
+<section class="callout">
+  <h3>Testing accessibility in games</h3>
+  <p class="small">
+    The goal is not to prove the game has accessibility features. The goal is to find where players lose access to interaction, feedback, or understanding.
+  </p>
+</section>
+
+<hr>
+
+<h2 id="without-disabilities">How to test accessibility without disabilities</h2>
+
+<p>
+  A common question is <strong>how to test accessibility without disabilities</strong>.
+</p>
+
+<p>
+  The answer is not to pretend you can simulate lived experience. You cannot, and that should not be the goal.
+</p>
+
+<p>
+  But QA can still identify structural barriers in a build.
+</p>
+
+<ul>
+  <li>Is critical information readable?</li>
+  <li>Is feedback available visually, audibly, and where useful, haptically?</li>
+  <li>Does timing pressure make UI recognition unfairly difficult?</li>
+  <li>Does the game rely on one sensory channel only?</li>
+  <li>Does the player have enough clarity to understand what changed?</li>
+</ul>
+
+<p>
+  That is valid <strong>accessibility testing in game development</strong>. It does not replace disabled player feedback, but it does help QA identify barriers earlier.
+</p>
+
+<hr>
+
+<h2 id="takeaways">Game accessibility testing takeaways for QA</h2>
+
+<ul class="small">
+  <li><strong>Game accessibility testing in QA</strong> is about interaction access, not making games easier.</li>
+  <li>A system can work technically and still create an accessibility issue if the player cannot perceive or use it reliably.</li>
+  <li><strong>UI readability issues in games</strong> become more serious under pressure, speed, or multitasking.</li>
+  <li><strong>VR accessibility testing</strong> needs to consider player viewpoint, object placement, subtitles, overlays, and feedback redundancy.</li>
+  <li>Good <strong>player experience testing in games</strong> separates intended challenge from unnecessary access barriers.</li>
+  <li>Accessibility findings are strongest when they describe the player impact, not just the feature behaviour.</li>
+</ul>
+
+<hr>
+
+<section class="section faq-accordion" id="faq">
+  <h2>FAQ: Game accessibility testing in QA</h2>
+
+  <details>
+    <summary>What is game accessibility testing in QA?</summary>
+    <div class="faq-answer">
+      <p>
+        <strong>Game accessibility testing in QA</strong> evaluates whether players can reliably interact with gameplay systems,
+        not just whether those systems technically function.
       </p>
-    </section>
+    </div>
+  </details>
 
-    <hr>
-
-    <h2 id="without-disabilities">How to test accessibility without disabilities</h2>
-
-    <p>
-      A common question is <strong>how to test accessibility without disabilities</strong>.
-    </p>
-
-    <p>
-      The answer is not to pretend you can simulate lived experience. You cannot. Do not do that circus.
-    </p>
-
-    <p>
-      But QA can still identify structural barriers in a build.
-    </p>
-
-    <ul>
-      <li>Is critical information readable?</li>
-      <li>Is feedback available visually, audibly, and where useful, haptically?</li>
-      <li>Does timing pressure make UI recognition unfairly difficult?</li>
-      <li>Does the game rely on one sensory channel only?</li>
-      <li>Does the player have enough clarity to understand what changed?</li>
-    </ul>
-
-    <p>
-      That is valid <strong>accessibility testing in game development</strong>. It does not replace disabled player feedback, but it does help QA identify barriers earlier.
-    </p>
-
-    <hr>
-
-    <h2 id="takeaways">Game accessibility testing takeaways for QA</h2>
-
-    <ul class="small">
-      <li><strong>Game accessibility testing in QA</strong> is about interaction access, not making games easier.</li>
-      <li>A system can work technically and still create an accessibility issue if the player cannot perceive or use it reliably.</li>
-      <li><strong>UI readability issues in games</strong> become more serious under pressure, speed, or multitasking.</li>
-      <li><strong>VR accessibility testing</strong> needs to consider player viewpoint, object placement, subtitles, overlays, and feedback redundancy.</li>
-      <li>Good <strong>player experience testing in games</strong> separates intended challenge from unnecessary access barriers.</li>
-      <li>Accessibility findings are strongest when they describe the player impact, not just the feature behaviour.</li>
-    </ul>
-
-    <hr>
-
-    <section class="section faq-accordion" id="faq">
-      <h2>FAQ: Game accessibility testing in QA</h2>
-
-      <details>
-        <summary>What is game accessibility testing in QA?</summary>
-        <div class="faq-answer">
-          <p>
-            <strong>Game accessibility testing in QA</strong> evaluates whether players can reliably interact with gameplay systems,
-            not just whether those systems technically function.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Are accessibility bugs always functional bugs?</summary>
-        <div class="faq-answer">
-          <p>
-            No. Some accessibility bugs in games happen when the system works, but the player cannot perceive, process, or act on the information reliably.
-            That makes it a player access issue, not always a broken-function issue.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>How do accessibility issues affect gameplay systems?</summary>
-        <div class="faq-answer">
-          <p>
-            They affect gameplay systems by blocking interaction, increasing cognitive load, hiding critical feedback, or making the player unsure whether progress has occurred.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>What are examples of game accessibility testing issues?</summary>
-        <div class="faq-answer">
-          <p>
-            Examples include unreadable HUD text, prompts that are easy to miss under pressure, subtitles blocked by UI or objects,
-            missing non-audio feedback, and interaction cues that do not match what the player can actually do.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>How do you test accessibility without disabilities?</summary>
-        <div class="faq-answer">
-          <p>
-            You test for structural barriers: unclear feedback, poor readability, input strain, timing pressure, missing redundancy, and situations where the player cannot reliably access the interaction loop.
-            This does not replace disabled player feedback, but it does help QA identify issues earlier.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>Is accessibility the same as difficulty?</summary>
-        <div class="faq-answer">
-          <p>
-            No. Difficulty is about challenge after the player can access the system. Accessibility is about whether the player can perceive, understand, and interact with the system in the first place.
-          </p>
-        </div>
-      </details>
-    </section>
-
-    <hr>
-
-    <section class="section" id="links">
-      <h2>Game accessibility testing evidence and case study links</h2>
-      <ul>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift game QA testing case study</a></li>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">Shadow Point VR accessibility and comfort testing case study</a></li>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">Rebel Racing exploratory and edge-case testing case study</a></li>
-        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA testing articles hub</a></li>
-      </ul>
-      <p class="small">
-        This page focuses on <strong>game accessibility testing in QA</strong> and how accessibility failures block player interaction.
-        The linked case studies provide the wider project scope, workbook notes, bug summaries, Jira-style tickets, and evidence clips.
+  <details>
+    <summary>Are accessibility bugs always functional bugs?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Some accessibility bugs in games happen when the system works, but the player cannot perceive, process, or act on the information reliably.
+        That makes it a player access issue, not always a broken-function issue.
       </p>
-    </section>
+    </div>
+  </details>
 
+  <details>
+    <summary>How do accessibility issues affect gameplay systems?</summary>
+    <div class="faq-answer">
+      <p>
+        They affect gameplay systems by blocking interaction, increasing cognitive load, hiding critical feedback, or making the player unsure whether progress has occurred.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What are examples of game accessibility testing issues?</summary>
+    <div class="faq-answer">
+      <p>
+        Examples include unreadable HUD text, prompts that are easy to miss under pressure, subtitles blocked by UI or objects,
+        missing non-audio feedback, and interaction cues that do not match what the player can actually do.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do you test accessibility without disabilities?</summary>
+    <div class="faq-answer">
+      <p>
+        You test for structural barriers: unclear feedback, poor readability, input strain, timing pressure, missing redundancy, and situations where the player cannot reliably access the interaction loop.
+        This does not replace disabled player feedback, but it does help QA identify issues earlier.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is accessibility the same as difficulty?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Difficulty is about challenge after the player can access the system. Accessibility is about whether the player can perceive, understand, and interact with the system in the first place.
+      </p>
+    </div>
+  </details>
+</section>
+
+<hr>
+
+<section class="section" id="links">
+  <h2>Game accessibility testing evidence and case study links</h2>
+  <ul>
+    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/">The Chef’s Shift game QA testing case study</a></li>
+    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">Shadow Point VR accessibility and comfort testing case study</a></li>
+    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">Rebel Racing exploratory and edge-case testing case study</a></li>
+    <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA testing articles hub</a></li>
+  </ul>
+  <p class="small">
+    This page focuses on <strong>game accessibility testing in QA</strong> and how accessibility failures block player interaction.
+    The linked case studies provide the wider project scope, workbook notes, bug summaries, Jira-style tickets, and evidence clips.
+  </p>
+</section>
+    
     <hr>
 
     <p class="cta-row" style="text-align:center;">
