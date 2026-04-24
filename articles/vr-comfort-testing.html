@@ -103,6 +103,32 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -557,45 +583,70 @@
     
     <hr>
 
-    <section class="section" id="faq">
-      <h2>VR comfort testing FAQ for game QA</h2>
+<section class="section faq-accordion" id="faq">
+  <h2>VR comfort testing FAQ for game QA</h2>
 
-      <h3>Is VR comfort testing in game QA just about motion sickness?</h3>
+  <details>
+    <summary>Is VR comfort testing in game QA just about motion sickness?</summary>
+    <div class="faq-answer">
       <p>
         No. Motion sickness is part of it, but <strong>VR comfort testing</strong> in <strong>game QA</strong> also covers readable text,
         predictable camera behaviour, seated posture, input strain, interaction reach, and clarity of feedback.
       </p>
+    </div>
+  </details>
 
-      <h3>Why test seated VR in VR accessibility testing?</h3>
+  <details>
+    <summary>Why test seated VR in VR accessibility testing?</summary>
+    <div class="faq-answer">
       <p>
         Because seated play exposes important <strong>VR accessibility testing</strong> surfaces around reach, posture,
         input effort, and how clearly the game communicates from a less flexible physical position.
       </p>
+    </div>
+  </details>
 
-      <h3>Are subtitle issues important in VR accessibility testing?</h3>
+  <details>
+    <summary>Are subtitle issues important in VR accessibility testing?</summary>
+    <div class="faq-answer">
       <p>
         Yes. In <strong>VR game testing</strong>, subtitles compete with depth, object placement, UI overlays, and head position.
         If they are obscured or unstable, comprehension can fail immediately.
       </p>
+    </div>
+  </details>
 
-      <h3>Why test VR games with volume at 0?</h3>
+  <details>
+    <summary>Why test VR games with volume at 0?</summary>
+    <div class="faq-answer">
       <p>
         It is a simple way to reveal whether the game depends too heavily on audio without providing
         visual or haptic redundancy for key confirmations and tutorial steps.
       </p>
+    </div>
+  </details>
 
-      <h3>How is VR testing different from general exploratory testing?</h3>
+  <details>
+    <summary>How is VR testing different from general exploratory testing?</summary>
+    <div class="faq-answer">
       <p>
         It is still exploratory, but <strong>VR testing</strong> is guided by explicit comfort and accessibility charters.
         The point is not random wandering. The point is targeted investigation of high-risk surfaces in <strong>VR game QA testing</strong>.
       </p>
+    </div>
+  </details>
 
-      <h3>Do you need a user study for VR accessibility testing?</h3>
+  <details>
+    <summary>Do you need a user study for VR accessibility testing?</summary>
+    <div class="faq-answer">
       <p>
         No. This project was a <strong>heuristic-informed VR accessibility testing</strong> review, not a user study.
         It used established frameworks to structure checks and findings, which is valid for a scoped <strong>QA testing</strong> pass.
       </p>
-    </section>
+    </div>
+  </details>
+
+</section>
 
     <hr>
 
