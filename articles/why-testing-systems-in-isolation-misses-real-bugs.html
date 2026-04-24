@@ -140,13 +140,7 @@
   margin: 4px 0;
 }
 
-/* mobile fallback */
-@media (max-width: 640px){
-  .toc ul{
-    grid-template-columns: 1fr;
-  }
-
-  .faq-accordion details{
+.faq-accordion details{
   margin: 10px 0;
   padding: 12px 14px;
   border: 1px solid rgba(255,255,255,.12);
@@ -156,22 +150,22 @@
 
 .faq-accordion summary{
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.2rem;
   color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
 }
 
 .faq-accordion summary:hover{
   text-decoration: underline;
 }
-
-.faq-answer{
-  margin-top: 12px;
-}
-
-.faq-answer p:first-child{
-  margin-top: 0;
-}
-}
+    }
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
