@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Why Testing Systems in Isolation Misses Real Bugs in Game QA | Kelina Cowell</title>
+
+<meta name="description" content="Learn why testing systems in isolation misses real bugs in game QA. Includes real examples from Battletoads, Rebel Racing, and Shadow Point showing how system interaction causes defects." />
+
+<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-testing-systems-in-isolation-misses-real-bugs.html" />
+
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+<meta property="og:title" content="Why Testing Systems in Isolation Misses Real Bugs in Game QA | Kelina Cowell">
+<meta property="og:description" content="Game QA article explaining why real bugs often appear when systems interact, using examples from functional testing, mobile game interruption testing, and VR accessibility testing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-testing-systems-in-isolation-misses-real-bugs.html">
+<meta property="og:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta property="article:published_time" content="2026-04-24">
+<meta property="article:modified_time" content="2026-04-24">
+
+<meta name="twitter:title" content="Why Testing Systems in Isolation Misses Real Bugs in Game QA | Kelina Cowell">
+<meta name="twitter:description" content="Learn why testing systems in isolation misses real bugs in game QA, with examples from Battletoads, Rebel Racing, and Shadow Point.">
+<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-testing-systems-in-isolation-misses-real-bugs.html">
+
+  <style>
+    .article-hero,
+    .toc,
+    .callout{
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    .article-hero{
+      margin: 12px 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toc{
+      margin: 10px 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .callout{ margin: 16px 0; }
+
+    .meta{ margin: 0; opacity: .9; }
+
+    .small{ font-size: .95rem; opacity: .95; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    .tldr{
+      margin: 14px 0 0;
+      padding: 0;
+    }
+    .tldr li{ margin: 6px 0; }
+
+    .author-row{
+      margin-top: 10px;
+      opacity: .95;
+    }
+    .author-row a{ text-decoration: underline; }
+
+    .pullquote{
+      margin: 16px 0;
+      padding: 14px 16px 14px 18px;
+      border-left: 3px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+    }
+    .pullquote blockquote{
+      margin: 0;
+      padding: 0;
+    }
+    .pullquote blockquote p{
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .pullquote blockquote p:before{
+      content: "“";
+      font-size: 2.2rem;
+      line-height: 0;
+      vertical-align: -0.35em;
+      opacity: .55;
+      margin-right: 6px;
+    }
+    .pullquote cite{
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    .article-table{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: .95rem;
+    }
+
+    .article-table th,
+    .article-table td{
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .article-table th{
+      background: rgba(255,255,255,.06);
+      font-weight: 700;
+    }
+
+    .article-table tr:nth-child(even) td{
+      background: rgba(255,255,255,.025);
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Testing Systems in Isolation Misses Real Bugs in Game QA",
+  "description": "Learn why testing systems in isolation misses real bugs in game QA. Includes real examples from Battletoads, Rebel Racing, and Shadow Point showing how system interaction causes defects.",
+  "datePublished": "2026-04-24",
+  "dateModified": "2026-04-24",
+  "inLanguage": "en-GB",
+  "author": {
+    "@type": "Person",
+    "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://kelinacowellqa.github.io/#kelina-cowell"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-testing-systems-in-isolation-misses-real-bugs.html"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is game QA testing systems interaction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Game QA testing systems interaction is the process of testing how different systems in a game behave when used together, rather than in isolation. Instead of only checking if a feature works on its own, this approach focuses on how systems interact, such as input and UI working together, gameplay and pause states overlapping, UI and accessibility features colliding, and game systems reacting to device or OS events."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do bugs happen between systems in games?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bugs happen between systems in games because game systems are state-dependent, layered, reactive to player input, and influenced by platform behaviour. A system can work perfectly on its own but fail when combined with another system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between functional testing and integration testing in game QA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In functional testing in games, you verify that a feature works on its own. In game QA integration testing, you verify that multiple systems work together, such as whether a pause menu still behaves correctly when switching from controller to keyboard or whether the game recovers after an interruption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you test game systems together instead of in isolation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To test game systems together, focus on interactions rather than isolated features. Practical checks include switching input methods mid-action, triggering UI while gameplay is active, testing pause and resume during different states, simulating interruptions, and testing accessibility conditions such as volume off or seated play."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are examples of system interaction bugs in games?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Examples of system interaction bugs in games include input ownership breaking when switching between keyboard and controller, UI buttons becoming unresponsive after app interruptions, subtitles being blocked by UI overlays or held objects, and gameplay continuing while feedback systems fail."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is interaction testing important in mobile and VR QA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Interaction testing is important in mobile game QA because apps are interrupted, networks change, and players switch apps. In VR QA and accessibility testing, interaction testing matters because UI exists in 3D space, player position affects visibility, and audio, visual, and input systems must work together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the biggest mistake beginners make in game QA testing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common mistake in manual QA testing in games is only testing features individually and not testing how they interact. Strong testers focus on how bugs happen between systems in games, not just whether a feature works."
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+   <header class="article-hero">
+  <h1>Why Testing Systems in Isolation Misses Real Bugs in Game QA</h1>
+
+  <p class="hint">A game QA article about system interaction bugs, integration testing, real-world player behaviour, and why isolated feature checks are only the first layer.</p>
+
+  <p class="author-row small">
+    <strong>Author:</strong> Kelina Cowell (self-directed QA portfolio work) •
+    <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+  </p>
+
+  <p class="small">
+    This article explains why <strong>testing systems in isolation misses real bugs</strong> in 
+    <strong>game QA</strong>. Using examples from <strong>Battletoads</strong>, <strong>Rebel Racing</strong>, 
+    and <strong>Shadow Point</strong>, it shows how <strong>game QA testing systems interaction</strong> 
+    reveals bugs that isolated functional checks can miss.
+  </p>
+
+      <hr>
+
+   <section class="callout" aria-label="Article summary">
+  <h2 style="margin-top:0;">TL;DR: Game QA Testing Systems Interaction</h2>
+  <ul class="tldr small">
+    <li><strong>Point:</strong> most systems can pass alone and still fail when combined with other systems.</li>
+    <li><strong>Main idea:</strong> <strong>game QA system interaction bugs</strong> often appear at boundaries between input, UI, gameplay state, device events, and accessibility systems.</li>
+    <li><strong>Examples used:</strong> Battletoads for input ownership, Rebel Racing for mobile interruption recovery, and Shadow Point for VR accessibility testing.</li>
+    <li><strong>QA value:</strong> strong <strong>game QA testing techniques</strong> test interactions, transitions, interruptions, and real player behaviour.</li>
+    <li><strong>Takeaway:</strong> if everything works in isolation, testing is not finished. It has only cleared the first layer.</li>
+  </ul>
+</section>
+
+      <hr>
+
+    <section class="callout" aria-label="About this work">
+  <h2 style="margin-top:0;">Project Context: Game QA Workflow Examples</h2>
+  <p class="small">
+    This article is based on three self-directed portfolio projects: a <strong>functional testing in games</strong> pass on 
+    <strong>Battletoads</strong>, an <strong>exploratory testing in games</strong> and interruption recovery pass on 
+    <strong>Rebel Racing</strong>, and a <strong>VR QA testing</strong> and <strong>accessibility testing in games</strong> pass on 
+    <strong>Shadow Point</strong>.
+  </p>
+  <p class="small">
+    Together, these projects show how <strong>real examples of game QA bugs</strong> often come from interaction points rather than isolated features.
+  </p>
+</section>
+</header>
+
+    <hr>
+
+ <nav class="toc" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#intro">Why testing systems in isolation misses real bugs</a></li>
+    <li><a href="#features-in-isolation">Why testing features in isolation misses bugs</a></li>
+    <li><a href="#system-boundaries">How bugs happen between systems in games</a></li>
+    <li><a href="#battletoads">Game QA input handling bugs example: Battletoads</a></li>
+    <li><a href="#rebel-racing">Mobile game interruption testing example: Rebel Racing</a></li>
+    <li><a href="#shadow-point">VR accessibility testing bugs examples: Shadow Point</a></li>
+    <li><a href="#how-to-test">How to test game systems together instead of in isolation</a></li>
+    <li><a href="#real-examples">Real examples of game QA bugs come from interaction</a></li>
+    <li><a href="#why-bugs-happen">Why bugs happen in game QA</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#faq">FAQ: Game QA Testing Systems Interaction</a></li>
+    <li><a href="#links">QA evidence and case study links</a></li>
+  </ul>
+</nav>
+
+    <hr>
+
+<h2 id="intro">Why testing systems in isolation misses real bugs</h2>
+<p>
+  Most systems can pass when tested on their own.
+</p>
+<p>
+  The pause menu opens.<br>
+  The controller works.<br>
+  The reward screen loads.<br>
+  Subtitles display.
+</p>
+<p>
+  Great. Everything looks fine.
+</p>
+<p>
+  Until players actually play the game.
+</p>
+<p>
+  This is the core problem in <strong>game QA testing systems interaction</strong>. Systems do not fail in isolation. They fail when they interact.
+</p>
+<p>
+  If you only focus on <strong>testing systems in games QA</strong> one by one, you miss the exact place where real bugs happen.
+</p>
+
+<section class="pullquote" aria-label="Core QA idea">
+  <blockquote>
+    <p>
+      A feature passing alone does not prove the player experience is safe. It only proves that one controlled slice works.
+    </p>
+  </blockquote>
+</section>
+
+    <hr>
+
+<h2 id="features-in-isolation">Why testing features in isolation misses bugs</h2>
+<p>
+  A lot of <strong>manual QA testing in games</strong> starts with isolated checks:
+</p>
+<ul>
+  <li>Does the pause menu open?</li>
+  <li>Does input respond correctly?</li>
+  <li>Does the UI navigate properly?</li>
+  <li>Does the reward screen complete?</li>
+</ul>
+<p>
+  These are valid checks. They form the foundation of <strong>functional testing in games</strong>.
+</p>
+<p>
+  But they do not reflect how players actually behave.
+</p>
+<p>
+  Players:
+</p>
+<ul>
+  <li>Switch inputs mid-flow</li>
+  <li>Trigger UI and gameplay at the same time</li>
+  <li>Get interrupted by real-world events</li>
+  <li>Interact with systems in unpredictable combinations</li>
+</ul>
+<p>
+  That is where <strong>game QA system interaction bugs</strong> appear.
+</p>
+<p>
+  The issue is not that a system is broken. It is that systems collide in ways the isolated tests never covered.
+</p>
+
+    <hr>
+
+<h2 id="system-boundaries">How bugs happen between systems in games</h2>
+<p>
+  Real bugs often live at system boundaries:
+</p>
+<ul>
+  <li>Input ↔ UI</li>
+  <li>UI ↔ game state</li>
+  <li>Gameplay ↔ device events</li>
+  <li>Audio ↔ accessibility</li>
+  <li>Player ↔ environment</li>
+</ul>
+<p>
+  This is the core of <strong>game QA integration testing</strong>.
+</p>
+<p>
+  You are not just asking “does it work?”
+</p>
+<p>
+  You are asking:
+</p>
+
+<section class="callout">
+  <h3>Core testing question</h3>
+  <p class="small">
+    What happens when multiple systems run at the same time?
+  </p>
+</section>
+
+<p>
+  That is the difference between basic checks and <strong>game QA real world testing</strong>.
+</p>
+
+    <hr>
+
+<h2 id="battletoads">Game QA input handling bugs example: Battletoads</h2>
+<p>
+  The clearest example from my portfolio comes from <strong>Battletoads</strong>, where I ran a focused 
+  <strong>functional testing in games</strong> pass.
+</p>
+<p>
+  Individually, everything worked:
+</p>
+<ul>
+  <li>Keyboard input ✔</li>
+  <li>Controller input ✔</li>
+  <li>Pause menu ✔</li>
+  <li>Join In system ✔</li>
+</ul>
+<p>
+  No obvious failures.
+</p>
+<p>
+  But when I tested <strong>input system testing games</strong> scenarios, the issues appeared.
+</p>
+
+<section class="callout">
+  <h3>Example bug</h3>
+  <p class="small">
+    <strong>Keyboard Enter from Pause opens Join In and disables controller input.</strong>
+  </p>
+</section>
+
+<p>
+  This is a textbook <strong>system interaction bug in games</strong>.
+</p>
+<p>
+  The failure sits between:
+</p>
+<ul>
+  <li>Keyboard input</li>
+  <li>Controller ownership</li>
+  <li>Pause state</li>
+  <li>Join In overlay</li>
+  <li>Gameplay resume</li>
+</ul>
+<p>
+  Each system works alone.
+</p>
+<p>
+  Together, they break.
+</p>
+<p>
+  This is exactly why <strong>game QA testing techniques</strong> need to go beyond isolated checks.
+</p>
+
+    <hr>
+
+<h2 id="rebel-racing">Mobile game interruption testing example: Rebel Racing</h2>
+<p>
+  Mobile testing makes this even clearer.
+</p>
+<p>
+  In <strong>Rebel Racing</strong>, I ran an <strong>exploratory testing case study</strong> focused on interruptions and recovery.
+</p>
+<p>
+  The core flow worked:
+</p>
+<ul>
+  <li>Race completes</li>
+  <li>Rewards appear</li>
+  <li>Continue button works</li>
+</ul>
+<p>
+  But mobile games do not exist in a vacuum.
+</p>
+<p>
+  So I tested real-world conditions:
+</p>
+<ul>
+  <li>OS alarms</li>
+  <li>App switching</li>
+  <li>Screen lock/unlock</li>
+  <li>Network changes</li>
+</ul>
+<p>
+  That is where the bug appeared:
+</p>
+
+<section class="callout">
+  <h3>Example bug</h3>
+  <p class="small">
+    <strong>Continue button becomes unresponsive after an alarm + app close.</strong>
+  </p>
+</section>
+
+<p>
+  This is a perfect <strong>mobile game QA testing</strong> example.
+</p>
+<p>
+  The systems involved:
+</p>
+<ul>
+  <li>Reward screen</li>
+  <li>OS interruption</li>
+  <li>App lifecycle</li>
+  <li>UI responsiveness</li>
+</ul>
+<p>
+  Individually fine.
+</p>
+<p>
+  Combined? Soft lock.
+</p>
+<p>
+  This is a classic <strong>edge case testing game QA</strong> scenario that only appears when systems interact.
+</p>
+
+    <hr>
+
+<h2 id="shadow-point">VR accessibility testing bugs examples: Shadow Point</h2>
+<p>
+  VR adds another layer of complexity.
+</p>
+<p>
+  In <strong>Shadow Point</strong>, I focused on <strong>VR QA testing</strong> and <strong>accessibility testing in games</strong>.
+</p>
+<p>
+  Subtitles worked.
+</p>
+<p>
+  Until they did not.
+</p>
+<p>
+  Issues appeared when subtitles interacted with:
+</p>
+<ul>
+  <li>UI overlays</li>
+  <li>Held objects</li>
+  <li>Player viewpoint</li>
+  <li>Scene geometry</li>
+</ul>
+<p>
+  Examples:
+</p>
+<ul>
+  <li>Subtitles occluded by UI</li>
+  <li>Subtitles blocked by held objects</li>
+  <li>Subtitles disappearing in certain positions</li>
+</ul>
+<p>
+  This creates real <strong>UI and gameplay interaction bugs</strong>.
+</p>
+<p>
+  The system is not broken in isolation. It becomes unusable when layered with other systems.
+</p>
+<p>
+  The same applies to non-audio cues:
+</p>
+<ul>
+  <li>Audio works</li>
+  <li>Tutorial works</li>
+  <li>But at volume 0, feedback disappears</li>
+</ul>
+<p>
+  That is not an audio bug. That is a <strong>system interaction failure affecting accessibility</strong>.
+</p>
+
+    <hr>
+
+<h2 id="how-to-test">How to test game systems together instead of in isolation</h2>
+<p>
+  If you want to understand <strong>how to find bugs in games</strong>, you need to shift your approach.
+</p>
+<p>
+  Do not just test features.
+</p>
+<p>
+  Test interactions.
+</p>
+<p>
+  This is where strong <strong>game QA workflow examples</strong> stand out.
+</p>
+<p>
+  Instead of asking:
+</p>
+<ul>
+  <li>Does this system work?</li>
+</ul>
+<p>
+  Ask:
+</p>
+<ul>
+  <li>What happens if I switch inputs mid-action?</li>
+  <li>What happens if UI appears during gameplay?</li>
+  <li>What happens if the system is interrupted?</li>
+  <li>What happens if multiple systems trigger at once?</li>
+  <li>What happens if accessibility conditions change?</li>
+</ul>
+<p>
+  This is the difference between basic <strong>game QA bug examples</strong> and meaningful, high-impact findings.
+</p>
+
+    <hr>
+
+<h2 id="real-examples">Real examples of game QA bugs come from interaction</h2>
+<p>
+  Across these projects, the pattern is consistent.
+</p>
+
+<table class="article-table">
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Systems tested</th>
+      <th scope="col">Where the bug actually appeared</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Battletoads</strong></td>
+      <td>Input, UI, gameplay</td>
+      <td>Input ownership hand-off</td>
+    </tr>
+    <tr>
+      <td><strong>Rebel Racing</strong></td>
+      <td>Rewards, UI, app flow</td>
+      <td>OS interruption + recovery</td>
+    </tr>
+    <tr>
+      <td><strong>Shadow Point</strong></td>
+      <td>Subtitles, UI, VR systems</td>
+      <td>Occlusion, viewpoint, accessibility</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  These are not random failures.
+</p>
+<p>
+  They are <strong>system interaction bugs in games</strong>.
+</p>
+
+    <hr>
+
+<h2 id="why-bugs-happen">Why bugs happen in game QA</h2>
+<p>
+  So let’s answer it directly:
+</p>
+<p>
+  <strong>Why bugs happen in game QA</strong>
+</p>
+<p>
+  Because systems are:
+</p>
+<ul>
+  <li>State-dependent</li>
+  <li>Layered</li>
+  <li>Reactive</li>
+  <li>Influenced by player behaviour</li>
+  <li>Influenced by platform behaviour</li>
+</ul>
+<p>
+  And most importantly:
+</p>
+
+<section class="pullquote" aria-label="Why game systems fail together">
+  <blockquote>
+    <p>
+      Game systems are not designed to be tested in isolation. They are designed to work together. Which means they also fail together.
+    </p>
+  </blockquote>
+</section>
+
+    <hr>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>
+  Testing systems in isolation is necessary. But it is not enough.
+</p>
+<p>
+  If your process stops there, you miss:
+</p>
+<ul>
+  <li>Input hand-off failures</li>
+  <li>Interruption recovery issues</li>
+  <li>Accessibility breakdowns</li>
+  <li>UI and gameplay conflicts</li>
+</ul>
+<p>
+  Across <strong>Battletoads</strong>, <strong>Rebel Racing</strong>, and <strong>Shadow Point</strong>, the most valuable findings came from 
+  <strong>game QA testing systems interaction</strong>, not isolated checks.
+</p>
+<p>
+  That is the real takeaway:
+</p>
+
+<section class="callout">
+  <h3>Final takeaway</h3>
+  <p class="small">
+    If everything works in isolation, testing is not finished.
+  </p>
+</section>
+
+<p>
+  Because real players do not use systems one at a time.
+</p>
+<p>
+  They combine them.
+</p>
+<p>
+  And that is exactly where the bugs are waiting.
+</p>
+
+    <hr>
+
+<section class="section" id="faq">
+  <h2>FAQ: Game QA Testing Systems Interaction</h2>
+
+  <h3>What is game QA testing systems interaction?</h3>
+  <p>
+    <strong>Game QA testing systems interaction</strong> is the process of testing how different systems in a game behave when used together, rather than in isolation.
+  </p>
+  <p>
+    Instead of only checking if a feature works on its own, this approach focuses on how systems interact, such as:
+  </p>
+  <ul>
+    <li>Input and UI working together</li>
+    <li>Gameplay and pause states overlapping</li>
+    <li>UI and accessibility features colliding</li>
+    <li>Game systems reacting to device or OS events</li>
+  </ul>
+  <p>
+    Most real bugs appear at these interaction points, not within a single system.
+  </p>
+
+  <h3>Why do bugs happen between systems in games?</h3>
+  <p>
+    This is the core reason behind <strong>why bugs happen in game QA</strong>.
+  </p>
+  <p>
+    Game systems are:
+  </p>
+  <ul>
+    <li>State-dependent</li>
+    <li>Layered</li>
+    <li>Reactive to player input</li>
+    <li>Influenced by platform behaviour</li>
+  </ul>
+  <p>
+    A system can work perfectly on its own but fail when combined with another system.
+  </p>
+  <p>
+    These failures are known as <strong>game QA system interaction bugs</strong>, and they are often missed if testing only focuses on isolated features.
+  </p>
+
+  <h3>What is the difference between functional testing and integration testing in game QA?</h3>
+  <p>
+    In <strong>functional testing in games</strong>, you verify that a feature works on its own.
+  </p>
+  <p>
+    Example:
+  </p>
+  <ul>
+    <li>Does the pause menu open?</li>
+    <li>Does input respond correctly?</li>
+  </ul>
+  <p>
+    In <strong>game QA integration testing</strong>, you verify that multiple systems work together.
+  </p>
+  <p>
+    Example:
+  </p>
+  <ul>
+    <li>Does the pause menu still behave correctly when switching from controller to keyboard?</li>
+    <li>Does the game recover properly after an interruption?</li>
+  </ul>
+  <p>
+    Both are important, but integration testing is where many high-impact bugs are found.
+  </p>
+
+  <h3>How do you test game systems together instead of in isolation?</h3>
+  <p>
+    To improve <strong>game QA testing techniques</strong>, you need to focus on interactions, not just features.
+  </p>
+  <p>
+    Practical ways to do this:
+  </p>
+  <ul>
+    <li>Switch input methods mid-action</li>
+    <li>Trigger UI while gameplay is active</li>
+    <li>Test pause/resume during different states</li>
+    <li>Simulate interruptions, including mobile and OS events</li>
+    <li>Test accessibility conditions like volume off or seated play</li>
+  </ul>
+  <p>
+    This is how you move from basic checks to <strong>game QA real world testing</strong>.
+  </p>
+
+  <h3>What are examples of system interaction bugs in games?</h3>
+  <p>
+    Some real <strong>game QA bug examples</strong> include:
+  </p>
+  <ul>
+    <li>Input ownership breaking when switching between keyboard and controller</li>
+    <li>UI buttons becoming unresponsive after app interruptions</li>
+    <li>Subtitles being blocked by UI overlays or objects</li>
+    <li>Gameplay continuing but feedback systems failing, such as audio or visual cues</li>
+  </ul>
+  <p>
+    These are all <strong>system interaction bugs in games</strong>, where multiple systems conflict.
+  </p>
+
+  <h3>Why is interaction testing important in mobile and VR QA?</h3>
+  <p>
+    In <strong>mobile game QA testing</strong>, interaction testing is critical because:
+  </p>
+  <ul>
+    <li>Apps are frequently interrupted</li>
+    <li>Network conditions change</li>
+    <li>Players switch apps constantly</li>
+  </ul>
+  <p>
+    In <strong>VR QA testing</strong> and <strong>accessibility testing in games</strong>, interaction testing matters because:
+  </p>
+  <ul>
+    <li>UI exists in 3D space</li>
+    <li>Player position affects visibility</li>
+    <li>Multiple systems, including audio, visual, and input, must work together</li>
+  </ul>
+  <p>
+    In both cases, isolated testing misses real-world behaviour.
+  </p>
+
+  <h3>What is the biggest mistake beginners make in game QA testing?</h3>
+  <p>
+    The most common mistake in <strong>manual QA testing in games</strong> is:
+  </p>
+
+  <section class="callout">
+    <h4>Beginner mistake</h4>
+    <p class="small">
+      Only testing features individually and not testing how they interact.
+    </p>
+  </section>
+
+  <p>
+    This leads to:
+  </p>
+  <ul>
+    <li>Missed edge cases</li>
+    <li>Weak bug reports</li>
+    <li>Lack of real-world testing coverage</li>
+  </ul>
+  <p>
+    Strong testers focus on <strong>how bugs happen between systems in games</strong>, not just whether a feature works.
+  </p>
+</section>
+
+    <hr>
+
+<section class="section" id="links">
+  <h2>QA Case Study and Evidence Links</h2>
+  <ul>
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/battletoads/">
+        Battletoads functional testing case study
+      </a>
+    </li>
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/rebel-racing/">
+        Rebel Racing exploratory and edge-case testing case study
+      </a>
+    </li>
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/projects/shadow-point/">
+        Shadow Point VR accessibility and comfort testing case study
+      </a>
+    </li>
+    <li>
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">
+        Game QA testing articles and accessibility case studies
+      </a>
+    </li>
+  </ul>
+  <p class="small">
+    This article focuses on <strong>game QA analysis, system interaction bugs, integration testing, and player behaviour</strong>. 
+    The linked case studies include supporting QA documentation, workbook notes, bug logs, Jira-style tickets, evidence clips, and testing summaries from real portfolio workflows.
+  </p>
+</section>
+
+    <hr>
+
+  <p class="cta-row" style="text-align:center;">
+  <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+  <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn (Game QA Tester)</a>
+  <a class="cta-btn" href="./">Browse More QA Articles</a>
+</p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
