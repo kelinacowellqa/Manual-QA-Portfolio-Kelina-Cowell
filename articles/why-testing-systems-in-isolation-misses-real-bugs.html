@@ -127,6 +127,25 @@
     .article-table tr:nth-child(even) td{
       background: rgba(255,255,255,.025);
     }
+
+    .toc ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc li{
+  margin: 4px 0;
+}
+
+/* mobile fallback */
+@media (max-width: 640px){
+  .toc ul{
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
