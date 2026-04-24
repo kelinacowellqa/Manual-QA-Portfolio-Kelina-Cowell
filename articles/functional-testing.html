@@ -27,129 +27,201 @@
 <meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
 <meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/functional-testing.html">
   
-  <style>
-/* Article header diagram sizing */
-.article-figure{
-  margin: 14px auto 10px;
-  max-width: 860px;        /* controls how wide it can get */
-}
-
-.article-figure img{
-  width: 100%;
-  height: auto;
-  max-height: 320px;       /* controls how tall it can get */
-  object-fit: contain;     /* keeps the whole diagram visible */
-  display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.10);
-}
-
-.article-figure figcaption{
-  margin-top: 8px;
-  opacity: .9;
-}
-    .article-hero,
-    .toc,
-    .callout{
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
-
-    .article-hero{
-      margin: 12px 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .toc{
-      margin: 10px 0 22px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .callout{
-      margin: 16px 0;
-    }
-
-    .meta{
-      margin: 0;
-      opacity: .9;
-    }
-
-    .small{
-      font-size: .95rem;
-      opacity: .95;
-    }
-
-    code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-    }
-
-    .tldr{
-      margin: 14px 0 0;
-      padding: 0;
-    }
-    .tldr li{ margin: 6px 0; }
-
-    .author-row{
-      margin-top: 10px;
-      opacity: .95;
-    }
-    .author-row a{ text-decoration: underline; }
-
-    .faq-accordion details{
-  margin: 10px 0;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 12px;
-  background: rgba(255,255,255,.03);
-}
-
-.faq-accordion summary{
-  cursor: pointer;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--teal);
-  line-height: 1.4;
-  margin-bottom: 6px;
-}
-
-.faq-answer{
-  margin-top: 10px;
-  opacity: .95;
-}
-
-.faq-accordion summary:hover{
-  text-decoration: underline;
-}
-
-        .tldr{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 24px;
-  margin: 14px 0 0;
-  padding: 0;
-}
-
-.tldr li{
-  list-style: disc;
-  margin-left: 18px;
-}
-
-    .tldr li{
-  line-height: 1.5;
-}
-
-/* Mobile fallback */
-@media (max-width: 640px){
-  .tldr{
-    grid-template-columns: 1fr;
+<style>
+  .meta-line{
+    margin: 10px 0 0;
+    font-size: .95rem;
+    opacity: .75;
   }
-}
+
+  .hero-media{
+    margin: 14px 0 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+  }
+
+  .hero-media img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-media figcaption{
+    padding: 10px 12px;
+    font-size: .92rem;
+    opacity: .78;
+    border-top: 1px solid var(--line);
+  }
+
+  .callout ul{ margin-top: 8px; }
+  .callout li{ margin: 6px 0; }
+
+  .divider{
+    height: 1px;
+    background: var(--line);
+    margin: 22px 0;
+    opacity: .9;
+  }
+
+  .two-col{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .mini{
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .mini h3{
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  .mini ul{
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .mini li{ margin: 6px 0; }
+
+  .example{
+    border-left: 3px solid rgba(0,242,201,.75);
+    padding: 10px 12px;
+    background: rgba(0,242,201,.06);
+    border-radius: 10px;
+  }
+
+  .example p{ margin: 0 0 8px; }
+  .example p:last-child{ margin: 0; }
+
+  .toc{
+    margin: 14px 0 0;
+    padding: 12px 12px 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .toc strong{
+    display: block;
+    margin-bottom: 8px;
+    opacity: .9;
+  }
+
+  .toc ul{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 28px;
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+
+  .toc li{
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toc a{
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
+
+  .faq-accordion details{
+    margin: 10px 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+  }
+
+  .faq-accordion summary{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--teal);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .faq-answer{
+    margin-top: 10px;
+    opacity: .95;
+  }
+
+  .faq-accordion summary:hover{
+    text-decoration: underline;
+  }
+
+  .tldr{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+
+  .tldr li{
+    list-style: disc;
+    margin-left: 18px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px){
+    .two-col{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px){
+    .tldr,
+    .toc ul{
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
