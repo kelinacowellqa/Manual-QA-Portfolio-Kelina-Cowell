@@ -102,6 +102,32 @@
       opacity: .85;
       font-size: .95rem;
     }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -539,39 +565,64 @@
 
     <hr>
 
-    <section class="section" id="faq">
-      <h2>Game QA testing FAQ (early builds)</h2>
+<section class="section faq-accordion" id="faq">
+  <h2>Game QA testing FAQ (early builds)</h2>
 
-      <h3>Shouldn’t game QA testing try to cover as much as possible?</h3>
+  <details>
+    <summary>Shouldn’t game QA testing try to cover as much as possible?</summary>
+    <div class="faq-answer">
       <p>
         No. In <strong>game QA testing</strong>, early builds need prioritisation, not maximum breadth. The goal is to find what breaks progression or trust fastest.
       </p>
+    </div>
+  </details>
 
-      <h3>Is one clean run enough to call a system stable in QA testing?</h3>
+  <details>
+    <summary>Is one clean run enough to call a system stable in QA testing?</summary>
+    <div class="faq-answer">
       <p>
         No. A clean run is a baseline, not proof. Repetition and pressure are what test stability in a <strong>QA testing</strong> pass.
       </p>
+    </div>
+  </details>
 
-      <h3>Why not start with edge cases in early build QA testing?</h3>
+  <details>
+    <summary>Why not start with edge cases in early build QA testing?</summary>
+    <div class="faq-answer">
       <p>
         Because edge cases matter less if the core gameplay loop cannot survive normal use. Early <strong>QA testing</strong> should protect the core experience first.
       </p>
+    </div>
+  </details>
 
-      <h3>What counts as a useful early build bug in game QA testing?</h3>
+  <details>
+    <summary>What counts as a useful early build bug in game QA testing?</summary>
+    <div class="faq-answer">
       <p>
         Anything that blocks progression, corrupts state, breaks core interaction, or reliably misleads the player during normal use.
       </p>
+    </div>
+  </details>
 
-      <h3>Are accessibility-related issues worth logging in an early QA testing pass?</h3>
+  <details>
+    <summary>Are accessibility-related issues worth logging in an early QA testing pass?</summary>
+    <div class="faq-answer">
       <p>
         Yes, if they create real player-facing friction or change decision-making under pressure. They are not “extra” if they affect progression.
       </p>
+    </div>
+  </details>
 
-      <h3>How do you know when to stop testing one issue and move on in QA testing?</h3>
+  <details>
+    <summary>How do you know when to stop testing one issue and move on in QA testing?</summary>
+    <div class="faq-answer">
       <p>
         When the behaviour is clear, reproducible enough to explain, and supported by evidence. Beyond that, time is usually better spent on the next risk.
       </p>
-    </section>
+    </div>
+  </details>
+
+</section>
 
     <hr>
 
