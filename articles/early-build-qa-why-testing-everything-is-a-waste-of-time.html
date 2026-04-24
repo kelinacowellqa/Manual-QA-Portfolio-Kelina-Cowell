@@ -230,7 +230,7 @@
 
     <h2 id="what-it-means">What “testing everything” gets wrong in game QA testing</h2>
     <p>
-      In <strong>game QA testing</strong>, early builds often create the illusion that “test everything” is the safest approach, but it usually means the opposite.
+      In <strong>early builds</strong>, the illusion that “test everything” is the safest approach, but it usually means the opposite.
       It spreads effort too thin, hides priorities, and wastes time on checks that do not matter yet.
     </p>
     <p>
@@ -268,7 +268,7 @@
     </p>
 
     <section class="callout">
-      <h3>Core principle</h3>
+      <h3>Core loop priority</h3>
       <p class="small">
         In early builds, the most valuable <strong>QA testing</strong> checks are the ones that stress the core gameplay loop,
         not the ones that make coverage look wide.
@@ -327,7 +327,7 @@
 
     <hr>
 
-    <h2 id="signal-vs-noise">How I separate signal from noise in a game QA testing pass</h2>
+    <h2 id="signal-vs-noise">How I separate signal from noise in early build QA</h2>
     <p>
       In <strong>game QA testing</strong>, a short early build pass should not try to answer every question.
       It should answer the questions most likely to change what you test next.
@@ -374,6 +374,7 @@
 
 <p class="small">
   If the main loop fails consistently, edge cases do not matter yet.
+  You are testing the wrong problem.
 </p>
 
 <h3>2. Cosmetic and visual polish</h3>
