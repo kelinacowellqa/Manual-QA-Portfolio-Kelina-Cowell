@@ -339,6 +339,71 @@
       text-align:center;font-size:.85em;opacity:.8;
       border-top:1px solid rgba(255,255,255,.05)
     }
+
+    /* FAQ Accordion Container */
+.faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover state */
+.faq-accordion details:hover{
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Question (clickable) */
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--teal);
+  line-height: 1.4;
+  list-style: none;
+}
+
+/* Remove default arrow (optional, cleaner look) */
+.faq-accordion summary::-webkit-details-marker{
+  display: none;
+}
+
+/* Custom arrow */
+.faq-accordion summary::before{
+  content: "▸";
+  margin-right: 8px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when open */
+.faq-accordion details[open] summary::before{
+  transform: rotate(90deg);
+}
+
+/* Answer content */
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+  line-height: 1.6;
+}
+
+/* Spacing inside answers */
+.faq-answer p{
+  margin: 0 0 10px;
+}
+
+.faq-answer ul{
+  margin: 8px 0;
+  padding-left: 18px;
+}
+
+.faq-answer li{
+  margin: 6px 0;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -1084,50 +1149,82 @@
       
     <hr>
 
-<section class="section faq" aria-labelledby="faq">
-  <h2 id="faq">Game QA Portfolio FAQ</h2>
+<section class="section faq-accordion" id="faq">
+  <h2>Game QA Portfolio FAQ</h2>
 
-  <h3>What does this game QA portfolio include?</h3>
-  <p>
-    This portfolio includes manual QA testing examples such as bug reports, structured test cases, exploratory testing sessions, regression testing, and supporting evidence across PC, mobile, and VR projects.
-  </p>
+  <details>
+    <summary>What does this game QA portfolio include?</summary>
+    <div class="faq-answer">
+      <p>
+        This portfolio includes manual QA testing examples such as bug reports, structured test cases, exploratory testing sessions, regression testing, and supporting evidence across PC, mobile, and VR projects.
+      </p>
+    </div>
+  </details>
 
-  <h3>What QA skills are demonstrated in these projects?</h3>
-  <p>
-    The projects demonstrate functional testing, exploratory testing, regression testing, risk-based test design, and clear bug reporting with reproducible steps and evidence.
-  </p>
+  <details>
+    <summary>What QA skills are demonstrated in these projects?</summary>
+    <div class="faq-answer">
+      <p>
+        The projects demonstrate functional testing, exploratory testing, regression testing, risk-based test design, and clear bug reporting with reproducible steps and evidence.
+      </p>
+    </div>
+  </details>
 
-  <h3>What level is this game QA portfolio aimed at?</h3>
-  <p>
-    This portfolio is aimed at junior game QA roles, with documentation designed to be clear, structured, and immediately actionable for developers and QA teams.
-  </p>
+  <details>
+    <summary>What level is this game QA portfolio aimed at?</summary>
+    <div class="faq-answer">
+      <p>
+        This portfolio is aimed at junior game QA roles, with documentation designed to be clear, structured, and immediately actionable for developers and QA teams.
+      </p>
+    </div>
+  </details>
 
-  <h3>Are these real QA projects or portfolio work?</h3>
-  <p>
-    These are self-directed QA projects using real games and builds. They are designed to reflect production QA workflows, including scoped testing, structured reporting, and traceable outputs.
-  </p>
+  <details>
+    <summary>Are these real QA projects or portfolio work?</summary>
+    <div class="faq-answer">
+      <p>
+        These are self-directed QA projects using real games and builds. They are designed to reflect production QA workflows, including scoped testing, structured reporting, and traceable outputs.
+      </p>
+    </div>
+  </details>
 
-  <h3>How are bugs documented in this QA portfolio?</h3>
-  <p>
-    Bugs are documented with clear reproduction steps, expected vs actual results, severity and priority, and supporting video evidence to demonstrate player impact.
-  </p>
+  <details>
+    <summary>How are bugs documented in this QA portfolio?</summary>
+    <div class="faq-answer">
+      <p>
+        Bugs are documented with clear reproduction steps, expected vs actual results, severity and priority, and supporting video evidence to demonstrate player impact.
+      </p>
+    </div>
+  </details>
 
-  <h3>How do you approach testing in a limited timebox?</h3>
-  <p>
-    Testing is prioritised based on risk and player impact, focusing on core gameplay systems and high-risk areas. Exploratory charters are used to target likely failure points and edge cases.
-  </p>
+  <details>
+    <summary>How do you approach testing in a limited timebox?</summary>
+    <div class="faq-answer">
+      <p>
+        Testing is prioritised based on risk and player impact, focusing on core gameplay systems and high-risk areas. Exploratory charters are used to target likely failure points and edge cases.
+      </p>
+    </div>
+  </details>
 
-  <h3>Does this portfolio include accessibility testing?</h3>
-<p>
-  Yes. Accessibility testing is included using APX patterns, supported by the APX Practitioner certification and Microsoft Gaming Accessibility Fundamentals. Examples include VR and UI testing focused on readability, feedback, and player understanding.
-</p>
+  <details>
+    <summary>Does this portfolio include accessibility testing?</summary>
+    <div class="faq-answer">
+      <p>
+        Yes. Accessibility testing is included using APX patterns, supported by the APX Practitioner certification and Microsoft Gaming Accessibility Fundamentals. Examples include VR and UI testing focused on readability, feedback, and player understanding.
+      </p>
+    </div>
+  </details>
 
-  <h3>Where should I start if I want to review this portfolio quickly?</h3>
-  <p>
-    Start with the featured projects or the most recent case study, then review the scope, findings, and evidence to quickly validate the testing approach and results.
-  </p>
+  <details>
+    <summary>Where should I start if I want to review this portfolio quickly?</summary>
+    <div class="faq-answer">
+      <p>
+        Start with the featured projects or the most recent case study, then review the scope, findings, and evidence to quickly validate the testing approach and results.
+      </p>
+    </div>
+  </details>
+
 </section>
-
 <hr>
       
 <section class="section" aria-labelledby="tools"> 
