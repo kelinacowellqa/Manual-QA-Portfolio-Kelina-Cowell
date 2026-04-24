@@ -100,6 +100,32 @@
       opacity: .95;
     }
     .author-row a{ text-decoration: underline; }
+
+    .faq-accordion details{
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,.03);
+}
+
+.faq-accordion summary{
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.faq-answer{
+  margin-top: 10px;
+  opacity: .95;
+}
+
+.faq-accordion summary:hover{
+  text-decoration: underline;
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
@@ -362,39 +388,60 @@
 
     <hr>
 
-<section class="section" id="faq">
+<section class="section faq-accordion" id="faq">
   <h2>Game QA functional testing FAQ</h2>
 
-  <h3>Is functional testing in game QA just basic or beginner testing?</h3>
-  <p>
-    No. In game QA, functional testing validates the core systems everything else depends on.
-    When it’s done poorly, teams chase “random” bugs that are actually foundational failures.
-  </p>
+  <details>
+    <summary>Is functional testing in game QA just basic or beginner testing?</summary>
+    <div class="faq-answer">
+      <p>
+        No. In game QA, functional testing validates the core systems everything else depends on.
+        When it’s done poorly, teams chase “random” bugs that are actually foundational failures.
+      </p>
+    </div>
+  </details>
 
-  <h3>Does functional testing only check happy paths?</h3>
-  <p>
-    No. Functional testing starts with happy paths, but expands wherever risk appears.
-    Input handling, Pause/Resume, and state transitions are common sources of bugs.
-  </p>
+  <details>
+    <summary>Does functional testing only check happy paths?</summary>
+    <div class="faq-answer">
+      <p>
+        No. Functional testing starts with happy paths, but expands wherever risk appears.
+        Input handling, Pause/Resume, and state transitions are common sources of bugs.
+      </p>
+    </div>
+  </details>
 
-  <h3>How is functional testing different from regression testing in QA?</h3>
-  <p>
-    Functional testing checks that features work correctly end-to-end.
-    Regression testing verifies that previously working features still work after changes.
-    They overlap, but they answer different QA questions.
-  </p>
+  <details>
+    <summary>How is functional testing different from regression testing in QA?</summary>
+    <div class="faq-answer">
+      <p>
+        Functional testing checks that features work correctly end-to-end.
+        Regression testing verifies that previously working features still work after changes.
+        They overlap, but they answer different QA questions.
+      </p>
+    </div>
+  </details>
 
-  <h3>Is functional testing still relevant if automation exists?</h3>
-  <p>
-    Yes. Automated tests rely on a correct understanding of expected behaviour.
-    Functional testing defines that baseline and finds bugs automation often misses.
-  </p>
+  <details>
+    <summary>Is functional testing still relevant if automation exists?</summary>
+    <div class="faq-answer">
+      <p>
+        Yes. Automated tests rely on a correct understanding of expected behaviour.
+        Functional testing defines that baseline and finds bugs automation often misses.
+      </p>
+    </div>
+  </details>
 
-  <h3>What makes a good bug report in game QA?</h3>
-  <p>
-    A good QA bug report includes clear steps to reproduce, expected and actual results,
-    and short evidence showing input, timing, and outcome together so the bug is reproducible.
-  </p>
+  <details>
+    <summary>What makes a good bug report in game QA?</summary>
+    <div class="faq-answer">
+      <p>
+        A good QA bug report includes clear steps to reproduce, expected and actual results,
+        and short evidence showing input, timing, and outcome together so the bug is reproducible.
+      </p>
+    </div>
+  </details>
+
 </section>
 
        <hr>
