@@ -419,50 +419,63 @@
 
     <hr>
 
-    <h2 id="chef">Cognitive load and UI clarity in games QA: The Chef’s Shift</h2>
+  <h2 id="chef">Game HUD readability under pressure: The Chef’s Shift</h2>
 
-    <p>
-      A clear example of <strong>cognitive load and UI clarity in games QA</strong> comes from my project on 
-      <strong>The Chef’s Shift</strong>.
-    </p>
+<p>
+  In <strong>The Chef’s Shift</strong>, the system worked. The interaction existed.
+</p>
 
-    <p>
-      The oven interaction prompt was technically present. The oven interaction system worked. The player could complete the step.
-    </p>
+<p>
+  But under pressure, the oven interaction prompt became easy to miss.
+</p>
 
-    <p>
-      But during normal gameplay pressure, the prompt became difficult to notice.
-    </p>
+<figure class="article-figure plain-figure">
+  <a class="zoomable" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/chefs-shift-hud-readability-under-pressure-qa.png" target="_blank" rel="noopener">
+    <img
+      src="/Manual-QA-Portfolio-Kelina-Cowell/assets/img/chefs-shift-hud-readability-under-pressure-qa.png"
+      alt="The Chef’s Shift gameplay showing multiple UI prompts and oven interaction text blending into background"
+      loading="lazy"
+      decoding="async"
+    >
+  </a>
+  <figcaption class="small">
+    CHEF-2: Oven interaction prompt blends into the environment under pressure, making the step easy to miss during active gameplay.
+  </figcaption>
+</figure>
 
-    <ul>
-      <li>The prompt appeared over a busy brick background</li>
-      <li>Multiple active tasks were competing for attention</li>
-      <li>The oven step was missed repeatedly under pressure</li>
-    </ul>
+<ul>
+  <li>Prompt displayed as white text on a brown box</li>
+  <li>Positioned against detailed brickwork from the oven</li>
+  <li>Competing with multiple other words and UI elements on screen</li>
+  <li>Appears during high-pressure multitasking gameplay</li>
+</ul>
 
-    <p>
-      The result was player-facing friction:
-    </p>
+<p class="small">
+  This is where <strong>cognitive load in games QA</strong> becomes critical.
+  The player is not reading in isolation. They are typing, tracking orders, moving, and reacting at speed.
+</p>
 
-    <ul>
-      <li>The pizza remained in the oven</li>
-      <li>The order appeared incomplete</li>
-      <li>Service was delayed</li>
-      <li>The player lost flow and time</li>
-    </ul>
+<p class="small">
+  As a dyslexic player, white text against a busy patterned background is significantly harder to process.
+  During gameplay, this prompt was repeatedly missed. It only became clearly visible when reviewing recorded footage.
+</p>
 
-    <section class="callout">
-      <h3>What CHEF-2 shows</h3>
-      <p class="small">
-        The interaction existed. The player could not reliably perceive it under pressure.
-      </p>
-    </section>
+<section class="callout">
+  <h3>What this actually means in gameplay</h3>
+  <p class="small">
+    The system is not broken. The interaction exists. But the player fails to perceive it in time.
+    That delays progression, creates confusion, and impacts performance under pressure.
+  </p>
+</section>
 
-    <p>
-      This is one of the most practical <strong>game accessibility testing examples</strong> because it shows 
-      <strong>how players fail when systems work in games</strong>. The issue was not that the system was broken.
-      The issue was that visibility and cognitive load made the required interaction too easy to miss.
-    </p>
+<p>
+  This is not a functional bug. It is a <strong>game HUD readability issue under pressure</strong>.
+</p>
+
+<p>
+  It shows how <strong>accessibility issues in games QA</strong> are not always about missing features.
+  They are often about whether players can process information quickly enough to act on it.
+</p>
 
     <hr>
 
