@@ -9,8 +9,8 @@
 <meta property="og:title" content="Cult of PiN - Exploratory QA Case Study (PC)" />
 <meta property="og:description" content="Exploratory QA pass on the Cult of PiN demo focusing on system interaction, timing, clarity, and progression under real gameplay conditions." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/" />
-<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/" />
+<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin/" />
+<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin/" />
 
 <link rel="stylesheet" href="../../assets/css/site.css?v=5">
 
@@ -241,7 +241,7 @@
       <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Game QA Portfolio hub</a>
     </p>
 
- h1>🎮 Cult of PiN - Live Demo Exploratory QA Case Study (PC)</h1>
+<h1>Cult of PiN - Live Demo Exploratory QA Case Study (PC)</h1>
 <p class="meta">Tested: 26 Apr 2026</p>
 
 <section aria-labelledby="about-this-work">
@@ -265,8 +265,8 @@
     "@type": "Audience",
     "audienceType": "QA Lead, Game QA Tester, Recruiter"
   },
-  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/#case-study",
-  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/",
+ "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin/#case-study",
+ "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin/",
   "name": "Cult of PiN: Live Demo Exploratory QA Pass",
   "inLanguage": "en-GB",
   "author": { "@type": "Person", "name": "Kelina Cowell" },
