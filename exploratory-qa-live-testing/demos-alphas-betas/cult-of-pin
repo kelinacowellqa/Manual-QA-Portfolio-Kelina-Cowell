@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cult of PiN Demo - Exploratory Game QA Case Study (PC)</title>
+<meta name="description" content="Exploratory QA case study on the Cult of PiN demo (PC, v0.11). Focused on system interaction, timing behaviour, ritual clarity, and progression flow under real gameplay conditions." />
+
+<meta property="og:title" content="Cult of PiN - Exploratory QA Case Study (PC)" />
+<meta property="og:description" content="Exploratory QA pass on the Cult of PiN demo focusing on system interaction, timing, clarity, and progression under real gameplay conditions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/" />
+<link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/" />
+
+<link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  /* hero banner */
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:left center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{
+      box-shadow:
+        0 0 14px rgba(0,255,240,0.28),
+        0 0 28px rgba(0,255,240,0.16),
+        0 0 52px rgba(0,255,240,0.10);
+    }
+    50%{
+      box-shadow:
+        0 0 22px rgba(0,255,240,0.42),
+        0 0 42px rgba(0,255,240,0.24),
+        0 0 72px rgba(0,255,240,0.14);
+    }
+    100%{
+      box-shadow:
+        0 0 14px rgba(0,255,240,0.28),
+        0 0 28px rgba(0,255,240,0.16),
+        0 0 52px rgba(0,255,240,0.10);
+    }
+  }
+
+  /* page spacing */
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+  details + *{ margin-top:16px !important; }
+
+  /* CTA spacing */
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  /* 3-up grid */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  /* tables */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  /* comparison table thumbs */
+  .table-compare td:last-child{ width:190px; }
+  .table-compare td:last-child a,
+  .table-compare td:last-child img{ display:block; }
+
+  .table-compare td:last-child img{
+    width:160px;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+
+  .table-compare td:last-child img.square{
+    width:120px;
+    height:120px;
+  }
+
+  /* embeds / details */
+  .details-btn{
+    display:inline-block;
+    padding:12px 18px;
+    border-radius:12px;
+    background:#0d1117;
+    border:1px solid #2b2f36;
+    color:#14b8a6;
+    font-weight:700;
+    letter-spacing:.2px;
+    box-shadow:0 2px 10px rgba(0,0,0,.25);
+    cursor:pointer;
+    transition:background .15s ease,color .15s ease;
+  }
+
+  .details-btn:hover{
+    background:#14b8a6;
+    color:#0b0f14;
+  }
+
+  details summary{ list-style:none; }
+  details summary::-webkit-details-marker{ display:none; }
+  .details-btn::before{ content:"▶ "; }
+  details[open] .details-btn::before{ content:"▼ "; }
+
+  .embed{
+    position:relative;
+    padding-top:56.25%;
+    margin:12px 0 18px !important;
+  }
+
+  .embed>iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+
+  /* helper text */
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- Hero -->
+    <header class="hero">
+      <!-- Replace image path if needed -->
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/chefs-shift/chefs-shift-banner.png" alt="The Chef's Shift Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Game QA Portfolio hub</a>
+    </p>
+
+ h1>🎮 Cult of PiN - Live Demo Exploratory QA Case Study (PC)</h1>
+<p class="meta">Tested: 26 Apr 2026</p>
+
+<section aria-labelledby="about-this-work">
+  <h2 id="about-this-work">🧾 About this work</h2>
+  <ul>
+    <li><strong>Author:</strong> Kelina Cowell - Junior QA Tester (Games)</li>
+    <li><strong>Context:</strong> Self-directed Game QA portfolio project</li>
+    <li><strong>Timebox:</strong> Short focused demo pass</li>
+    <li><strong>Platform:</strong> PC</li>
+    <li><strong>Build:</strong> v0.11 Demo</li>
+    <li><strong>Scope:</strong> Exploratory QA focused on clarity, ritual systems, timing behaviour, system stacking, and progression flow</li>
+    <li><strong>Focus:</strong> Player-facing clarity, overlapping systems, and stability under real gameplay conditions</li>
+  </ul>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/#case-study",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/projects/cult-of-pin/",
+  "name": "Cult of PiN: Live Demo Exploratory QA Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Cult of PiN" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Demo build testing" },
+    { "@type": "Thing", "name": "System interaction testing" },
+    { "@type": "Thing", "name": "Timing and state transition testing" },
+    { "@type": "Thing", "name": "UI clarity" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "demo build testing",
+    "system interaction testing",
+    "timing behaviour",
+    "state transitions",
+    "ritual mechanics",
+    "UI clarity",
+    "visual feedback",
+    "cause and effect feedback",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC" },
+    { "@type": "PropertyValue", "name": "Build", "value": "v0.11 Demo" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused demo pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-04-26" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Clarity, ritual systems, timing behaviour, system stacking, and progression flow" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven exploratory QA focused on high-risk systems under real gameplay conditions" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "Session notes, bug log, risk matrix, screenshots, and linked video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "1" }
+  ],
+  "hasPart": [
+    {
+      "@type": "ItemList",
+      "name": "Skills demonstrated",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Exploratory QA" },
+        { "@type": "ListItem", "position": 2, "name": "Risk-based test scoping" },
+        { "@type": "ListItem", "position": 3, "name": "System interaction testing" },
+        { "@type": "ListItem", "position": 4, "name": "Timing and state transition testing" },
+        { "@type": "ListItem", "position": 5, "name": "Progression flow validation" },
+        { "@type": "ListItem", "position": 6, "name": "UI clarity and visual feedback analysis" },
+        { "@type": "ListItem", "position": 7, "name": "Bug reporting with reproducible steps" },
+        { "@type": "ListItem", "position": 8, "name": "Session-based documentation and traceability" }
+      ]
+    }
+  ]
+}
+</script>
+
+<h2>Introduction</h2>
+
+<p>
+  This case study is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">game QA portfolio</a>.
+</p>
+
+<p>
+  This project is a short exploratory QA pass on the <em>Cult of PiN</em> demo, tested on PC using build v0.11. The goal was to evaluate how clearly the game communicates its ritual systems, how well overlapping systems behave under chaotic gameplay conditions, and whether the run flow remains stable from start to completion.
+</p>
+
+<p>
+  Testing was charter-driven and risk-based rather than exhaustive. The goal was not full regression or full content coverage, but to focus on high-risk areas in a system-heavy roguelike pinball game where multiple mechanics can overlap quickly.
+</p>
+
+<p>
+  I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, and STAR summary.
+</p>
+
+<table>
+  <thead>
+    <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cult of PiN</td>
+      <td>PC, v0.11 Demo</td>
+      <td>
+        Charter-driven exploratory QA focused on ritual clarity, system interaction, timing behaviour, visual feedback, and progression flow under real gameplay conditions.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="grid-3">
+  <section class="card">
+    <h3>🎯 Goal</h3>
+    <p>
+      Evaluate a live demo build using short, focused exploratory sessions targeting the highest-risk systems: rituals, overlapping effects, timing transitions, and end-to-end run flow.
+    </p>
+  </section>
+
+  <section class="card">
+    <h3>🧭 Focus Areas</h3>
+    <ul>
+      <li>First-time player clarity and UI feedback</li>
+      <li>Ritual system behaviour and communication</li>
+      <li>Timing and state transitions under pressure</li>
+      <li>System stacking and overlapping effects</li>
+      <li>Progression and run flow integrity</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h3>📄 Deliverables</h3>
+    <ul>
+      <li>QA workbook with README, session notes, bug log, risk matrix, and STAR summary</li>
+      <li>One-line findings summary for quick review</li>
+      <li>Bug log with reproducible steps and evidence links</li>
+      <li>Short gameplay clips and screenshots used as supporting evidence</li>
+    </ul>
+  </section>
+</div>
+
+<hr>
+
+<h2 id="metrics">📊 Metrics</h2>
+<table>
+  <thead>
+    <tr><th>Metric</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Total Sessions Logged</td><td>5</td></tr>
+    <tr><td>Total Bugs Logged</td><td>1</td></tr>
+    <tr><td>Critical</td><td>0</td></tr>
+    <tr><td>High</td><td>0</td></tr>
+    <tr><td>Medium</td><td>0</td></tr>
+    <tr><td>Low</td><td>1</td></tr>
+    <tr><td>Primary Risk Area</td><td>Player-facing clarity under overlapping systems</td></tr>
+    <tr><td>Repro Rate</td><td>Spare Change colour mismatch = 100%</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2 id="star-summary">⭐ STAR Summary - Cult of PiN Demo Exploratory QA</h2>
+
+<p><strong>Situation:</strong> Short, self-directed exploratory QA pass on the <strong>Cult of PiN</strong> demo, a system-heavy roguelike pinball game where rituals, multipliers, multiball, and boss mechanics can overlap quickly during play.</p>
+
+<p><strong>Task:</strong> Validate high-risk areas in the demo build, focusing on clarity, ritual behaviour, timing and state transitions, system stacking, and progression flow.</p>
+
+<p><strong>Action:</strong> Created a charter-driven QA workbook and executed 5 focused sessions. Testing prioritised real gameplay conditions over exhaustive coverage, with evidence captured through screenshots and short gameplay clips. Bugs were recorded in a structured Bug Log rather than Jira.</p>
+
+<p><strong>Result:</strong> Logged 1 low-severity visual consistency issue. No timing, system interaction, or progression defects were observed. The main project finding was that the game is mechanically stable under pressure, but player-facing clarity weakens when multiple systems overlap.</p>
+
+<hr>
+
+<h2>📷 Evidence &amp; Media</h2>
+
+<p class="method-note">These artefacts support the project findings:</p>
+
+<ul class="method-note">
+  <li>QA workbook with session notes, risk matrix, bug log, and summaries</li>
+  <li>Screenshots showing ritual UI and gameplay effect comparisons</li>
+  <li>Short clip showing overlapping systems during chaotic gameplay</li>
+</ul>
+
+<table>
+  <thead><tr><th>Type</th><th>File / Link</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>QA Workbook</strong></td>
+      <td><a href="#">Open Workbook</a></td>
+    </tr>
+    <tr>
+      <td><strong>System Overlap Clip</strong></td>
+      <td><a href="#">Open Video Evidence</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2 id="core-findings">📌 Core Project Findings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Finding</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clarity &amp; Feedback</td>
+      <td>Core systems such as rituals, glyphs, and upgrades lack clear explanation and feedback, increasing cognitive load.</td>
+      <td>S001 findings + screenshots</td>
+    </tr>
+    <tr>
+      <td>Ritual System</td>
+      <td>Ritual mechanics function correctly but are not clearly communicated, requiring player inference.</td>
+      <td>S002 findings + ritual progress screenshots</td>
+    </tr>
+    <tr>
+      <td>Timing &amp; Transitions</td>
+      <td>No timing defects were observed. Systems behaved consistently under pressure.</td>
+      <td>S003 session + overlap clip</td>
+    </tr>
+    <tr>
+      <td>System Overlap</td>
+      <td>Multiple systems trigger correctly but lack clear cause-and-effect feedback during high overlap.</td>
+      <td>S003 overlap clip</td>
+    </tr>
+    <tr>
+      <td>System Stacking</td>
+      <td>Active systems such as rituals, multiball, and multipliers interact consistently with no conflicts or scaling issues.</td>
+      <td>S004 session</td>
+    </tr>
+    <tr>
+      <td>Progression &amp; Run Flow</td>
+      <td>Run flow from start to completion is consistent, with reliable progression, rewards, and clean transitions.</td>
+      <td>S005 session</td>
+    </tr>
+    <tr>
+      <td>Visual Consistency</td>
+      <td>Spare Change effect colour does not match UI colour coding, reducing clarity during gameplay.</td>
+      <td>S004 bug + screenshots</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>🐞 Bug Logged</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Severity</th>
+      <th>Repro</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>S004_C01_B01</td>
+      <td>Spare Change effect colour does not match UI colour coding</td>
+      <td>Low</td>
+      <td>100%</td>
+      <td>S004_C01 screenshots</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="method-note">
+  This was logged as a visual feedback issue rather than a mechanics defect. Rituals establish clear colour mapping between UI and in-game effects, but Spare Change breaks that mapping by appearing purple in the HUD while using red and yellow gameplay effects.
+</p>
+
+<hr>
+
+<h2 id="results">📈 Results</h2>
+
+<ul>
+  <li>Completed 5 focused exploratory QA sessions on the <em>Cult of PiN</em> demo.</li>
+  <li>Logged 1 low-severity visual consistency bug with 100% repro.</li>
+  <li>Confirmed no timing, system interaction, or progression flow defects during tested conditions.</li>
+  <li>Identified clarity and feedback as the main player-facing weakness.</li>
+  <li>Confirmed that overlapping systems can function correctly while still reducing player understanding.</li>
+</ul>
+
+<hr>
+
+<h2 id="what-i-learned">🧠 What I learned</h2>
+
+<ul>
+  <li>
+    <strong>Stable systems can still create player-facing confusion.</strong>
+    The game’s mechanics behaved consistently, but feedback did not always scale well when multiple systems overlapped.
+  </li>
+
+  <li>
+    <strong>Not every finding needs to become a bug.</strong>
+    Some observations were better recorded as session findings rather than forced into defect reports.
+  </li>
+
+  <li>
+    <strong>Colour coding matters in fast gameplay.</strong>
+    Consistent visual language helps players recognise effects quickly, especially during chaotic moments.
+  </li>
+
+  <li>
+    <strong>Exploratory QA still needs structure.</strong>
+    Charters helped keep testing focused without turning a short demo pass into fake exhaustive coverage.
+  </li>
+
+  <li>
+    <strong>Knowing when to stop testing is part of QA judgment.</strong>
+    After validating clarity, timing, stacking, and progression, further testing would have added more noise than value.
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="conclusion">🔚 Conclusion</h2>
+
+<p>
+  This short exploratory QA pass on <em>Cult of PiN</em> found that the demo is mechanically stable across the tested timing, stacking, and progression areas. No timing defects, interaction conflicts, or progression flow failures were observed.
+</p>
+
+<p>
+  The main weakness was player-facing clarity. Rituals and overlapping systems often function correctly, but the game does not always make cause-and-effect clear during chaotic play. The logged Spare Change colour mismatch reinforced this wider theme by showing how inconsistent visual mapping can reduce quick recognition during gameplay.
+</p>
+
+<p>
+  Overall, this project demonstrates risk-based exploratory testing, clear separation between bugs and findings, and practical evidence capture for a short live demo build.
+</p>
+
+<p class="cta-row" style="text-align:center;">
+  <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+  <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+  <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+</p>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
