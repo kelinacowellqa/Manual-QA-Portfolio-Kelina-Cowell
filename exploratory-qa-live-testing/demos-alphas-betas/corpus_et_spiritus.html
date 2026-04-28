@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Corpus Et Spiritus - Targeted Game QA Pass (PC)</title>
+  <meta name="description" content="Targeted QA pass on Corpus Et Spiritus (PC, build 2026.03.27.1), focused on card resolution, input handling, card lifecycle clarity, and system stability under rapid interaction." />
+
+  <meta property="og:title" content="Corpus Et Spiritus - Targeted QA Pass (PC)" />
+  <meta property="og:description" content="Focused QA pass on Corpus Et Spiritus covering card systems, input handling, card lifecycle clarity, and system stability under rapid interaction." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus-et-spiritus/" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus-et-spiritus/" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{
+      box-shadow:
+        0 0 14px rgba(0,255,240,0.28),
+        0 0 28px rgba(0,255,240,0.16),
+        0 0 52px rgba(0,255,240,0.10);
+    }
+    50%{
+      box-shadow:
+        0 0 22px rgba(0,255,240,0.42),
+        0 0 42px rgba(0,255,240,0.24),
+        0 0 72px rgba(0,255,240,0.14);
+    }
+    100%{
+      box-shadow:
+        0 0 14px rgba(0,255,240,0.28),
+        0 0 28px rgba(0,255,240,0.16),
+        0 0 52px rgba(0,255,240,0.10);
+    }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .embed{
+    position:relative;
+    padding-top:56.25%;
+    margin:12px 0 18px !important;
+  }
+
+  .embed>iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus-et-spiritus-banner.jpg" alt="Corpus Et Spiritus Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Game QA Portfolio hub</a>
+    </p>
+
+    <h1>Corpus Et Spiritus - Targeted QA Pass: Card Systems &amp; State Integrity (PC)</h1>
+    <p class="meta">Tested: 28 Apr 2026</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 About this work</h2>
+      <ul>
+        <li><strong>Author:</strong> Kelina Cowell - QA Tester (Games)</li>
+        <li><strong>Context:</strong> Self-directed Game QA portfolio mini-project</li>
+        <li><strong>Timebox:</strong> Short focused QA pass</li>
+        <li><strong>Platform:</strong> PC</li>
+        <li><strong>Build:</strong> 2026.03.27.1</li>
+        <li><strong>Scope:</strong> Card resolution, input handling, card lifecycle clarity, and system stability under rapid interaction</li>
+        <li><strong>Focus:</strong> Player-facing clarity, input reliability, and card behaviour under real gameplay pressure</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus_et_spiritus.html",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus_et_spiritus.html ",
+  "name": "Corpus Et Spiritus: Targeted QA Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Corpus Et Spiritus" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Card system testing" },
+    { "@type": "Thing", "name": "Input handling" },
+    { "@type": "Thing", "name": "State integrity" },
+    { "@type": "Thing", "name": "Player-facing clarity" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "card system testing",
+    "input handling",
+    "click and drag interaction",
+    "card lifecycle",
+    "state integrity",
+    "player-facing clarity",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC" },
+    { "@type": "PropertyValue", "name": "Build", "value": "2026.03.27.1" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-04-28" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Card resolution, input handling, card lifecycle clarity, and system stability under rapid interaction" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven exploratory QA focused on high-risk card interaction behaviour under real gameplay conditions" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "Session notes, bug log, risk matrix, STAR summary, player experience notes, and linked video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "1" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This mini-project is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a> work.
+    </p>
+
+    <p>
+      These projects focus on short, real-world testing scenarios across demos, early builds, live updates, and active indie games. The goal is not exhaustive coverage, but fast, practical QA judgement applied to current systems that may still be evolving.
+    </p>
+
+    <p>
+      This project is a targeted QA pass on <em>Corpus Et Spiritus</em>, tested on PC using build 2026.03.27.1. The focus was card resolution, card lifecycle behaviour, input handling, and player-facing clarity during rapid and repeated interactions.
+    </p>
+
+    <p>
+      Testing was charter-driven and risk-based. I focused on whether card actions resolved cleanly, whether rapid inputs could destabilise interaction behaviour, and whether the game clearly communicated card availability states such as playable vs recyclable.
+    </p>
+
+    <p>
+      I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, STAR summary, and player experience notes.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Corpus Et Spiritus</td>
+          <td>PC, build 2026.03.27.1</td>
+          <td>
+            Targeted QA pass focused on card resolution, input handling, card lifecycle clarity, and system stability under rapid gameplay interaction.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Validate whether card interactions remain stable under sequential, rapid, and mixed inputs, and identify whether any interaction patterns cause inconsistent card activation or loss of player control.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Card resolution and state integrity</li>
+          <li>Click vs drag input behaviour</li>
+          <li>Rapid and repeated interaction pressure</li>
+          <li>Card lifecycle clarity</li>
+          <li>Player understanding of playable vs recyclable states</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and STAR summary</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Bug log with reproducible steps and evidence link</li>
+          <li>Player experience notes covering clarity and input friction</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>2</td></tr>
+        <tr><td>Total Bugs Logged</td><td>1</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>0</td></tr>
+        <tr><td>Medium</td><td>1</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Primary Risk Area</td><td>Input reliability and card lifecycle clarity under rapid interaction</td></tr>
+        <tr><td>Repro Rate</td><td>Intermittent, occurs under rapid repeated input</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="star-summary">⭐ STAR Summary - Corpus Et Spiritus Targeted QA Pass</h2>
+
+    <p><strong>Situation:</strong> Short, self-directed QA mini-project on <strong>Corpus Et Spiritus</strong>, a card-based system game where player actions rely on card resolution, resource changes, and clear interaction states.</p>
+
+    <p><strong>Task:</strong> Validate whether card interactions remained stable under sequential, rapid, and mixed inputs, with particular attention to click vs drag behaviour and card lifecycle clarity.</p>
+
+    <p><strong>Action:</strong> Created a focused QA workbook and executed 2 targeted sessions. Testing started with card resolution under normal and rapid play, then escalated into repeated click and drag interactions to stress input handling and card state behaviour.</p>
+
+    <p><strong>Result:</strong> Card execution remained stable under sequential and rapid play, with no unresolved actions or state breaks observed. One medium-severity input handling issue was logged where rapid clicking caused failed triggers and unintended multi-card activation on subsequent drag. A separate clarity finding was recorded around playable vs recyclable card states.</p>
+
+    <hr>
+
+    <h2>📷 Evidence &amp; Media</h2>
+
+    <p class="method-note">These artefacts support the project findings and provide traceability from testing to outcomes:</p>
+
+    <ul class="method-note">
+      <li>QA workbook containing session notes, risk matrix, bug log, STAR summary, and player experience notes</li>
+      <li>Short gameplay clip showing B001 input instability during card interaction</li>
+      <li>Linked evidence within the workbook supporting the logged bug and clarity findings</li>
+    </ul>
+
+    <table>
+      <thead><tr><th>Type</th><th>File / Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="YOUR_GOOGLE_SHEET_LINK_HERE" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="YOUR_PDF_LINK_HERE" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>B001 Evidence Clip</strong></td>
+          <td>
+            <a href="YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noopener">
+              Watch clip: Input instability during card interaction
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Core Project Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Card Resolution &amp; State Integrity</td>
+          <td>Card execution is stable under sequential and rapid play with no state breaks or unresolved actions.</td>
+          <td>S001 session results</td>
+        </tr>
+        <tr>
+          <td>Input Handling: Click vs Drag</td>
+          <td>Rapid clicking introduces input instability, causing failed triggers and unintended multi-card activation on subsequent drag.</td>
+          <td>B001 clip</td>
+        </tr>
+        <tr>
+          <td>Card Lifecycle Clarity</td>
+          <td>Card state transitions, especially playable vs recyclable states, are not clearly communicated, reducing player understanding despite consistent behaviour.</td>
+          <td>S001 and S002 observations</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🐞 Bug Logged</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>B001</td>
+          <td>Rapid clicking causes input instability and inconsistent card activation on subsequent drag</td>
+          <td>Medium</td>
+          <td>Intermittent, occurs under rapid repeated input</td>
+          <td>
+            <a href="YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noopener">
+              B001 clip
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note">
+      This was logged as an input handling issue. Rapid clicking causes cards to vibrate and not trigger. Subsequent drag interactions may fail or trigger multiple cards unexpectedly, suggesting conflicting input states between click and drag behaviour.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Onboarding / Tutorial Visibility</td>
+          <td>Tutorial should be clearly surfaced and positioned as the starting point for new players.</td>
+          <td>Tutorial exists but is not clearly presented as the required or recommended starting step. Player can enter gameplay without understanding core systems.</td>
+          <td>Discoverability</td>
+          <td>Players may skip the tutorial and enter gameplay without sufficient understanding, leading to confusion and poor first impressions.</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>Core Objective Clarity</td>
+          <td>Game should communicate a clear goal, win condition, or progression direction.</td>
+          <td>Core mechanics are explained, but the overall purpose of gameplay and player objective is unclear.</td>
+          <td>Comprehension</td>
+          <td>Player may engage with systems without understanding purpose, reducing motivation and decision quality.</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Card Availability / Lifecycle</td>
+          <td>Card availability state should be clearly communicated and understandable to the player.</td>
+          <td>Cards become greyed out and only recyclable without clear explanation of the condition or trigger causing the state change.</td>
+          <td>Comprehension</td>
+          <td>Player cannot understand why cards become unusable, reducing predictability and decision-making.</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Rapid Interaction</td>
+          <td>Inputs should trigger consistently, and each interaction should only activate the selected card.</td>
+          <td>Rapid clicking causes cards to fail to trigger. Subsequent drag interactions may fail or activate multiple cards unexpectedly.</td>
+          <td>Responsiveness</td>
+          <td>Reduces player trust in input reliability and makes fast interactions feel inconsistent or uncontrollable.</td>
+          <td>Medium</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 2 focused QA sessions on <em>Corpus Et Spiritus</em>.</li>
+      <li>Logged 1 medium-severity input handling bug with supporting video evidence.</li>
+      <li>Confirmed card resolution remained stable during sequential and rapid play.</li>
+      <li>Identified card lifecycle clarity as a player-facing weakness.</li>
+      <li>Confirmed no performance degradation, state desync, or permanent loss of control during tested conditions.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="what-i-learned">🧠 What I learned</h2>
+
+    <ul>
+      <li>
+        <strong>Stable systems can still create player-facing uncertainty.</strong>
+        Card resolution behaved consistently, but card availability states were not clearly explained.
+      </li>
+
+      <li>
+        <strong>Input pressure can reveal issues that normal play may miss.</strong>
+        The card system behaved correctly under normal play, but rapid clicking exposed a conflict between click and drag interaction states.
+      </li>
+
+      <li>
+        <strong>Not every planned charter needs to stay in scope.</strong>
+        The final test focus was adjusted to match the accessible systems and meaningful risks within the timebox.
+      </li>
+
+      <li>
+        <strong>Player understanding is part of system quality.</strong>
+        If a mechanic works but the player cannot understand why, the experience still suffers.
+      </li>
+
+      <li>
+        <strong>Short QA passes still need traceability.</strong>
+        Linking charters, sessions, bug reports, risk areas, and evidence made the project reviewable without turning it into a full case study.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 Conclusion</h2>
+
+    <p>
+      This targeted QA pass on <em>Corpus Et Spiritus</em> found that card resolution is technically stable under the tested conditions. Cards resolved cleanly during sequential and rapid play, and no state breaks, unresolved actions, or permanent loss of control were observed.
+    </p>
+
+    <p>
+      The main defect identified was an input handling issue under rapid interaction. Repeated clicking caused cards to vibrate and fail to trigger, with later drag interactions sometimes failing or activating multiple cards unexpectedly.
+    </p>
+
+    <p>
+      The main player-facing weakness was clarity. Card lifecycle states, especially playable vs recyclable behaviour, were consistent but not clearly communicated, reducing player predictability and confidence during decision-making.
+    </p>
+
+    <p>
+      Overall, this project demonstrates a short, focused QA pass using risk-based scoping, evidence-backed bug reporting, and clear separation between technical defects and player experience findings.
+    </p>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
