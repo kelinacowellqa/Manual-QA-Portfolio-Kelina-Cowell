@@ -434,30 +434,32 @@
 
     <h2>🐞 Bug Logged</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Severity</th>
-          <th>Repro</th>
-          <th>Evidence</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>B001</td>
-          <td>Rapid clicking causes input instability and inconsistent card activation on subsequent drag</td>
-          <td>Medium</td>
-          <td>Intermittent, occurs under rapid repeated input</td>
-          <td>
-            <a href="https://youtu.be/uilHPimxV1Q" target="_blank" rel="noopener">
-              B001 clip
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <table class="table-compare">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Severity</th>
+      <th>Repro</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B001</td>
+      <td>Rapid clicking causes input instability and inconsistent card activation on subsequent drag</td>
+      <td>Medium</td>
+      <td>Intermittent, occurs under rapid repeated input</td>
+      <td>
+        <a href="https://youtu.be/uilHPimxV1Q" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/uilHPimxV1Q/hqdefault.jpg"
+               alt="B001 evidence clip thumbnail"
+               loading="lazy">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     <p class="method-note">
       This was logged as an input handling issue. Rapid clicking causes cards to vibrate and not trigger. Subsequent drag interactions may fail or trigger multiple cards unexpectedly, suggesting conflicting input states between click and drag behaviour.
