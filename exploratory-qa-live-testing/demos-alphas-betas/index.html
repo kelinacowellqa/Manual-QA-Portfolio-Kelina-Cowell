@@ -227,32 +227,6 @@
         margin-left:auto;
       }
 
-        .faq-accordion details{
-    margin: 10px 0;
-    padding: 12px 14px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 12px;
-    background: rgba(255,255,255,.03);
-  }
-
-  .faq-accordion summary{
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--teal);
-    line-height: 1.4;
-    margin-bottom: 6px;
-  }
-
-  .faq-answer{
-    margin-top: 10px;
-    opacity: .95;
-  }
-
-  .faq-accordion summary:hover{
-    text-decoration: underline;
-  }
-
     footer{
       max-width:980px;
       margin:40px auto 0;
@@ -262,6 +236,61 @@
       opacity:.8;
       border-top:1px solid rgba(255,255,255,.05)
     }
+
+      .faq-accordion{
+  margin-top:28px;
+}
+
+.faq-accordion details{
+  margin:12px 0;
+  padding:0;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;
+  background:rgba(255,255,255,.035);
+  overflow:hidden;
+}
+
+.faq-accordion summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:800;
+  font-size:1.05rem;
+  color:var(--teal);
+  padding:16px 20px;
+  line-height:1.4;
+}
+
+.faq-accordion summary::-webkit-details-marker{
+  display:none;
+}
+
+.faq-accordion summary::before{
+  content:"▸";
+  display:inline-block;
+  margin-right:10px;
+  color:var(--teal);
+  transition:transform .2s ease;
+}
+
+.faq-accordion details[open] summary::before{
+  transform:rotate(90deg);
+}
+
+.faq-accordion details[open] summary{
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,255,240,.04);
+}
+
+.faq-answer{
+  padding:16px 20px 18px;
+  color:var(--text);
+  line-height:1.65;
+}
+
+.faq-accordion details:hover{
+  border-color:rgba(0,255,240,.35);
+  box-shadow:0 0 22px rgba(0,255,240,.10);
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
