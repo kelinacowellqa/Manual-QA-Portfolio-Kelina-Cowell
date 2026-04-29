@@ -21,10 +21,8 @@
     --line:rgba(255,255,255,.08);
     --teal:#00fff0;
     --teal-soft:#66fff7;
-
     --thumb-width:180px;
     --thumb-height:240px;
-
     --s-1:8px;
     --s-2:12px;
     --s-3:16px;
@@ -36,8 +34,6 @@
   html,body{
     background:var(--bg);
     color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
     font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     margin:0;
     line-height:1.55;
@@ -47,12 +43,10 @@
   a:hover{color:var(--teal-soft)}
   strong{color:inherit}
   h1,h2,h3,h4,h5,h6{color:var(--teal)}
-  hr{border:0;border-top:1px solid var(--teal);opacity:.35}
+  hr{border:0;border-top:1px solid var(--teal);opacity:.35;margin-block:var(--s-5)}
 
   .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-  @media (min-width:1400px){
-    .wrap{max-width:1280px}
-  }
+  @media (min-width:1400px){.wrap{max-width:1280px}}
 
   .hero{max-width:1100px;margin:30px auto 20px;padding:0 18px;text-align:center}
   .hero img{display:block;max-width:100%;height:auto;margin:0 auto 24px;border-radius:14px}
@@ -67,6 +61,7 @@
     font-weight:700;
     text-decoration:none;
   }
+
   .cta-btn:hover{background:var(--teal);color:var(--bg)}
 
   h1{margin-block:var(--s-5) var(--s-3)}
@@ -74,7 +69,6 @@
   h3{margin-block:var(--s-4) var(--s-2)}
   p,ul,ol{margin-block:var(--s-2) var(--s-3)}
   li + li{margin-top:var(--s-1)}
-  hr{margin-block:var(--s-5)}
 
   .project-block,
   .section,
@@ -90,6 +84,7 @@
     gap:22px;
     margin-top:12px;
   }
+
   .intro .headshot{
     flex:0 0 264px;
     width:264px;
@@ -97,6 +92,7 @@
     display:block;
     margin:0;
   }
+
   .intro > div{
     flex:1;
     min-width:0;
@@ -136,10 +132,6 @@
     outline-offset:2px;
   }
 
-  .project-block:hover:focus-within{
-    filter:drop-shadow(0 0 34px rgba(15,181,201,.45));
-  }
-
   .project-block em{color:var(--muted)}
   .project-block p{margin:6px 0 8px}
 
@@ -150,9 +142,7 @@
     align-items:start;
   }
 
-  .project-block.with-thumb .project-main{
-    min-width:0;
-  }
+  .project-block.with-thumb .project-main{min-width:0}
 
   .project-block.with-thumb .thumb{
     display:block;
@@ -171,9 +161,7 @@
     padding-left:0;
   }
 
-  .card-bullets li{
-    margin-bottom:10px;
-  }
+  .card-bullets li{margin-bottom:10px}
 
   .cta{
     margin-top:14px;
@@ -262,6 +250,28 @@
     line-height:1.65;
   }
 
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+
   footer{
     max-width:980px;
     margin:40px auto 0;
@@ -313,30 +323,9 @@
     .faq-accordion summary::before{
       transition:none;
     }
-
-        .service-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-
-    .service-card.hero-copy{
-  max-width:900px;
-  margin:0 auto;
-  padding:20px 24px;
-  text-align:center;
-}
-
-.service-card.hero-copy h2{
-  margin-top:0;
-}
-
-.service-card.hero-copy .lead{
-  margin-bottom:20px;
-}
+  }
 </style>
-
+  
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
@@ -367,7 +356,7 @@
       <section class="section" aria-labelledby="about-title">
         <h1 id="about-title">Demos, Alphas &amp; Betas - Live Testing Work</h1>
 
-        <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -375,42 +364,69 @@
       "@type": "Person",
       "@id": "https://kelinacowellqa.github.io/#kelina",
       "name": "Kelina Cowell",
-      "jobTitle": "Junior QA Tester (Games)",
+      "jobTitle": "Game QA Tester",
       "url": "https://kelinacowellqa.github.io/",
       "sameAs": [
         "https://www.linkedin.com/in/kelina-cowell-qa-tester/"
       ],
       "knowsAbout": [
         "Game QA",
-        "Manual testing",
-        "Exploratory testing",
-        "Live testing",
-        "Alpha testing",
-        "Beta testing",
-        "Accessibility testing",
+        "Manual game testing",
+        "Exploratory game testing",
+        "Indie game testing",
+        "Demo testing",
+        "Early build testing",
+        "Live update testing",
+        "Accessibility testing for games",
+        "Player experience testing",
+        "Onboarding clarity",
+        "Input and control testing",
         "Bug reporting",
-        "Evidence capture"
+        "Video evidence capture"
       ]
     },
     {
       "@type": "WebSite",
       "@id": "https://kelinacowellqa.github.io/#website",
       "url": "https://kelinacowellqa.github.io/",
-      "name": "Kelina Cowell - Game QA Portfolio",
+      "name": "Kelina Cowell - Game QA Testing Portfolio",
       "inLanguage": "en-GB",
-      "publisher": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+      "publisher": {
+        "@id": "https://kelinacowellqa.github.io/#kelina"
+      }
     },
     {
       "@type": "CollectionPage",
       "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/#portfolio",
       "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/",
-      "name": "Demos, Alphas & Betas – Live Testing Work - Kelina Cowell",
-      "isPartOf": { "@id": "https://kelinacowellqa.github.io/#website" },
-      "about": { "@id": "https://kelinacowellqa.github.io/#kelina" }
+      "name": "Game QA Testing Samples & Case Studies - Kelina Cowell",
+      "description": "Game QA testing samples showing practical testing for demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and developer-ready reports.",
+      "isPartOf": {
+        "@id": "https://kelinacowellqa.github.io/#website"
+      },
+      "about": {
+        "@id": "https://kelinacowellqa.github.io/#kelina"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Solo game developers, indie game studios, QA leads, recruiters"
+      },
+      "keywords": [
+        "game QA testing samples",
+        "game QA case studies",
+        "indie game testing",
+        "solo developer game testing",
+        "demo testing",
+        "early build testing",
+        "live update testing",
+        "accessibility testing",
+        "player experience testing",
+        "bug reports with video evidence"
+      ]
     }
   ]
 }
-        </script>
+</script>
 
         <div class="intro">
           <img
@@ -422,19 +438,21 @@
             decoding="async"
           />
 
-       <div>
-  <p class="card-intro">
-    If you have a demo, early build, live update, or small indie game that needs another set of eyes, this page shows the kind of testing I can provide.
-  </p>
+           <div>
+            <p class="card-intro">
+              If you have a demo, early build, live update, or small indie game that needs another set of eyes, this page shows the kind of testing I can provide.
+            </p>
 
-  <p class="card-intro">
-    I focus on the problems that affect players directly: confusing onboarding, unclear controls, broken feedback, accessibility barriers, inconsistent systems, progression issues, and bugs that are hard to spot when you already know how your own game works.
-  </p>
+            <p class="card-intro">
+              I focus on the problems that affect players directly: confusing onboarding, unclear controls, broken feedback, accessibility barriers, inconsistent systems, progression issues, and bugs that are hard to spot when you already know how your own game works.
+            </p>
 
-  <p class="card-intro">
-    The examples below show how I test, document findings, capture evidence, and turn messy gameplay problems into clear notes a developer can actually use.
-  </p>
-</div>
+            <p class="card-intro">
+              The examples below show how I test, document findings, capture evidence, and turn messy gameplay problems into clear notes a developer can actually use.
+            </p>
+          </div>
+        </div>
+      </section>
           
       <hr>
 
