@@ -313,7 +313,28 @@
     .faq-accordion summary::before{
       transition:none;
     }
-  }
+
+        .service-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+    .service-card.hero-copy{
+  max-width:900px;
+  margin:0 auto;
+  padding:20px 24px;
+  text-align:center;
+}
+
+.service-card.hero-copy h2{
+  margin-top:0;
+}
+
+.service-card.hero-copy .lead{
+  margin-bottom:20px;
+}
 </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -401,25 +422,23 @@
             decoding="async"
           />
 
-          <div>
-            <p class="card-intro">
-              This page collects shorter-form QA work completed on demos, alpha builds, beta builds, limited-access tools, and other live test environments where usability, stability, and real-world behaviour matter more than polished presentation.
-            </p>
+       <div>
+  <p class="card-intro">
+    If you have a demo, early build, live update, or small indie game that needs another set of eyes, this page shows the kind of testing I can provide.
+  </p>
 
-            <p class="card-intro">
-              The focus here is on practical testing in messier conditions: identifying player-facing defects quickly, spotting friction in onboarding or progression, and documenting issues clearly enough to be actionable.
-            </p>
+  <p class="card-intro">
+    I focus on the problems that affect players directly: confusing onboarding, unclear controls, broken feedback, accessibility barriers, inconsistent systems, progression issues, and bugs that are hard to spot when you already know how your own game works.
+  </p>
 
-            <p class="card-intro">
-              These entries are intentionally lighter than my main case studies. The goal is to show consistent hands-on QA activity, adaptable bug hunting, and useful reporting across active or evolving builds.
-            </p>
-          </div>
-        </div>
-      </section>
-
+  <p class="card-intro">
+    The examples below show how I test, document findings, capture evidence, and turn messy gameplay problems into clear notes a developer can actually use.
+  </p>
+</div>
+          
       <hr>
 
-      <h2 id="projects">Live Testing Lineup</h2>
+      <h2 id="projects">Game QA Testing Samples & Case Studies</h2>
 
       <section class="project-block with-thumb">
   <div class="project-main">
@@ -593,25 +612,41 @@
   </details>
 </section>
 
-      <hr>
+ <hr>
 
-      <h2 id="summary"><span aria-hidden="true">📊</span> Summary</h2>
+<section class="section" aria-labelledby="contact">
+  <div class="service-card hero-copy">
 
-      <p>
-        This page covers the live, lighter, and less controlled side of my QA work: short-form testing on evolving builds, real-user workflows, usability friction, stability risks, and practical issue reporting. It complements my main portfolio by showing consistent hands-on testing outside larger flagship case studies.
-      </p>
+    <h2 id="contact">Need Someone to Test Your Game?</h2>
 
-    </div>
-
-    <p class="cta-row" style="text-align:center;">
-      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
-      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
-      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Back to Exploratory QA &amp; Live Testing</a>
+    <p class="lead">
+      If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
     </p>
 
-  </main>
+    <div class="cta-row">
+      <a class="cta-btn primary-cta" href="YOUR_DISCORD_LINK" target="_blank" rel="noopener">
+        Message Me on Discord
+      </a>
 
-  <hr>
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+        Email Me
+      </a>
+
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+        LinkedIn
+      </a>
+
+      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">
+        See QA Work Examples
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+    <hr>
 
   <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio 📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
 </body>
