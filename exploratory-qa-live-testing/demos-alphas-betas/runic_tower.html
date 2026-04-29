@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Runic Tower - Targeted QA Pass (PC)</title>
+  <meta name="description" content="Targeted QA pass on Runic Tower (PC, v1.7.0.0), focused on onboarding clarity, ability feedback, system behaviour, Background and Aspect consistency, and player-facing system clarity." />
+
+  <meta property="og:title" content="Runic Tower - Targeted QA Pass (PC)" />
+  <meta property="og:description" content="Focused QA pass on Runic Tower covering onboarding clarity, ability feedback, Background and Aspect consistency, Player vs Tower assignment, and system behaviour under gameplay pressure." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower/" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower/" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="BANNER_IMAGE_HERE" alt="Runic Tower QA Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/index.html" target="_blank" rel="noopener">
+        Back to Live Testing Hub
+      </a>
+    </p>
+
+    <h1>Runic Tower - Targeted QA Pass: Onboarding, Ability Feedback &amp; System Clarity (PC)</h1>
+    <p class="meta">Tested: 29 Apr 2026</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 About this work</h2>
+      <ul>
+        <li><strong>Author:</strong> Kelina Cowell - QA Tester (Games)</li>
+        <li><strong>Context:</strong> Self-directed Game QA portfolio mini-project</li>
+        <li><strong>Timebox:</strong> Short focused QA pass</li>
+        <li><strong>Platform:</strong> PC</li>
+        <li><strong>Build:</strong> Live Build v1.7.0.0</li>
+        <li><strong>Scope:</strong> Onboarding clarity, ability feedback, Background and Aspect behaviour, Player vs Tower assignment, and system clarity under gameplay pressure</li>
+        <li><strong>Focus:</strong> Player understanding, system consistency, ability readability, and feedback clarity following recent updates</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower/",
+  "name": "Runic Tower: Targeted QA Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Runic Tower" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Onboarding clarity" },
+    { "@type": "Thing", "name": "Ability feedback" },
+    { "@type": "Thing", "name": "System clarity" },
+    { "@type": "Thing", "name": "Player-facing feedback" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "onboarding testing",
+    "ability feedback",
+    "system clarity",
+    "player-facing clarity",
+    "Background and Aspect systems",
+    "player vs tower assignment",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Live Build v1.7.0.0" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-04-29" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Onboarding clarity, ability feedback, Background and Aspect behaviour, Player vs Tower assignment, and system clarity under gameplay pressure" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven exploratory QA focused on player-facing clarity and system consistency following the v1.7 update" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "Session notes, bug log, risk matrix, one-line summary, player experience notes, and linked video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "4" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This mini-project is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a> work.
+    </p>
+
+    <p>
+      These projects focus on short, real-world testing scenarios across demos, early builds, live updates, and active indie games. The goal is not exhaustive coverage, but fast, practical QA judgement applied to current systems that may still be evolving.
+    </p>
+
+    <p>
+      This project is a targeted QA pass on <em>Runic Tower</em>, tested on PC using live build v1.7.0.0. Following the recent update, the focus was onboarding clarity, ability feedback, and how Background and Aspect systems behave under live gameplay conditions.
+    </p>
+
+    <p>
+      Testing was charter-driven and risk-based. I focused on whether new and updated systems were communicated clearly, whether active and passive ability behaviour could be understood by the player, and whether selections were reflected consistently in gameplay.
+    </p>
+
+    <p>
+      I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, STAR summary, and player experience notes.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Runic Tower</td>
+          <td>PC, live build v1.7.0.0</td>
+          <td>
+            Targeted QA pass focused on onboarding clarity, ability feedback, Background and Aspect consistency, Player vs Tower assignment, and system clarity under gameplay pressure.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Evaluate whether onboarding, abilities, and build systems are understandable to the player, and whether updated systems behave consistently during real gameplay.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Onboarding and first-time player clarity</li>
+          <li>Active vs passive ability feedback</li>
+          <li>Background and Aspect system behaviour</li>
+          <li>Player vs Tower ability assignment</li>
+          <li>Combat readability under overlapping effects</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and player experience notes</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Bug log with reproducible steps and evidence links</li>
+          <li>Short video evidence for key findings</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>2</td></tr>
+        <tr><td>Total Bugs Logged</td><td>4</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>2</td></tr>
+        <tr><td>Medium</td><td>2</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Primary Risk Area</td><td>System clarity and Background/Aspect consistency</td></tr>
+        <tr><td>Repro Rate</td><td>Varied by issue, including 3/3 and inconsistent behaviour across runs</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="star-summary">⭐ STAR Summary - Runic Tower Targeted QA Pass</h2>
+
+    <p><strong>Situation:</strong> Short, self-directed QA mini-project on <strong>Runic Tower</strong>, following a recent v1.7 update that introduced or changed tutorial behaviour, abilities, SFX/VFX, UI elements, and movement-related systems.</p>
+
+    <p><strong>Task:</strong> Assess whether onboarding, ability feedback, and updated systems communicated enough information for the player to understand core gameplay and build behaviour.</p>
+
+    <p><strong>Action:</strong> Created a focused QA workbook and executed 2 targeted sessions. Testing started with first-time player onboarding, then moved into ability feedback, Background and Aspect selections, passive vs active behaviour, and Player vs Tower assignment.</p>
+
+    <p><strong>Result:</strong> Onboarding and core input communication were weak, forcing the player to rely on settings and guesswork. Active abilities were readable in isolation, but passive behaviour, Background and Aspect mapping, and Player vs Tower assignment were unclear. Four issues were logged, including incorrect Aspect loading and inconsistent ability assignment across runs.</p>
+
+    <hr>
+
+    <h2>📷 Evidence &amp; Media</h2>
+
+    <p class="method-note">These artefacts support the project findings and provide traceability from testing to outcomes:</p>
+
+    <ul class="method-note">
+      <li>QA workbook containing session notes, risk matrix, bug log, one-line summary, STAR summary, and player experience notes</li>
+      <li>Short gameplay clips showing system clarity issues, Aspect mismatch, and Player vs Tower assignment behaviour</li>
+      <li>Linked evidence within the workbook supporting the logged bugs and core findings</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="WORKBOOK_LINK_HERE" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="PDF_LINK_HERE" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Core Project Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Onboarding</td>
+          <td>Core controls and gameplay flow are not communicated, forcing players to rely on guesswork to begin playing.</td>
+          <td>S001 session results</td>
+        </tr>
+        <tr>
+          <td>Ability Feedback</td>
+          <td>Active abilities are readable, but passive effects and system-driven behaviour are unclear and not communicated.</td>
+          <td>S002 observations</td>
+        </tr>
+        <tr>
+          <td>System Behaviour</td>
+          <td>Background and Aspect systems are inconsistent, with selections not reliably reflected in HUD or gameplay.</td>
+          <td>RT-C02-003 clip</td>
+        </tr>
+        <tr>
+          <td>Ability Assignment</td>
+          <td>Abilities are assigned between Player and Tower without clear rules or player control.</td>
+          <td>RT-C02-004 clip</td>
+        </tr>
+        <tr>
+          <td>Combat Clarity</td>
+          <td>Overlapping effects reduce clarity, making it difficult to track cause-and-effect during gameplay.</td>
+          <td>S002 observations</td>
+        </tr>
+        <tr>
+          <td>Audio Feedback</td>
+          <td>Ability audio is minimal and does not meaningfully support player understanding.</td>
+          <td>S002 observations</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RT-C02-001</td>
+          <td>[Clarity][Systems] Background and Aspect effects are not distinguishable during gameplay</td>
+          <td>Medium</td>
+          <td>3/3</td>
+          <td><a href="YOUTUBE_LINK_HERE" target="_blank" rel="noopener">View Clip</a></td>
+        </tr>
+        <tr>
+          <td>RT-C02-002</td>
+          <td>[Clarity][Systems] Background and Aspect are mapped to Passive/Active abilities without explanation</td>
+          <td>Medium</td>
+          <td>1/1</td>
+          <td><a href="YOUTUBE_LINK_HERE" target="_blank" rel="noopener">View Clip</a></td>
+        </tr>
+        <tr>
+          <td>RT-C02-003</td>
+          <td>[Functional][Systems] Selected Aspect does not match loaded Aspect in gameplay</td>
+          <td>High</td>
+          <td>1/1, requires further validation</td>
+          <td>
+            <a href="YOUTUBE_LINK_HERE" target="_blank" rel="noopener">
+              <img src="https://img.youtube.com/vi/VIDEO_ID_HERE/hqdefault.jpg"
+                   alt="RT-C02-003 evidence clip"
+                   loading="lazy"
+                   style="
+                     width:140px;
+                     height:80px;
+                     object-fit:cover;
+                     border-radius:8px;
+                     border:1px solid rgba(255,255,255,.08);
+                     box-shadow:0 4px 12px rgba(0,0,0,.3);
+                   ">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>RT-C02-004</td>
+          <td>[Functional][Systems] Aspect abilities inconsistently assigned to Player or Tower</td>
+          <td>High</td>
+          <td>Inconsistent, observed across multiple runs</td>
+          <td><a href="YOUTUBE_LINK_HERE" target="_blank" rel="noopener">View Clip</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note">
+      The strongest functional issue was RT-C02-003, where the selected Aspect did not match the Aspect loaded in gameplay. RT-C02-004 expanded the system risk by showing that ability assignment between Player and Tower was not clearly communicated and behaved inconsistently across runs.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First Launch → Initial Control Discovery</td>
+          <td>Basic controls for movement, attack, and abilities are introduced or immediately understandable through prompts or feedback.</td>
+          <td>Movement can be guessed using WASD, but no instructions are provided. Attack and ability inputs are unclear, forcing the player to open the settings menu to understand how to interact with the game.</td>
+          <td>Onboarding Failure → Missing Core Input Communication</td>
+          <td>Player cannot begin meaningful interaction without leaving gameplay. Early experience relies on guessing, creating confusion and breaking engagement flow.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>First Run → Combat &amp; Ability Use</td>
+          <td>Abilities and combat actions provide clear feedback, allowing the player to understand what actions do and how they affect gameplay.</td>
+          <td>Abilities are readable when used directly, but passive effects are not communicated. Background and Aspect systems are unclear, with effects not distinguishable and no indication of which system triggered an outcome. Behaviour is inconsistent across runs, including mismatches between selected and loaded abilities.</td>
+          <td>Feedback Clarity Failure → Ability Readability &amp; System Clarity</td>
+          <td>Player cannot reliably link input to outcome or understand how systems interact. Build decisions feel unreliable due to inconsistent behaviour, reducing confidence and clarity during gameplay.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>End of Run → Defeat Screen</td>
+          <td>Clear feedback explains why the run ended and how selected systems contributed to the outcome.</td>
+          <td>Defeated screen displays stats and ability breakdown, but includes inconsistent or unexplained ability assignment between Player and Tower, with no clear indication of what caused failure or how systems contributed to the outcome.</td>
+          <td>Feedback Failure → Unclear Failure State</td>
+          <td>Player cannot learn from failure. Results are shown without enough explanation to understand what happened during the run or how to improve.</td>
+          <td>High</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 2 focused QA sessions on <em>Runic Tower</em>.</li>
+      <li>Logged 4 issues covering onboarding, system clarity, ability mapping, and functional build-selection behaviour.</li>
+      <li>Confirmed active ability feedback is readable in isolation.</li>
+      <li>Identified passive ability behaviour as unclear and not meaningfully communicated.</li>
+      <li>Observed mismatches between selected Aspect, HUD display, and loaded gameplay behaviour.</li>
+      <li>Identified unclear and inconsistent assignment of abilities between Player and Tower.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="what-i-learned">🧠 What I learned</h2>
+
+    <ul>
+      <li>
+        <strong>Responsive input does not guarantee clear system feedback.</strong>
+        Active abilities fired correctly, but passive and system-driven effects were not communicated clearly enough for the player to understand.
+      </li>
+
+      <li>
+        <strong>Build systems need reliable mapping.</strong>
+        When a selected Aspect does not match the loaded gameplay behaviour, player trust in the system breaks quickly.
+      </li>
+
+      <li>
+        <strong>End screens can expose system logic problems.</strong>
+        The defeat screen revealed ability classification and Player vs Tower assignment issues that were harder to confirm during live combat.
+      </li>
+
+      <li>
+        <strong>Player understanding is part of gameplay quality.</strong>
+        If the game cannot explain how Background, Aspect, passive, active, Player, and Tower systems relate to each other, the player cannot make informed decisions.
+      </li>
+
+      <li>
+        <strong>Short targeted passes work best when tied to recent changes.</strong>
+        Scoping this pass around the v1.7 update kept the findings focused and directly useful.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 Conclusion</h2>
+
+    <p>
+      This targeted QA pass on <em>Runic Tower</em> found that active ability use is readable in isolation, but broader system clarity is weak. The player can trigger and see immediate active ability feedback, but passive effects and system-driven behaviour are not communicated clearly.
+    </p>
+
+    <p>
+      The main functional issue identified was that selected Aspects did not reliably match the Aspect loaded into gameplay. This was confirmed through HUD display and ability behaviour, making it more than a visual mismatch.
+    </p>
+
+    <p>
+      The main player-facing weakness was system explanation. Background and Aspect choices, passive and active roles, and Player vs Tower assignment were not clearly explained, making it difficult for the player to understand or control their build.
+    </p>
+
+    <p>
+      Overall, this project demonstrates a short, focused QA pass using risk-based scoping, evidence-backed bug reporting, and clear separation between technical defects and player experience findings.
+    </p>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Email Me</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="cta-btn" href="../../" target="_blank" rel="noopener">Back to Manual Portfolio hub</a>
+    </p>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
