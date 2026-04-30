@@ -271,28 +271,32 @@
 }
 </script>
 
-    <h2>Introduction</h2>
+  <h2>Introduction</h2>
 
-    <p>
-      This mini-project is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a> work.
-    </p>
+<p>
+This is a focused QA pass on <em>Stamperor</em>, tested on PC using Demo Hotfix v0.0.5.
+</p>
 
-    <p>
-      These projects focus on short, real-world testing scenarios across demos, early builds, live updates, and active indie games. The goal is not exhaustive coverage, but fast, practical QA judgement applied to current systems that may still be evolving.
-    </p>
+<p>
+The goal was to check how stable the game is after the recent update, with a focus on input handling, state transitions, and whether decision outcomes are clearly communicated to the player.
+</p>
 
-    <p>
-      This project is a short dev-facing QA mini-pass on <em>Stamperor</em>, tested on PC using Demo Hotfix v0.0.5. Following the recent hotfix, I focused on system consistency after state changes and how clearly the game communicates decision outcomes under pressure.
-    </p>
+<p>
+Testing focused on:
+</p>
 
-    <p>
-      Testing was charter-driven and deliberately limited in scope. I focused on end-of-cycle input handling, destruction feedback, population and building state clarity, decision outcome clarity, and whether previously observed input issues remained stable under repeat conditions.
-    </p>
+<ul>
+  <li>End-of-cycle input handling</li>
+  <li>State changes after destruction events</li>
+  <li>Population and building value clarity</li>
+  <li>Decision outcome clarity</li>
+  <li>Stability of previously observed input issues</li>
+</ul>
 
-    <p>
-      I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, STAR summary, and player experience notes.
-    </p>
-
+<p>
+Findings are based on direct testing and are supported with reproducible behaviour and evidence.
+</p>
+    
     <table>
       <thead>
         <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
@@ -360,28 +364,17 @@
 
     <hr>
 
-    <h2 id="star-summary">⭐ STAR Summary - Stamperor QA Mini-Pass</h2>
+   <h2>📷 Evidence</h2>
 
-    <p><strong>Situation:</strong> Short, dev-facing QA mini-pass on <strong>Stamperor</strong>, following Demo Hotfix v0.0.5. The pass focused on system consistency, input stability, and player-facing feedback after state changes.</p>
+<p>
+Supporting evidence is included to show the issues clearly and make them easy to reproduce.
+</p>
 
-    <p><strong>Task:</strong> Test predefined systems covered by focused charters, identify useful findings for the developer, and avoid expanding the work into a full unpaid test pass.</p>
-
-    <p><strong>Action:</strong> Executed 4 focused sessions covering destruction feedback, menu state transitions, decision outcome clarity, and regression checks on end-of-cycle input behaviour. Evidence was captured through short clips, screenshots, session notes, and structured expected vs actual comparisons.</p>
-
-    <p><strong>Result:</strong> Two bugs were logged, including an end-of-cycle input issue that can return the player to the main menu and a regression case where unstable input can trigger an unintended language menu and soft lock the game. Two additional player experience findings were recorded around unexplained bracket values and unclear decision outcome calculation.</p>
-
-    <hr>
-
-    <h2>📷 Evidence &amp; Media</h2>
-
-    <p class="method-note">These artefacts support the project findings and provide traceability from testing to outcomes:</p>
-
-    <ul class="method-note">
-      <li>QA workbook containing session notes, risk matrix, bug log, one-line summary, STAR summary, and player experience notes</li>
-      <li>Short gameplay clips showing end-of-cycle input failure and soft lock behaviour</li>
-      <li>Screenshots showing bracket value and decision outcome clarity issues</li>
-      <li>Linked evidence within the workbook supporting the logged bugs and player experience findings</li>
-    </ul>
+<ul>
+  <li>Short gameplay clips showing end-of-cycle input failure and soft lock behaviour</li>
+  <li>Screenshots highlighting unclear bracket values and decision outcome issues</li>
+  <li>Structured bug notes with steps, expected vs actual behaviour, and linked evidence</li>
+</ul>
 
     <table>
       <thead>
