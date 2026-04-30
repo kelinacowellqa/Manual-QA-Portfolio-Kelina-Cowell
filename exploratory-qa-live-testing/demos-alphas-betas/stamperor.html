@@ -409,39 +409,45 @@
 
     <hr>
 
-    <h2 id="core-findings">📌 Core Project Findings</h2>
+   <h2 id="core-findings">📌 Core Project Findings</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Area</th>
-          <th>Finding</th>
-          <th>Evidence</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Menu Navigation &amp; Input Handling</td>
-          <td>End-of-cycle screen input is unreliable and can return the player to the menu instead of continuing.</td>
-          <td>Watch Clip - Input Failure (End Cycle)</td>
-        </tr>
-        <tr>
-          <td>Menu Navigation &amp; Input Handling (Regression)</td>
-          <td>Re-testing shows input instability can trigger an unintended language menu and soft lock the game.</td>
-          <td>Watch Clip - Input Failure (End Cycle)</td>
-        </tr>
-        <tr>
-          <td>Population &amp; Building System Clarity</td>
-          <td>Bracket values (+/-) appear after destruction but are not explained, forcing player guesswork.</td>
-          <td>View Before State / View After State</td>
-        </tr>
-        <tr>
-          <td>Decision Outcome Clarity</td>
-          <td>Decision values, such as -15 population, do not clearly align with visible system values.</td>
-          <td>View Before Decision (Population) / View After Decision (Population)</td>
-        </tr>
-      </tbody>
-    </table>
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Finding</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Menu Navigation &amp; Input Handling</td>
+      <td>End-of-cycle screen input is unreliable and can return the player to the menu instead of continuing.</td>
+      <td><a href="#bugs-logged">See Bugs Logged</a></td>
+    </tr>
+    <tr>
+      <td>Menu Navigation &amp; Input Handling (Regression)</td>
+      <td>Re-testing shows input instability can trigger an unintended language menu and soft lock the game.</td>
+      <td><a href="#bugs-logged">See Bugs Logged</a></td>
+    </tr>
+    <tr>
+      <td>Population &amp; Building System Clarity</td>
+      <td>Bracket values (+/-) appear after destruction but are not explained, forcing player guesswork.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1VaPyP27bqR3N7Ubuw6rih6he6EL6TvX9/view?usp=drive_link" target="_blank" rel="noopener">View Before State</a> /
+        <a href="https://drive.google.com/file/d/1xNnoBcXJ3-iQwE9qkqOVStyomniBq7qY/view?usp=drive_link" target="_blank" rel="noopener">View After State</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Decision Outcome Clarity</td>
+      <td>Decision values, such as -15 population, do not clearly align with visible system values.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1UAK95D39Xc6_q69wEegHuYjmTeQlnjOB/view?usp=drive_link" target="_blank" rel="noopener">View Before Decision</a> /
+        <a href="https://drive.google.com/file/d/18py-3iO9Gm-36XbzXqmzOZhGsmgPpVu0/view?usp=drive_link" target="_blank" rel="noopener">View After Decision</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     <hr>
 
