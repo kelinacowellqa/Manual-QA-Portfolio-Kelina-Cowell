@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Roguelike & Systems-Heavy Game QA Samples | Kelina Cowell</title>
+
+  <meta name="description" content="Roguelike and systems-heavy game QA testing samples focused on overlapping mechanics, player understanding, feedback clarity, timing behaviour, and developer-ready findings." />
+
+  <meta property="og:title" content="Roguelike & Systems-Heavy Game QA Samples | Kelina Cowell" />
+  <meta property="og:description" content="Game QA examples for roguelike and systems-heavy games, covering overlapping mechanics, feedback clarity, timing behaviour, player understanding, and developer-ready findings." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-roguelike.html" />
+
+  <meta name="twitter:title" content="Roguelike & Systems-Heavy Game QA Samples | Kelina Cowell" />
+  <meta name="twitter:description" content="Roguelike and systems-heavy game QA examples focused on overlapping mechanics, timing behaviour, feedback clarity, and player understanding." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-roguelike.html" />
+
+  <link rel="stylesheet" href="../../assets/css/custom.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Roguelike and Systems-Heavy Game QA Samples",
+    "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-roguelike.html",
+    "description": "Short QA testing examples for roguelike and systems-heavy games, focused on overlapping mechanics, player understanding, feedback clarity, timing behaviour, and system consistency.",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "name": "Kelina Cowell"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Game developers, indie studios"
+    },
+    "about": [
+      { "@type": "Thing", "name": "Game QA" },
+      { "@type": "Thing", "name": "Roguelike game testing" },
+      { "@type": "Thing", "name": "Systems-heavy game testing" },
+      { "@type": "Thing", "name": "Overlapping mechanics" },
+      { "@type": "Thing", "name": "Timing behaviour" },
+      { "@type": "Thing", "name": "Player understanding" },
+      { "@type": "Thing", "name": "System clarity" }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1215;
+      --text:#cfd6dd;
+      --line:rgba(255,255,255,.08);
+      --teal:#00fff0;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin:0;
+      line-height:1.55;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+    h1,h2,h3{
+      color:var(--teal);
+    }
+
+    a{
+      color:var(--teal);
+      text-decoration:none;
+    }
+
+    a:hover{
+      color:#66fff7;
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid var(--teal);
+      opacity:.35;
+      margin:32px 0;
+    }
+
+    .cta-btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      color:var(--teal);
+      text-decoration:none;
+      margin:4px;
+      font-weight:700;
+      background:#0d1117;
+    }
+
+    .cta-btn:hover{
+      background:var(--teal);
+      color:var(--bg);
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .project-block{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .project-block:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(0,255,240,.15);
+    }
+
+    .project-block h3{
+      margin-top:0;
+    }
+
+    .project-block p{
+      margin-bottom:16px;
+    }
+
+    .service-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .service-card.hero-copy{
+      max-width:900px;
+      margin:0 auto;
+      padding:20px 24px;
+      text-align:center;
+    }
+
+    .service-card.hero-copy h2{
+      margin-top:0;
+    }
+
+    .service-card.hero-copy .lead{
+      margin-bottom:20px;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    footer{
+      margin-top:30px;
+      padding:20px 0;
+      text-align:center;
+      font-size:.9rem;
+      opacity:.8;
+    }
+
+    @media (max-width:700px){
+      .project-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <nav style="text-align:center;margin-bottom:20px;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/index.html">Back to Main Page</a>
+    </nav>
+
+    <h1>Roguelike &amp; Systems-Heavy QA Samples</h1>
+
+    <p>
+      Short, focused QA work on roguelike and systems-heavy games, showing issues around overlapping mechanics, timing behaviour, feedback clarity, and whether players can understand cause and effect during active gameplay.
+    </p>
+
+    <div class="project-grid">
+
+      <section class="project-block">
+        <h3>Cult of PiN - <em>Live Demo Exploratory QA</em></h3>
+        <p>
+          Focused on ritual clarity, overlapping effects, timing behaviour, system stacking, and progression flow in a chaotic roguelike pinball demo.
+        </p>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin.html">View Case Study</a>
+      </section>
+
+      <section class="project-block">
+        <h3>Runic Tower - <em>Targeted QA Pass</em></h3>
+        <p>
+          Focused on ability feedback, Background and Aspect behaviour, passive vs active clarity, and system understanding during overlapping combat mechanics.
+        </p>
+        <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic_tower.html">View Case Study</a>
+      </section>
+
+    </div>
+
+    <hr>
+
+    <section class="section" aria-labelledby="contact">
+      <div class="service-card hero-copy">
+
+        <h2 id="contact">Need Someone to Test Your Roguelike or Systems-Heavy Game?</h2>
+
+        <p class="lead">
+          If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta-btn primary-cta" href="https://discord.gg/GtAznsBB" target="_blank" rel="noopener">
+            Message Me on Discord
+          </a>
+
+          <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+            Email Me
+          </a>
+
+          <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+
+          <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/index.html">
+            Back to Main Page
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p>
+      <em>
+        This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.
+      </em>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
