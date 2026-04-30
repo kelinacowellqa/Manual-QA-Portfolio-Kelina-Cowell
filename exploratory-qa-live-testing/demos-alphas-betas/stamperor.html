@@ -558,54 +558,61 @@
 
     <hr>
 
-    <h2 id="what-i-learned">🧠 What I learned</h2>
+ <h2 id="key-points">🔍 Key Points for the Developer</h2>
 
-    <ul>
-      <li>
-        <strong>Visible information is not the same as clear information.</strong>
-        Population and building values were visible, but bracketed modifiers were not explained clearly enough for the player to interpret system state confidently.
-      </li>
+<ul>
+  <li>
+    <strong>Visible values are not always understandable.</strong>
+    Population and building values were shown, but modifiers were unclear, making it difficult to understand the actual game state.
+  </li>
 
-      <li>
-        <strong>End-of-cycle screens are high-risk transition points.</strong>
-        This screen exposed multiple issues with input handling, incorrect state transition, unintended UI triggering, and soft lock behaviour.
-      </li>
+  <li>
+    <strong>End-of-cycle screens are high-risk for breakage.</strong>
+    This screen exposed input issues, incorrect transitions, unintended UI behaviour, and soft lock risk.
+  </li>
 
-      <li>
-        <strong>Decision text needs to map cleanly to visible system values.</strong>
-        When a decision says -15 population but the UI changes from 5 (+7) to 5 (-8), the player is forced to guess how the system calculated the outcome.
-      </li>
+  <li>
+    <strong>Decision outcomes do not clearly match what is shown.</strong>
+    The result of choices does not align cleanly with visible values, forcing the player to guess how outcomes are calculated.
+  </li>
 
-      <li>
-        <strong>Regression checks are useful even in tiny passes.</strong>
-        Re-testing the end-of-cycle issue showed the problem was not just a delayed input moment, but part of a broader unstable state handling risk.
-      </li>
+  <li>
+    <strong>Input handling is not stable during transitions.</strong>
+    Actions taken at the end of a cycle can trigger unintended behaviour, suggesting underlying instability.
+  </li>
 
-      <li>
-        <strong>A mini-pass should stop once strong findings are confirmed.</strong>
-        Continuing beyond the focused scope would have diluted the usefulness of the evidence already gathered.
-      </li>
-    </ul>
+  <li>
+    <strong>This area needs priority testing after updates.</strong>
+    Issues observed here are not isolated and should be rechecked after any related changes.
+  </li>
+</ul>
 
     <hr>
 
-    <h2 id="conclusion">🔚 Conclusion</h2>
+<h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
 
-    <p>
-      This QA mini-pass on <em>Stamperor</em> found that the strongest risk area was end-of-cycle input handling. The screen instructs the player to “Click anywhere to continue”, but input can be unreliable, delayed, or lead to incorrect outcomes.
-    </p>
+<p>
+The highest-risk area in this build is the end-of-cycle screen. Input handling here is inconsistent, and repeated input can trigger unintended behaviour.
+</p>
 
-    <p>
-      The most serious issue found was an unstable end-of-cycle state where repeated input triggered an unintended language menu and resulted in a soft lock requiring the game to be closed externally.
-    </p>
+<p>
+The most serious issue found is an unstable state where repeated input opens the language menu and causes a soft lock, requiring the game to be closed externally.
+</p>
 
-    <p>
-      The main player-facing weakness was system clarity. Bracketed values and decision outcomes appear to represent layered or temporary system states, but the UI does not clearly explain how those values should be interpreted by the player.
-    </p>
+<p>
+System clarity is also a player-facing problem. Values and decision outcomes do not clearly match what is shown, making it difficult to understand what actually happened after a choice.
+</p>
 
-    <p>
-      Overall, this project demonstrates a short, focused QA mini-pass using risk-based scoping, evidence-backed bug reporting, and clear separation between functional defects and player experience findings.
-    </p>
+<p>
+Recommended next steps:
+</p>
+
+<ul>
+  <li>Stabilise input handling on the end-of-cycle screen.</li>
+  <li>Fix the language menu trigger and prevent soft lock conditions.</li>
+  <li>Clarify how values and decision outcomes are presented to the player.</li>
+  <li>Re-test this area after updates, as it combines input, UI, and state changes.</li>
+</ul>
 
     <hr>
 
