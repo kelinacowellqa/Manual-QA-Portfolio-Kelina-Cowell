@@ -639,50 +639,61 @@ Feedback received from the developer following this QA pass:
 
 <hr>
 
-<h2 id="what-i-learned">🧠 What I learned</h2>
+<h2 id="key-points">🔍 Key Points for the Developer</h2>
 
 <ul>
   <li>
-    <strong>Stable systems can still create player-facing confusion.</strong>
-    The game’s mechanics behaved consistently, but feedback did not always scale well when multiple systems overlapped.
+    <strong>Systems remain stable under load, but clarity drops during overlap.</strong>
+    Multiple effects can trigger at once without breaking, but it becomes harder to understand what caused what.
   </li>
 
   <li>
-    <strong>Not every finding needs to become a bug.</strong>
-    Some observations were better recorded as session findings rather than forced into defect reports.
+    <strong>Some issues affect understanding rather than functionality.</strong>
+    Not all problems are bugs, but they still impact how the game is read during play.
   </li>
 
   <li>
-    <strong>Colour coding matters in fast gameplay.</strong>
-    Consistent visual language helps players recognise effects quickly, especially during chaotic moments.
+    <strong>Colour consistency is important for fast recognition.</strong>
+    Inconsistent colour mapping makes it harder to identify effects quickly during high-intensity moments.
   </li>
 
   <li>
-    <strong>Exploratory QA still needs structure.</strong>
-    Charters helped keep testing focused without turning a short demo pass into fake exhaustive coverage.
+    <strong>Overlapping systems reduce readability.</strong>
+    When multiple mechanics trigger together, cause-and-effect is not always clear to the player.
   </li>
 
   <li>
-    <strong>Knowing when to stop testing is part of QA judgment.</strong>
-    After validating clarity, timing, stacking, and progression, further testing would have added more noise than value.
+    <strong>This area should be monitored after updates.</strong>
+    Changes to effects, stacking, or visuals should be rechecked to avoid further clarity loss.
   </li>
 </ul>
 
 <hr>
 
-<h2 id="conclusion">🔚 Conclusion</h2>
+<h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
 
 <p>
-  This short exploratory QA pass on <em>Cult of PiN</em> found that the demo is mechanically stable across the tested timing, stacking, and progression areas. No timing defects, interaction conflicts, or progression flow failures were observed.
+The build is mechanically stable across timing, stacking, and progression. No interaction conflicts or progression blockers were observed during this pass.
 </p>
 
 <p>
-  The main weakness was player-facing clarity. Rituals and overlapping systems often function correctly, but the game does not always make cause-and-effect clear during chaotic play. The logged Spare Change colour mismatch reinforced this wider theme by showing how inconsistent visual mapping can reduce quick recognition during gameplay.
+The main issue is clarity during gameplay. Systems often work correctly, but overlapping effects make it difficult to understand cause-and-effect in fast situations.
 </p>
 
 <p>
-  Overall, this project demonstrates risk-based exploratory testing, clear separation between bugs and findings, and practical evidence capture for a short live demo build.
+The Spare Change colour mismatch highlights this problem. Even small inconsistencies in visual mapping can reduce recognition speed and increase confusion during play.
 </p>
+
+<p>
+Recommended next steps:
+</p>
+
+<ul>
+  <li>Improve clarity when multiple systems trigger at once.</li>
+  <li>Standardise colour mapping across effects.</li>
+  <li>Reinforce cause-and-effect feedback during chaotic gameplay.</li>
+  <li>Re-test visual clarity after updates affecting effects or stacking.</li>
+</ul>
 
    <hr>
 
