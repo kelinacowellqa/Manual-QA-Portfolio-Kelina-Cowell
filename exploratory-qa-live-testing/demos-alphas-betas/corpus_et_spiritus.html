@@ -230,21 +230,24 @@
       </a>
     </p>
 
-    <h1>Corpus Et Spiritus - Targeted QA Pass: Card Systems &amp; State Integrity (PC)</h1>
-    <p class="meta">Tested: 28 Apr 2026</p>
+<h1>Corpus Et Spiritus - QA Pass (PC)</h1>
+<p class="meta">Tested: 28 Apr 2026 • Build: 2026.03.27.1</p>
 
-    <section aria-labelledby="about-this-work">
-      <h2 id="about-this-work">🧾 About this work</h2>
-      <ul>
-        <li><strong>Author:</strong> Kelina Cowell - QA Tester (Games)</li>
-        <li><strong>Context:</strong> Self-directed Game QA portfolio mini-project</li>
-        <li><strong>Timebox:</strong> Short focused QA pass</li>
-        <li><strong>Platform:</strong> PC</li>
-        <li><strong>Build:</strong> 2026.03.27.1</li>
-        <li><strong>Scope:</strong> Card resolution, input handling, card lifecycle clarity, and system stability under rapid interaction</li>
-        <li><strong>Focus:</strong> Player-facing clarity, input reliability, and card behaviour under real gameplay pressure</li>
-      </ul>
-    </section>
+<section aria-labelledby="about-this-work">
+  <h2 id="about-this-work">🧾 Test Overview</h2>
+
+  <ul>
+    <li><strong>Platform:</strong> PC</li>
+
+    <li><strong>Focus Areas:</strong>
+      Card resolution, input handling, card lifecycle clarity, and system stability under rapid interaction
+    </li>
+
+    <li><strong>Purpose:</strong>
+      Check input reliability and whether card behaviour and state changes remain clear and consistent during active gameplay
+    </li>
+  </ul>
+</section>
 
 <script type="application/ld+json">
 {
@@ -299,27 +302,30 @@
 }
 </script>
 
-    <h2>Introduction</h2>
-
-    <p>
-      This mini-project is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a> work.
-    </p>
-
-    <p>
-      These projects focus on short, real-world testing scenarios across demos, early builds, live updates, and active indie games. The goal is not exhaustive coverage, but fast, practical QA judgement applied to current systems that may still be evolving.
-    </p>
+  <h2>Introduction</h2>
 
 <p>
-  This project is a targeted QA pass on <a href="https://store.steampowered.com/app/4225280/Corpus_et_Spiritus/" target="_blank" rel="noopener"><em>Corpus Et Spiritus</em></a>, tested on PC using build 2026.03.27.1. The focus was card resolution, card lifecycle behaviour, input handling, and player-facing clarity during rapid and repeated interactions.
+This is a focused QA pass on <a href="https://store.steampowered.com/app/4225280/Corpus_et_Spiritus/" target="_blank" rel="noopener"><em>Corpus Et Spiritus</em></a>, tested on PC using build 2026.03.27.1.
 </p>
 
-    <p>
-      Testing was charter-driven and risk-based. I focused on whether card actions resolved cleanly, whether rapid inputs could destabilise interaction behaviour, and whether the game clearly communicated card availability states such as playable vs recyclable.
-    </p>
+<p>
+The goal was to check input reliability and whether card behaviour and state changes remain clear during gameplay, especially under rapid interaction.
+</p>
 
-    <p>
-      I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, STAR summary, and player experience notes.
-    </p>
+<p>
+Testing focused on:
+</p>
+
+<ul>
+  <li>Card resolution</li>
+  <li>Input handling (click vs drag interaction)</li>
+  <li>Card lifecycle clarity (playable vs recyclable states)</li>
+  <li>Stability during rapid and repeated inputs</li>
+</ul>
+
+<p>
+Findings are based on direct testing and supported by reproducible behaviour and evidence.
+</p>
 
     <table>
       <thead>
@@ -384,18 +390,6 @@
         <tr><td>Repro Rate</td><td>Intermittent, occurs under rapid repeated input</td></tr>
       </tbody>
     </table>
-
-    <hr>
-
-    <h2 id="star-summary">⭐ STAR Summary - Corpus Et Spiritus Targeted QA Pass</h2>
-
-    <p><strong>Situation:</strong> Short, self-directed QA mini-project on <strong>Corpus Et Spiritus</strong>, a card-based system game where player actions rely on card resolution, resource changes, and clear interaction states.</p>
-
-    <p><strong>Task:</strong> Validate whether card interactions remained stable under sequential, rapid, and mixed inputs, with particular attention to click vs drag behaviour and card lifecycle clarity.</p>
-
-    <p><strong>Action:</strong> Created a focused QA workbook and executed 2 targeted sessions. Testing started with card resolution under normal and rapid play, then escalated into repeated click and drag interactions to stress input handling and card state behaviour.</p>
-
-    <p><strong>Result:</strong> Card execution remained stable under sequential and rapid play, with no unresolved actions or state breaks observed. One medium-severity input handling issue was logged where rapid clicking caused failed triggers and unintended multi-card activation on subsequent drag. A separate clarity finding was recorded around playable vs recyclable card states.</p>
 
     <hr>
 
