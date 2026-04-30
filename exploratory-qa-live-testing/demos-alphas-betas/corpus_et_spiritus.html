@@ -579,54 +579,61 @@
 
     <hr>
 
-    <h2 id="what-i-learned">🧠 What I learned</h2>
+ <h2 id="key-points">🔍 Key Points for the Developer</h2>
 
-    <ul>
-      <li>
-        <strong>Stable systems can still create player-facing uncertainty.</strong>
-        Card resolution behaved consistently, but card availability states were not clearly explained.
-      </li>
+<ul>
+  <li>
+    <strong>Card behaviour is stable, but states are not clearly communicated.</strong>
+    Card resolution works consistently, but it is not always clear which cards are playable, recyclable, or inactive.
+  </li>
 
-      <li>
-        <strong>Input pressure can reveal issues that normal play may miss.</strong>
-        The card system behaved correctly under normal play, but rapid clicking exposed a conflict between click and drag interaction states.
-      </li>
+  <li>
+    <strong>Rapid input exposes interaction conflicts.</strong>
+    Repeated clicking creates a conflict between click and drag states, causing cards to fail to trigger or behave unexpectedly.
+  </li>
 
-      <li>
-        <strong>Not every planned charter needs to stay in scope.</strong>
-        The final test focus was adjusted to match the accessible systems and meaningful risks within the timebox.
-      </li>
+  <li>
+    <strong>Input reliability drops under pressure.</strong>
+    The system works in normal play, but breaks down during fast interaction, which is likely in real gameplay.
+  </li>
 
-      <li>
-        <strong>Player understanding is part of system quality.</strong>
-        If a mechanic works but the player cannot understand why, the experience still suffers.
-      </li>
+  <li>
+    <strong>Card lifecycle clarity needs improvement.</strong>
+    The transition between card states is not clearly shown, reducing player confidence in decision-making.
+  </li>
 
-      <li>
-        <strong>Short QA passes still need traceability.</strong>
-        Linking charters, sessions, bug reports, risk areas, and evidence made the project reviewable without turning it into a full case study.
-      </li>
-    </ul>
-
+  <li>
+    <strong>This area should be rechecked after updates.</strong>
+    Changes to input handling or card behaviour should be tested under rapid interaction conditions.
+  </li>
+</ul>
+    
     <hr>
 
-    <h2 id="conclusion">🔚 Conclusion</h2>
+ <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
 
-    <p>
-      This targeted QA pass on <em>Corpus Et Spiritus</em> found that card resolution is technically stable under the tested conditions. Cards resolved cleanly during sequential and rapid play, and no state breaks, unresolved actions, or permanent loss of control were observed.
-    </p>
+<p>
+Card resolution is stable under normal and sequential play. No state breaks, unresolved actions, or permanent loss of control were observed during standard interaction.
+</p>
 
-    <p>
-      The main defect identified was an input handling issue under rapid interaction. Repeated clicking caused cards to vibrate and fail to trigger, with later drag interactions sometimes failing or activating multiple cards unexpectedly.
-    </p>
+<p>
+The main issue is input handling under rapid interaction. Repeated clicking causes cards to vibrate, fail to trigger, or behave inconsistently. Drag interactions can also fail or activate multiple cards unexpectedly.
+</p>
 
-    <p>
-      The main player-facing weakness was clarity. Card lifecycle states, especially playable vs recyclable behaviour, were consistent but not clearly communicated, reducing player predictability and confidence during decision-making.
-    </p>
+<p>
+Clarity is also a problem. Card states, especially playable versus recyclable behaviour, are not clearly communicated, making it harder to predict outcomes during decision-making.
+</p>
 
-    <p>
-      Overall, this project demonstrates a short, focused QA pass using risk-based scoping, evidence-backed bug reporting, and clear separation between technical defects and player experience findings.
-    </p>
+<p>
+Recommended next steps:
+</p>
+
+<ul>
+  <li>Fix interaction conflicts between click and drag inputs.</li>
+  <li>Improve input reliability under rapid interaction.</li>
+  <li>Clarify card lifecycle states and transitions.</li>
+  <li>Re-test input handling after updates, especially under high input pressure.</li>
+</ul>
 
    <hr>
 
