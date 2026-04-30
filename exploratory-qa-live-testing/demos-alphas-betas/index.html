@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Game QA Testing Samples & Case Studies | Kelina Cowell</title>
+  <title>Game QA Testing Samples & Case Studies | Kelina Cowell</title>
 
-<meta name="description" content="Game QA testing samples by Kelina Cowell, showing practical testing for demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and clear developer-ready reports." />
+  <meta name="description" content="Game QA testing samples by Kelina Cowell, organised by platform, game type, and QA focus, covering demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and developer-ready reports." />
 
-<meta property="og:title" content="Game QA Testing Samples & Case Studies | Kelina Cowell" />
-<meta property="og:description" content="Practical game QA testing examples for demos, early builds, live updates, and indie games, covering bugs, accessibility, onboarding clarity, player-facing issues, and developer-ready reports." />
+  <meta property="og:title" content="Game QA Testing Samples & Case Studies | Kelina Cowell" />
+  <meta property="og:description" content="Practical game QA testing examples organised by platform, game type, and QA focus, covering demos, early builds, live updates, accessibility, player-facing bugs, onboarding clarity, and developer-ready reports." />
 
-<meta name="twitter:title" content="Game QA Testing Samples & Case Studies | Kelina Cowell" />
-<meta name="twitter:description" content="Game QA testing examples covering demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and clear developer-ready reports." />
-  
+  <meta name="twitter:title" content="Game QA Testing Samples & Case Studies | Kelina Cowell" />
+  <meta name="twitter:description" content="Game QA testing examples organised by platform, game type, and QA focus, covering demos, early builds, live updates, indie games, accessibility, player-facing bugs, and developer-ready reports." />
+
   <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 <style>
@@ -25,8 +25,6 @@
     --line:rgba(255,255,255,.08);
     --teal:#00fff0;
     --teal-soft:#66fff7;
-    --thumb-width:180px;
-    --thumb-height:240px;
     --s-1:8px;
     --s-2:12px;
     --s-3:16px;
@@ -74,7 +72,6 @@
   p,ul,ol{margin-block:var(--s-2) var(--s-3)}
   li + li{margin-top:var(--s-1)}
 
-  .project-block,
   .section,
   header.hero,
   footer{
@@ -105,73 +102,6 @@
   .intro p{line-height:1.6}
   .intro p:last-child{margin-bottom:0}
 
-  #projects{
-    margin-block:var(--s-6) var(--s-2);
-    clear:both;
-  }
-
-  .project-block{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:12px;
-    box-shadow:0 4px 20px rgba(0,0,0,.25);
-    margin:22px 0;
-    padding:16px 18px;
-    position:relative;
-    overflow:hidden;
-    transition:transform .22s ease, filter .22s ease, box-shadow .22s ease;
-    will-change:transform, filter;
-    filter:drop-shadow(0 0 0 rgba(15,181,201,0));
-  }
-
-  .project-block:hover{
-    transform:translateY(-2px);
-    filter:drop-shadow(0 0 28px rgba(15,181,201,.38));
-  }
-
-  .project-block:focus-within{
-    transform:translateY(-2px);
-    filter:drop-shadow(0 0 28px rgba(15,181,201,.38));
-    outline:2px solid rgba(15,181,201,.55);
-    outline-offset:2px;
-  }
-
-  .project-block em{color:var(--muted)}
-  .project-block p{margin:6px 0 8px}
-
-  .project-block.with-thumb{
-    display:grid;
-    grid-template-columns:minmax(0, 1fr) var(--thumb-width);
-    gap:24px;
-    align-items:start;
-  }
-
-  .project-block.with-thumb .project-main{min-width:0}
-
-  .project-block.with-thumb .thumb{
-    display:block;
-    width:var(--thumb-width);
-    height:var(--thumb-height);
-    object-fit:cover;
-    object-position:center;
-    border-radius:10px;
-    border:1px solid var(--line);
-    box-shadow:0 6px 18px rgba(0,0,0,.35);
-    justify-self:end;
-  }
-
-  .card-bullets{
-    margin-left:1.2rem;
-    padding-left:0;
-  }
-
-  .card-bullets li{margin-bottom:10px}
-
-  .cta{
-    margin-top:14px;
-    margin-bottom:0;
-  }
-
   .banner-pulse{
     display:block;
     width:100%;
@@ -186,8 +116,7 @@
   }
 
   p,
-  .intro p,
-  .project-block p{
+  .intro p{
     max-width:none !important;
   }
 
@@ -196,6 +125,95 @@
     content:none !important;
     animation:none !important;
     box-shadow:none !important;
+  }
+
+  .category-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:18px 0 30px;
+  }
+
+  .grid-index{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin:16px 0 28px;
+  }
+
+  .index-card,
+  .sample-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    box-shadow:0 4px 20px rgba(0,0,0,.22);
+    transition:transform .22s ease, filter .22s ease, box-shadow .22s ease;
+  }
+
+  .index-card:hover,
+  .sample-card:hover{
+    transform:translateY(-2px);
+    filter:drop-shadow(0 0 24px rgba(15,181,201,.28));
+  }
+
+  .index-card h3,
+  .sample-card h3{
+    margin-top:0;
+  }
+
+  .sample-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin:16px 0 30px;
+  }
+
+  .sample-meta{
+    color:var(--muted);
+    font-size:.95rem;
+    margin-bottom:10px;
+  }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0 12px;
+  }
+
+  .tag{
+    display:inline-block;
+    padding:5px 9px;
+    border:1px solid rgba(0,255,240,.25);
+    border-radius:999px;
+    color:var(--teal);
+    background:rgba(0,255,240,.04);
+    font-size:.82rem;
+    font-weight:700;
+  }
+
+  .sample-table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    margin:18px 0 32px;
+  }
+
+  .sample-table th,
+  .sample-table td{
+    padding:12px 14px;
+    border:1px solid var(--line);
+    text-align:left;
+    vertical-align:top;
+  }
+
+  .sample-table th{
+    color:var(--teal);
+    background:rgba(0,255,240,.06);
   }
 
   .faq-accordion{
@@ -287,16 +305,9 @@
   }
 
   @media (max-width:900px){
-    .project-block.with-thumb{
-      grid-template-columns:1fr;
-    }
-
-    .project-block.with-thumb .thumb{
-      width:100%;
-      max-width:220px;
-      height:auto;
-      aspect-ratio:3/4;
-      margin-left:auto;
+    .grid-index,
+    .sample-grid{
+      grid-template-columns:1fr 1fr;
     }
   }
 
@@ -311,10 +322,22 @@
     }
   }
 
+  @media (max-width:640px){
+    .grid-index,
+    .sample-grid{
+      grid-template-columns:1fr;
+    }
+
+    .sample-table{
+      font-size:.9rem;
+    }
+  }
+
   @media (prefers-reduced-motion:reduce){
-    .project-block,
-    .project-block:hover,
-    .project-block:focus-within{
+    .index-card,
+    .sample-card,
+    .index-card:hover,
+    .sample-card:hover{
       transition:filter .01s linear, box-shadow .01s linear;
       transform:none;
     }
@@ -329,7 +352,7 @@
     }
   }
 </style>
-  
+
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
@@ -404,7 +427,7 @@
       "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/#portfolio",
       "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/",
       "name": "Game QA Testing Samples & Case Studies - Kelina Cowell",
-      "description": "Game QA testing samples showing practical testing for demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and developer-ready reports.",
+      "description": "Game QA testing samples organised by platform, game type, and QA focus, showing practical testing for demos, early builds, live updates, indie games, accessibility, player-facing bugs, onboarding issues, and developer-ready reports.",
       "isPartOf": {
         "@id": "https://kelinacowellqa.github.io/#website"
       },
@@ -442,271 +465,499 @@
             decoding="async"
           />
 
-           <div>
+          <div>
             <p class="card-intro">
               If you have a demo, early build, live update, or small indie game that needs another set of eyes, this page shows the kind of testing I can provide.
             </p>
 
             <p class="card-intro">
-              I focus on the problems that affect players directly: confusing onboarding, unclear controls, broken feedback, accessibility barriers, inconsistent systems, progression issues, and bugs that are hard to spot when you already know how your own game works.
+              I focus on problems that affect players directly: confusing onboarding, unclear controls, broken feedback, accessibility barriers, inconsistent systems, progression issues, and bugs that are hard to spot when you already know how your own game works.
             </p>
 
             <p class="card-intro">
-              The examples below show how I test, document findings, capture evidence, and turn messy gameplay problems into clear notes a developer can actually use.
+              The examples below are organised so developers can quickly find relevant work by platform, game type, or QA focus.
             </p>
           </div>
         </div>
       </section>
-          
-      <hr>
-
-      <h2 id="projects">Game QA Testing Samples & Case Studies</h2>
-
-      <section class="project-block with-thumb">
-  <div class="project-main">
-    <h3>Stamperor - <em>QA Mini-Pass (Hotfix v0.0.5)</em></h3>
-
-    <p class="card-intro">
-      Short QA mini-pass on a demo hotfix, focused on input reliability and how clearly the game communicates outcomes to the player.
-    </p>
-
-    <ul class="card-bullets">
-      <li>
-        <strong>Goal:</strong> Evaluate whether player input works consistently across key screens and whether system feedback is understandable during gameplay.
-      </li>
-
-      <li>
-        <strong>Testing focus:</strong> End-of-cycle input handling, population feedback after destruction events, and decision outcome clarity.
-      </li>
-
-      <li>
-        <strong>Why this matters:</strong> Shows how input failure can block progression, and how unclear feedback forces players to guess what actually happened.
-      </li>
-
-      <li>
-        <strong>Outcome:</strong> Identified a critical input issue causing unintended menu return and soft lock, along with multiple player-facing issues where population and decision outcomes do not clearly align with visible values.
-      </li>
-    </ul>
-
-    <p class="cta">
-      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor.html">
-        View Case Study
-      </a>
-    </p>
-  </div>
-
-  <img class="thumb"
-       src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR-logo.jpg"
-       alt="Stamperor QA mini-pass focused on input reliability, decision clarity, and player-facing system feedback.">
-</section>
-
-      <section class="project-block with-thumb">
-  <div class="project-main">
-    <h3>Runic Tower - <em>Targeted QA Pass - live update</em></h3>
-
-    <p class="card-intro">
-      Short targeted QA pass on a live update, focused on onboarding clarity, ability feedback,
-      and system behaviour under overlapping mechanics.
-    </p>
-
-    <ul class="card-bullets">
-      <li>
-        <strong>Goal:</strong> Evaluate whether new and updated systems are clearly communicated to the player and behave consistently during gameplay.
-      </li>
-
-      <li>
-        <strong>Testing focus:</strong> Onboarding flow, ability feedback (VFX/SFX), passive vs active clarity, and system behaviour across Background and Aspect mechanics.
-      </li>
-
-      <li>
-        <strong>Why this matters:</strong> Shows how unclear system communication and inconsistent behaviour break player understanding, even when individual abilities appear functional.
-      </li>
-
-      <li>
-        <strong>Outcome:</strong> Completed targeted sessions, identified multiple system-level clarity issues, including mismatches between selection, HUD, and gameplay, and inconsistent ability assignment between Player and Tower.
-      </li>
-    </ul>
-
-    <p class="cta">
-      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic_tower.html">
-        View Case Study
-      </a>
-    </p>
-  </div>
-
-  <img class="thumb"
-       src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower-logo.jpg"
-       alt="Runic Tower QA case study focused on onboarding clarity, ability feedback, and system behaviour under overlapping mechanics.">
-</section>
-
-      <section class="project-block with-thumb">
-  <div class="project-main">
-    <h3>Corpus Et Spiritus - <em>Targeted QA Pass</em></h3>
-
-    <p class="card-intro">
-      Short targeted QA pass on a live build, focused on card resolution, input handling, and player-facing clarity under rapid interaction.
-    </p>
-
-    <ul class="card-bullets">
-      <li>
-        <strong>Goal:</strong> Validate whether card interactions remain stable under sequential, rapid, and mixed inputs, and identify failure points in input handling.
-      </li>
-
-      <li>
-        <strong>Testing focus:</strong> Card resolution, click vs drag interaction, rapid input pressure, and card lifecycle clarity (playable vs recyclable states).
-      </li>
-
-      <li>
-        <strong>Why this matters:</strong> Shows how input instability and unclear system states can reduce player control and understanding, even when core mechanics are functioning correctly.
-      </li>
-
-      <li>
-        <strong>Outcome:</strong> Completed 2 focused sessions, logged 1 medium-severity input handling bug, and identified card lifecycle clarity as a player-facing weakness while core systems remained stable.
-      </li>
-    </ul>
-
-    <p class="cta">
-      <a href="../../exploratory-qa-live-testing/demos-alphas-betas/corpus_et_spiritus.html">
-        View Case Study
-      </a>
-    </p>
-  </div>
-
-  <img class="thumb"
-       src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/corpus_et_spiritus_logo.png"
-       alt="Corpus Et Spiritus QA case study focused on card systems, input handling, and player-facing clarity under rapid interaction.">
-</section>
-
-     <section class="project-block with-thumb">
-  <div class="project-main">
-    <h3>Cult of PiN - <em>Live Demo Exploratory QA</em></h3>
-
-    <p class="card-intro">
-      Short exploratory QA pass on a live demo build, focused on ritual clarity, overlapping systems,
-      timing behaviour, system stacking, and progression flow under real gameplay conditions.
-    </p>
-
-    <ul class="card-bullets">
-      <li>
-        <strong>Goal:</strong> Evaluate the highest-risk areas in a system-heavy roguelike pinball demo without pretending to run full regression coverage.
-      </li>
-
-      <li>
-        <strong>Testing focus:</strong> Ritual communication, player-facing feedback, timing and state transitions, overlapping effects, active system stacking, and end-to-end run flow.
-      </li>
-
-      <li>
-        <strong>Why this matters:</strong> Shows how mechanically stable systems can still create player confusion when feedback and cause-and-effect are unclear during chaotic gameplay.
-      </li>
-
-      <li>
-        <strong>Outcome:</strong> Completed 5 focused sessions, logged 1 low-severity visual consistency bug, and identified clarity as the main player-facing weakness while timing, stacking, and progression remained stable.
-      </li>
-    </ul>
-
-    <p class="cta">
-      <a href="../../exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin.html">
-        View Case Study
-      </a>
-    </p>
-  </div>
-
-  <img class="thumb"
-       src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cultofPiNsquarelogo.png"
-       alt="Cult of PiN exploratory QA case study focused on ritual clarity, system overlap, timing behaviour, and progression flow.">
-</section>
 
       <hr>
 
-<section class="section faq-accordion" id="faq">
-  <h2>FAQ</h2>
+      <section class="section" aria-labelledby="find-work">
+        <h2 id="find-work">Find Relevant QA Work</h2>
 
-  <details>
-    <summary>What would you actually test if I gave you my game?</summary>
-    <div class="faq-answer">
-      I start with whatever you’re already having issues with, based on your own feedback or player feedback. Then I expand into the rest of the game, focusing on how it feels to play, including controls, clarity, progression, consistency, and accessibility.
+        <p>
+          Browse examples by platform, game type, or QA focus. Each sample links to a full write-up with scope, findings, evidence, and developer-ready notes.
+        </p>
+
+        <div class="category-nav">
+          <a class="cta-btn" href="#by-platform">By Platform</a>
+          <a class="cta-btn" href="#by-game-type">By Game Type</a>
+          <a class="cta-btn" href="#by-qa-focus">By QA Focus</a>
+          <a class="cta-btn" href="#all-samples">All Samples</a>
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section" id="by-platform" aria-labelledby="platform-title">
+        <h2 id="platform-title">Browse by Platform</h2>
+
+        <div class="grid-index">
+          <section class="index-card">
+            <h3>PC</h3>
+            <p>Examples covering input reliability, onboarding, system feedback, decision clarity, and live update behaviour.</p>
+            <p><a href="#pc-samples">View PC Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Mobile</h3>
+            <p>Examples covering interruption handling, live mobile behaviour, device realism, and player-facing friction.</p>
+            <p><a href="#mobile-samples">View Mobile Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>VR / XR</h3>
+            <p>Examples covering comfort, subtitles, seated play, reach, UI readability, and accessibility barriers.</p>
+            <p><a href="#vr-samples">View VR / XR Samples</a></p>
+          </section>
+        </div>
+
+        <h3 id="pc-samples">PC Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Stamperor</h3>
+            <p class="sample-meta">PC • Strategy / Management • Demo Hotfix v0.0.5</p>
+            <p>Input reliability, hotfix regression, decision clarity, and player understanding.</p>
+            <div class="tag-row">
+              <span class="tag">PC</span>
+              <span class="tag">Strategy</span>
+              <span class="tag">Hotfix QA</span>
+              <span class="tag">Input</span>
+            </div>
+            <p><a href="stamperor.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Runic Tower</h3>
+            <p class="sample-meta">PC • Action / Tower Defence • Live Build v1.7.0.0</p>
+            <p>Onboarding, ability feedback, system clarity, and overlapping mechanics.</p>
+            <div class="tag-row">
+              <span class="tag">PC</span>
+              <span class="tag">Action</span>
+              <span class="tag">Onboarding</span>
+              <span class="tag">System Clarity</span>
+            </div>
+            <p><a href="runic_tower.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Corpus Et Spiritus</h3>
+            <p class="sample-meta">PC • Card / Decision-Based • Live Build</p>
+            <p>Card resolution, input handling, rapid interaction, and lifecycle clarity.</p>
+            <div class="tag-row">
+              <span class="tag">PC</span>
+              <span class="tag">Card Game</span>
+              <span class="tag">Input</span>
+            </div>
+            <p><a href="corpus_et_spiritus.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Cult of PiN</h3>
+            <p class="sample-meta">PC • Roguelike / Pinball • Live Demo</p>
+            <p>Ritual clarity, overlapping systems, timing behaviour, and progression flow.</p>
+            <div class="tag-row">
+              <span class="tag">PC</span>
+              <span class="tag">Roguelike</span>
+              <span class="tag">Systems</span>
+            </div>
+            <p><a href="cult-of-pin.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="mobile-samples">Mobile Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Rebel Racing</h3>
+            <p class="sample-meta">Android • Racing • Live Mobile Build</p>
+            <p>Interruption handling, reward flow, app resume behaviour, and mobile player friction.</p>
+            <div class="tag-row">
+              <span class="tag">Mobile</span>
+              <span class="tag">Android</span>
+              <span class="tag">Interruptions</span>
+            </div>
+            <p><a href="../../exploratory-qa-live-testing/rebel-racing.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="vr-samples">VR / XR Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Shadow Point</h3>
+            <p class="sample-meta">Meta Quest 3 • VR Puzzle / Narrative • Standalone VR</p>
+            <p>VR comfort, subtitles, seated reach, UI readability, cognitive barriers, and accessibility friction.</p>
+            <div class="tag-row">
+              <span class="tag">VR</span>
+              <span class="tag">Quest 3</span>
+              <span class="tag">Accessibility</span>
+            </div>
+            <p><a href="../../vr-accessibility-qa/shadow-point.html">View Case Study</a></p>
+          </section>
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section" id="by-game-type" aria-labelledby="game-type-title">
+        <h2 id="game-type-title">Browse by Game Type</h2>
+
+        <div class="grid-index">
+          <section class="index-card">
+            <h3>Strategy / Management</h3>
+            <p>System-heavy testing focused on input reliability, resource feedback, decisions, and player understanding.</p>
+            <p><a href="#strategy-samples">View Strategy Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Action / Combat</h3>
+            <p>Testing focused on onboarding, ability feedback, overlapping mechanics, combat readability, and system consistency.</p>
+            <p><a href="#action-samples">View Action Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Roguelike / Systems-Heavy</h3>
+            <p>Testing focused on overlapping effects, cause and effect, stacking behaviour, timing, and run flow.</p>
+            <p><a href="#systems-samples">View Systems-Heavy Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Card / Decision-Based</h3>
+            <p>Testing focused on card handling, input behaviour, lifecycle clarity, and player-facing outcomes.</p>
+            <p><a href="#card-samples">View Card Samples</a></p>
+          </section>
+        </div>
+
+        <h3 id="strategy-samples">Strategy / Management Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Stamperor</h3>
+            <p class="sample-meta">PC • Strategy / Management • Demo Hotfix v0.0.5</p>
+            <p>End-of-cycle input failure, soft lock, population feedback, and unclear decision outcomes.</p>
+            <p><a href="stamperor.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="action-samples">Action / Combat Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Runic Tower</h3>
+            <p class="sample-meta">PC • Action / Tower Defence • Live Build v1.7.0.0</p>
+            <p>Onboarding clarity, ability feedback, Background and Aspect behaviour, and overlapping mechanics.</p>
+            <p><a href="runic_tower.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="systems-samples">Roguelike / Systems-Heavy Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Cult of PiN</h3>
+            <p class="sample-meta">PC • Roguelike / Pinball • Live Demo</p>
+            <p>Ritual clarity, overlapping effects, timing behaviour, stacking, and progression flow.</p>
+            <p><a href="cult-of-pin.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="card-samples">Card / Decision-Based Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Corpus Et Spiritus</h3>
+            <p class="sample-meta">PC • Card / Decision-Based • Live Build</p>
+            <p>Card resolution, input handling, lifecycle clarity, and rapid interaction behaviour.</p>
+            <p><a href="corpus_et_spiritus.html">View Case Study</a></p>
+          </section>
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section" id="by-qa-focus" aria-labelledby="qa-focus-title">
+        <h2 id="qa-focus-title">Browse by QA Focus</h2>
+
+        <div class="grid-index">
+          <section class="index-card">
+            <h3>Input &amp; Controls</h3>
+            <p>Examples where player input fails, delays, misroutes, or blocks progress.</p>
+            <p><a href="#input-samples">View Input Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Player Understanding</h3>
+            <p>Examples where players are forced to guess what happened or why an outcome occurred.</p>
+            <p><a href="#understanding-samples">View Player Understanding Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>Hotfix / Regression Testing</h3>
+            <p>Examples focused on checking recent fixes, update risks, and whether issues hold under repeated conditions.</p>
+            <p><a href="#regression-samples">View Hotfix / Regression Samples</a></p>
+          </section>
+
+          <section class="index-card">
+            <h3>System Clarity</h3>
+            <p>Examples where game systems work mechanically but are difficult for players to understand.</p>
+            <p><a href="#clarity-samples">View System Clarity Samples</a></p>
+          </section>
+        </div>
+
+        <h3 id="input-samples">Input &amp; Controls Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Stamperor</h3>
+            <p class="sample-meta">PC • Strategy / Management • Demo Hotfix v0.0.5</p>
+            <p>End-of-cycle input can fail, send the player back to the main menu, or result in a soft lock.</p>
+            <p><a href="stamperor.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Corpus Et Spiritus</h3>
+            <p class="sample-meta">PC • Card / Decision-Based • Live Build</p>
+            <p>Card handling under rapid and mixed inputs, including click vs drag interaction checks.</p>
+            <p><a href="corpus_et_spiritus.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="understanding-samples">Player Understanding Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Stamperor</h3>
+            <p class="sample-meta">PC • Strategy / Management • Demo Hotfix v0.0.5</p>
+            <p>Population and decision outcomes do not clearly align with visible values, forcing player guesswork.</p>
+            <p><a href="stamperor.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Runic Tower</h3>
+            <p class="sample-meta">PC • Action / Tower Defence • Live Build v1.7.0.0</p>
+            <p>Background, Aspect, passive, active, Player, and Tower roles are not clearly communicated.</p>
+            <p><a href="runic_tower.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Cult of PiN</h3>
+            <p class="sample-meta">PC • Roguelike / Pinball • Live Demo</p>
+            <p>Overlapping systems make cause and effect harder to follow during chaotic gameplay.</p>
+            <p><a href="cult-of-pin.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="regression-samples">Hotfix / Regression Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Stamperor</h3>
+            <p class="sample-meta">PC • Strategy / Management • Demo Hotfix v0.0.5</p>
+            <p>Re-tested end-of-cycle input after initial failure and confirmed further instability, including unintended menu appearance and soft lock.</p>
+            <p><a href="stamperor.html">View Case Study</a></p>
+          </section>
+        </div>
+
+        <h3 id="clarity-samples">System Clarity Samples</h3>
+
+        <div class="sample-grid">
+          <section class="sample-card">
+            <h3>Runic Tower</h3>
+            <p class="sample-meta">PC • Action / Tower Defence • Live Build v1.7.0.0</p>
+            <p>System behaviour around Background and Aspect choices is difficult to understand during gameplay.</p>
+            <p><a href="runic_tower.html">View Case Study</a></p>
+          </section>
+
+          <section class="sample-card">
+            <h3>Cult of PiN</h3>
+            <p class="sample-meta">PC • Roguelike / Pinball • Live Demo</p>
+            <p>Rituals, multipliers, boss effects, and overlapping feedback require stronger communication during play.</p>
+            <p><a href="cult-of-pin.html">View Case Study</a></p>
+          </section>
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section" id="all-samples" aria-labelledby="all-samples-title">
+        <h2 id="all-samples-title">All QA Samples</h2>
+
+        <table class="sample-table">
+          <thead>
+            <tr>
+              <th>Game</th>
+              <th>Platform</th>
+              <th>Game Type</th>
+              <th>QA Focus</th>
+              <th>Build / Context</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stamperor</strong></td>
+              <td>PC</td>
+              <td>Strategy / Management</td>
+              <td>Input reliability, hotfix regression, decision clarity, player understanding</td>
+              <td>Demo Hotfix v0.0.5</td>
+              <td><a href="stamperor.html">View Case Study</a></td>
+            </tr>
+
+            <tr>
+              <td><strong>Runic Tower</strong></td>
+              <td>PC</td>
+              <td>Action / Tower Defence</td>
+              <td>Onboarding, ability feedback, system clarity, overlapping mechanics</td>
+              <td>Live Build v1.7.0.0</td>
+              <td><a href="runic_tower.html">View Case Study</a></td>
+            </tr>
+
+            <tr>
+              <td><strong>Corpus Et Spiritus</strong></td>
+              <td>PC</td>
+              <td>Card / Decision-Based</td>
+              <td>Card resolution, input handling, lifecycle clarity, rapid interaction</td>
+              <td>Live Build</td>
+              <td><a href="corpus_et_spiritus.html">View Case Study</a></td>
+            </tr>
+
+            <tr>
+              <td><strong>Cult of PiN</strong></td>
+              <td>PC</td>
+              <td>Roguelike / Pinball</td>
+              <td>Ritual clarity, overlapping systems, timing behaviour, progression flow</td>
+              <td>Live Demo</td>
+              <td><a href="cult-of-pin.html">View Case Study</a></td>
+            </tr>
+
+            <tr>
+              <td><strong>Rebel Racing</strong></td>
+              <td>Android</td>
+              <td>Racing</td>
+              <td>Interruption handling, rewards flow, app resume behaviour</td>
+              <td>Live Mobile Build</td>
+              <td><a href="../../exploratory-qa-live-testing/rebel-racing.html">View Case Study</a></td>
+            </tr>
+
+            <tr>
+              <td><strong>Shadow Point</strong></td>
+              <td>Meta Quest 3</td>
+              <td>VR Puzzle / Narrative</td>
+              <td>VR comfort, accessibility, subtitles, seated reach, UI readability</td>
+              <td>Standalone VR Build</td>
+              <td><a href="../../vr-accessibility-qa/shadow-point.html">View Case Study</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr>
+
+      <section class="section faq-accordion" id="faq">
+        <h2>FAQ</h2>
+
+        <details>
+          <summary>What would you actually test if I gave you my game?</summary>
+          <div class="faq-answer">
+            I start with whatever you’re already having issues with, based on your own feedback or player feedback. Then I expand into the rest of the game, focusing on how it feels to play, including controls, clarity, progression, consistency, and accessibility.
+          </div>
+        </details>
+
+        <details>
+          <summary>Can you work on a game long-term?</summary>
+          <div class="faq-answer">
+            Yes. I can do short targeted testing, or work with you over time as the game develops. That includes testing new features, checking fixes, improving accessibility, and helping catch issues before updates go out.
+          </div>
+        </details>
+
+        <details>
+          <summary>Do you test for accessibility?</summary>
+          <div class="faq-answer">
+            Yes. I look at how playable the game is for different players, including readability, input flexibility, clarity under pressure, and whether important information is easy to understand.
+          </div>
+        </details>
+
+        <details>
+          <summary>What do you deliver?</summary>
+          <div class="faq-answer">
+            Clear, practical feedback you can act on. That includes short video clips showing the issue, simple explanations of what’s happening, and steps to reproduce it so you can fix it quickly.
+          </div>
+        </details>
+
+        <details>
+          <summary>How do you work with small teams or solo devs?</summary>
+          <div class="faq-answer">
+            I keep things simple and flexible. I can fit into your workflow, use your tools, or just send you structured feedback you can work through at your own pace.
+          </div>
+        </details>
+
+        <details>
+          <summary>What kind of problems do you usually find?</summary>
+          <div class="faq-answer">
+            Bugs, but also the things players struggle with. That includes unclear mechanics, confusing systems, inconsistent behaviour, and accessibility issues that make the game harder to understand or play.
+          </div>
+        </details>
+
+        <details>
+          <summary>Can you focus on specific parts of my game?</summary>
+          <div class="faq-answer">
+            Yes. If you want me to focus on something specific, like combat, UI, progression, input, or accessibility, I can go deep on that area.
+          </div>
+        </details>
+      </section>
+
+      <hr>
+
+      <section class="section" aria-labelledby="contact">
+        <div class="service-card hero-copy">
+
+          <h2 id="contact">Need Someone to Test Your Game?</h2>
+
+          <p class="lead">
+            If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+          </p>
+
+          <div class="cta-row">
+            <a class="cta-btn primary-cta" href="YOUR_DISCORD_LINK" target="_blank" rel="noopener">
+              Message Me on Discord
+            </a>
+
+            <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+              Email Me
+            </a>
+
+            <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+
+            <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">
+              See QA Work Examples
+            </a>
+          </div>
+
+        </div>
+      </section>
+
     </div>
-  </details>
-
-  <details>
-    <summary>Can you work on a game long-term?</summary>
-    <div class="faq-answer">
-      Yes. I can do short targeted testing, or work with you over time as the game develops. That includes testing new features, checking fixes, improving accessibility, and helping catch issues before updates go out.
-    </div>
-  </details>
-
-  <details>
-    <summary>Do you test for accessibility?</summary>
-    <div class="faq-answer">
-      Yes. I look at how playable the game is for different players, including readability, input flexibility, clarity under pressure, and whether important information is easy to understand.
-    </div>
-  </details>
-
-  <details>
-    <summary>What do you deliver?</summary>
-    <div class="faq-answer">
-      Clear, practical feedback you can act on. That includes short video clips showing the issue, simple explanations of what’s happening, and steps to reproduce it so you can fix it quickly.
-    </div>
-  </details>
-
-  <details>
-    <summary>How do you work with small teams or solo devs?</summary>
-    <div class="faq-answer">
-      I keep things simple and flexible. I can fit into your workflow, use your tools, or just send you structured feedback you can work through at your own pace.
-    </div>
-  </details>
-
-  <details>
-    <summary>What kind of problems do you usually find?</summary>
-    <div class="faq-answer">
-      Bugs, but also the things players struggle with. That includes unclear mechanics, confusing systems, inconsistent behaviour, and accessibility issues that make the game harder to understand or play.
-    </div>
-  </details>
-
-  <details>
-    <summary>Can you focus on specific parts of my game?</summary>
-    <div class="faq-answer">
-      Yes. If you want me to focus on something specific, like combat, UI, progression, or accessibility, I can go deep on that area.
-    </div>
-  </details>
-</section>
-
- <hr>
-
-<section class="section" aria-labelledby="contact">
-  <div class="service-card hero-copy">
-
-    <h2 id="contact">Need Someone to Test Your Game?</h2>
-
-    <p class="lead">
-      If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
-    </p>
-
-    <div class="cta-row">
-      <a class="cta-btn primary-cta" href="YOUR_DISCORD_LINK" target="_blank" rel="noopener">
-        Message Me on Discord
-      </a>
-
-      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
-        Email Me
-      </a>
-
-      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
-        LinkedIn
-      </a>
-
-      <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">
-        See QA Work Examples
-      </a>
-    </div>
-
-  </div>
-</section>
-
-</div>
 
     <hr>
 
-  <footer>© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio 📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</footer>
+    <footer>
+      © <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio 📎 Disclaimer: This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.
+    </footer>
+  </main>
 </body>
 </html>
