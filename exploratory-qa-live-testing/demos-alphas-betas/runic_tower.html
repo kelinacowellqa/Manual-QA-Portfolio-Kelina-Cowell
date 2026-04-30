@@ -604,54 +604,61 @@
 
     <hr>
 
-    <h2 id="what-i-learned">🧠 What I learned</h2>
+ <h2 id="key-points">🔍 Key Points for the Developer</h2>
 
-    <ul>
-      <li>
-        <strong>Responsive input does not guarantee clear system feedback.</strong>
-        Active abilities fired correctly, but passive and system-driven effects were not communicated clearly enough for the player to understand.
-      </li>
+<ul>
+  <li>
+    <strong>System feedback is inconsistent outside of active abilities.</strong>
+    Active abilities are clear, but passive and background effects are not communicated well, making it hard to understand what is influencing gameplay.
+  </li>
 
-      <li>
-        <strong>Build systems need reliable mapping.</strong>
-        When a selected Aspect does not match the loaded gameplay behaviour, player trust in the system breaks quickly.
-      </li>
+  <li>
+    <strong>Aspect selection does not reliably match gameplay behaviour.</strong>
+    Selected Aspects do not consistently align with what is loaded in-game, breaking trust in the build system.
+  </li>
 
-      <li>
-        <strong>End screens can expose system logic problems.</strong>
-        The defeat screen revealed ability classification and Player vs Tower assignment issues that were harder to confirm during live combat.
-      </li>
+  <li>
+    <strong>End screens expose underlying system issues.</strong>
+    The defeat screen revealed problems with ability classification and Player vs Tower assignment that are harder to identify during combat.
+  </li>
 
-      <li>
-        <strong>Player understanding is part of gameplay quality.</strong>
-        If the game cannot explain how Background, Aspect, passive, active, Player, and Tower systems relate to each other, the player cannot make informed decisions.
-      </li>
+  <li>
+    <strong>System relationships are not clearly explained.</strong>
+    Background, Aspect, passive, active, Player, and Tower roles are not clearly connected, making it difficult to understand or control builds.
+  </li>
 
-      <li>
-        <strong>Short targeted passes work best when tied to recent changes.</strong>
-        Scoping this pass around the v1.7 update kept the findings focused and directly useful.
-      </li>
-    </ul>
+  <li>
+    <strong>This area should be prioritised after updates.</strong>
+    These issues affect multiple systems and should be rechecked after any related changes.
+  </li>
+</ul>
 
     <hr>
 
-    <h2 id="conclusion">🔚 Conclusion</h2>
+  <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
 
-    <p>
-      This targeted QA pass on <em>Runic Tower</em> found that active ability use is readable in isolation, but broader system clarity is weak. The player can trigger and see immediate active ability feedback, but passive effects and system-driven behaviour are not communicated clearly.
-    </p>
+<p>
+The main issue in this build is weak system clarity. Active abilities are readable, but passive effects and system-driven behaviour are not clearly communicated, making it difficult to understand what is happening during gameplay.
+</p>
 
-    <p>
-      The main functional issue identified was that selected Aspects did not reliably match the Aspect loaded into gameplay. This was confirmed through HUD display and ability behaviour, making it more than a visual mismatch.
-    </p>
+<p>
+A key functional problem is that selected Aspects do not reliably match the behaviour loaded in-game. This is confirmed through both HUD display and ability behaviour, making it more than a visual issue.
+</p>
 
-    <p>
-      The main player-facing weakness was system explanation. Background and Aspect choices, passive and active roles, and Player vs Tower assignment were not clearly explained, making it difficult for the player to understand or control their build.
-    </p>
+<p>
+Build control is also unclear. The relationship between Background, Aspect, passive and active roles, and Player vs Tower assignment is not explained well enough for players to make informed decisions.
+</p>
 
-    <p>
-      Overall, this project demonstrates a short, focused QA pass using risk-based scoping, evidence-backed bug reporting, and clear separation between technical defects and player experience findings.
-    </p>
+<p>
+Recommended next steps:
+</p>
+
+<ul>
+  <li>Fix Aspect selection so it consistently matches gameplay behaviour.</li>
+  <li>Improve feedback for passive and system-driven effects.</li>
+  <li>Clarify how Background, Aspect, and role systems interact.</li>
+  <li>Re-test system behaviour after updates, especially around build selection and assignment.</li>
+</ul>
 
    <hr>
 
