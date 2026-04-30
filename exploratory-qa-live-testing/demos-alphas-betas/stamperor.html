@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Stamperor - QA Mini-Pass (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on Stamperor Demo Hotfix v0.0.5, focused on end-of-cycle input handling, system clarity after state changes, decision outcome clarity, and regression risk." />
+
+  <meta property="og:title" content="Stamperor - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on Stamperor Demo Hotfix v0.0.5 covering menu input stability, destruction feedback, decision outcome clarity, and regression behaviour." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Stamperor-banner.png" alt="Stamperor QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/index.html" target="_blank" rel="noopener">
+        Back to Live Testing Hub
+      </a>
+    </p>
+
+    <h1>Stamperor - QA Mini-Pass: Input Stability, System Feedback &amp; Decision Clarity (PC)</h1>
+    <p class="meta">Tested: 30 Apr 2026</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 About this work</h2>
+      <ul>
+        <li><strong>Author:</strong> Kelina Cowell - QA Tester (Games)</li>
+        <li><strong>Context:</strong> Self-directed dev-facing Game QA mini-pass</li>
+        <li><strong>Timebox:</strong> Short focused QA pass</li>
+        <li><strong>Platform:</strong> PC (Windows 11)</li>
+        <li><strong>Build:</strong> Demo Hotfix v0.0.5</li>
+        <li><strong>Scope:</strong> End-of-cycle input handling, destruction feedback, population and building state clarity, decision outcome clarity, and regression risk</li>
+        <li><strong>Focus:</strong> System consistency after state changes and how clearly the game communicates outcomes to the player</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor/",
+  "name": "Stamperor: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Stamperor" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Regression testing" },
+    { "@type": "Thing", "name": "Input handling" },
+    { "@type": "Thing", "name": "System clarity" },
+    { "@type": "Thing", "name": "Decision clarity" },
+    { "@type": "Thing", "name": "Player-facing feedback" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "regression testing",
+    "input handling",
+    "UI responsiveness",
+    "system clarity",
+    "decision outcome clarity",
+    "state transitions",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Demo Hotfix v0.0.5" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-04-30" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "End-of-cycle input handling, destruction feedback, population and building state clarity, decision outcome clarity, and regression risk" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on system consistency, input stability, player-facing feedback, and regression behaviour after a hotfix" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, one-line summary, player experience notes, screenshots, and video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "2 bugs and 2 player experience findings" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This mini-project is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA &amp; Live Testing</a> work.
+    </p>
+
+    <p>
+      These projects focus on short, real-world testing scenarios across demos, early builds, live updates, and active indie games. The goal is not exhaustive coverage, but fast, practical QA judgement applied to current systems that may still be evolving.
+    </p>
+
+    <p>
+      This project is a short dev-facing QA mini-pass on <em>Stamperor</em>, tested on PC using Demo Hotfix v0.0.5. Following the recent hotfix, I focused on system consistency after state changes and how clearly the game communicates decision outcomes under pressure.
+    </p>
+
+    <p>
+      Testing was charter-driven and deliberately limited in scope. I focused on end-of-cycle input handling, destruction feedback, population and building state clarity, decision outcome clarity, and whether previously observed input issues remained stable under repeat conditions.
+    </p>
+
+    <p>
+      I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, STAR summary, and player experience notes.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Stamperor</td>
+          <td>PC, Demo Hotfix v0.0.5</td>
+          <td>
+            QA mini-pass focused on menu input stability, end-of-cycle screen behaviour, destruction feedback, bracket value clarity, decision outcome clarity, and regression risk.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether core player-facing systems remain understandable and stable after state changes, especially around end-of-cycle transitions and decision outcomes.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>End-of-cycle input handling</li>
+          <li>Menu and state transition stability</li>
+          <li>Destruction feedback and bracket values</li>
+          <li>Population and building value clarity</li>
+          <li>Decision outcome cause and effect</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and player experience notes</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Bug log with reproducible steps and evidence links</li>
+          <li>Short video and screenshot evidence for key findings</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>4</td></tr>
+        <tr><td>Total Bugs Logged</td><td>2</td></tr>
+        <tr><td>Critical</td><td>1</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Player Experience Findings</td><td>2</td></tr>
+        <tr><td>Primary Risk Area</td><td>End-of-cycle input handling and system feedback clarity</td></tr>
+        <tr><td>Repro Rate</td><td>Both logged bugs observed 1/1 during targeted runs, with related instability confirmed during regression check</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="star-summary">⭐ STAR Summary - Stamperor QA Mini-Pass</h2>
+
+    <p><strong>Situation:</strong> Short, dev-facing QA mini-pass on <strong>Stamperor</strong>, following Demo Hotfix v0.0.5. The pass focused on system consistency, input stability, and player-facing feedback after state changes.</p>
+
+    <p><strong>Task:</strong> Test predefined systems covered by focused charters, identify useful findings for the developer, and avoid expanding the work into a full unpaid test pass.</p>
+
+    <p><strong>Action:</strong> Executed 4 focused sessions covering destruction feedback, menu state transitions, decision outcome clarity, and regression checks on end-of-cycle input behaviour. Evidence was captured through short clips, screenshots, session notes, and structured expected vs actual comparisons.</p>
+
+    <p><strong>Result:</strong> Two bugs were logged, including an end-of-cycle input issue that can return the player to the main menu and a regression case where unstable input can trigger an unintended language menu and soft lock the game. Two additional player experience findings were recorded around unexplained bracket values and unclear decision outcome calculation.</p>
+
+    <hr>
+
+    <h2>📷 Evidence &amp; Media</h2>
+
+    <p class="method-note">These artefacts support the project findings and provide traceability from testing to outcomes:</p>
+
+    <ul class="method-note">
+      <li>QA workbook containing session notes, risk matrix, bug log, one-line summary, STAR summary, and player experience notes</li>
+      <li>Short gameplay clips showing end-of-cycle input failure and soft lock behaviour</li>
+      <li>Screenshots showing bracket value and decision outcome clarity issues</li>
+      <li>Linked evidence within the workbook supporting the logged bugs and player experience findings</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="https://docs.google.com/spreadsheets/d/1XnMQ1DZ1uxBvOIynYSleOGmfjyZHGm6F/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_QA_MiniPass_Hotfix_v0.0.5_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Core Project Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Menu Navigation &amp; Input Handling</td>
+          <td>End-of-cycle screen input is unreliable and can return the player to the menu instead of continuing.</td>
+          <td>Watch Clip - Input Failure (End Cycle)</td>
+        </tr>
+        <tr>
+          <td>Menu Navigation &amp; Input Handling (Regression)</td>
+          <td>Re-testing shows input instability can trigger an unintended language menu and soft lock the game.</td>
+          <td>Watch Clip - Input Failure (End Cycle)</td>
+        </tr>
+        <tr>
+          <td>Population &amp; Building System Clarity</td>
+          <td>Bracket values (+/-) appear after destruction but are not explained, forcing player guesswork.</td>
+          <td>View Before State / View After State</td>
+        </tr>
+        <tr>
+          <td>Decision Outcome Clarity</td>
+          <td>Decision values, such as -15 population, do not clearly align with visible system values.</td>
+          <td>View Before Decision (Population) / View After Decision (Population)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip/Screenshot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C01-01</td>
+          <td>End-of-cycle screen input unresponsive and may return player to main menu</td>
+          <td>High</td>
+          <td>1/1</td>
+          <td>
+            <a href="https://youtu.be/6tG0PDwV4AI" target="_blank" rel="noopener">
+              Watch Clip - End Cycle Input Issue
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>C04-01</td>
+          <td>End-of-cycle screen can trigger unintended language menu and cause soft lock</td>
+          <td>Critical</td>
+          <td>1/1</td>
+          <td>
+            <a href="https://youtu.be/hT1gGNmj-Ds" target="_blank" rel="noopener">
+              Watch Clip - Input Failure (End Cycle)
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note bug-log-note">
+      Full bug log with repro steps, expected vs actual, and evidence:
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Bug_Log_STAMPEROR_QA_MiniPass_Hotfix_v0.0.5_KelinaCowell.pdf" target="_blank" rel="noopener">
+        Download Bug Log (PDF)
+      </a>
+    </p>
+
+    <p class="method-note">
+      The strongest functional issue was C04-01, where the end-of-cycle screen could trigger an unrelated language menu and then soft lock the game. C01-01 established the related input handling risk by showing unreliable end-of-cycle input and an incorrect transition back to the main menu.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Post-destruction system update (after earthquake event)</td>
+          <td>Clear understanding of what changed to population and buildings, including whether losses, damage, or gains occurred.</td>
+          <td>Population and building values display bracketed numbers (e.g. +4, -14) with no explanation, requiring the player to guess whether these represent damage, temporary states, or incoming changes.</td>
+          <td>System Clarity / Feedback Communication</td>
+          <td>Player cannot confidently interpret core system state after a major event, leading to hesitation and guesswork in decision-making.</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>End-of-cycle screen input (before next cycle begins)</td>
+          <td>Clear and immediate response when attempting to continue or exit using standard inputs, such as mouse or ESC.</td>
+          <td>ESC key has no effect; mouse input is unresponsive or delayed despite instruction “Click anywhere to continue”; after repeated input, game returns to main menu instead of continuing.</td>
+          <td>Input Handling / UI Responsiveness</td>
+          <td>Player may become stuck or lose progress, with confusion caused by unresponsive inputs and incorrect outcome.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Decision outcome affecting population (player choice)</td>
+          <td>Decision outcome should clearly reflect the stated change, such as -15 population, and align with visible values.</td>
+          <td>Decision indicates -15 population, but visible values (5 (+7) → 5 (-8)) do not clearly match the expected result, making the outcome difficult to interpret.</td>
+          <td>System Clarity / Cause to Effect Breakdown</td>
+          <td>Player cannot confidently understand how decisions affect core systems, reducing trust and making future decisions feel unreliable.</td>
+          <td>High</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 4 focused QA sessions on <em>Stamperor</em>.</li>
+      <li>Logged 2 bugs covering end-of-cycle input failure, incorrect state transition, unintended UI triggering, and soft lock behaviour.</li>
+      <li>Recorded 2 additional player experience findings covering bracket value clarity and decision outcome interpretation.</li>
+      <li>Confirmed that end-of-cycle input handling is a high-risk area after the hotfix.</li>
+      <li>Identified that core system values can be visible but still unclear due to undefined bracket notation.</li>
+      <li>Identified that decision outcomes can be difficult to reconcile with visible population values.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="what-i-learned">🧠 What I learned</h2>
+
+    <ul>
+      <li>
+        <strong>Visible information is not the same as clear information.</strong>
+        Population and building values were visible, but bracketed modifiers were not explained clearly enough for the player to interpret system state confidently.
+      </li>
+
+      <li>
+        <strong>End-of-cycle screens are high-risk transition points.</strong>
+        This screen exposed multiple issues with input handling, incorrect state transition, unintended UI triggering, and soft lock behaviour.
+      </li>
+
+      <li>
+        <strong>Decision text needs to map cleanly to visible system values.</strong>
+        When a decision says -15 population but the UI changes from 5 (+7) to 5 (-8), the player is forced to guess how the system calculated the outcome.
+      </li>
+
+      <li>
+        <strong>Regression checks are useful even in tiny passes.</strong>
+        Re-testing the end-of-cycle issue showed the problem was not just a delayed input moment, but part of a broader unstable state handling risk.
+      </li>
+
+      <li>
+        <strong>A mini-pass should stop once strong findings are confirmed.</strong>
+        Continuing beyond the focused scope would have diluted the usefulness of the evidence already gathered.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 Conclusion</h2>
+
+    <p>
+      This QA mini-pass on <em>Stamperor</em> found that the strongest risk area was end-of-cycle input handling. The screen instructs the player to “Click anywhere to continue”, but input can be unreliable, delayed, or lead to incorrect outcomes.
+    </p>
+
+    <p>
+      The most serious issue found was an unstable end-of-cycle state where repeated input triggered an unintended language menu and resulted in a soft lock requiring the game to be closed externally.
+    </p>
+
+    <p>
+      The main player-facing weakness was system clarity. Bracketed values and decision outcomes appear to represent layered or temporary system states, but the UI does not clearly explain how those values should be interpreted by the player.
+    </p>
+
+    <p>
+      Overall, this project demonstrates a short, focused QA mini-pass using risk-based scoping, evidence-backed bug reporting, and clear separation between functional defects and player experience findings.
+    </p>
+
+    <hr>
+
+    <section class="section" aria-labelledby="contact">
+      <div class="service-card hero-copy">
+
+        <h2 id="contact">Need Someone to Test Your Game?</h2>
+
+        <p class="lead">
+          If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta-btn primary-cta" href="YOUR_DISCORD_LINK" target="_blank" rel="noopener">
+            Message Me on Discord
+          </a>
+
+          <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+            Email Me
+          </a>
+
+          <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+
+          <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">
+            See QA Work Examples
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
