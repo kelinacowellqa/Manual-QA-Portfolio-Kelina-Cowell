@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Strategy & Management Game QA Samples | Kelina Cowell</title>
+
+  <meta name="description" content="Strategy and management game QA testing samples focused on player-facing issues, input reliability, decision outcomes, resource feedback, system clarity, and developer-ready findings." />
+
+  <meta property="og:title" content="Strategy & Management Game QA Samples | Kelina Cowell" />
+  <meta property="og:description" content="Game QA examples for strategy and management games, covering player-facing issues, input reliability, decision outcomes, resource feedback, and system clarity." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-strategy.html" />
+
+  <meta name="twitter:title" content="Strategy & Management Game QA Samples | Kelina Cowell" />
+  <meta name="twitter:description" content="Strategy and management game QA examples focused on decision outcomes, resource feedback, player understanding, and clear developer-ready findings." />
+
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-strategy.html" />
+
+  <link rel="stylesheet" href="../../assets/css/custom.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Strategy and Management Game QA Samples",
+    "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/type-strategy.html",
+    "description": "Short QA testing examples for strategy and management games, focused on input reliability, decision outcomes, player understanding, resource feedback, and system clarity.",
+    "inLanguage": "en-GB",
+    "author": {
+      "@type": "Person",
+      "name": "Kelina Cowell"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Game developers, indie studios"
+    },
+    "about": [
+      { "@type": "Thing", "name": "Game QA" },
+      { "@type": "Thing", "name": "Strategy game testing" },
+      { "@type": "Thing", "name": "Management game testing" },
+      { "@type": "Thing", "name": "Decision outcome testing" },
+      { "@type": "Thing", "name": "Player understanding" },
+      { "@type": "Thing", "name": "System clarity" }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1215;
+      --text:#cfd6dd;
+      --line:rgba(255,255,255,.08);
+      --teal:#00fff0;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin:0;
+      line-height:1.55;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+    h1,h2,h3{
+      color:var(--teal);
+    }
+
+    a{
+      color:var(--teal);
+      text-decoration:none;
+    }
+
+    a:hover{
+      color:#66fff7;
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid var(--teal);
+      opacity:.35;
+      margin:32px 0;
+    }
+
+    .cta-btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      color:var(--teal);
+      text-decoration:none;
+      margin:4px;
+      font-weight:700;
+      background:#0d1117;
+    }
+
+    .cta-btn:hover{
+      background:var(--teal);
+      color:var(--bg);
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .project-block{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .project-block:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(0,255,240,.15);
+    }
+
+    .project-block h3{
+      margin-top:0;
+    }
+
+    .project-block p{
+      margin-bottom:16px;
+    }
+
+    .service-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .service-card.hero-copy{
+      max-width:900px;
+      margin:0 auto;
+      padding:20px 24px;
+      text-align:center;
+    }
+
+    .service-card.hero-copy h2{
+      margin-top:0;
+    }
+
+    .service-card.hero-copy .lead{
+      margin-bottom:20px;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    footer{
+      margin-top:30px;
+      padding:20px 0;
+      text-align:center;
+      font-size:.9rem;
+      opacity:.8;
+    }
+
+    @media (max-width:700px){
+      .project-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <nav style="text-align:center;margin-bottom:20px;">
+      <a class="cta-btn" href="index.html">Back to Main Page</a>
+      <a class="cta-btn" href="platform-pc.html">PC Samples</a>
+    </nav>
+
+    <h1>Strategy &amp; Management QA Samples</h1>
+
+    <p>
+      Short, focused QA work on strategy and management-style games, showing issues around player input, decision outcomes, resource feedback, and whether players can understand what changed after important events.
+    </p>
+
+    <div class="project-grid">
+
+      <section class="project-block">
+        <h3>Stamperor! - <em>QA Mini-Pass (Hotfix v0.0.5)</em></h3>
+        <p>
+          Focused on end-of-cycle input reliability, population feedback, destruction outcomes, and whether decision results clearly matched visible game values.
+        </p>
+        <a class="cta-btn" href="demos-alphas-betas/stamperor.html">View Case Study</a>
+      </section>
+
+    </div>
+
+    <hr>
+
+    <section class="section" aria-labelledby="contact">
+      <div class="service-card hero-copy">
+
+        <h2 id="contact">Need Someone to Test Your Strategy or Management Game?</h2>
+
+        <p class="lead">
+          If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta-btn primary-cta" href="https://discord.gg/GtAznsBB" target="_blank" rel="noopener">
+            Message Me on Discord
+          </a>
+
+          <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+            Email Me
+          </a>
+
+          <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+
+          <a class="cta-btn" href="index.html">
+            Back to Main Page
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p>
+      <em>
+        This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.
+      </em>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
