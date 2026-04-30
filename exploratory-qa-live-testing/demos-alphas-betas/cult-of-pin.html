@@ -289,19 +289,22 @@
       </a>
     </p>
 
-<h1>Cult of PiN - Live Demo Exploratory QA Case Study (PC)</h1>
-<p class="meta">Tested: 25-26 Apr 2026</p>
+<h1>Cult of PiN - QA Pass (PC)</h1>
+<p class="meta">Tested: 25–26 Apr 2026 • Build: v0.11 Demo</p>
 
 <section aria-labelledby="about-this-work">
-  <h2 id="about-this-work">🧾 About this work</h2>
+  <h2 id="about-this-work">🧾 Test Overview</h2>
+
   <ul>
-    <li><strong>Author:</strong> Kelina Cowell - Junior QA Tester (Games)</li>
-    <li><strong>Context:</strong> Self-directed Game QA portfolio project</li>
-    <li><strong>Timebox:</strong> Short focused demo pass</li>
     <li><strong>Platform:</strong> PC</li>
-    <li><strong>Build:</strong> v0.11 Demo</li>
-    <li><strong>Scope:</strong> Exploratory QA focused on clarity, ritual systems, timing behaviour, system stacking, and progression flow</li>
-    <li><strong>Focus:</strong> Player-facing clarity, overlapping systems, and stability under real gameplay conditions</li>
+
+    <li><strong>Focus Areas:</strong>
+      Ritual systems, timing behaviour, system stacking, progression flow, and clarity during active gameplay
+    </li>
+
+    <li><strong>Purpose:</strong>
+      Check how clearly overlapping systems are communicated and whether gameplay remains understandable under pressure
+    </li>
   </ul>
 </section>
 
@@ -379,23 +382,27 @@
 <h2>Introduction</h2>
 
 <p>
-  This case study is part of my <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/">Exploratory QA & Live Testing</a> work.
+This is a focused QA pass on the <a href="https://store.steampowered.com/app/3144340/Cult_of_PiN/" target="_blank" rel="noopener"><em>Cult of PiN</em></a> demo, tested on PC using build v0.11.
 </p>
 
 <p>
-  These projects focus on short, real-world testing scenarios such as demos, alpha builds, and unstable environments, where the goal is rapid bug discovery, practical QA judgement, and adapting to evolving systems rather than full structured coverage.
+The goal was to check how clearly the game communicates its systems during gameplay, especially when multiple mechanics trigger at once.
 </p>
 
 <p>
-  This project is a short exploratory QA pass on the <a href="https://store.steampowered.com/app/3144340/Cult_of_PiN/" target="_blank" rel="noopener"><em>Cult of PiN</em></a> demo, tested on PC using build v0.11. The goal was to evaluate how clearly the game communicates its ritual systems, how well overlapping systems behave under chaotic gameplay conditions, and whether the run flow remains stable from start to completion.
+Testing focused on:
 </p>
 
-<p>
-  Testing was charter-driven and risk-based rather than exhaustive. The goal was not full regression or full content coverage, but to focus on high-risk areas in a system-heavy roguelike pinball game where multiple mechanics can overlap quickly.
-</p>
+<ul>
+  <li>Ritual system clarity</li>
+  <li>Timing behaviour</li>
+  <li>System stacking during active play</li>
+  <li>Progression flow across a full run</li>
+  <li>Clarity under chaotic gameplay conditions</li>
+</ul>
 
 <p>
-  I did not use Jira for this project. Bugs and findings were recorded directly in a structured QA workbook using session notes, a bug log, risk matrix, one-line summary, and STAR summary.
+Findings are based on direct testing and supported by reproducible behaviour and evidence.
 </p>
 
 <table>
@@ -461,18 +468,6 @@
     <tr><td>Repro Rate</td><td>Spare Change colour mismatch = 100%</td></tr>
   </tbody>
 </table>
-
-<hr>
-
-<h2 id="star-summary">⭐ STAR Summary - Cult of PiN Demo Exploratory QA</h2>
-
-<p><strong>Situation:</strong> Short, self-directed exploratory QA pass on the <strong>Cult of PiN</strong> demo, a system-heavy roguelike pinball game where rituals, multipliers, multiball, and boss mechanics can overlap quickly during play.</p>
-
-<p><strong>Task:</strong> Validate high-risk areas in the demo build, focusing on clarity, ritual behaviour, timing and state transitions, system stacking, and progression flow.</p>
-
-<p><strong>Action:</strong> Created a charter-driven QA workbook and executed 5 focused sessions. Testing prioritised real gameplay conditions over exhaustive coverage, with evidence captured through screenshots and short gameplay clips. Bugs were recorded in a structured Bug Log rather than Jira.</p>
-
-<p><strong>Result:</strong> Logged 1 low-severity visual consistency issue. No timing, system interaction, or progression defects were observed. The main project finding was that the game is mechanically stable under pressure, but player-facing clarity weakens when multiple systems overlap.</p>
 
 <hr>
 
