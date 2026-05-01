@@ -1,1 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <title>Enter the Chronosphere - QA Mini-Pass (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on Enter the Chronosphere Demo v136.3, focused on world selection clarity, combat feedback, projectile behaviour, and enemy AI consistency." />
+
+  <meta property="og:title" content="Enter the Chronosphere - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on Enter the Chronosphere Demo v136.3 covering world selection clarity, friendly fire communication, projectile behaviour, and enemy AI consistency." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/enter-the-chronosphere.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/enter-the-chronosphere.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="PLACEHOLDER_BANNER_IMAGE_URL" alt="Enter the Chronosphere QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>Enter the Chronosphere - QA Mini-Pass (PC)</h1>
+    <p class="meta">Tested: 01 May 2026 • Build: Demo v136.3</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11)</li>
+        <li><strong>Focus Areas:</strong> World selection clarity, replayability, combat feedback, friendly fire communication, projectile behaviour, and enemy AI consistency</li>
+        <li><strong>Purpose:</strong> Check whether current run-start and combat systems behave consistently and communicate clearly to the player</li>
+      </ul>
+    </section>
+
+<h2>Introduction</h2>
+
+<p>
+  This is a focused QA pass on <em>Enter the Chronosphere</em>, tested on PC using Demo v136.3.
+</p>
+
+<p>
+  The goal was to check how stable current gameplay systems are, with a focus on world selection behaviour, combat feedback, and whether player-facing interactions are clearly communicated during play.
+</p>
+
+<p>
+  Testing focused on:
+</p>
+
+<ul>
+  <li>World selection clarity and replayability</li>
+  <li>Combat feedback and damage attribution</li>
+  <li>Enemy friendly fire communication</li>
+  <li>Projectile behaviour under normal combat conditions</li>
+  <li>Enemy AI consistency during combat</li>
+</ul>
+
+<p>
+  Findings are based on direct testing and are supported with reproducible behaviour and evidence.
+</p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Enter the Chronosphere</td>
+          <td>PC, Demo v136.3</td>
+          <td>
+            QA mini-pass focused on world selection clarity, combat feedback, enemy damage attribution, projectile behaviour, and enemy AI consistency.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether key run-start and combat systems behave consistently and remain understandable during normal gameplay.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>World selection and replayability</li>
+          <li>Run-to-run variation</li>
+          <li>Combat feedback and damage attribution</li>
+          <li>Projectile movement and updates</li>
+          <li>Enemy AI behaviour during combat</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and player experience notes</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Bug log with expected vs actual behaviour and evidence link</li>
+          <li>Short video evidence for the projectile freeze issue</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>1</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Player Experience Findings</td><td>2</td></tr>
+        <tr><td>Primary Risk Area</td><td>Projectile behaviour and combat reliability</td></tr>
+        <tr><td>Repro Rate</td><td>Projectile freeze observed 1/1 in the affected room state; supporting clarity findings observed across repeated runs</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence is included to show the highest-impact issue clearly and make the report easier to review.
+    </p>
+
+    <ul>
+      <li>Short gameplay clip showing enemy projectiles freezing until player movement</li>
+      <li>Structured workbook covering charters, session logs, bug log, risk matrix, and player experience notes</li>
+      <li>Focused observations from repeated runs across world selection and combat systems</li>
+    </ul>
+
+ <table>
+  <thead>
+    <tr><th>Type</th><th>File / Link</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>QA Workbook (Google Sheets)</strong></td>
+      <td>
+        <a href="https://docs.google.com/spreadsheets/d/1AsiSJuSJKigw_2LNfYwsB4EdtWWOxY7K/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+          Open Workbook
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>QA Workbook (PDF Export)</strong></td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/EnterTheChronosphere_QA_MiniPass_v136.3_KelinaCowell.pdf" target="_blank" rel="noopener">
+          Open PDF
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Core Project Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>World Selection / Run Start</td>
+          <td>World selection rotates from a larger pool with no explanation, preventing intentional replay and mastery.</td>
+          <td>S001 - 5 runs</td>
+        </tr>
+        <tr>
+          <td>Combat Feedback / Damage Attribution</td>
+          <td>Enemy friendly fire exists but is not communicated, making combat outcomes unclear.</td>
+          <td>S002 - 3 runs</td>
+        </tr>
+        <tr>
+          <td>Combat / Projectile System</td>
+          <td>Enemy projectiles freeze unless the player moves, breaking core combat behaviour.</td>
+          <td><a href="#bugs-logged">See Bugs Logged</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip/Screenshot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CHRONO-1</td>
+          <td>Enemy projectiles freeze and only update on player movement</td>
+          <td>High</td>
+          <td>1/1, state-based</td>
+          <td>
+            <a href="https://youtu.be/X9DwFZl3J-o" target="_blank" rel="noopener">
+              Watch Clip - Projectile Freeze
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note bug-log-note">
+      Full bug log with repro steps, expected vs actual, and evidence:
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/BugLog-EnterTheChronosphere_QA_MiniPass_v136.3_KelinaCowell.pdf" target="_blank" rel="noopener">
+        Download Bug Log (PDF)
+      </a>
+    </p>
+
+    <p class="method-note">
+      The strongest functional issue was CHRONO-1, where enemy projectiles froze mid-air when the player was stationary and only advanced when the player moved. During the same state, a named NPC also showed inconsistent behaviour and firing actions with no visible projectiles.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Selecting a world at the start of a run</td>
+          <td>Be able to retry the same world to improve performance, learn layouts, or achieve better results.</td>
+          <td>Only 3 worlds are shown per run, appearing to rotate from a larger pool. Previously played worlds do not reliably reappear, and layouts change each time with no explanation.</td>
+          <td>Clarity / Control</td>
+          <td>Player cannot intentionally retry or improve on a known world or layout, reducing sense of mastery and progression.</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Enemies fighting in close proximity</td>
+          <td>Damage sources and combat outcomes are clearly communicated.</td>
+          <td>Enemies damage and kill each other via projectiles with no clear visual or UI feedback indicating friendly fire or source of damage.</td>
+          <td>Clarity</td>
+          <td>Player may not understand why enemies die or that friendly fire is possible, reducing strategic awareness and causing confusion.</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>During combat when enemies are attacking</td>
+          <td>Enemy projectiles behave consistently and combat flows in real time.</td>
+          <td>Enemy projectiles freeze mid-air when the player is stationary and only update when the player moves. Enemy behaviour becomes inconsistent during this state.</td>
+          <td>Functional / Responsiveness</td>
+          <td>Combat becomes unreliable and difficult to react to, breaking timing, positioning, and player decision-making.</td>
+          <td>High</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>Enter the Chronosphere</em>.</li>
+      <li>Logged 1 high-severity bug affecting projectile movement and combat reliability.</li>
+      <li>Recorded 2 additional player experience findings covering world selection clarity and combat damage attribution.</li>
+      <li>Identified that enemy friendly fire exists but is not clearly communicated to the player.</li>
+      <li>Identified that world selection and room variation may reduce intentional replay without added explanation or player control.</li>
+      <li>Checked recent Discord bug reports and found no matching report for the projectile freeze issue.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>Projectile movement is the highest-risk issue found.</strong>
+        Enemy projectiles froze until the player moved, directly affecting combat timing and reliability.
+      </li>
+
+      <li>
+        <strong>Enemy AI behaviour also became difficult to interpret during the projectile freeze state.</strong>
+        A named NPC showed inconsistent movement, targeting, and projectile output while the issue was active.
+      </li>
+
+      <li>
+        <strong>Friendly fire appears to exist but is not clearly communicated.</strong>
+        Enemies can damage and kill each other, but players may not understand the source of damage or the strategic possibility.
+      </li>
+
+      <li>
+        <strong>World selection behaviour may be working as designed, but the logic is not clear to the player.</strong>
+        The current structure limits control over replaying a specific world or layout, which may affect mastery and score improvement expectations.
+      </li>
+
+      <li>
+        <strong>The projectile freeze issue does not appear to be a duplicate of recent Discord bug reports.</strong>
+        Recent reports included crashes, exit spawning, UI wording, language update issues, and mechanic clarity, but not projectiles freezing or movement-tied updates.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The highest-risk issue found in this mini-pass is the projectile freeze bug. Enemy projectiles stopped moving when the player was stationary and only advanced when the player moved, which breaks the expected timing and readability of combat.
+    </p>
+
+    <p>
+      The same state also affected enemy behaviour, with a named NPC showing inconsistent movement, targeting, and firing output. This suggests the issue may involve a deeper dependency between projectile updates, player movement, and enemy AI behaviour.
+    </p>
+
+    <p>
+      The additional findings are not framed as defects. They highlight player-facing clarity risks around world selection, replay control, and friendly fire communication.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Investigate whether projectile updates are tied to player movement, camera movement, or room update state.</li>
+      <li>Re-test the affected world and room state after any projectile or enemy AI fixes.</li>
+      <li>Clarify enemy friendly fire through visual feedback, tooltip text, tutorial messaging, or consistent damage indicators.</li>
+      <li>Consider whether world selection rotation needs explanation, retry options, or clearer progression framing.</li>
+    </ul>
+
+    <hr>
+
+    <section class="section" aria-labelledby="contact">
+      <div class="service-card hero-copy">
+
+        <h2 id="contact">Need Someone to Test Your Game?</h2>
+
+        <p class="lead">
+          If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta-btn primary-cta" href="PLACEHOLDER_DISCORD_LINK" target="_blank" rel="noopener">
+            Message Me on Discord
+          </a>
+
+          <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+            Email Me
+          </a>
+
+          <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+
+          <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html">
+            Back to QA Services
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
