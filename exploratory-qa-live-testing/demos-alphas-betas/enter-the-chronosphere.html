@@ -18,7 +18,6 @@
 <style>
   .hero{
     width:100%;
-    height:260px;
     position:relative;
     margin:28px 0 26px !important;
     padding:0 !important;
@@ -31,9 +30,10 @@
 
   .hero img{
     width:100%;
-    height:100%;
+    height:auto;
+    max-height:420px;
     display:block;
-    object-fit:cover;
+    object-fit:contain;
     object-position:center center;
     border-radius:20px;
     border:0;
@@ -68,6 +68,7 @@
 
   .cta-row{ margin:20px 0 34px !important; }
   .cta-row .cta-btn{ margin:6px 8px; }
+
   @media (max-width:560px){
     .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
   }
