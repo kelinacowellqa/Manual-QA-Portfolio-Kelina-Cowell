@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Mind Match - QA Mini-Pass (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on Mind Match Demo v0.4.0, focused on onboarding clarity, match outcome clarity, decision-making under gameplay, and player-facing feedback." />
+
+  <meta property="og:title" content="Mind Match - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on Mind Match Demo v0.4.0 covering onboarding clarity, tile outcome clarity, system feedback, terminology consistency, and decision-making under gameplay." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/mind-match.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/mind-match.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+
+.thumb {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.1);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,255,240,0.25);
+}
+
+.thumb-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/MindMatch-banner.png" alt="Mind Match QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>Mind Match - QA Pass (PC)</h1>
+    <p class="meta">Tested: 2 May 2026 • Build: Demo v0.4.0</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11)</li>
+
+        <li><strong>Focus Areas:</strong>
+          Main menu interaction, tutorial clarity, tile outcome clarity, system feedback, terminology consistency, and decision-making during active gameplay
+        </li>
+
+        <li><strong>Purpose:</strong>
+          Check whether the game clearly explains what the player is doing, what changes after each action, and whether choices can be understood during normal play
+        </li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/mind-match/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/mind-match/",
+  "name": "Mind Match: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Mind Match" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Tutorial clarity" },
+    { "@type": "Thing", "name": "Player-facing feedback" },
+    { "@type": "Thing", "name": "Decision clarity" },
+    { "@type": "Thing", "name": "System clarity" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "tutorial clarity",
+    "system clarity",
+    "decision clarity",
+    "UI feedback",
+    "player-facing feedback",
+    "match-3 testing",
+    "roguelite testing",
+    "evidence capture",
+    "session-based testing"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Demo v0.4.0" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-02" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Main menu interaction, tutorial onboarding, match outcome clarity, system feedback, terminology consistency, and decision-making during active gameplay" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on player understanding, action outcome clarity, and feedback visibility during early gameplay" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, risk matrix, one-line summary, player experience notes, screenshots, and gameplay evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "9 player experience findings" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA pass on <em>Mind Match</em>, tested on PC using Demo v0.4.0.
+    </p>
+
+    <p>
+      The goal was to check whether the early experience clearly explains what the player is doing, what changes after each action, and whether choices can be understood during normal gameplay.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Main menu interaction and first access to gameplay</li>
+      <li>Tutorial clarity and whether instructions match what the player needs to do</li>
+      <li>Tile matching and whether outcomes are understandable</li>
+      <li>System feedback, including ability state changes and probability changes</li>
+      <li>Decision-making during combat, events, and shop interactions</li>
+    </ul>
+
+    <p>
+      Findings are based on direct testing and focus on player-facing clarity rather than design preference.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mind Match</td>
+          <td>PC, Demo v0.4.0</td>
+          <td>
+            QA mini-pass focused on main menu interaction, tutorial clarity, match outcome clarity, system feedback, terminology consistency, and decision-making under gameplay.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether the game gives enough information for a new player to understand actions, outcomes, and choices during the tutorial and early gameplay.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Main menu and first interaction</li>
+          <li>Tutorial onboarding</li>
+          <li>Tile and hero ability clarity</li>
+          <li>System values and feedback</li>
+          <li>Decision-making during active gameplay</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, risk matrix, and player experience notes</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Screenshot evidence for key player-facing findings</li>
+          <li>Short write-up focused on clarity, feedback, and decision-making</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>0</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>0</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Player Experience Findings</td><td>9</td></tr>
+        <tr><td>Primary Risk Area</td><td>Early player understanding and decision-making clarity</td></tr>
+        <tr><td>Repro Rate</td><td>Findings are based on observed player-facing behaviour during tutorial and early gameplay in Demo v0.4.0</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence is included to show the findings clearly and make each point easy to review.
+    </p>
+
+    <ul>
+      <li>Screenshots showing unclear menu interaction and early access friction</li>
+      <li>Screenshots showing unclear tutorial feedback and unexplained values</li>
+      <li>Screenshots showing terminology inconsistency, enemy state changes, and new unexplained tile types</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="YOUR_WORKBOOK_LINK" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/MindMatch_ExploratoryQA_MiniPass_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+  <h2 id="core-findings">📌 Core Project Findings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Finding</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>Main Menu Interaction</td>
+      <td>Main menu appears non-responsive due to unclear drag-based interaction, blocking access to gameplay on first attempt.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1jNhhvSYv-lwOyiscyHoFFYA2IF7CRYa8/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1jNhhvSYv-lwOyiscyHoFFYA2IF7CRYa8" alt="Main menu issue">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Level Selection / Pop-up Interaction</td>
+      <td>Level hover pop-up presents an apparent “Conjure” button that does not respond to click and lacks clear purpose, causing interaction confusion before gameplay.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1UiltOWUSgrrGhUevbKnJx-_atmWs4mIf/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1UiltOWUSgrrGhUevbKnJx-_atmWs4mIf" alt="Conjure button issue">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Refresh Action Feedback</td>
+      <td>Refresh action displays a “+1%” change without explaining what the value represents or how it impacts gameplay.</td>
+      <td>
+        <div class="thumb-row">
+          <a href="https://drive.google.com/file/d/1Zmpcs6x3OWirYSWNFhb7V6iAOI04l0wb/view?usp=sharing" target="_blank">
+            <img class="thumb" src="https://drive.google.com/uc?export=view&id=1Zmpcs6x3OWirYSWNFhb7V6iAOI04l0wb" alt="Refresh instruction">
+          </a>
+          <a href="https://drive.google.com/file/d/16SSU1-reTi8o9dOdaBdAyQwkAm9dX6s4/view?usp=sharing" target="_blank">
+            <img class="thumb" src="https://drive.google.com/uc?export=view&id=16SSU1-reTi8o9dOdaBdAyQwkAm9dX6s4" alt="Probability change">
+          </a>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Hero Ability / State Feedback</td>
+      <td>Hero ability icon temporarily changes from the black droplet to a numeric value (“1”) and then reverts without explanation, making the outcome of actions difficult to interpret.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1a_Vv7bvfEOa2nK8Qn1tf142P-qGjaDyM/view?usp=sharing" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1a_Vv7bvfEOa2nK8Qn1tf142P-qGjaDyM" alt="Hero ability change">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tile &amp; Ability System Clarity</td>
+      <td>Not all tile types shown in gameplay and UI are explained during onboarding, resulting in partial understanding of the core loop.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1i4PUb5hoizNuU4Lx17Nv0SRsK6TLNclI/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1i4PUb5hoizNuU4Lx17Nv0SRsK6TLNclI" alt="Unexplained tiles">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Status Effects / Terminology Consistency</td>
+      <td>Same symbol is presented with multiple names, such as Corrupt, Dark Thought, and Torment, making it difficult to recognise and understand effects during decision-making.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/12fWcJiw_BkN56ox2pnXc2fUUsllpjYNC/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=12fWcJiw_BkN56ox2pnXc2fUUsllpjYNC" alt="Terminology inconsistency">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Enemy Behaviour / System Interaction</td>
+      <td>Enemy state changes are not clearly linked to player actions, making cause and effect relationships difficult to understand during combat.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1HdV19R0UBxpgs3e5qLJaEbpCya_uBhjQ/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1HdV19R0UBxpgs3e5qLJaEbpCya_uBhjQ" alt="Enemy state change">
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Relic System / Post-Decision Feedback</td>
+      <td>Relic effects are not clearly visible during gameplay, making it difficult to understand their impact after selection.</td>
+      <td>No screenshot included</td>
+    </tr>
+
+    <tr>
+      <td>Tile System / New Mechanic Introduction</td>
+      <td>New tile types can appear during gameplay without prior explanation, preventing players from understanding how to interact with them.</td>
+      <td>
+        <a href="https://drive.google.com/file/d/1-ITOL4rhPjBCXeWyXqDyVPuf75xqKwOt/view?usp=drive_link" target="_blank">
+          <img class="thumb" src="https://drive.google.com/uc?export=view&id=1-ITOL4rhPjBCXeWyXqDyVPuf75xqKwOt" alt="Bomb tile">
+        </a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <p>
+      No functional bugs were logged during this mini-pass. The findings relate to player-facing clarity, feedback, and interpretation rather than broken functionality.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First interaction with main menu</td>
+          <td>Clicking a menu option opens that option.</td>
+          <td>Clicking produces no response; options only activate when dragging the icon across the button, which is not indicated.</td>
+          <td>Interaction clarity / affordance mismatch</td>
+          <td>Player may assume the game is unresponsive or broken and fail to start the game.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>New Trial → Level selection hover pop-up</td>
+          <td>Hovering a level provides clear information, and any visible button is clickable and performs an obvious action.</td>
+          <td>Hovering a level displays a pop-up with a “Conjure” button, but clicking it produces no response. The text lacks context, making it unclear whether this is a description or an interactive element.</td>
+          <td>Interaction clarity / unclear UI purpose</td>
+          <td>Player hesitates and cannot determine whether the element is interactive or what the information represents, delaying progression into gameplay.</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>Tutorial → Refresh action + probability panel</td>
+          <td>Instruction clearly explains what “+1%” affects, and the player understands whether the change is beneficial or harmful.</td>
+          <td>“+1% for this fight” increases a value in the probability panel from 0% to 1%, but the purpose of that value is unclear. The player cannot determine what the percentage represents, whether the change is beneficial, or how it impacts gameplay.</td>
+          <td>Unclear system feedback / missing context</td>
+          <td>Player cannot interpret the outcome of the action, making it difficult to assess its value or make informed decisions.</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>Tutorial → Hero ability / state feedback</td>
+          <td>Using a tile to activate a hero ability results in a clearly explained and consistent state change.</td>
+          <td>After performing the action, the hero ability icon (black droplet) temporarily changes to a numeric value (“1”), then reverts back to the icon after subsequent moves. The meaning of the value, why it appears, and what causes it to revert are not explained.</td>
+          <td>System feedback / state clarity</td>
+          <td>Player cannot track ability state or understand how actions affect hero power, leading to confusion and guess-based gameplay.</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>Tutorial → Early gameplay after heroes introduced</td>
+          <td>All tile types shown in the grid and UI are introduced and explained.</td>
+          <td>The tutorial introduces four heroes and their associated symbols, but additional tile types and symbols appear in the grid and probability panel without explanation.</td>
+          <td>Incomplete onboarding / unclear mechanics</td>
+          <td>Player forms only a partial understanding of the system, reducing their ability to make informed decisions and engage with intended mechanics.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Event choice screen → status effects</td>
+          <td>Symbols and status effects use consistent naming and meaning across gameplay.</td>
+          <td>The same symbol appears during combat as “Corrupt,” but is later described as “Dark Thought” and “Torment” in an event screen.</td>
+          <td>Inconsistent terminology / unclear system relationships</td>
+          <td>Player cannot reliably interpret status effects or make informed decisions during events, as previously seen symbols do not map consistently to known mechanics.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Early combat → enemy passive update</td>
+          <td>Enemy state changes are clearly linked to player actions.</td>
+          <td>After matching three droplet tiles, the enemy passive state changed, but the relationship between the player action and the enemy change is not explained.</td>
+          <td>Unclear cause and effect / system interaction</td>
+          <td>Player cannot understand how their actions influence enemy behaviour, reducing their ability to plan or react effectively during combat.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Shop → relic selection and placement → next combat</td>
+          <td>After selecting and placing a relic, its effect is noticeable or clearly communicated during subsequent gameplay.</td>
+          <td>Relic is selected and placed, but during the following combat there is no clear or noticeable change in gameplay.</td>
+          <td>Unclear feedback / invisible effect</td>
+          <td>Player cannot evaluate the value of relic choices, reducing confidence in decisions and making progression feel random rather than strategic.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Mid-combat → new tile generated by hero action</td>
+          <td>When a new tile type appears, its purpose and effect are either already known or clearly introduced.</td>
+          <td>A bomb tile appears on the grid after a hero action, but it has not been introduced in the tutorial or UI, and there is no explanation of what it does.</td>
+          <td>Unintroduced mechanic / missing onboarding</td>
+          <td>Player cannot safely interact with the new element, leading to hesitation or avoidance.</td>
+          <td>High</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>Mind Match</em>.</li>
+      <li>Logged 0 functional bugs.</li>
+      <li>Recorded 9 player experience findings covering entry interaction, tutorial clarity, system feedback, terminology consistency, and decision-making.</li>
+      <li>Identified early player understanding as the highest-risk area in Demo v0.4.0.</li>
+      <li>Found that several systems are visible to the player but not explained clearly enough to support confident decisions.</li>
+      <li>Found that new elements can appear during gameplay before the player has enough context to understand them.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>The first interaction can block players before gameplay.</strong>
+        The main menu visually reads as standard buttons but requires dragging, which can make the game appear unresponsive.
+      </li>
+
+      <li>
+        <strong>The tutorial explains some systems but leaves others unclear.</strong>
+        Players can understand some hero symbols, but other tile types and values appear without enough context.
+      </li>
+
+      <li>
+        <strong>Visible feedback is not always meaningful.</strong>
+        Icons, values, and percentages update on screen, but the player is not always told what changed, why it changed, or whether it is good or bad.
+      </li>
+
+      <li>
+        <strong>Terminology needs to stay consistent.</strong>
+        Using different names for the same or related symbols makes it harder for players to recognise effects and make decisions.
+      </li>
+
+      <li>
+        <strong>New mechanics need clearer first-use explanation.</strong>
+        When new tiles or effects appear during gameplay, players need enough information to know whether to use, avoid, or prioritise them.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The main risk in this build is early player understanding. <em>Mind Match</em> has several interesting systems, but the tutorial and early gameplay do not always give enough context for the player to understand what has changed or why it matters.
+    </p>
+
+    <p>
+      The strongest pattern found was that systems often update visually, but the meaning of those updates is not clear. This affects tile matching, hero ability state changes, enemy behaviour, relic effects, and newly introduced mechanics.
+    </p>
+
+    <p>
+      This does not mean the systems are broken. The issue is that the player may not be able to understand them quickly enough to make confident decisions.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Make the main menu interaction match standard click behaviour or clearly show that dragging is required.</li>
+      <li>Introduce all visible tile types before asking the player to make decisions around them.</li>
+      <li>Clarify what percentage values and system counters represent.</li>
+      <li>Keep terminology consistent across combat, events, and tooltips.</li>
+      <li>Add first-use explanations for new tiles, effects, and enemy state changes.</li>
+      <li>Improve feedback after relic selection so players can see how their choice affects gameplay.</li>
+    </ul>
+
+    <hr>
+
+    <section class="section" aria-labelledby="contact">
+      <div class="service-card hero-copy">
+
+        <h2 id="contact">Need Someone to Test Your Game?</h2>
+
+        <p class="lead">
+          If you have a demo, early build, or update that needs testing, message me on Discord or email with your platform, build, and what you’d like checked.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta-btn primary-cta" href="YOUR_DISCORD_LINK" target="_blank" rel="noopener">
+            Message Me on Discord
+          </a>
+
+          <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com?subject=Game%20Testing%20Enquiry">
+            Email Me
+          </a>
+
+          <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+
+          <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html">
+            Back to QA Services
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
