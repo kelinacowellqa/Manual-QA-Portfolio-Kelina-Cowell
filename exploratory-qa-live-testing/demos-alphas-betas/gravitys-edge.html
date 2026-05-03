@@ -1,1 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <title>Gravity’s Edge - Survival Mode QA Test Pass (PC)</title>
+  <meta name="description" content="One-day pre-launch QA test pass on Gravity’s Edge Survival Mode, focused on core loop stability, gravity movement, combat interaction, camera tracking, and recovery from edge-state conditions." />
+
+  <meta property="og:title" content="Gravity’s Edge - Survival Mode QA Test Pass (PC)" />
+  <meta property="og:description" content="Focused QA test pass on Gravity’s Edge Survival Mode covering stability, movement reliability, combat interaction, camera tracking, and recovery from edge states." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="ADD_PAGE_URL_HERE" />
+  <link rel="canonical" href="ADD_PAGE_URL_HERE" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+
+  .thumb {
+    width: 120px;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.1);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .thumb:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,255,240,0.25);
+  }
+
+  .thumb-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/gravitys-edge-banner.png" alt="Gravity’s Edge Survival Mode QA Test Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>Gravity’s Edge - Survival Mode QA Test Pass (PC)</h1>
+    <p class="meta">Tested: 3 May 2026 • Build: Demo (no version displayed in-game)</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11)</li>
+        <li><strong>Build:</strong> Demo (no version displayed in-game)</li>
+        <li><strong>Environment:</strong> PC, 1080p, Dhaose Xbox 360 Wired PC Controller</li>
+        <li><strong>Network:</strong> Standard home broadband via Wi-Fi</li>
+        <li><strong>Tools:</strong> OBS, Google Sheets, Steam</li>
+        <li><strong>Focus Areas:</strong> Survival Mode core loop, gravity and movement, combat interaction, camera tracking, and recovery from edge-state conditions</li>
+        <li><strong>Purpose:</strong> Conduct a short pre-launch QA test pass focused on identifying player-impacting stability, control, and system interaction issues.</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "ADD_PAGE_URL_HERE",
+  "url": "ADD_PAGE_URL_HERE",
+  "name": "Gravity’s Edge: Survival Mode QA Test Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Gravity’s Edge" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Survival mode testing" },
+    { "@type": "Thing", "name": "Movement testing" },
+    { "@type": "Thing", "name": "Input reliability" },
+    { "@type": "Thing", "name": "System interaction testing" },
+    { "@type": "Thing", "name": "Risk-based testing" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "survival mode testing",
+    "gravity movement testing",
+    "combat interaction testing",
+    "camera tracking",
+    "input reliability",
+    "risk-based testing",
+    "session-based testing",
+    "evidence capture",
+    "pre-launch QA"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Demo (no version displayed in-game)" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "One-day focused QA test pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-03" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Survival Mode core loop, gravity and movement, combat interaction, camera tracking, and recovery from edge-state conditions" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Risk-based exploratory QA using targeted charters focused on high-impact gameplay systems and launch stability" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, charters, session notes, risk matrix, one-line summary, and session-based gameplay capture" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "0 functional bugs" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA test pass on <a href="ADD_STEAM_LINK_HERE" target="_blank" rel="noopener"><em>Gravity’s Edge</em></a>, tested on PC using the public demo build.
+    </p>
+
+    <p>
+      The goal was to assess Survival Mode readiness before launch by testing high-risk systems that could affect stability, control, recovery, or player progression.
+    </p>
+
+    <p>
+      This was not a playtest or design review. Testing focused on reproducible, player-impacting QA risks rather than general feedback on fun, balance, or difficulty.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Survival Mode core loop stability</li>
+      <li>Gravity transitions and movement consistency</li>
+      <li>Conflicting gravity fields and edge cases</li>
+      <li>Combat interaction under pressure</li>
+      <li>Camera tracking and visibility</li>
+      <li>Recovery from awkward movement states</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gravity’s Edge</td>
+          <td>PC, Demo build</td>
+          <td>
+            One-day pre-launch QA test pass focused on Survival Mode stability, movement reliability, combat interaction, camera tracking, and recovery from edge-state conditions.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether Survival Mode remains stable and controllable under repeated, stress-based gameplay conditions.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Core loop stability</li>
+          <li>Gravity and movement</li>
+          <li>Combat pressure</li>
+          <li>Camera tracking</li>
+          <li>Recovery from edge states</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, risk matrix, and one-line summary</li>
+          <li>Risk-based system coverage summary</li>
+          <li>Session-based evidence capture</li>
+          <li>Short write-up focused on launch stability and system reliability</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>5</td></tr>
+        <tr><td>Total Bugs Logged</td><td>0</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>Major</td><td>0</td></tr>
+        <tr><td>Minor</td><td>0</td></tr>
+        <tr><td>Primary Risk Area</td><td>Survival Mode movement, control, and recovery stability</td></tr>
+        <tr><td>Testing Type</td><td>Risk-based exploratory QA using targeted charters</td></tr>
+        <tr><td>Result</td><td>No crashes, soft locks, control loss, or system breakage observed within tested scope</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence was captured through session-based gameplay recording. No bug clips are included because no functional bugs were logged during this pass.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook</strong></td>
+          <td>
+            <a href="https://docs.google.com/spreadsheets/d/1him9FLZUXyk_QnTlQ8oEbAEbsbKyXnKP/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook PDF Export</strong></td>
+          <td>
+            <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/GravitysEdge_SurvivalMode_QATestPass_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Core Loop Stability</td>
+          <td>Core loop from start to survival, death, and restart remained stable across repeated runs with no reset or state carryover issues.</td>
+          <td>S01, S03, S05</td>
+        </tr>
+        <tr>
+          <td>Gravity &amp; Movement</td>
+          <td>Gravity transitions and movement behaviour remained consistent and predictable across varied speeds, angles, and edge cases.</td>
+          <td>S01, S02</td>
+        </tr>
+        <tr>
+          <td>Combat Interaction</td>
+          <td>Combat inputs remained responsive during movement and under pressure, with no conflict between attack and traversal systems.</td>
+          <td>S03</td>
+        </tr>
+        <tr>
+          <td>Camera Tracking &amp; Visibility</td>
+          <td>Camera tracking remained stable and maintained clear visibility of the player, enemies, and navigation space during fast movement and combat scenarios.</td>
+          <td>S04</td>
+        </tr>
+        <tr>
+          <td>Recovery &amp; Edge States</td>
+          <td>Player consistently recovered from awkward movement states with no instances of soft lock, control loss, or persistent broken states.</td>
+          <td>S05</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <p>
+      No functional bugs were logged during this QA pass. Tested systems remained stable under the covered scenarios, including repeated gravity transitions, combat pressure, edge-state recovery, and death/restart checks.
+    </p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment &amp; System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Core Loop</td>
+          <td>High</td>
+          <td>Failure would block Survival Mode progression or break restart flow.</td>
+          <td>Stable under tested conditions.</td>
+        </tr>
+        <tr>
+          <td>Gravity &amp; Movement</td>
+          <td>High</td>
+          <td>Core mechanic affecting navigation, control, and survival.</td>
+          <td>Consistent and predictable under tested conditions.</td>
+        </tr>
+        <tr>
+          <td>Combat &amp; Input Interaction</td>
+          <td>High</td>
+          <td>Input conflict or delay would directly affect survivability under pressure.</td>
+          <td>No input loss or system conflict observed.</td>
+        </tr>
+        <tr>
+          <td>Camera Tracking &amp; Visibility</td>
+          <td>Medium</td>
+          <td>Poor visibility can reduce awareness and make deaths feel unfair.</td>
+          <td>Camera remained stable and readable.</td>
+        </tr>
+        <tr>
+          <td>Recovery &amp; Edge States</td>
+          <td>High</td>
+          <td>Failed recovery could cause stuck states, soft locks, or broken control.</td>
+          <td>No stuck states or recovery failures observed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 5 focused QA sessions on Survival Mode.</li>
+      <li>Logged 0 functional bugs.</li>
+      <li>Tested high-risk systems including gravity movement, combat interaction, camera tracking, and recovery from unstable movement states.</li>
+      <li>Observed no crashes, soft locks, input loss, camera tracking failures, or broken death/restart states within tested scope.</li>
+      <li>Found that Survival Mode’s core control and recovery systems remained stable under repeated stress-based testing.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>Gravity transitions remained stable under stress.</strong>
+        Movement between planets behaved consistently across direct, shallow, high-speed, and edge-based transitions.
+      </li>
+
+      <li>
+        <strong>Conflicting gravity areas resolved predictably.</strong>
+        When positioned between nearby planets, the system consistently resolved toward the nearest planet or the player-facing orientation without jitter or control loss.
+      </li>
+
+      <li>
+        <strong>Combat did not interfere with movement control.</strong>
+        Attacking while jumping, landing, and moving under pressure did not produce input loss or movement interruption.
+      </li>
+
+      <li>
+        <strong>Camera tracking supported readability.</strong>
+        The side-on camera kept the player, enemies, and navigation space visible during fast movement and combat.
+      </li>
+
+      <li>
+        <strong>Recovery from awkward movement states was reliable.</strong>
+        Forced bad landings, mid-transition inputs, and edge-state recovery attempts did not produce stuck states or soft locks.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary &amp; Next Steps</h2>
+
+    <p>
+      This Survival Mode QA pass did not identify crashes, soft locks, input failures, or system breakage within the tested scope.
+    </p>
+
+    <p>
+      The strongest result was overall system stability. Gravity movement, combat inputs, camera tracking, and recovery behaviour remained consistent across repeated and stress-based scenarios.
+    </p>
+
+    <p>
+      Because no functional bugs were logged, the value of this pass is risk reduction rather than issue discovery. The tested systems are high-impact areas for launch readiness, and they held up under targeted testing.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Repeat Survival Mode checks on the final release candidate build.</li>
+      <li>Run a longer upgrade-focused pass once Ability Anvils and progression systems can be tested more deeply.</li>
+      <li>Run additional coverage using keyboard and mouse if controller was the primary input method.</li>
+      <li>Check co-op separately if it is planned for launch and accessible in the tested build.</li>
+      <li>Confirm build/version visibility for easier QA traceability in future test passes.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
