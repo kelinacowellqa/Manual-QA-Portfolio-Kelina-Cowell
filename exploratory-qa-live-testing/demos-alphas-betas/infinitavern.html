@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Infinitavern - QA Mini-Pass (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on the Infinitavern demo, focused on core loop clarity, UI display constraints, and interaction responsiveness." />
+
+  <meta property="og:title" content="Infinitavern - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on the Infinitavern demo covering first-launch income behaviour, UI display constraints, and rapid interaction responsiveness." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/infinitavern.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/infinitavern.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Infinitavern-banner.png" alt="Infinitavern QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+   <h1>Infinitavern - QA Mini-Pass (PC)</h1>
+<p class="meta">Tested: 03 May 2026 • Build: Steam Demo, with Itch comparison</p>
+
+<section aria-labelledby="about-this-work">
+  <h2 id="about-this-work">🧾 Test Overview</h2>
+
+  <ul>
+    <li><strong>Platform:</strong> PC (Windows 11)</li>
+
+    <li><strong>Focus Areas:</strong>
+      Core loop communication, income generation feedback, UI display constraints, and rapid interaction responsiveness
+    </li>
+
+    <li><strong>Purpose:</strong>
+      Check whether the early game clearly communicates how income and progression work, and whether the UI remains reliable under available display and interaction conditions
+    </li>
+  </ul>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/infinitavern/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/infinitavern/",
+  "name": "Infinitavern: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Infinitavern" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Core loop clarity" },
+    { "@type": "Thing", "name": "Onboarding" },
+    { "@type": "Thing", "name": "UI responsiveness" },
+    { "@type": "Thing", "name": "Input handling" },
+    { "@type": "Thing", "name": "Player-facing feedback" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "core loop clarity",
+    "onboarding testing",
+    "idle income",
+    "input handling",
+    "UI responsiveness",
+    "display constraints",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Steam Demo, with Itch comparison" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA mini-pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-03" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Core loop communication, income generation feedback, UI display constraints, and rapid interaction responsiveness" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on first-time player experience, UI behaviour, and interaction responsiveness" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, one-line summary, player experience notes, and short video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "2 bugs and 1 display limitation observation" }
+  ]
+}
+</script>
+
+  <h2>Introduction</h2>
+
+<p>
+This is a focused QA mini-pass on <em>Infinitavern</em>, tested on PC using the Steam demo, with a brief Itch build comparison for early-state behaviour.
+</p>
+
+<p>
+The goal was to evaluate whether the opening experience clearly communicates the income loop, whether UI layout behaviour can be validated across display states, and whether interaction remains responsive when switching rapidly between objects.
+</p>
+
+<p>
+Testing focused on:
+</p>
+
+<ul>
+  <li>First-launch income behaviour and core loop communication</li>
+  <li>Idle income vs manual interaction feedback</li>
+  <li>UI layout and display configuration constraints</li>
+  <li>Rapid interaction responsiveness across clickable objects</li>
+</ul>
+
+<p>
+Findings are based on direct testing and are supported with session notes, reproducible steps, and short evidence clips.
+</p>
+    
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Infinitavern</td>
+          <td>PC, Steam Demo</td>
+          <td>
+            QA mini-pass focused on early core loop clarity, income generation feedback, UI display constraints, and interaction responsiveness under rapid input.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether the player can understand how income is generated and whether early progression is clearly communicated during the first-time experience.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Core loop communication</li>
+          <li>Income generation feedback</li>
+          <li>UI display constraints</li>
+          <li>Panel interaction and state sync</li>
+          <li>Input responsiveness under rapid interaction</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and player experience notes</li>
+          <li>One-line findings summary for quick review</li>
+          <li>Bug log with reproducible steps and evidence links</li>
+          <li>Short video evidence for key findings</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>2</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>1</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Display Limitation Observations</td><td>1</td></tr>
+        <tr><td>Player Experience Findings</td><td>3</td></tr>
+        <tr><td>Primary Risk Area</td><td>First-time core loop communication and interaction responsiveness</td></tr>
+        <tr><td>Repro Rate</td><td>Core loop issue observed during first-time session and compared against relaunch behaviour; rapid input issue was consistent under stress conditions</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+   <h2>📷 Evidence</h2>
+
+<p>
+Supporting evidence is included to show the issues clearly and make them easy to review.
+</p>
+
+<ul>
+  <li>Short gameplay clip showing first-launch vs relaunch income behaviour</li>
+  <li>Short gameplay clip showing delayed or missed input during rapid interaction</li>
+  <li>Structured bug notes with steps, expected vs actual behaviour, and linked evidence</li>
+</ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="https://docs.google.com/spreadsheets/d/1PoNjia5tb9NDkm5TMljCFPpWHR__A6Ql/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Infinitavern_QA_MiniPass_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+  <h2 id="core-findings">📌 Key Findings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Finding</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Core Loop / Economy</td>
+      <td>First-launch state does not initialise idle income or communicate the core loop, leading to different behaviour vs relaunch.</td>
+      <td><a href="#bugs-logged">See Bugs Logged</a></td>
+    </tr>
+    <tr>
+      <td>UI / Display</td>
+      <td>UI scaling behaviour cannot be validated due to fixed aspect ratio and lack of display options.</td>
+      <td>Session Log: S02</td>
+    </tr>
+    <tr>
+      <td>UI / Interaction</td>
+      <td>Rapid switching between interactables causes delayed or missed input.</td>
+      <td><a href="#bugs-logged">See Bugs Logged</a></td>
+    </tr>
+  </tbody>
+</table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip/Screenshot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C03-01</td>
+          <td>First-time session does not initialise idle income and lacks core loop communication</td>
+          <td>High</td>
+          <td>Observed once on first-time session; unable to revalidate locally due to first-launch state not resetting</td>
+          <td>
+            <a href="https://youtu.be/ZT-zLXzuZx4" target="_blank" rel="noopener">
+              Watch Clip - First-run vs Relaunch Income Behaviour
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>C02-01</td>
+          <td>Rapid switching between interactables causes delayed or missed UI input</td>
+          <td>Medium</td>
+          <td>Consistent under rapid switching input</td>
+          <td>
+            <a href="https://youtu.be/CKsVodd_mOk" target="_blank" rel="noopener">
+              Watch Clip - Rapid Interaction Input Delay
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note bug-log-note">
+      Full bug log with repro steps, expected vs actual, and evidence:
+      <a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Bug_Log_Infinitavern_QA_MiniPass_KelinaCowell.pdf" target="_blank" rel="noopener">
+        Download Bug Log (PDF)
+      </a>
+    </p>
+
+    <p class="method-note">
+      The strongest issue was C03-01, where the first-time session did not initialise idle income in the same way as subsequent sessions and did not clearly explain the income loop. C02-01 showed a separate interaction risk where rapid switching between objects caused delayed or missed input.
+    </p>
+
+    <hr>
+
+    <h2 id="player-experience">🧠 Player Experience Notes</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moment</th>
+          <th>Player Expectation</th>
+          <th>Actual Experience</th>
+          <th>Friction Type</th>
+          <th>Impact</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First launch after onboarding dialogue</td>
+          <td>Clear indication of how to generate income and begin progression.</td>
+          <td>No visible or communicated income source; coins only increase through random interaction, such as clicking the waitress.</td>
+          <td>Core Loop Clarity / Onboarding Gap</td>
+          <td>Player does not understand how to progress and may assume the game is non-functional or slow.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>After relaunching the game</td>
+          <td>Same behaviour as the initial session.</td>
+          <td>Coins begin increasing automatically without input.</td>
+          <td>State Inconsistency</td>
+          <td>Different behaviour across sessions undermines player understanding of how the income system works.</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Rapid interaction between objects</td>
+          <td>All clicks register consistently and UI responds immediately.</td>
+          <td>Some clicks are delayed or not registered when switching quickly between interactables.</td>
+          <td>Input Responsiveness</td>
+          <td>Player may feel controls are unresponsive or unreliable during active play.</td>
+          <td>Medium</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>Infinitavern</em>.</li>
+      <li>Logged 2 bugs covering first-time income behaviour and rapid interaction responsiveness.</li>
+      <li>Recorded 1 display limitation observation due to fixed aspect ratio and lack of display options.</li>
+      <li>Identified first-time core loop communication as the highest-risk area in this pass.</li>
+      <li>Identified that UI display behaviour could not be validated across different resolutions or aspect ratios.</li>
+      <li>Identified that rapid interaction can cause delayed or missed input when switching between interactable objects.</li>
+    </ul>
+
+    <hr>
+
+ <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+<ul>
+  <li>
+    <strong>The first-time income loop is unclear.</strong>
+    The player starts with 0 coins and no clear explanation of how income should be generated, creating confusion immediately after onboarding.
+  </li>
+
+  <li>
+    <strong>First launch and relaunch behaviour differ.</strong>
+    On relaunch, idle income begins automatically and the game starts with accumulated coins, which creates a different experience from the first session.
+  </li>
+
+  <li>
+    <strong>Display testing is limited by fixed settings.</strong>
+    The game does not provide windowed mode, resolution settings, or resizing options, so UI behaviour across different screen configurations could not be validated.
+  </li>
+
+  <li>
+    <strong>Rapid interaction exposes input responsiveness issues.</strong>
+    Switching quickly between interactable objects while clicking can lead to delayed or missed input.
+  </li>
+
+  <li>
+    <strong>Core loop clarity should be prioritised before deeper progression testing.</strong>
+    If players do not understand how income and progression work at the start, later systems may not be reached or evaluated properly.
+  </li>
+</ul>
+
+    <hr>
+
+<h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+<p>
+The highest-risk area in this mini-pass is the first-time core loop experience. On first launch, income behaviour is not clearly communicated and differs from the behaviour observed after relaunching the game.
+</p>
+
+<p>
+The most important issue is that idle income does not appear to initialise during the first session, while subsequent sessions begin with accumulated coins and passive income behaviour. This makes the core loop difficult to understand at the exact moment the player needs guidance.
+</p>
+
+<p>
+Interaction responsiveness is also a player-facing issue. Rapidly switching between interactable objects while clicking can cause delayed or missed input, which may make the UI feel unreliable during active play.
+</p>
+
+<p>
+Recommended next steps:
+</p>
+
+<ul>
+  <li>Review first-launch income initialisation and compare it against relaunch behaviour.</li>
+  <li>Add clear onboarding or UI feedback explaining how income is generated.</li>
+  <li>Confirm whether starting currency differences between Steam and Itch builds are intentional.</li>
+  <li>Review input handling when players switch quickly between interactable objects.</li>
+  <li>Consider adding display options or documenting the fixed aspect ratio constraint.</li>
+</ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
