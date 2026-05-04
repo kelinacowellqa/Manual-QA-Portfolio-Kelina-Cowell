@@ -1,1 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <title>13 BONES - Pre-Demo QA Mini-Pass (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on 13 BONES beta 0.8.1, focused on system stability, player clarity, turn resolution, status effects, and damage feedback." />
+
+  <meta property="og:title" content="13 BONES - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on 13 BONES beta 0.8.1 covering turn resolution, status effects, damage feedback, and player-facing clarity." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13-bones.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13-bones.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13-bones-banner.png" alt="13 BONES QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>13 BONES - QA Mini-Pass (PC)</h1>
+    <p class="meta">Tested: 04 May 2026 • Build: 0.8.1 Beta, pre-Steam demo</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11), keyboard and mouse</li>
+        <li><strong>Build:</strong> 0.8.1 Beta, tested from the Itch pre-demo build</li>
+        <li><strong>Focus Areas:</strong> Turn resolution, status effect clarity, card upgrade visibility, and damage/outcome feedback</li>
+        <li><strong>Purpose:</strong> Validate system stability and player-facing clarity under pre-demo conditions before wider Steam demo exposure</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13-bones/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13-bones/",
+  "name": "13 BONES: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "13 BONES" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Turn resolution" },
+    { "@type": "Thing", "name": "Status effects" },
+    { "@type": "Thing", "name": "Card upgrade clarity" },
+    { "@type": "Thing", "name": "Damage feedback" },
+    { "@type": "Thing", "name": "Player-facing feedback" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "card battler testing",
+    "turn resolution",
+    "status effect clarity",
+    "damage feedback",
+    "outcome clarity",
+    "player-facing feedback",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "0.8.1 Beta, pre-Steam demo" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA mini-pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-04" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Turn resolution, status effect clarity, card upgrade visibility, and damage feedback" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on system stability and player-facing clarity" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, one-line summary, and short video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "1 player clarity issue" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA mini-pass on <a href="https://store.steampowered.com/app/4417710/13_BONES/" target="_blank" rel="noopener"><em>13 BONES</em></a>, tested on PC using the 0.8.1 Beta build from Itch before the Steam demo release.
+    </p>
+
+    <p>
+      The goal was to evaluate whether the core card-battler loop communicates player actions, round outcomes, status effects, and card upgrade state clearly enough for a pre-demo build.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>DRAW and END TURN behaviour</li>
+      <li>Win/loss outcome clarity</li>
+      <li>Damage feedback and source visibility</li>
+      <li>Status effect readability</li>
+      <li>Card upgrade visibility in deck composition</li>
+    </ul>
+
+    <p>
+      Findings are based on short targeted sessions and are supported with a QA workbook, session notes, reproducible bug information, and gameplay evidence.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>13 BONES</td>
+          <td>PC, Itch Beta build</td>
+          <td>
+            QA mini-pass focused on system stability and player-facing clarity across turn resolution, status effects, card upgrades, and damage feedback.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Validate whether the player can clearly understand turn outcomes, damage resolution, and applied card effects during short combat encounters.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Turn resolution</li>
+          <li>Player action consistency</li>
+          <li>Status effect feedback</li>
+          <li>Damage and outcome clarity</li>
+          <li>Deck composition visibility</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and one-line summary</li>
+          <li>Bug log with reproducible steps and evidence link</li>
+          <li>Short video evidence for the key issue</li>
+          <li>Developer-facing summary of validated systems and risk area</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>1</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Systems Validated Without Issues</td><td>2</td></tr>
+        <tr><td>Primary Risk Area</td><td>Status effect and card upgrade visibility</td></tr>
+        <tr><td>Repro Rate</td><td>Upgrade visibility issue observed in the tested upgrade scenario</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence is included to show the issue clearly and make it easy to review.
+    </p>
+
+    <ul>
+      <li>Short gameplay clip showing the selected upgrade not appearing in deck composition</li>
+      <li>Structured bug notes with repro steps, expected vs actual behaviour, and linked evidence</li>
+      <li>Session notes covering turn resolution, damage feedback, and status effect observations</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="#" target="https://docs.google.com/spreadsheets/d/1yM6lGnP69n6sFaZCNIf1B8Epiq57EDWE/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="#" target="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/13_BONES_QA_MiniPass_0.8.1_PreDemo_SystemStability_PlayerClarity_KelinaCowell.pdf" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Turn Resolution</td>
+          <td>Turn system is clear and consistent; DRAW and END TURN resolve predictably with no confusion.</td>
+          <td>Session Log: S01</td>
+        </tr>
+        <tr>
+          <td>Damage Feedback & Outcome Clarity</td>
+          <td>Round outcomes and damage are clearly communicated; cause-and-effect is easy to understand.</td>
+          <td>Session Log: S02</td>
+        </tr>
+        <tr>
+          <td>Status Effects & Feedback Clarity</td>
+          <td>Status effects are clear when triggered, but selected upgrades are not consistently reflected in deck view.</td>
+          <td><a href="#bugs-logged">See Bugs Logged</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip/Screenshot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C03-01</td>
+          <td>Selected Card Upgrade Not Reflected in Deck Composition View</td>
+          <td>High</td>
+          <td>1/1 in tested upgrade scenario</td>
+          <td>
+            <a href="#" target="https://youtu.be/yJXtTeq5Dpg" rel="noopener">
+              Watch Clip - Upgrade Not Visible in Deck
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note bug-log-note">
+      Full bug log with repro steps, expected vs actual, and evidence:
+      <a href="#" target="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/BugLog_13_BONES_QA_MiniPass_0.8.1_PreDemo_SystemStability_PlayerClarity_KelinaCowell.pdf" rel="noopener">
+        Download Bug Log (PDF)
+      </a>
+    </p>
+
+    <p class="method-note">
+      The strongest issue was C03-01, where a selected card upgrade was not visible in the deck composition view. This creates uncertainty over whether the upgrade was applied, hidden, or failed.
+    </p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment & System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Tested</th>
+          <th>Test Depth</th>
+          <th>Issues Found</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Turn Resolution (DRAW / END TURN)</td>
+          <td>High</td>
+          <td>Core loop dependency; unclear timing or behaviour would immediately confuse players.</td>
+          <td>Yes</td>
+          <td>Shallow to moderate; multiple rounds with varied action timing.</td>
+          <td>No</td>
+          <td>System behaved consistently; outcomes clearly tied to 13 threshold and manual END TURN.</td>
+        </tr>
+        <tr>
+          <td>Damage Feedback & Outcome Clarity</td>
+          <td>High</td>
+          <td>Players need to understand why they win, lose, take damage, or deal damage.</td>
+          <td>Yes</td>
+          <td>Moderate; tested win, bust, END TURN, player damage, and enemy damage scenarios.</td>
+          <td>No</td>
+          <td>Round outcomes and damage sources were clearly communicated through UI, animation, values, and direction indicators.</td>
+        </tr>
+        <tr>
+          <td>Status Effects & Card Upgrades</td>
+          <td>High</td>
+          <td>Card upgrades are core progression choices; unclear visibility breaks player trust in deck state.</td>
+          <td>Yes</td>
+          <td>Moderate; tested upgrade selection, curse card behaviour, reveal effect, and deck composition view.</td>
+          <td>Yes</td>
+          <td>Effects were clear when triggered, but selected non-curse upgrade was not visible in deck composition.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>13 BONES</em>.</li>
+      <li>Validated turn resolution with no control, timing, or clarity issues observed.</li>
+      <li>Validated round outcome and damage feedback with no confusion observed.</li>
+      <li>Logged 1 high-severity player clarity issue related to card upgrade visibility.</li>
+      <li>Identified status effect and deck composition feedback as the main risk area from this pass.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>Turn resolution is clear and predictable.</strong>
+        DRAW and END TURN behaved consistently across tested scenarios, with no hidden timing or control issues observed.
+      </li>
+
+      <li>
+        <strong>Round outcome feedback is strong.</strong>
+        Winning at 13, busting over 13, and resolving END TURN outcomes were all clearly communicated through values, UI changes, and visual feedback.
+      </li>
+
+      <li>
+        <strong>Damage feedback is easy to follow.</strong>
+        Player and enemy damage matched visible attack values, with clear direction and outcome indicators.
+      </li>
+
+      <li>
+        <strong>Status effects are readable when triggered.</strong>
+        The curse/reveal behaviour was clearly shown through card visuals, animation, and the revealed enemy card state.
+      </li>
+
+      <li>
+        <strong>Upgrade visibility needs review.</strong>
+        After selecting Incremental Poison, the upgrade was not visible in deck composition, while the cursed card was. This makes it unclear whether the upgrade was applied, hidden, or failed.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The core combat loop is communicating well in the areas tested. DRAW, END TURN, win/loss outcomes, and damage resolution were all consistent and understandable during short encounter testing.
+    </p>
+
+    <p>
+      The main issue found in this pass is tied to card upgrade visibility. After selecting multiple upgrades, the cursed card appeared correctly in deck composition, but the Incremental Poison upgrade was not shown or confirmed. For a card-based game, that creates a player trust issue because deck state and upgrade state are central to decision-making.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Review whether non-curse upgrades should appear in deck composition.</li>
+      <li>Add clearer confirmation when an upgrade is successfully applied to a card.</li>
+      <li>Consider showing active upgrade icons or effect markers in the deck composition view.</li>
+      <li>Confirm whether Incremental Poison was applied but hidden, or whether the upgrade failed to apply.</li>
+      <li>Keep the current round outcome and damage feedback, as these systems were clear in testing.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
