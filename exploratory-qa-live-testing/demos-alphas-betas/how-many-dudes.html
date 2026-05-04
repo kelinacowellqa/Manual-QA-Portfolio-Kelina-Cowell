@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>How Many Dudes? - QA Mini-Pass: State Integrity, System Visibility & Player Feedback (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on How Many Dudes? v0.1.41-rc.13, focused on run state integrity, relic feedback, shop clarity, unit progression visibility, and player-facing system feedback." />
+
+  <meta property="og:title" content="How Many Dudes? - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on How Many Dudes? v0.1.41-rc.13 covering run state integrity, system visibility, shop clarity, and unit progression feedback." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/how-many-dudes.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/how-many-dudes.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/how-many-dudes-banner.png" alt="How Many Dudes? QA Mini-Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>How Many Dudes? - QA Mini-Pass: State Integrity, System Visibility & Player Feedback (PC)</h1>
+    <p class="meta">Tested: 04 May 2026 • Build: v0.1.41-rc.13 • Build Date: 17 February 2026</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11), keyboard and mouse</li>
+        <li><strong>Build:</strong> v0.1.41-rc.13</li>
+        <li><strong>Focus Areas:</strong> Run state transitions, relic feedback, shop/resource clarity, unit behaviour visibility, and player perception of progression</li>
+        <li><strong>Purpose:</strong> Identify high-value dev-facing issues in a short QA mini-pass without attempting full project coverage</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/how-many-dudes/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/how-many-dudes/",
+  "name": "How Many Dudes?: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "How Many Dudes?" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Run state integrity" },
+    { "@type": "Thing", "name": "System feedback" },
+    { "@type": "Thing", "name": "Relic interactions" },
+    { "@type": "Thing", "name": "Shop clarity" },
+    { "@type": "Thing", "name": "Progression feedback" },
+    { "@type": "Thing", "name": "Player-facing clarity" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "autobattler testing",
+    "run state testing",
+    "relic feedback",
+    "system visibility",
+    "shop clarity",
+    "progression feedback",
+    "player-facing feedback",
+    "session-based testing",
+    "bug reporting",
+    "expected vs actual",
+    "repro steps"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "v0.1.41-rc.13" },
+    { "@type": "PropertyValue", "name": "Build Date", "value": "2026-02-17" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA mini-pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-04" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Run state transitions, relic feedback, shop/resource clarity, unit behaviour visibility, and progression feedback" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on state integrity, system visibility, and player-facing clarity" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, one-line summary, and structured observations" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "3 issues logged, 1 system validated without issues" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA mini-pass on <a href="https://store.steampowered.com/app/3934270/" target="_blank" rel="noopener"><em>How Many Dudes?</em></a>, tested on PC using build v0.1.41-rc.13.
+    </p>
+
+    <p>
+      The goal was to evaluate whether key systems remain stable and understandable during short runs, especially around run state transitions, relic feedback, shop behaviour, and progression visibility.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Run state transitions and abandon/restart behaviour</li>
+      <li>Exit and ESC behaviour across gameplay and UI states</li>
+      <li>Relic visibility and trigger feedback during combat</li>
+      <li>Shop pop-up clarity, affordability, and resource updates</li>
+      <li>Unit upgrade and relic impact visibility during combat</li>
+    </ul>
+
+    <p>
+      Findings are based on short targeted sessions and are supported with a QA workbook, session notes, bug log, risk matrix, and one-line summaries.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>How Many Dudes?</td>
+          <td>PC, Steam build</td>
+          <td>
+            QA mini-pass focused on state integrity, system visibility, shop/resource clarity, and player-facing feedback in a systems-heavy autobattler.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Identify high-impact issues affecting player control, system trust, and clarity of progression during short autobattler runs.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Run state integrity</li>
+          <li>Exit and abandon behaviour</li>
+          <li>Relic feedback visibility</li>
+          <li>Shop and resource clarity</li>
+          <li>Unit progression feedback</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session log, bug log, risk matrix, and one-line summary</li>
+          <li>Bug log with reproducible steps, expected vs actual behaviour, and severity ratings</li>
+          <li>Developer-facing findings focused on reproducible and player-impacting issues</li>
+          <li>Risk summary showing tested systems and coverage depth</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>4</td></tr>
+        <tr><td>Total Bugs / Issues Logged</td><td>3</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>0</td></tr>
+        <tr><td>Medium</td><td>3</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Systems Validated Without Issues</td><td>1</td></tr>
+        <tr><td>Primary Risk Area</td><td>System feedback and progression visibility</td></tr>
+        <tr><td>Repro Rate</td><td>3/3 issues observed consistently in tested scenarios</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence is captured through the QA workbook, bug log, session notes, and structured test observations.
+    </p>
+
+    <ul>
+      <li>Session notes covering each charter and run focus</li>
+      <li>Bug log entries with reproducible steps, expected vs actual results, severity, and notes</li>
+      <li>Risk matrix showing tested systems, depth, and issues found</li>
+      <li>One-line summary linking each finding back to the relevant session</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+            <a href="https://docs.google.com/spreadsheets/d/1lqXinHiW_8yxtPzXMxyqwQR3lRDgAaRt/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+          <td>
+            <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/HowManyDudes_QA_MiniPass_PC_v0.1.41-rc.13_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Run State / Transitions</td>
+          <td>Exit/abandon functionality is inconsistent across states, forcing external application closure.</td>
+          <td>Session Log: S01</td>
+        </tr>
+        <tr>
+          <td>Relics / System Interactions</td>
+          <td>Relic feedback is limited and inconsistent, preventing reliable verification of system behaviour.</td>
+          <td>Session Log: S02</td>
+        </tr>
+        <tr>
+          <td>Shop / Resource System</td>
+          <td>Shop behaviour and resource interactions are clear, consistent, and function as expected.</td>
+          <td>Session Log: S03</td>
+        </tr>
+        <tr>
+          <td>Unit Behaviour / Progression Feedback</td>
+          <td>Unit upgrades and relic effects lack visible differentiation, reducing clarity of progression impact.</td>
+          <td>Session Log: S04</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C01-01</td>
+          <td>ESC / Exit functionality unavailable during gameplay and certain UI states</td>
+          <td>Medium</td>
+          <td>100%</td>
+          <td>N/A - Reproducible via steps</td>
+        </tr>
+        <tr>
+          <td>C02-01</td>
+          <td>Relic feedback is limited and inconsistent across relics</td>
+          <td>Medium</td>
+          <td>100%</td>
+          <td>N/A - No clear visual indicators for most relics</td>
+        </tr>
+        <tr>
+          <td>C04-01</td>
+          <td>Unit upgrades and relic effects lack visible differentiation during combat</td>
+          <td>Medium</td>
+          <td>100%</td>
+          <td>N/A - Visual behaviour consistent across runs</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="method-note bug-log-note">
+      Full bug log with repro steps, expected vs actual, severity, and notes:
+      <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/BugLog_HowManyDudes_QA_MiniPass_PC_v0.1.41-rc.13_KelinaCowell.pdf" target="_blank" rel="noopener">
+        Download Bug Log (PDF)
+      </a>
+    </p>
+
+    <p class="method-note">
+      The issues found in this pass were mostly related to player control and feedback clarity rather than hard crashes or broken progression.
+    </p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment & System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Tested</th>
+          <th>Test Depth</th>
+          <th>Issues Found</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Run State / Transitions</td>
+          <td>High</td>
+          <td>Known crash and state risks in update history; affects session stability and player control.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Exit/abandon not available in all states, forcing external closure.</td>
+        </tr>
+        <tr>
+          <td>Relics / System Interactions</td>
+          <td>High</td>
+          <td>Core system with hidden behaviour; difficult to verify triggers, stacking, and impact.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Feedback is inconsistent; most relic effects are not observable during combat.</td>
+        </tr>
+        <tr>
+          <td>Shop / Resource System</td>
+          <td>Medium</td>
+          <td>Player decision-making depends on clear affordability, purchase feedback, and resource updates.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>No</td>
+          <td>Behaviour was clear and consistent, with no issues observed.</td>
+        </tr>
+        <tr>
+          <td>Unit Behaviour / Progression Feedback</td>
+          <td>Medium</td>
+          <td>Player understanding of upgrades and progression depends on visible impact during combat.</td>
+          <td>Yes</td>
+          <td>Low to Medium</td>
+          <td>Yes</td>
+          <td>No visible differentiation after upgrades or relic application.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 4 focused QA sessions on <em>How Many Dudes?</em>.</li>
+      <li>Validated run reset behaviour across abandon/restart cycles with no progression corruption observed.</li>
+      <li>Logged 1 medium-severity issue around inconsistent exit and abandon availability.</li>
+      <li>Logged 1 medium-severity issue around limited and inconsistent relic feedback.</li>
+      <li>Validated shop pop-up behaviour, affordability indicators, purchase feedback, and resource updates with no issues observed.</li>
+      <li>Logged 1 medium-severity issue around lack of visible unit progression and relic impact during combat.</li>
+      <li>Identified system visibility and player feedback as the main risk area from this pass.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>Run state reset appears stable.</strong>
+        Abandoning and restarting runs did not produce visible progression loss, duplication, corrupted state, or old run data carrying into new runs.
+      </li>
+
+      <li>
+        <strong>Exit control is inconsistent across states.</strong>
+        ESC works from the main menu and settings menu, but does not provide an exit or abandon path during gameplay or several active UI states, forcing the player to close the application externally.
+      </li>
+
+      <li>
+        <strong>Relic feedback is the main clarity risk.</strong>
+        Most relic effects are not visually or audibly traceable during combat. A small subset, such as Oversized Pauldrons and Tower Shield, showed a shared yellow glow effect, but most relic behaviour could not be verified from the player perspective.
+      </li>
+
+      <li>
+        <strong>The shop system behaved well in the tested scenarios.</strong>
+        Resource totals updated correctly, unaffordable items greyed out clearly, purchases required intentional selection and confirmation, and bought items appeared on the HUD.
+      </li>
+
+      <li>
+        <strong>Progression impact is hard to perceive visually.</strong>
+        Unit upgrades and relic application did not noticeably change unit animations or combat presentation, making progression feel less readable during fights.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The tested build showed stable run reset behaviour and a clear, reliable shop flow. No resource, affordability, or purchase issues were observed during the shop-focused session.
+    </p>
+
+    <p>
+      The main risks found in this pass relate to player control and system visibility. Exit and abandon behaviour is not consistently available across gameplay and UI states, and several progression systems are difficult to verify because their effects are not clearly surfaced during combat.
+    </p>
+
+    <p>
+      This is especially important for a systems-heavy autobattler where the player is expected to trust that relics, upgrades, and team changes are affecting combat outcomes. When those effects are hidden or visually unchanged, the player is left playing on faith rather than feedback.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Review whether ESC or a menu fallback should be available during gameplay and non-critical UI states.</li>
+      <li>Add clearer feedback for relic activation, without overwhelming the screen.</li>
+      <li>Consider lightweight indicators such as icon flashes, affected-unit highlights, tooltip counters, or an end-of-round trigger summary.</li>
+      <li>Differentiate upgraded or relic-affected units more clearly through subtle visuals, status markers, or HUD indicators.</li>
+      <li>Keep the current shop interaction pattern, as it communicated affordability, purchase confirmation, and resource updates clearly in testing.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
