@@ -68,6 +68,7 @@
     border:1px solid var(--line);
   }
 
+  .site-nav,
   .nav{
     display:flex;
     justify-content:center;
@@ -76,6 +77,7 @@
     margin:14px 0 0;
   }
 
+  .cta-btn,
   .btn{
     display:inline-block;
     padding:10px 14px;
@@ -87,10 +89,12 @@
     text-decoration:none;
   }
 
+  .cta-btn:visited,
   .btn:visited{
     color:var(--teal);
   }
 
+  .cta-btn:hover,
   .btn:hover{
     background:var(--teal);
     color:var(--bg);
@@ -98,16 +102,19 @@
     text-decoration:none;
   }
 
-  .btn[aria-current="page"]{
-    background:var(--teal);
-    color:var(--bg);
-    border-color:var(--teal);
-    text-decoration:none;
+  .site-nav .cta-btn[aria-current="page"],
+  .nav .btn[aria-current="page"]{
+    background:var(--teal) !important;
+    color:var(--bg) !important;
+    border-color:var(--teal) !important;
+    text-decoration:none !important;
   }
 
-  .btn[aria-current="page"]:visited,
-  .btn[aria-current="page"]:hover{
-    color:var(--bg);
+  .site-nav .cta-btn[aria-current="page"]:visited,
+  .site-nav .cta-btn[aria-current="page"]:hover,
+  .nav .btn[aria-current="page"]:visited,
+  .nav .btn[aria-current="page"]:hover{
+    color:var(--bg) !important;
   }
 
   .rule{
@@ -182,7 +189,6 @@
     }
   }
 </style>
-
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <script type="application/ld+json">
