@@ -637,29 +637,60 @@ Without feedback, it is unclear whether the correct gear is selected or why the 
   </li>
 </ul>
 
+    <h2>🛠️ Suggested Solution</h2>
+
+<p>
+A single onboarding path assumes prior knowledge and fails across different player types. A simple adaptive approach would reduce friction without overcomplicating the system.
+</p>
+
+<ul>
+  <li>
+    <strong>Adaptive Onboarding Prompt</strong><br>
+    Ask the player at the start of the tutorial:
+    <em>“Are you familiar with driving controls?”</em>
+  </li>
+
+  <li>
+    <strong>Option A: Yes (Familiar)</strong><br>
+    Uses gear-based input (P / R / N / D).<br>
+    Minimal guidance, assuming basic understanding.
+  </li>
+
+  <li>
+    <strong>Option B: No (Unfamiliar)</strong><br>
+    Simplified controls:
+    W = forward, S = reverse.<br>
+    Gear switching handled automatically.<br>
+    Clear prompts guiding movement and steering.
+  </li>
+
+  <li>
+    <strong>Key Requirement</strong><br>
+    Both paths must include feedback for failed inputs and a recovery/reset option to prevent progression blocks.
+  </li>
+</ul>
+
     <hr>
 
-  <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+<h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
 
 <p>
   The tested build presents a high-risk onboarding failure in the tutorial driving sequence. While the player understands the objective (drive forward), the tutorial does not provide the information needed to perform that action reliably.
 </p>
 
 <p>
-  The issue is not isolated to a single missing instruction. It is a combination of unclear system explanation, missing steering guidance, lack of failed-input feedback, and an input failure that prevents recovery when the vehicle becomes stuck. Together, these issues turn the first interaction into trial-and-error rather than guided onboarding.
+  This is not caused by a single missing instruction, but by a combination of unclear system explanation, missing steering guidance, lack of failed-input feedback, and an input failure that prevents recovery when the vehicle becomes stuck. Together, these issues turn the first interaction into trial-and-error rather than guided onboarding.
 </p>
 
 <p>
-  This affects all player types, not just inexperienced users. Players without driving knowledge cannot form a mental model, players familiar with automatic vehicles hesitate due to lack of feedback, and experienced manual drivers encounter behaviour that does not match expectations. In all cases, the result is either blocked progression or reduced trust in the system.
+  This affects all player types. Players without driving knowledge cannot form a mental model, players familiar with automatic vehicles hesitate due to lack of feedback, and experienced manual drivers encounter behaviour that does not match expectations. In all cases, the result is either blocked progression or reduced trust in the system.
 </p>
 
 <p>
-  Because this occurs at the start of the tutorial, the impact is high. The player is prevented from completing onboarding or is forced to rely on guesswork, which undermines both usability and system clarity.
+  Because this occurs at the start of the tutorial, the impact is high. The player is prevented from completing onboarding or is forced to rely on guesswork, which undermines usability and system clarity.
 </p>
 
-<p>
-  Recommended next steps:
-</p>
+<p><strong>Recommended next steps (core fixes):</strong></p>
 
 <ul>
   <li>Add a clear tutorial prompt explaining how to select Drive and initiate movement.</li>
@@ -671,6 +702,30 @@ Without feedback, it is unclear whether the correct gear is selected or why the 
   <li>Review the tutorial environment for collision traps that can block progression.</li>
 </ul>
 
+<p><strong>Additional UX improvements (non-blocking):</strong></p>
+
+<ul>
+  <li>
+    <strong>Contextual hints</strong><br>
+    Example: <em>“You’re not moving. Try switching to Drive (D).”</em>
+  </li>
+
+  <li>
+    <strong>On-screen labels</strong><br>
+    Example: <em>“Drive (D) = move forward”</em>
+  </li>
+
+  <li>
+    <strong>Feedback reinforcement</strong><br>
+    Reinforce failed-input feedback with clear messaging when actions have no effect.
+  </li>
+
+  <li>
+    <strong>Recovery option visibility</strong><br>
+    Ensure any reset or recovery option is clearly visible and accessible during the tutorial.
+  </li>
+</ul>
+    
     <hr>
 
     <h2>📎 Disclaimer</h2>
