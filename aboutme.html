@@ -139,6 +139,34 @@
       .intro{flex-direction:column}
       .headshot{width:120px;height:120px}
     }
+
+    /* === Nav current-page fix === */
+.nav .btn{
+  text-decoration:none;
+}
+
+.nav .btn:visited{
+  color:var(--teal);
+}
+
+.nav .btn:hover{
+  background:var(--teal);
+  color:var(--bg);
+  border-color:var(--teal);
+  text-decoration:none;
+}
+
+.nav .btn[aria-current="page"]{
+  background:var(--teal);
+  color:var(--bg);
+  border-color:var(--teal);
+  text-decoration:none;
+}
+
+.nav .btn[aria-current="page"]:visited,
+.nav .btn[aria-current="page"]:hover{
+  color:var(--bg);
+}
   </style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -174,16 +202,16 @@
       />
       
     <!-- Nav -->
-     <nav class="site-nav cta-row">
-        <a class="cta-btn" href="https:/kelinacowellqa.github.io/">Home</a>
-        <a class="cta-btn" href="https:/kelinacowellqa.github.io/freelance-game-qa-services.html">QA Services</a>
-        <a class="cta-btn active" href="https://kelinacowellqa.github.io//Game-QA-Portfolio.html">QA Portfolio</a>
-        <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/">Early QA Projects</a>
-        <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA Articles</a>
-        <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html" aria-current="page">About Me</a>
-        <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
-        <a class="cta-btn" href="/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
-      </nav>
+<nav class="site-nav cta-row">
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/">Home</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html">QA Services</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Game-QA-Portfolio.html">QA Portfolio</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Early QA Projects</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Game QA Articles</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html" aria-current="page">About Me</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/contact/">Contact</a>
+  <a class="cta-btn" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/education/">Education</a>
+</nav>
 </header>  
 
     <hr class="rule">
