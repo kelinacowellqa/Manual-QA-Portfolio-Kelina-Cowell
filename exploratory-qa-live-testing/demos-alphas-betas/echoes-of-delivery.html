@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Echoes of Delivery - Onboarding Failure QA Pass (Pre-Alpha PC)</title>
+  <meta name="description" content="Focused QA pass on Echoes of Delivery Pre-Alpha v0.2.0, targeting tutorial onboarding, vehicle control understanding, input clarity, player guidance, and progression recovery." />
+
+  <meta property="og:title" content="Echoes of Delivery - Onboarding Failure QA Pass (PC)" />
+  <meta property="og:description" content="Focused onboarding QA pass on Echoes of Delivery Pre-Alpha v0.2.0 covering vehicle controls, input clarity, tutorial guidance, feedback, and progression recovery." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/echoes-of-delivery.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/echoes-of-delivery.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/echoes-of-delivery-banner.png" alt="Echoes of Delivery QA Pass Banner">
+    </header>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/freelance-game-qa-services.html" target="_blank" rel="noopener">
+        Back to QA Services
+      </a>
+    </p>
+
+    <h1>Echoes of Delivery - Onboarding Failure QA Pass (Pre-Alpha PC)</h1>
+    <p class="meta">Tested: 05 May 2026 • Build: Pre-Alpha v0.2.0</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11), 1080p, keyboard and mouse</li>
+        <li><strong>Build:</strong> Pre-Alpha v0.2.0, Major Update</li>
+        <li><strong>Focus Areas:</strong> Tutorial onboarding, vehicle control understanding, input clarity, player guidance, failed input feedback, and progression recovery</li>
+        <li><strong>Purpose:</strong> Assess whether a new player can understand and initiate core gameplay without prior knowledge</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/echoes-of-delivery/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/echoes-of-delivery/",
+  "name": "Echoes of Delivery: Onboarding Failure QA Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Echoes of Delivery" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Onboarding QA" },
+    { "@type": "Thing", "name": "Tutorial testing" },
+    { "@type": "Thing", "name": "Input clarity" },
+    { "@type": "Thing", "name": "Vehicle controls" },
+    { "@type": "Thing", "name": "Progression blockers" },
+    { "@type": "Thing", "name": "Player guidance" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "PT30M",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "onboarding testing",
+    "tutorial testing",
+    "vehicle control testing",
+    "input clarity",
+    "player guidance",
+    "progression blocker",
+    "failed input feedback",
+    "session-based testing",
+    "bug reporting",
+    "expected vs actual",
+    "repro steps"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Pre-Alpha v0.2.0" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "30-minute focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-05" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Tutorial onboarding, vehicle control understanding, input clarity, player guidance, and progression recovery" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Fresh-save exploratory onboarding pass from a new-player perspective" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, screenshots, and gameplay clips" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "4 high-severity onboarding issues logged" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA pass on <em>Echoes of Delivery</em>, tested on PC using Pre-Alpha v0.2.0.
+    </p>
+
+    <p>
+      The goal was to evaluate whether the tutorial successfully teaches a new player how to start driving, understand the vehicle controls, recover from mistakes, and continue progression without prior knowledge of the game’s systems.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Vehicle movement initiation and gear understanding</li>
+      <li>Steering control clarity and input discoverability</li>
+      <li>Player guidance during the first driving sequence</li>
+      <li>Feedback when incorrect inputs or gear states are used</li>
+      <li>Recovery when the vehicle becomes stuck during tutorial progression</li>
+    </ul>
+
+    <p>
+      Findings are based on a short onboarding-focused exploratory session using a fresh save. The pass was deliberately performed from the perspective of a new player with no prior knowledge of the driving system.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Echoes of Delivery</td>
+          <td>PC, Pre-Alpha build</td>
+          <td>
+            Onboarding QA pass focused on tutorial vehicle controls, input clarity, player guidance, feedback, and progression recovery.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Assess whether a first-time player can understand and perform the core driving interaction needed to begin gameplay.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Vehicle control onboarding</li>
+          <li>Gear system clarity</li>
+          <li>Steering input communication</li>
+          <li>Failed input feedback</li>
+          <li>Progression and recovery</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session log, bug log, risk matrix, and one-line summary</li>
+          <li>Bug log with reproducible steps, expected vs actual behaviour, severity ratings, and evidence notes</li>
+          <li>Developer-facing findings focused on player-blocking onboarding issues</li>
+          <li>Risk summary showing tested systems, issue impact, and coverage depth</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>1</td></tr>
+        <tr><td>Total Bugs / Issues Logged</td><td>4</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>4</td></tr>
+        <tr><td>Medium</td><td>0</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Session Duration</td><td>30 minutes</td></tr>
+        <tr><td>Primary Risk Area</td><td>Onboarding failure and progression blockage</td></tr>
+        <tr><td>Repro Rate</td><td>4/4 issues observed consistently in tested scenarios</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence was captured through the QA workbook, session notes, bug log entries, screenshots, and gameplay clips where applicable.
+    </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>File / Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>QA Workbook (Google Sheets)</strong></td>
+      <td>
+        <a href="https://docs.google.com/spreadsheets/d/1N71ydHiBqEwfe6g3n_iE5suYX6HAf55I/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+          Open Workbook
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>QA Workbook (PDF Export)</strong></td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/EchoesOfDelivery_OnboardingFailure_QA_Pass_PC_PreAlpha_v0.2.0_KelinaCowell.pdf" target="_blank" rel="noopener noreferrer">
+          Open PDF
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vehicle Control</td>
+          <td>Driving cannot be reliably initiated due to an unclear gear system and lack of instruction.</td>
+          <td>Bug Log: C01-01</td>
+        </tr>
+        <tr>
+          <td>Input Clarity</td>
+          <td>Steering controls are not communicated, preventing reliable directional input.</td>
+          <td>Bug Log: C04-01</td>
+        </tr>
+        <tr>
+          <td>Feedback / Guidance</td>
+          <td>The tutorial provides no guidance on how to begin driving, leaving the player without direction.</td>
+          <td>Bug Log: C03-01</td>
+        </tr>
+        <tr>
+          <td>Progression & Recovery</td>
+          <td>The player can become stuck with no recovery option, blocking tutorial progression.</td>
+          <td>Bug Log: C02-01</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+<h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+<table class="table-compare">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Severity</th>
+      <th>Repro</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>C01-01</td>
+      <td>Gear system (P/R/N/D) is not explained, preventing movement initiation</td>
+      <td>High</td>
+      <td>Consistent</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/eod_onboarding_controls_overlay_missing_steering_and_gear_explanation.png" target="_blank" rel="noopener noreferrer">
+          Screenshot: Controls overlay shows gears but no explanation
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>C02-01</td>
+      <td>Vehicle gets stuck between fence and bridge, cannot reverse or recover</td>
+      <td>High</td>
+      <td>Consistent</td>
+      <td>
+        <a href="https://youtu.be/V4jT9UVkRQg" target="_blank" rel="noopener noreferrer">
+          Clip: 00:15, pressing R to reverse does not change gear and remains on D
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>C03-01</td>
+      <td>Tutorial provides no guidance on how to initiate movement, leaving player without direction</td>
+      <td>High</td>
+      <td>Consistent</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/eod_onboarding_controls_overlay_missing_steering_and_gear_explanation.png" target="_blank" rel="noopener noreferrer">
+          Screenshot: Control overlay displayed with no guidance on how to initiate movement
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>C04-01</td>
+      <td>No instruction for steering controls, preventing directional input</td>
+      <td>High</td>
+      <td>Consistent</td>
+      <td>
+        <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/eod_onboarding_controls_overlay_missing_steering_and_gear_explanation.png" target="_blank" rel="noopener noreferrer">
+          Screenshot: Controls overlay missing steering input
+        </a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+   <p class="method-note bug-log-note">
+  Full bug log with repro steps, expected vs actual, severity, and notes:
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Bug-Log_EchoesOfDelivery_OnboardingFailure_QA_Pass_PC_PreAlpha_v0.2.0_KelinaCowell.pdf" target="_blank" rel="noopener noreferrer">
+    Download Bug Log (PDF)
+  </a>
+</p>
+
+    <p class="method-note">
+      The issues found in this pass are primarily onboarding and player guidance failures rather than crashes. The impact is still high because they prevent a new player from reliably starting or completing the tutorial.
+    </p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment & System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Tested</th>
+          <th>Test Depth</th>
+          <th>Issues Found</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Onboarding - Vehicle Control</td>
+          <td>High</td>
+          <td>Core interaction required to start gameplay is unclear and blocks progression.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Gear system unclear, steering not explained, movement unreliable.</td>
+        </tr>
+        <tr>
+          <td>Onboarding - Progression & Recovery</td>
+          <td>High</td>
+          <td>Player can become permanently stuck with no recovery option.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Vehicle stuck between objects, with no reset or recovery path available.</td>
+        </tr>
+        <tr>
+          <td>Onboarding - Feedback & Guidance</td>
+          <td>High</td>
+          <td>No feedback when actions fail leads to confusion and trial-and-error.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>No indication why inputs fail when gear or input state is unclear.</td>
+        </tr>
+        <tr>
+          <td>Onboarding - Input Clarity</td>
+          <td>High</td>
+          <td>Controls are not communicated, leading to incorrect assumptions and failed interaction.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Steering input unclear, leaving the player unable to reliably control direction.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 1 focused onboarding QA session on <em>Echoes of Delivery</em>.</li>
+      <li>Tested the tutorial from a fresh-save, first-time-player perspective.</li>
+      <li>Logged 4 high-severity issues affecting vehicle onboarding, input clarity, player feedback, and progression recovery.</li>
+      <li>Identified the gear system as a major onboarding failure point because P/R/N/D are shown without explanation.</li>
+      <li>Identified missing steering instruction as a major input clarity issue.</li>
+      <li>Observed that failed inputs provide no useful feedback, leaving the player to repeat incorrect actions.</li>
+      <li>Confirmed that the player can become stuck in the tutorial environment with no recovery option available.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>The core driving interaction is not currently taught clearly enough.</strong>
+        The player is shown P/R/N/D gear states, but the tutorial does not explain what they mean or how to use them to begin movement.
+      </li>
+
+      <li>
+        <strong>The issue is not just “player confusion.”</strong>
+        The tutorial requires the player to operate a vehicle system, but the information needed to do that is either missing or too assumed. That turns the first interaction into guesswork.
+      </li>
+
+      <li>
+        <strong>Steering is a separate clarity problem.</strong>
+        Even after movement is initiated, the player is not told how to steer. This causes loss of control and contributes directly to collision and stuck-state risk.
+      </li>
+
+      <li>
+        <strong>Failed input feedback is missing.</strong>
+        When the player uses the wrong gear or input, the game does not explain why the vehicle is not responding. There is no correction, warning, prompt, or hint.
+      </li>
+
+      <li>
+        <strong>The stuck state turns an onboarding issue into a progression blocker.</strong>
+        Once the vehicle becomes trapped between the fence and bridge, reverse input does not recover the position and there is no reset option. That blocks tutorial completion.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The tested build currently has a high-risk onboarding issue in the tutorial driving sequence. The player understands the broad objective, which is to drive forward, but the tutorial does not reliably teach the inputs and system logic needed to achieve that objective.
+    </p>
+
+    <p>
+      The most important issue is the gap between displayed controls and usable understanding. Showing P/R/N/D may be technically accurate, but without context it assumes the player already understands the vehicle system. That is risky in a tutorial because the whole point of the tutorial is to remove that uncertainty, not politely throw the player into the confusion swamp and wish them luck.
+    </p>
+
+    <p>
+      The missing steering instruction and lack of failed-input feedback compound the problem. The player is not only unsure how to start moving, but also unsure how to control direction or diagnose why the vehicle is not responding.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Add a clear tutorial prompt explaining how to select Drive and begin forward movement.</li>
+      <li>Explain the gear states in plain player-facing language, especially Drive and Reverse.</li>
+      <li>Add steering instruction directly to the control overlay or tutorial prompt.</li>
+      <li>Provide feedback when the player attempts movement in the wrong gear or input state.</li>
+      <li>Add a recovery/reset option for the tutorial vehicle if it becomes stuck.</li>
+      <li>Review the bridge and fence area for collision trap risk during normal first-time-player movement.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
