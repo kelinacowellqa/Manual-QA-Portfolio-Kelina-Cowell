@@ -9,43 +9,52 @@
   <link rel="stylesheet" href="../assets/css/site.css?v=5">
 
   <!-- page-scoped spacing tweak (mirrors your guide) -->
-  <style>
-    body h2{ margin:32px 0 12px !important; }
-    body h3{ margin:22px 0 8px !important; }
-    body p{ line-height:1.7 !important; margin:0 0 14px !important; }
-    body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
-    body li{ line-height:1.7 !important; margin:8px 0 !important; }
-    .cta-row .cta-btn { margin: 6px 8px; }
-    @media (max-width:560px){ .cta-row .cta-btn{display:block;margin:8px auto;width:fit-content} 
+ <style>
+  body h2{ margin:32px 0 12px !important; }
+  body h3{ margin:22px 0 8px !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
 
-                             /* === Nav current-page fix === */
-.site-nav .cta-btn{
-  text-decoration:none !important;
-}
+  .cta-row .cta-btn{ margin:6px 8px; }
 
-.site-nav .cta-btn:visited{
-  color:var(--teal) !important;
-}
+  @media (max-width:560px){
+    .cta-row .cta-btn{
+      display:block;
+      margin:8px auto;
+      width:fit-content;
+    }
+  }
 
-.site-nav .cta-btn:hover{
-  background:var(--teal) !important;
-  color:var(--bg) !important;
-  border-color:var(--teal) !important;
-  text-decoration:none !important;
-}
+  /* === Nav current-page fix (OUTSIDE media query, where it belongs) === */
 
-.site-nav .cta-btn[aria-current="page"]{
-  background:var(--teal) !important;
-  color:var(--bg) !important;
-  border-color:var(--teal) !important;
-  text-decoration:none !important;
-}
+  .site-nav .cta-btn{
+    text-decoration:none !important;
+  }
 
-.site-nav .cta-btn[aria-current="page"]:visited,
-.site-nav .cta-btn[aria-current="page"]:hover{
-  color:var(--bg) !important;
-}
-  </style>
+  .site-nav .cta-btn:visited{
+    color:var(--teal) !important;
+  }
+
+  .site-nav .cta-btn:hover{
+    background:var(--teal) !important;
+    color:var(--bg) !important;
+    border-color:var(--teal) !important;
+    text-decoration:none !important;
+  }
+
+  .site-nav .cta-btn[aria-current="page"]{
+    background:var(--teal) !important;
+    color:var(--bg) !important;
+    border-color:var(--teal) !important;
+    text-decoration:none !important;
+  }
+
+  .site-nav .cta-btn[aria-current="page"]:visited,
+  .site-nav .cta-btn[aria-current="page"]:hover{
+    color:var(--bg) !important;
+  }
+</style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
