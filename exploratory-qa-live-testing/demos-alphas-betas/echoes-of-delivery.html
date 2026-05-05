@@ -583,63 +583,95 @@
 
     <hr>
 
-    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+  <h2 id="key-points">🔍 Key Points for the Developer</h2>
 
-    <ul>
-      <li>
-        <strong>The core driving interaction is not currently taught clearly enough.</strong>
-        The player is shown P/R/N/D gear states, but the tutorial does not explain what they mean or how to use them to begin movement.
-      </li>
+<ul>
+  <li>
+    <strong>The core driving interaction is not clearly taught.</strong>
+    The player is shown P/R/N/D gear states, but the tutorial does not explain what they mean or how to use them to initiate movement.
+  </li>
 
-      <li>
-        <strong>The issue is not just “player confusion.”</strong>
-        The tutorial requires the player to operate a vehicle system, but the information needed to do that is either missing or too assumed. That turns the first interaction into guesswork.
-      </li>
+  <li>
+    <strong>This is not just player confusion, it is missing onboarding.</strong>
+    The tutorial requires the player to operate a vehicle system, but the information needed to do so is either missing or assumed, turning the first interaction into trial-and-error.
+  </li>
 
-      <li>
-        <strong>Steering is a separate clarity problem.</strong>
-        Even after movement is initiated, the player is not told how to steer. This causes loss of control and contributes directly to collision and stuck-state risk.
-      </li>
+  <li>
+    <strong>Steering is a separate clarity gap.</strong>
+    After movement begins, the player is not told how to steer. This leads to loss of control and increases the risk of collision and stuck states.
+  </li>
 
-      <li>
-        <strong>Failed input feedback is missing.</strong>
-        When the player uses the wrong gear or input, the game does not explain why the vehicle is not responding. There is no correction, warning, prompt, or hint.
-      </li>
+  <li>
+    <strong>Failed input feedback is missing.</strong>
+    When the player uses the wrong gear or input, the game provides no indication of why the vehicle is not responding. There is no feedback to guide correction.
+  </li>
 
-      <li>
-        <strong>The stuck state turns an onboarding issue into a progression blocker.</strong>
-        Once the vehicle becomes trapped between the fence and bridge, reverse input does not recover the position and there is no reset option. That blocks tutorial completion.
-      </li>
-    </ul>
+  <li>
+    <strong>The stuck state is caused by input failure, not just level design.</strong>
+    When the vehicle becomes trapped between the fence and bridge, attempting to switch to reverse using the correct input (R) does not work. The gear remains stuck in Drive (D) and does not respond, preventing recovery through normal controls. With no reset option available, this results in a hard progression block.
+  </li>
+</ul>
 
     <hr>
 
-    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+    <h2>👤 Impact by Player Type</h2>
 
-    <p>
-      The tested build currently has a high-risk onboarding issue in the tutorial driving sequence. The player understands the broad objective, which is to drive forward, but the tutorial does not reliably teach the inputs and system logic needed to achieve that objective.
-    </p>
+<ul>
+  <li>
+    <strong>Non-Drivers</strong><br>
+    No mental model for gear states (P/R/N/D).<br>
+    Unable to initiate movement without trial-and-error.<br>
+    👉 <strong>Outcome:</strong> Hard progression blocker at tutorial start.
+  </li>
 
-    <p>
-      The most important issue is the gap between displayed controls and usable understanding. Showing P/R/N/D may be technically accurate, but without context it assumes the player already understands the vehicle system. That is risky in a tutorial because the whole point of the tutorial is to remove that uncertainty, not politely throw the player into the confusion swamp and wish them luck.
-    </p>
+  <li>
+    <strong>Automatic Drivers</strong><br>
+    Recognise gear terminology but do not actively use gear states in gameplay.<br>
+    Lack of feedback creates hesitation and inconsistent input behaviour.<br>
+    👉 <strong>Outcome:</strong> Stalled progression and player uncertainty.
+  </li>
 
-    <p>
-      The missing steering instruction and lack of failed-input feedback compound the problem. The player is not only unsure how to start moving, but also unsure how to control direction or diagnose why the vehicle is not responding.
-    </p>
+  <li>
+    <strong>Manual Drivers</strong><br>
+    Expect deeper mechanical behaviour (e.g. clutch interaction, gear dependency).<br>
+    System presents terminology without matching behaviour or feedback.<br>
+    👉 <strong>Outcome:</strong> Expectation mismatch and reduced trust in system feedback.
+  </li>
+</ul>
 
-    <p>
-      Recommended next steps:
-    </p>
+    <hr>
 
-    <ul>
-      <li>Add a clear tutorial prompt explaining how to select Drive and begin forward movement.</li>
-      <li>Explain the gear states in plain player-facing language, especially Drive and Reverse.</li>
-      <li>Add steering instruction directly to the control overlay or tutorial prompt.</li>
-      <li>Provide feedback when the player attempts movement in the wrong gear or input state.</li>
-      <li>Add a recovery/reset option for the tutorial vehicle if it becomes stuck.</li>
-      <li>Review the bridge and fence area for collision trap risk during normal first-time-player movement.</li>
-    </ul>
+  <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+<p>
+  The tested build presents a high-risk onboarding failure in the tutorial driving sequence. While the player understands the objective (drive forward), the tutorial does not provide the information needed to perform that action reliably.
+</p>
+
+<p>
+  The issue is not isolated to a single missing instruction. It is a combination of unclear system explanation, missing steering guidance, lack of failed-input feedback, and an input failure that prevents recovery when the vehicle becomes stuck. Together, these issues turn the first interaction into trial-and-error rather than guided onboarding.
+</p>
+
+<p>
+  This affects all player types, not just inexperienced users. Players without driving knowledge cannot form a mental model, players familiar with automatic vehicles hesitate due to lack of feedback, and experienced manual drivers encounter behaviour that does not match expectations. In all cases, the result is either blocked progression or reduced trust in the system.
+</p>
+
+<p>
+  Because this occurs at the start of the tutorial, the impact is high. The player is prevented from completing onboarding or is forced to rely on guesswork, which undermines both usability and system clarity.
+</p>
+
+<p>
+  Recommended next steps:
+</p>
+
+<ul>
+  <li>Add a clear tutorial prompt explaining how to select Drive and initiate movement.</li>
+  <li>Explain gear states in simple player-facing terms, especially Drive and Reverse.</li>
+  <li>Provide explicit steering instruction within the tutorial or control overlay.</li>
+  <li>Add feedback when movement fails due to incorrect gear or input state.</li>
+  <li>Resolve the input issue where switching to Reverse (R) does not change gear from Drive (D).</li>
+  <li>Add a recovery or reset option if the vehicle becomes stuck during the tutorial.</li>
+  <li>Review the tutorial environment for collision traps that can block progression.</li>
+</ul>
 
     <hr>
 
