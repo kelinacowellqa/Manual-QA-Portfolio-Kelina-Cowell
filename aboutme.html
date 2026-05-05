@@ -19,155 +19,169 @@
   <!-- Shared CSS (your site styling) -->
   <link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
 
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --panel:#0f1215;
-      --text:#cfd6dd;
-      --muted:#a9b3bd;
-      --line:rgba(255,255,255,.10);
-      --teal:#00fff0;
-      --teal-soft:#66fff7;
-      --max:980px;
-      --r:14px;
-    }
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#0f1215;
+    --text:#cfd6dd;
+    --muted:#a9b3bd;
+    --line:rgba(255,255,255,.10);
+    --teal:#00fff0;
+    --teal-soft:#66fff7;
+    --max:980px;
+    --r:14px;
+  }
 
-    html,body{
-      background:var(--bg);
-      color:var(--text);
-      margin:0;
-      font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+  html,body{
+    background:var(--bg);
+    color:var(--text);
+    margin:0;
+    font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-    a{color:var(--teal);text-decoration:none}
-    a:hover{color:var(--teal-soft)}
-    h1,h2{color:var(--teal);line-height:1.2}
-    p{margin:0 0 14px}
-    ul{margin:0 0 14px; padding-left:18px}
-    li{margin:8px 0}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{color:var(--teal-soft);text-decoration:none}
+  h1,h2{color:var(--teal);line-height:1.2}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px; padding-left:18px}
+  li{margin:8px 0}
 
-    .hero{
-      padding:26px 0 10px;
-      text-align:center;
-    }
-    .banner{
-      display:block;
-      width:100%;
-      height:auto;
-      border-radius:16px;
-      border:1px solid var(--line);
-    }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 18px;
+  }
 
-    .nav{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:10px 12px;
-      margin:14px 0 0;
-    }
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(15,18,21,.65);
-      color:var(--teal);
-      font-weight:700;
-    }
-    .btn:hover{background:var(--teal); color:var(--bg)}
+  .hero{
+    padding:26px 0 10px;
+    text-align:center;
+  }
 
-    .rule{
-      border:0;
-      border-top:1px solid rgba(255,255,255,.10);
-      margin:22px 0;
-    }
+  .banner{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:16px;
+    border:1px solid var(--line);
+  }
 
+  .nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px 12px;
+    margin:14px 0 0;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(15,18,21,.65);
+    color:var(--teal);
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  .btn:visited{
+    color:var(--teal);
+  }
+
+  .btn:hover{
+    background:var(--teal);
+    color:var(--bg);
+    border-color:var(--teal);
+    text-decoration:none;
+  }
+
+  .btn[aria-current="page"]{
+    background:var(--teal);
+    color:var(--bg);
+    border-color:var(--teal);
+    text-decoration:none;
+  }
+
+  .btn[aria-current="page"]:visited,
+  .btn[aria-current="page"]:hover{
+    color:var(--bg);
+  }
+
+  .rule{
+    border:0;
+    border-top:1px solid rgba(255,255,255,.10);
+    margin:22px 0;
+  }
+
+  .intro{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    margin:8px 0 6px;
+  }
+
+  .headshot{
+    width:132px;
+    height:132px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid var(--line);
+    flex:0 0 auto;
+  }
+
+  .section{
+    padding:14px 0 4px;
+  }
+
+  .section h2{
+    margin:0 0 10px;
+    font-size:1.25rem;
+  }
+
+  .muted{
+    color:var(--muted);
+  }
+
+  .callouts{
+    background:rgba(15,18,21,.55);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:var(--r);
+    padding:14px;
+    margin:10px 0 6px;
+  }
+
+  .cta-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px 12px;
+    margin:18px 0 0;
+  }
+
+  footer{
+    max-width:var(--max);
+    margin:34px auto 0;
+    padding:18px 18px 26px;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    font-size:.9em;
+    opacity:.85;
+  }
+
+  @media (max-width:600px){
     .intro{
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-      margin:8px 0 6px;
+      flex-direction:column;
     }
+
     .headshot{
-      width:132px;
-      height:132px;
-      object-fit:cover;
-      border-radius:12px;
-      border:1px solid var(--line);
-      flex:0 0 auto;
+      width:120px;
+      height:120px;
     }
-
-    .section{
-      padding:14px 0 4px;
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size:1.25rem;
-    }
-    .muted{color:var(--muted)}
-    .callouts{
-      background:rgba(15,18,21,.55);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--r);
-      padding:14px;
-      margin:10px 0 6px;
-    }
-
-    .cta-row{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:10px 12px;
-      margin:18px 0 0;
-    }
-
-    footer{
-      max-width:var(--max);
-      margin:34px auto 0;
-      padding:18px 18px 26px;
-      border-top:1px solid rgba(255,255,255,.08);
-      text-align:center;
-      font-size:.9em;
-      opacity:.85;
-    }
-
-    @media (max-width:600px){
-      .intro{flex-direction:column}
-      .headshot{width:120px;height:120px}
-    }
-
-    /* === Nav current-page fix === */
-.nav .btn{
-  text-decoration:none;
-}
-
-.nav .btn:visited{
-  color:var(--teal);
-}
-
-.nav .btn:hover{
-  background:var(--teal);
-  color:var(--bg);
-  border-color:var(--teal);
-  text-decoration:none;
-}
-
-.nav .btn[aria-current="page"]{
-  background:var(--teal);
-  color:var(--bg);
-  border-color:var(--teal);
-  text-decoration:none;
-}
-
-.nav .btn[aria-current="page"]:visited,
-.nav .btn[aria-current="page"]:hover{
-  color:var(--bg);
-}
-  </style>
+  }
+</style>
 
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
