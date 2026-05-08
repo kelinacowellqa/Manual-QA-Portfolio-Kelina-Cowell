@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="91dd4980-fd90-49a2-bfd4-85a7a6778b60"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>The Grimwood Hex - QA Pass: Clarity & Readability Under Tactical Pressure (PC)</title>
+<meta property="og:title" content="The Grimwood Hex - QA Pass: Clarity & Readability Under Tactical Pressure (PC)" />
+  
+  <meta property="og:title" content="The Grimwood Hex - QA Pass (PC)" />
+  <meta property="og:description" content="Focused QA pass on The Grimwood Hex covering combat readability, card outcome clarity, tile reveal readability, tactical positioning, and high-pressure encounter clarity." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/grimwood-hex.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/grimwood-hex.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+
+  .thumb {
+    width: 120px;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.1);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .thumb:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,255,240,0.25);
+  }
+
+  .thumb-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/grimwood-hex-banner.png" alt="The Grimwood Hex QA Pass Banner">
+    </header>
+
+    <nav style="text-align:center;margin-bottom:20px;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Game-QA-Portfolio.html">Back to Portfolio Hub</a>
+    </nav>
+
+    <h1>The Grimwood Hex - QA Pass: Clarity & Readability Under Tactical Pressure (PC)</h1>
+    <p class="meta">Tested: 8 May 2026 • Build: Steam Demo (no build number viewable)</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11)</li>
+        <li><strong>Build:</strong> Steam Demo (no build number viewable)</li>
+        <li><strong>Environment:</strong> PC, 1080p, keyboard and mouse</li>
+        <li><strong>Network:</strong> Standard home broadband via Wi-Fi</li>
+        <li><strong>Tools:</strong> OBS, Google Sheets, Steam</li>
+        <li><strong>Focus Areas:</strong> Card outcome clarity, combat readability, tile reveal readability, tactical positioning, threat escalation, and repeated failure-state understanding</li>
+        <li><strong>Purpose:</strong> Conduct a short QA pass focused on whether tactical systems remain clear and readable as encounter pressure increases.</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/grimwood-hex.html",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/grimwood-hex.html",
+  "name": "The Grimwood Hex: QA Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "The Grimwood Hex" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Deckbuilder testing" },
+    { "@type": "Thing", "name": "Combat readability" },
+    { "@type": "Thing", "name": "Card outcome clarity" },
+    { "@type": "Thing", "name": "Tile reveal readability" },
+    { "@type": "Thing", "name": "Tactical positioning" },
+    { "@type": "Thing", "name": "Player-facing clarity" },
+    { "@type": "Thing", "name": "Risk-based testing" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "deckbuilder testing",
+    "combat readability",
+    "card outcome clarity",
+    "tile reveal readability",
+    "tactical positioning",
+    "threat readability",
+    "player-facing clarity",
+    "risk-based testing",
+    "session-based testing"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Steam Demo (no build number viewable)" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "One-day focused QA pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-08" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Card outcome clarity, combat readability, tile reveal readability, tactical positioning, threat escalation, and repeated failure-state understanding" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Risk-based exploratory QA using targeted charters focused on readability, tactical clarity, and player understanding under pressure" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, charters, session notes, risk matrix, one-line summary, and session-based gameplay observations" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "0 functional bugs" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA pass on <a href="https://store.steampowered.com/" target="_blank" rel="noopener"><em>The Grimwood Hex</em></a>, tested on PC using the public Steam Demo build.
+    </p>
+
+    <p>
+      The goal was to assess whether the game’s core tactical systems remain understandable as pressure increases through combat, tile exploration, positioning demands, and repeated failure states.
+    </p>
+
+    <p>
+      This was not a playtest, balance review, or full progression pass. Testing focused on player-facing readability, tactical clarity, and whether failure remained understandable rather than confusing.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Card outcome clarity and combat feedback</li>
+      <li>Enemy threat readability and turn-state understanding</li>
+      <li>Tactical positioning and consequence clarity</li>
+      <li>Tile reveal readability and route selection</li>
+      <li>High-pressure encounters and repeated failure states</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>The Grimwood Hex</td>
+          <td>PC, Steam Demo build</td>
+          <td>
+            One-day QA pass focused on clarity and readability under tactical pressure, covering combat feedback, card outcomes, tile reveals, positioning, and repeated failure-state understanding.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Check whether players can understand combat outcomes, enemy threats, tile information, and tactical consequences as encounter pressure increases.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Card outcome clarity</li>
+          <li>Combat readability</li>
+          <li>Tile reveal readability</li>
+          <li>Tactical positioning</li>
+          <li>Threat escalation</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, risk matrix, and one-line summary</li>
+          <li>Risk-based system coverage summary</li>
+          <li>Session-based gameplay observations</li>
+          <li>Short write-up focused on tactical readability and player-facing clarity</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>0</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>Major</td><td>0</td></tr>
+        <tr><td>Minor</td><td>0</td></tr>
+        <tr><td>Primary Risk Area</td><td>Multi-enemy tactical management and pressure-state readability</td></tr>
+        <tr><td>Testing Type</td><td>Risk-based exploratory QA using targeted charters</td></tr>
+        <tr><td>Result</td><td>No major readability breakdowns, unclear failure states, or player-facing communication issues observed within tested scope</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence was captured through structured session notes and charter-based gameplay observations. No bug clips are included because no functional bugs were logged during this pass.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook</strong></td>
+          <td>
+            <a href="https://docs.google.com/spreadsheets/d/1muZcALQ7O7ERc7eDWT7p55wawDKCALlc/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+              Open Workbook
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook PDF Export</strong></td>
+          <td>
+            <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/TheGrimwoodHex_QA_MiniPass_ClarityReadability_TacticalPressure_KelinaCowell.pdf" target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Combat Readability</td>
+          <td>Combat outcomes remained consistently understandable during repeated encounters.</td>
+          <td>S01</td>
+        </tr>
+        <tr>
+          <td>Tactical Feedback</td>
+          <td>Positioning consequences felt predictable and understandable during combat scenarios.</td>
+          <td>S01</td>
+        </tr>
+        <tr>
+          <td>Tile Reveal Readability</td>
+          <td>Tile indicators clearly communicated encounter and resource types immediately upon reveal.</td>
+          <td>S02</td>
+        </tr>
+        <tr>
+          <td>Environmental Readability</td>
+          <td>Expanding board layouts remained readable and easy to process during progression.</td>
+          <td>S02</td>
+        </tr>
+        <tr>
+          <td>Threat Escalation</td>
+          <td>Difficulty increased through tactical pressure rather than unclear systems or board confusion.</td>
+          <td>S03</td>
+        </tr>
+        <tr>
+          <td>High-Pressure Readability</td>
+          <td>Combat readability and board-state understanding remained stable during repeated failure states.</td>
+          <td>S03</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <p>
+      No functional bugs were logged during this QA pass. Tested systems remained readable and understandable across the covered scenarios, including repeated combat encounters, tile reveal decisions, expanding board states, multi-enemy pressure, and repeated deaths.
+    </p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment &amp; System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Card Outcome Clarity</td>
+          <td>High</td>
+          <td>Core combat decisions rely on players understanding card results and tactical consequences quickly and accurately.</td>
+          <td>Card effects and combat outcomes remained consistently understandable during repeated combat encounters.</td>
+        </tr>
+        <tr>
+          <td>Combat Feedback</td>
+          <td>High</td>
+          <td>Weak feedback can reduce player trust and make tactical learning difficult in turn-based combat.</td>
+          <td>Visual/audio feedback and turn resolution communicated outcomes clearly during testing.</td>
+        </tr>
+        <tr>
+          <td>Enemy Turn Readability</td>
+          <td>High</td>
+          <td>Players must understand enemy actions and threats in order to make informed positioning decisions.</td>
+          <td>Enemy behaviour and state transitions remained readable throughout encounters and death states.</td>
+        </tr>
+        <tr>
+          <td>Tactical Positioning</td>
+          <td>High</td>
+          <td>Positioning is described by the game as critical for survival, making clarity of spatial consequences essential.</td>
+          <td>Positioning consequences felt predictable and understandable during combat scenarios.</td>
+        </tr>
+        <tr>
+          <td>Tile Reveal Readability</td>
+          <td>High</td>
+          <td>Players rely on immediate understanding of revealed tiles to make informed route and survival decisions.</td>
+          <td>Tile indicators clearly communicated encounter/resource types immediately upon reveal during repeated runs.</td>
+        </tr>
+        <tr>
+          <td>Environmental Readability</td>
+          <td>Medium</td>
+          <td>Expanding board layouts can increase cognitive load and reduce route-planning clarity during longer runs.</td>
+          <td>Board expansion and environmental information remained easy to process without major readability breakdowns.</td>
+        </tr>
+        <tr>
+          <td>Multi-Enemy Threat Management</td>
+          <td>High</td>
+          <td>Escalating encounters may overwhelm players if threat prioritisation becomes difficult to process.</td>
+          <td>Difficulty increased primarily through tactical demand and enemy saturation rather than confusion or unclear combat states.</td>
+        </tr>
+        <tr>
+          <td>High-Pressure Combat Readability</td>
+          <td>High</td>
+          <td>Readability breakdowns during pressured encounters can damage player trust and learning.</td>
+          <td>Board-state clarity and enemy behaviour remained understandable during repeated failure states and high-pressure encounters.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>The Grimwood Hex</em>.</li>
+      <li>Logged 0 functional bugs.</li>
+      <li>Validated card outcome clarity, combat feedback, tile reveal readability, and tactical positioning within the tested scope.</li>
+      <li>Observed repeated deaths and high-pressure encounters without major readability breakdowns or unclear failure states.</li>
+      <li>Found that difficulty escalation was driven mainly by tactical demand and multi-enemy management rather than unclear systems.</li>
+    </ul>
+
+    <hr>
+
+ <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+<ul>
+  <li>
+    <strong>Combat readability is strong.</strong>
+    Card outcomes, enemy behaviour, and turn-state changes remained understandable throughout testing, including repeated failure states.
+  </li>
+
+  <li>
+    <strong>Threat escalation feels tactical rather than unfair.</strong>
+    Difficulty increased through enemy saturation and strategic demand rather than hidden information or unclear gameplay communication.
+  </li>
+
+  <li>
+    <strong>Tile reveal communication is effective.</strong>
+    Tile indicators immediately communicated encounter and resource types clearly enough for informed route selection.
+  </li>
+
+  <li>
+    <strong>Board-state readability remains stable under pressure.</strong>
+    Even during difficult encounters, enemy threats and positional consequences remained understandable and readable.
+  </li>
+
+  <li>
+    <strong>Player trust remained intact during repeated deaths.</strong>
+    Failures consistently felt attributable to tactical decision-making rather than confusing systems or unclear mechanics.
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+<p>
+  Across the tested gameplay scope, <em>The Grimwood Hex</em> maintained strong player-facing readability during combat, tile exploration, and escalating tactical encounters.
+</p>
+
+<p>
+  The primary challenge observed during testing was tactical overload caused by increasing enemy pressure rather than unclear systems or readability breakdowns. Even during repeated failures, combat states, enemy behaviour, and positional consequences remained understandable.
+</p>
+
+<p>
+  No major player-facing clarity issues were identified during this pass.
+</p>
+
+<p>
+  Recommended next steps:
+</p>
+
+<ul>
+  <li>Continue monitoring readability during later-run enemy escalation and future content additions.</li>
+  <li>Retest combat readability if additional status effects, enemy mechanics, or board modifiers are introduced.</li>
+  <li>Maintain the current clarity of tile reveal indicators and combat feedback systems.</li>
+  <li>Monitor multi-enemy encounter pacing to ensure tactical difficulty does not become cognitively exhausting over longer sessions.</li>
+</ul>
+
+     <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
