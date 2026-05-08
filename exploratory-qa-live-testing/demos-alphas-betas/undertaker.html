@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="91dd4980-fd90-49a2-bfd4-85a7a6778b60"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Undertaker - QA Pass: Enemy AI, Combat State & Save/Reload Flow (PC)</title>
+  <meta name="description" content="Short dev-facing QA mini-pass on Undertaker demo v1.0.103, focused on enemy AI detection, combat-state transitions, environmental readability, and save/reload flow." />
+
+  <meta property="og:title" content="Undertaker - QA Mini-Pass (PC)" />
+  <meta property="og:description" content="Focused QA mini-pass on Undertaker demo v1.0.103 covering enemy AI detection, combat-state transitions, environmental readability, and save/reload flow." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker.html" />
+  <link rel="canonical" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker.html" />
+
+  <link rel="stylesheet" href="../../assets/css/site.css?v=5">
+
+<style>
+  .hero{
+    width:100%;
+    height:260px;
+    position:relative;
+    margin:28px 0 26px !important;
+    padding:0 !important;
+    border:0;
+    border-radius:20px;
+    background:transparent !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+  }
+
+  .hero img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+    border-radius:20px;
+    border:0;
+    box-shadow:none !important;
+    background:transparent;
+  }
+
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    box-shadow:
+      0 0 14px rgba(0,255,240,0.28),
+      0 0 28px rgba(0,255,240,0.16),
+      0 0 52px rgba(0,255,240,0.10);
+    animation:heroPulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes heroPulse{
+    0%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+    50%{ box-shadow:0 0 22px rgba(0,255,240,0.42),0 0 42px rgba(0,255,240,0.24),0 0 72px rgba(0,255,240,0.14); }
+    100%{ box-shadow:0 0 14px rgba(0,255,240,0.28),0 0 28px rgba(0,255,240,0.16),0 0 52px rgba(0,255,240,0.10); }
+  }
+
+  body h2{ margin:32px 0 12px !important; }
+  body hr{ margin:28px 0 !important; }
+  body p{ line-height:1.7 !important; margin:0 0 14px !important; }
+  body ul, body ol{ margin:12px 0 20px !important; padding-left:1.3rem !important; }
+  body li{ line-height:1.7 !important; margin:8px 0 !important; }
+
+  .cta-row{ margin:20px 0 34px !important; }
+  .cta-row .cta-btn{ margin:6px 8px; }
+  @media (max-width:560px){
+    .cta-row .cta-btn{ display:block; margin:8px auto; width:fit-content; }
+  }
+
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:12px 0;
+  }
+
+  .grid-3 .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+  }
+
+  @media (max-width:900px){
+    .grid-3{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:640px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#0f1215;
+    border:1px solid rgba(255,255,255,.08);
+    margin:12px 0;
+    border-radius:8px;
+  }
+
+  thead th{
+    background:rgba(0,255,240,.08);
+    color:#00fff0;
+    text-align:left;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody td, tbody th{
+    color:#cfd6dd;
+    padding:12px 14px;
+    vertical-align:top;
+  }
+
+  thead th+th,
+  tbody td+td,
+  tbody th+td{
+    border-left:1px solid rgba(255,255,255,.08);
+  }
+
+  tbody tr+tr td,
+  tbody tr+tr th{
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  .method-note{
+    margin:-6px 0 10px;
+    font-size:.95rem;
+    color:#a9b3bd;
+    opacity:.9;
+  }
+
+  .method-note,
+  .method-note a{
+    color:inherit !important;
+    font-size:inherit !important;
+    line-height:inherit !important;
+    opacity:1 !important;
+  }
+
+  .bug-log-note{
+    color:#cfd6dd !important;
+    opacity:1 !important;
+    font-weight:600;
+  }
+
+  .bug-log-note a{
+    color:#00fff0 !important;
+    text-decoration:none;
+    font-weight:700;
+  }
+
+  .bug-log-note a:hover{
+    text-decoration:underline;
+  }
+
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+
+  .service-card.hero-copy{
+    max-width:900px;
+    margin:0 auto;
+    padding:20px 24px;
+    text-align:center;
+  }
+
+  .service-card.hero-copy h2{
+    margin-top:0;
+  }
+
+  .service-card.hero-copy .lead{
+    margin-bottom:20px;
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="hero">
+      <img src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker-banner.png" alt="Undertaker QA Mini-Pass Banner">
+    </header>
+
+  <nav style="text-align:center;margin-bottom:20px;">
+      <a class="cta-btn" href="https://kelinacowellqa.github.io/Game-QA-Portfolio.html">Back to Portfolio Hub</a>
+    </nav>
+
+    <h1>Undertaker - Enemy AI & Save/Reload QA Pass (PC)</h1>
+    <p class="meta">Tested: 08 May 2026 • Build: Demo v1.0.103</p>
+
+    <section aria-labelledby="about-this-work">
+      <h2 id="about-this-work">🧾 Test Overview</h2>
+
+      <ul>
+        <li><strong>Platform:</strong> PC (Windows 11), keyboard and mouse</li>
+        <li><strong>Build:</strong> Demo v1.0.103, tested from the Steam demo build</li>
+        <li><strong>Focus Areas:</strong> Enemy AI detection, combat-state transitions, environmental readability, and save/reload flow</li>
+        <li><strong>Purpose:</strong> Validate recently updated systems from Dev Update #4, with emphasis on enemy behaviour fixes, readability changes, and save-system reliability</li>
+      </ul>
+    </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Indie Developer, QA Lead, Game QA Tester, Recruiter"
+  },
+  "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker/",
+  "url": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker/",
+  "name": "Undertaker: QA Mini-Pass",
+  "inLanguage": "en-GB",
+  "author": { "@type": "Person", "name": "Kelina Cowell" },
+  "isBasedOn": { "@type": "VideoGame", "name": "Undertaker" },
+  "about": [
+    { "@type": "Thing", "name": "Manual QA" },
+    { "@type": "Thing", "name": "Exploratory testing" },
+    { "@type": "Thing", "name": "Game QA" },
+    { "@type": "Thing", "name": "Enemy AI" },
+    { "@type": "Thing", "name": "AI detection" },
+    { "@type": "Thing", "name": "Combat-state transitions" },
+    { "@type": "Thing", "name": "Environmental readability" },
+    { "@type": "Thing", "name": "Save and reload flow" },
+    { "@type": "Thing", "name": "Evidence capture" }
+  ],
+  "timeRequired": "P1D",
+  "keywords": [
+    "manual testing",
+    "exploratory QA",
+    "game QA",
+    "enemy AI testing",
+    "AI detection",
+    "combat-state transitions",
+    "save system testing",
+    "reload flow",
+    "environmental readability",
+    "evidence capture",
+    "repro steps",
+    "expected vs actual",
+    "session-based testing",
+    "bug reporting"
+  ],
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Platform", "value": "PC (Windows 11)" },
+    { "@type": "PropertyValue", "name": "Build", "value": "Demo v1.0.103" },
+    { "@type": "PropertyValue", "name": "Timebox", "value": "Short focused QA mini-pass" },
+    { "@type": "PropertyValue", "name": "Tested date", "value": "2026-05-08" },
+    { "@type": "PropertyValue", "name": "Scope", "value": "Enemy AI detection, combat-state transitions, environmental readability, and save/reload flow" },
+    { "@type": "PropertyValue", "name": "Testing approach", "value": "Charter-driven QA mini-pass focused on regression validation and player-facing gameplay reliability" },
+    { "@type": "PropertyValue", "name": "Evidence approach", "value": "QA workbook, session notes, bug log, risk matrix, one-line summary, and short video evidence" },
+    { "@type": "PropertyValue", "name": "Issues logged", "value": "4 issues logged" }
+  ]
+}
+</script>
+
+    <h2>Introduction</h2>
+
+    <p>
+      This is a focused QA mini-pass on <a href="https://store.steampowered.com/app/3018070/Undertaker/" target="_blank" rel="noopener"><em>Undertaker</em></a>, tested on PC using Demo v1.0.103.
+    </p>
+
+    <p>
+      The goal was to validate recent devlog changes around enemy AI behaviour, combat-state reliability, environmental readability, and save/load flow. The pass was scoped around recently modified systems rather than full-game coverage.
+    </p>
+
+    <p>
+      Testing focused on:
+    </p>
+
+    <ul>
+      <li>Enemy detection and patrol-state behaviour</li>
+      <li>Combat-state transitions after explosive interactions</li>
+      <li>Enemy reacquisition after line-of-sight interruption</li>
+      <li>Environmental readability for explosive barrels, loot, and interactables</li>
+      <li>Save and reload behaviour after progression through the first gameplay area</li>
+    </ul>
+
+    <p>
+      Findings are based on short targeted sessions and are supported with a QA workbook, session notes, reproducible bug information, and gameplay evidence.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Game</th><th>Platform</th><th>Scope</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Undertaker</td>
+          <td>PC, Steam demo build</td>
+          <td>
+            QA mini-pass focused on enemy AI detection, combat-state transitions, environmental readability validation, and save/reload flow after recent demo updates.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <section class="card">
+        <h3>🎯 Goal</h3>
+        <p>
+          Validate whether recently fixed or reworked systems behave reliably during normal exploration, combat, and reload flow.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>🧭 Focus Areas</h3>
+        <ul>
+          <li>Enemy AI detection</li>
+          <li>Combat-state transitions</li>
+          <li>Patrol and aggro recovery</li>
+          <li>Environmental readability</li>
+          <li>Save and reload flow</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>📄 Deliverables</h3>
+        <ul>
+          <li>QA workbook with README, charters, session notes, bug log, risk matrix, and one-line summary</li>
+          <li>Bug log with reproducible steps and evidence links</li>
+          <li>Short video evidence for each logged issue</li>
+          <li>Developer-facing summary of validated systems and risk areas</li>
+        </ul>
+      </section>
+    </div>
+
+    <hr>
+
+    <h2 id="metrics">📊 Metrics</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Sessions Logged</td><td>3</td></tr>
+        <tr><td>Total Bugs Logged</td><td>4</td></tr>
+        <tr><td>Critical</td><td>0</td></tr>
+        <tr><td>High</td><td>1</td></tr>
+        <tr><td>Medium</td><td>3</td></tr>
+        <tr><td>Low</td><td>0</td></tr>
+        <tr><td>Systems Validated Without Issues</td><td>2</td></tr>
+        <tr><td>Primary Risk Area</td><td>Enemy AI detection and combat-state transitions</td></tr>
+        <tr><td>Repro Rate</td><td>Mixed: one issue reproduced 2/2 with control comparison; other issues observed 1/1 during targeted testing</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>📷 Evidence</h2>
+
+    <p>
+      Supporting evidence is included to show each issue clearly and make it easy to review.
+    </p>
+
+    <ul>
+      <li>Short gameplay clips showing the relevant trigger, state transition, and player-facing outcome</li>
+      <li>Structured bug notes with repro steps, expected vs actual behaviour, and linked evidence</li>
+      <li>Session notes covering enemy AI, readability validation, and save/reload flow observations</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>File / Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>QA Workbook (Google Sheets)</strong></td>
+          <td>
+          <a href="https://docs.google.com/spreadsheets/d/1t_oMl-RuHoKbrDZq7MOiWUH21cuXo6Wo/edit?usp=sharing&ouid=101337383007576779931&rtpof=true&sd=true" target="_blank" rel="noopener">
+  Open Workbook
+</a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>QA Workbook (PDF Export)</strong></td>
+       <td>
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/Undertaker_QA_Mini-Pass_Enemy-AI_Save-Reload_v1.0.103.pdf" target="_blank" rel="noopener">
+    Open PDF
+  </a>
+</td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="core-findings">📌 Key Findings</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Enemy AI / Combat State</td>
+          <td>Fire Explosive interaction consistently triggered a non-responsive enemy state with resetting health behaviour during the tutorial encounter.</td>
+          <td><a href="#bugs-logged">Bug Log: C01-01</a></td>
+        </tr>
+        <tr>
+          <td>Enemy AI / Detection</td>
+          <td>Patrolling enemy failed to detect the player during open visibility until physical path obstruction interrupted patrol movement.</td>
+          <td><a href="#bugs-logged">Bug Log: C01-02</a></td>
+        </tr>
+        <tr>
+          <td>Enemy AI / Aggro Recovery</td>
+          <td>Enemy failed to reacquire the player at melee range after returning from combat to patrol behaviour following brief line-of-sight interruption.</td>
+          <td><a href="#bugs-logged">Bug Log: C01-03</a></td>
+        </tr>
+        <tr>
+          <td>Save System / Reload Flow</td>
+          <td>Continue reload behaviour returned the player to the lobby/shop area instead of the previous gameplay location, creating navigation friction despite correct progression persistence.</td>
+          <td><a href="#bugs-logged">Bug Log: C03-01</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="bugs-logged">🐞 Bugs Logged</h2>
+
+    <table class="table-compare">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Severity</th>
+          <th>Repro</th>
+          <th>Evidence Clip/Screenshot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C01-01</td>
+          <td>[PC][Combat][Enemy AI] Enemy enters non-responsive state after Fire Explosive interaction</td>
+          <td>High</td>
+          <td>2/2 with Fire Explosive interaction; 0/1 without explosive</td>
+     <td>
+  <a href="https://youtu.be/kfz_ZSQwhmk" target="_blank" rel="noopener">
+    Watch Clip - Fire Explosive Enemy State Failure
+  </a>
+</td>
+          </td>
+        </tr>
+        <tr>
+          <td>C01-02</td>
+          <td>[PC][Enemy AI][Detection] Patrolling enemy fails to detect player until physical path obstruction occurs</td>
+          <td>Medium</td>
+          <td>1/1 observed</td>
+     <td>
+  <a href="https://youtu.be/EGMZC75XbQ0" target="_blank" rel="noopener">
+    Watch Clip - Patrolling Enemy Ignores Visible Player
+  </a>
+</td>
+          </td>
+        </tr>
+        <tr>
+          <td>C01-03</td>
+          <td>[PC][Enemy AI][Detection] Enemy fails to reacquire player at melee range after returning to patrol state</td>
+          <td>Medium</td>
+          <td>1/1 observed</td>
+     <td>
+  <a href="https://youtu.be/MZvedKbVmHs" target="_blank" rel="noopener">
+    Watch Clip - Enemy Fails to Reacquire Player
+  </a>
+</td>
+          </td>
+        </tr>
+        <tr>
+          <td>C03-01</td>
+          <td>[PC][Save System][UX] Save and Quit flow does not communicate respawn location after reload</td>
+          <td>Medium</td>
+          <td>1/1 observed</td>
+     <td>
+  <a href="https://youtu.be/SgVEiXC67l4" target="_blank" rel="noopener">
+    Watch Clip - Continue Reloads Player to Lobby
+  </a>
+</td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+   <p class="method-note bug-log-note">
+  Full bug log with repro steps, expected vs actual, and evidence:
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas
+/Bug-Log_Undertaker_QA_Mini-Pass_Enemy-AI_Save-Reload_v1.0.103.pdf" target="_blank" rel="noopener">
+    Download Bug Log (PDF)
+  </a>
+</p>
+    
+  <p class="method-note">
+  The highest-impact issue identified in this pass was C01-01, where Fire Explosive interaction consistently caused one enemy to enter a non-responsive state with resetting health behaviour. Control testing without the explosive resulted in normal enemy behaviour and successful enemy death.
+</p>
+
+    <hr>
+
+    <h2 id="risk-assessment">🧠 Risk Assessment & System Coverage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Area</th>
+          <th>Risk Level</th>
+          <th>Why Risky</th>
+          <th>Tested</th>
+          <th>Test Depth</th>
+          <th>Issues Found</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Enemy AI Detection & Aggro</td>
+          <td>High</td>
+          <td>Recent AI/pathfinding fixes increase risk of unstable perception, aggro recovery, and patrol-state inconsistencies.</td>
+          <td>Yes</td>
+          <td>Medium to heavy</td>
+          <td>Yes</td>
+          <td>Multiple enemy detection inconsistencies observed, including failure to reacquire the player after patrol reset and delayed detection until path obstruction occurred.</td>
+        </tr>
+        <tr>
+          <td>Enemy Combat State Transitions</td>
+          <td>High</td>
+          <td>Combat-state changes involving explosive interactions can create invalid AI or health-state behaviour.</td>
+          <td>Yes</td>
+          <td>Heavy</td>
+          <td>Yes</td>
+          <td>Fire Explosive interaction consistently triggered a non-responsive enemy state with resetting health behaviour during tutorial combat.</td>
+        </tr>
+        <tr>
+          <td>Enemy Pathfinding Around Geometry</td>
+          <td>High</td>
+          <td>Recent stuck/pathfinding fixes suggest high regression risk around environmental navigation and obstacle handling.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>No</td>
+          <td>No severe pathfinding failures or geometry-stuck issues observed during current session.</td>
+        </tr>
+        <tr>
+          <td>Environmental Interaction Readability</td>
+          <td>Medium</td>
+          <td>Recent barrel readability rework may still create gameplay clarity issues under combat pressure.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>No</td>
+          <td>Explosive barrels remained visually distinct during exploration and combat scenarios due to strong colour contrast. Loot and interactable objects were consistently readable through environmental placement and green overlay indicators.</td>
+        </tr>
+        <tr>
+          <td>Save System & Performance Stability</td>
+          <td>Medium</td>
+          <td>Recent save-system fixes suggest potential persistence or lag regression risk.</td>
+          <td>Yes</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Save/load persistence functioned correctly for progression, enemy deaths, and collected items. Main issue observed involved reload-flow communication and navigation friction caused by returning the player to the lobby/shop area instead of the previous gameplay location.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2 id="results">📈 Results</h2>
+
+    <ul>
+      <li>Completed 3 focused QA sessions on <em>Undertaker</em>.</li>
+      <li>Logged 4 issues across enemy AI behaviour, combat-state transitions, detection reacquisition, and save/reload UX.</li>
+      <li>Confirmed environmental readability improvements were effective during normal exploration and combat scenarios.</li>
+      <li>Validated that save/load persistence retained enemy deaths, collected items, and progression states correctly.</li>
+      <li>Identified enemy AI detection and combat-state transitions as the main risk areas from this pass.</li>
+    </ul>
+
+    <hr>
+
+    <h2 id="key-points">🔍 Key Points for the Developer</h2>
+
+    <ul>
+      <li>
+        <strong>Fire Explosive interaction appears to create an invalid enemy combat state.</strong>
+        In the tutorial encounter, one enemy consistently became non-responsive after explosive use. The enemy health bar decreased when attacked but reset before depletion, preventing normal death behaviour.
+      </li>
+
+      <li>
+        <strong>Enemy detection during patrol behaviour was inconsistent.</strong>
+        One patrolling enemy repeatedly ignored the player in open visibility and only activated after the player physically blocked its patrol path.
+      </li>
+
+      <li>
+        <strong>Aggro reacquisition after patrol reset needs review.</strong>
+        In the Cathedral Ruins area, an enemy returned to patrol after brief line-of-sight interruption and then failed to reacquire the stationary player at melee range in open line of sight.
+      </li>
+
+      <li>
+        <strong>Environmental readability appears to be working well.</strong>
+        Red explosive barrels were clearly distinguishable from the environment, and loot/interactable objects were readable through placement and green overlay indicators.
+      </li>
+
+      <li>
+        <strong>Save persistence worked, but reload-flow communication created friction.</strong>
+        Continue returned the player to the lobby/shop area while preserving progression and cleared enemy states. Without a map or waypoint system, returning to the previous gameplay location created avoidable navigation friction.
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 id="conclusion">🔚 QA Summary & Next Steps</h2>
+
+    <p>
+      The strongest risk area from this pass is enemy AI state reliability. Enemy behaviour was not consistently failing across the board, but several targeted scenarios exposed issues around explosive interactions, patrol detection, and reacquisition after line-of-sight interruption.
+    </p>
+
+    <p>
+      Environmental readability was a positive finding. Explosive barrels stood out clearly due to strong red contrast, and loot/interactable objects were readable during normal movement and combat. This suggests the recent readability work is functioning as intended in the tested areas.
+    </p>
+
+    <p>
+      The save/load system also retained progression correctly, including enemy deaths and collected items. The main concern is not persistence failure, but reload-flow clarity: the game returns the player to the lobby/shop area after Continue without communicating that the previous gameplay location will not be restored.
+    </p>
+
+    <p>
+      Recommended next steps:
+    </p>
+
+    <ul>
+      <li>Review Fire Explosive damage handling against grouped enemies in the tutorial encounter.</li>
+      <li>Check whether explosive damage can leave enemies in invalid AI, health, or combat states.</li>
+      <li>Review patrol-state perception checks, especially when the player is visible but not physically blocking the enemy route.</li>
+      <li>Review reacquisition behaviour after enemies return from combat to patrol state.</li>
+      <li>Clarify Save and Quit behaviour so players understand where Continue will resume from.</li>
+      <li>Consider adding clearer map, waypoint, or return-path support if the lobby is intended as the reload point.</li>
+      <li>Keep the current explosive barrel and loot readability direction, as these were clear during testing.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📎 Disclaimer</h2>
+    <p><em>This is a personal, non-commercial portfolio for educational and recruitment purposes. I’m not affiliated with or endorsed by any game studios or publishers. All trademarks, logos, and game assets are the property of their respective owners. Any screenshots or short clips are included solely to document testing outcomes. If anything here needs to be removed or credited differently, please contact me and I’ll update it promptly.</em></p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
