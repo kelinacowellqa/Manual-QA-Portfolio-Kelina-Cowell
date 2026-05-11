@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="91dd4980-fd90-49a2-bfd4-85a7a6778b60"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Why Unclear Ability Systems Break Player Understanding in Games | Kelina Cowell</title>
+
+<meta name="description" content="A practical game QA article exploring how unclear ability systems, hidden passive mechanics, inconsistent build behaviour, and weak cause-and-effect communication can break player understanding in games." />
+
+<meta property="og:title" content="Why Unclear Ability Systems Break Player Understanding in Games">
+<meta property="og:description" content="Real game QA examples from Runic Tower showing how unclear ability systems, passive mechanics, and inconsistent build behaviour can damage player understanding.">
+
+<meta name="twitter:title" content="Why Unclear Ability Systems Break Player Understanding in Games">
+<meta name="twitter:description" content="Real game QA examples showing how unclear ability systems, hidden passive mechanics, and inconsistent build behaviour can confuse players.">
+<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-ability-systems-break-player-understanding.html">
+
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">
+
+<style>
+  .meta-line{
+    margin: 10px 0 0;
+    font-size: .95rem;
+    opacity: .75;
+  }
+
+  .hero-media,
+  .video{
+    margin: 14px 0 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+  }
+
+  .hero-media img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-media figcaption,
+  .video-caption{
+    padding: 10px 12px;
+    font-size: .92rem;
+    opacity: .78;
+    border-top: 1px solid var(--line);
+  }
+
+  .video iframe{
+    display: block;
+    width: 100% !important;
+    height: 520px !important;
+    border: 0;
+  }
+
+  .callout ul{ margin-top: 8px; }
+  .callout li{ margin: 6px 0; }
+
+  .divider{
+    height: 1px;
+    background: var(--line);
+    margin: 22px 0;
+    opacity: .9;
+  }
+
+  .two-col{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .mini{
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .mini h3{
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  .mini ul{
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .mini li{ margin: 6px 0; }
+
+  .example{
+    border-left: 3px solid rgba(0,242,201,.75);
+    padding: 10px 12px;
+    background: rgba(0,242,201,.06);
+    border-radius: 10px;
+  }
+
+  .example p{ margin: 0 0 8px; }
+  .example p:last-child{ margin: 0; }
+
+  .toc{
+    margin: 14px 0 0;
+    padding: 12px 12px 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .toc strong{
+    display: block;
+    margin-bottom: 8px;
+    opacity: .9;
+  }
+
+  .toc ul{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 28px;
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+
+  .toc li{
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toc a{
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
+
+  .faq-accordion details{
+    margin: 10px 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+  }
+
+  .faq-accordion summary{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--teal);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .faq-answer{
+    margin-top: 10px;
+    opacity: .95;
+  }
+
+  .faq-accordion summary:hover{
+    text-decoration: underline;
+  }
+
+  .tldr{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+
+  .tldr li{
+    list-style: disc;
+    margin-left: 18px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px){
+    .two-col{
+      grid-template-columns: 1fr;
+    }
+
+    .video iframe{
+      height: 420px !important;
+    }
+  }
+
+  @media (max-width: 640px){
+    .tldr,
+    .toc ul{
+      grid-template-columns: 1fr;
+    }
+
+    .video iframe{
+      height: 260px !important;
+    }
+  }
+</style>
+
+<script data-goatcounter="https://kelina.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Unclear Ability Systems Break Player Understanding in Games",
+  "description": "A practical game QA article exploring how unclear ability systems, hidden passive mechanics, inconsistent build behaviour, and weak cause-and-effect communication can break player understanding in games.",
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-11",
+  "inLanguage": "en-GB",
+  "author": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-ability-systems-break-player-understanding.html"
+  }
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<main id="content" class="wrap">
+
+<p class="cta-row" style="text-align:center;">
+  <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+  <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+  <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
+  <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+  <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+</p>
+
+<hr>
+
+<header class="article-hero">
+<h1>Why Unclear Ability Systems Break Player Understanding in Games</h1>
+
+<p class="author-row small">
+<strong>Author:</strong> Kelina Cowell •
+<a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+</p>
+
+<p class="small">
+Ability systems do not need to be simple for players to understand them.
+They do need to communicate enough information for players to identify what triggered, why it triggered, and which system caused the outcome.
+</p>
+
+<p class="small">
+When abilities, passives, build systems, and gameplay effects are unclear, players stop reading the experience as strategy or mastery.
+They start reading it as guesswork.
+</p>
+
+<p class="small">
+This article uses real game QA portfolio work from Runic Tower to examine unclear ability systems, hidden passive mechanics, inconsistent build behaviour, and how unreadable gameplay systems can damage player understanding.
+</p>
+
+<section class="callout">
+<h2>TL;DR</h2>
+<ul class="tldr small">
+<li>Players struggle when ability systems do not clearly communicate source, ownership, or activation behaviour</li>
+<li>Hidden passive mechanics weaken player learning and build understanding</li>
+<li>Build systems become unreliable if selected abilities do not load consistently</li>
+<li>Good gameplay QA tests whether players can understand cause and effect, not just whether systems technically function</li>
+</ul>
+</section>
+
+<nav class="toc">
+<strong>On this page</strong>
+<ul>
+<li><a href="#complexity-vs-readability">When complexity becomes unreadability</a></li>
+<li><a href="#ability-system-problems">Common ability system readability problems</a></li>
+<li><a href="#player-understanding">Why players need readable cause-and-effect</a></li>
+<li><a href="#runictower-background-aspect-example">Runic Tower Background vs Aspect example</a></li>
+<li><a href="#runictower-passive-example">Runic Tower passive ability example</a></li>
+<li><a href="#runictower-build-example">Runic Tower build consistency example</a></li>
+<li><a href="#runictower-assignment-example">Runic Tower Player vs Tower assignment example</a></li>
+<li><a href="#faq">Ability System Readability FAQ</a></li>
+</ul>
+</nav>
+
+<h2 id="complexity-vs-readability">When complexity becomes unreadability</h2>
+
+<p>
+Complex ability systems can be rewarding.
+Players often enjoy experimenting with builds, combining effects, discovering synergies, and learning how gameplay systems interact.
+</p>
+
+<p>
+The problem begins when the systems stop communicating clearly.
+If the player cannot identify which system caused an effect, whether an ability triggered correctly, or how a build is functioning, the game stops feeling strategic.
+</p>
+
+<p>
+From a QA perspective, this is not just a UI issue.
+It is a player-understanding issue.
+The player needs enough readable feedback to build a mental model of how the systems interact.
+</p>
+
+<div class="pullquote">
+<blockquote>
+<p>Players cannot learn systems they cannot clearly observe.</p>
+</blockquote>
+<cite>Ability system QA takeaway from my Runic Tower gameplay readability pass</cite>
+</div>
+
+<h2 id="ability-system-problems">Common ability system readability problems</h2>
+
+<p>
+Ability system problems do not always look like broken gameplay.
+Sometimes the systems technically function correctly, but the player still cannot understand them.
+</p>
+
+<p>
+In gameplay readability QA, high-risk problems often include:
+</p>
+
+<ul>
+<li>Passive abilities triggering without visible explanation</li>
+<li>Gameplay effects from different systems looking visually identical</li>
+<li>Build selections not matching loaded gameplay behaviour</li>
+<li>System ownership being unclear between player-controlled and automated systems</li>
+<li>HUD behaviour conflicting with selected builds</li>
+<li>Overlapping combat effects reducing readability during pressure</li>
+</ul>
+
+<p>
+These issues matter because players need to understand why outcomes happen.
+Without that understanding, build decisions become unreliable and learning loops break down.
+</p>
+
+<h2 id="player-understanding">Why players need readable cause-and-effect</h2>
+
+<p>
+Players learn gameplay systems through observation.
+They press inputs, see results, compare outcomes, and gradually form a mental model of how the game works.
+</p>
+
+<p>
+That process depends on readable cause and effect.
+The player needs to understand:
+</p>
+
+<ul>
+<li>What triggered?</li>
+<li>Which system caused the effect?</li>
+<li>Was the outcome passive or active?</li>
+<li>Did the selected build load correctly?</li>
+<li>Was the effect caused by the Player or the Tower?</li>
+<li>Why did the run succeed or fail?</li>
+</ul>
+
+<p>
+When those answers become unclear, players lose the ability to make informed gameplay decisions.
+The challenge shifts away from mastery and toward interpretation.
+</p>
+
+<h2 id="runictower-background-aspect-example">Runic Tower Background vs Aspect example</h2>
+
+<p class="small">
+Runic Tower was tested in v1.7.0.0 on PC.
+The QA pass focused on onboarding clarity, ability feedback, gameplay readability, and build-system consistency.
+</p>
+
+<p>
+One of the strongest readability issues involved the relationship between Background and Aspect systems.
+The effects triggered correctly during gameplay, but they were not distinguishable from one another.
+</p>
+
+<p>
+For example, selecting Burning Emissary and Infernal Tyrant resulted in multiple overlapping fire-based effects.
+The player could see the visuals, but could not clearly identify which system was producing which outcome.
+</p>
+
+<div class="example">
+<p><strong>Observed issue:</strong> Background and Aspect effects were visually similar and not distinguishable during gameplay.</p>
+<p><strong>Player-facing risk:</strong> The player cannot form a clear understanding of how systems interact, preventing informed build decisions and weakening gameplay learning.</p>
+</div>
+
+<div class="video">
+<iframe
+src="https://www.youtube.com/embed/LxvspO3Qv5U"
+title="Runic Tower gameplay readability issue showing unclear Background and Aspect effects"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+<div class="video-caption">
+Runic Tower readability example: multiple overlapping fire effects trigger during gameplay, but the player cannot clearly identify which effects belong to Background versus Aspect systems.
+</div>
+</div>
+
+<p>
+The issue was not that abilities failed to trigger.
+The issue was that the player could not tell which system was producing the outcome.
+</p>
+
+<h2 id="runictower-passive-example">Runic Tower passive ability example</h2>
+
+<p>
+Another issue appeared on the defeat screen.
+The game classified abilities as Passive and Active, but this relationship was not explained during gameplay.
+</p>
+
+<p>
+As a result, players could complete a run without understanding:
+</p>
+
+<ul>
+<li>Which abilities were passive</li>
+<li>How passive effects triggered</li>
+<li>When passive systems activated</li>
+<li>How those systems influenced gameplay outcomes</li>
+</ul>
+
+<div class="example">
+<p><strong>Observed issue:</strong> Passive and Active system mapping was only shown after defeat without prior gameplay explanation.</p>
+<p><strong>Player-facing risk:</strong> Players cannot learn how systems function during the run itself because critical system understanding is delayed until after failure.</p>
+</div>
+
+<figure class="hero-media">
+<a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/RUNICTOWER_RT-C02-002_UI_AbilityClassification_Unclear.png"
+target="_blank" rel="noopener">
+<img
+src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/RUNICTOWER_RT-C02-002_UI_AbilityClassification_Unclear.png"
+alt="Runic Tower defeat screen showing passive and active ability classification without gameplay explanation"
+loading="lazy"
+decoding="async">
+</a>
+<figcaption>
+Runic Tower results-screen example: the game classifies systems as Passive and Active after defeat, but this relationship is not clearly communicated during gameplay itself.
+</figcaption>
+</figure>
+
+<p>
+This creates a delayed learning problem.
+The game retroactively explains systems after the player has already failed instead of teaching the relationships while the systems are being experienced.
+</p>
+
+<h2 id="runictower-build-example">Runic Tower build consistency example</h2>
+
+<p>
+A more severe issue appeared during build selection testing.
+Selecting the Fell Huntress Aspect consistently loaded Infernal Tyrant instead during gameplay.
+</p>
+
+<p>
+The mismatch affected both the HUD and the actual gameplay behaviour, meaning the problem was not purely visual.
+The selected build was not the build the player actually received.
+</p>
+
+<div class="example">
+<p><strong>Observed issue:</strong> The selected Aspect did not match the loaded gameplay Aspect.</p>
+<p><strong>Player-facing risk:</strong> Build systems become unreliable because player choice no longer guarantees expected gameplay behaviour.</p>
+</div>
+
+<div class="video">
+<iframe
+src="https://www.youtube.com/embed/Op9B9ifhtjM"
+title="Runic Tower gameplay bug showing incorrect Aspect loading after build selection"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+<div class="video-caption">
+Runic Tower build-consistency example: the selected Fell Huntress Aspect fails to load correctly, with Infernal Tyrant behaviour appearing instead during gameplay and HUD display.
+</div>
+</div>
+
+<p>
+This kind of issue is especially damaging because build systems rely on trust.
+Players need confidence that selected abilities, classes, or aspects will behave consistently between selection and gameplay.
+</p>
+
+<h2 id="runictower-assignment-example">Runic Tower Player vs Tower assignment example</h2>
+
+<p>
+Another readability issue involved ability ownership.
+Aspect abilities were inconsistently assigned between the Player and the Tower across runs.
+</p>
+
+<p>
+The game did not explain:
+</p>
+
+<ul>
+<li>Why the assignment changed</li>
+<li>Whether the behaviour was intended</li>
+<li>How the assignment rules worked</li>
+<li>How players could influence or control the behaviour</li>
+</ul>
+
+<div class="example">
+<p><strong>Observed issue:</strong> Aspect abilities were inconsistently assigned between Player and Tower with no visible rule or explanation.</p>
+<p><strong>Player-facing risk:</strong> Players cannot establish reliable gameplay rules, making system behaviour feel arbitrary rather than strategic.</p>
+</div>
+
+<figure class="hero-media">
+<a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/RUNICTOWER_RT-C02-002_UI_AbilityClassification_Unclear.png"
+target="_blank" rel="noopener">
+<img
+src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/RUNICTOWER_RT-C02-002_UI_AbilityClassification_Unclear.png"
+alt="Runic Tower results screen showing unclear ability ownership between Player and Tower systems"
+loading="lazy"
+decoding="async">
+</a>
+<figcaption>
+Runic Tower ownership example: ability systems are assigned between Player and Tower without clear explanation of why the behaviour changes or how the rules function.
+</figcaption>
+</figure>
+
+<p>
+This issue weakens strategic learning because players cannot establish stable system expectations.
+Without readable rules, experimentation stops feeling meaningful.
+</p>
+
+<h2 id="why-it-matters">Why this matters in game QA</h2>
+
+<p>
+Ability systems are one of the main ways players interact with complexity.
+If those systems become unreadable, the player loses the ability to connect action, build choice, and gameplay outcome.
+</p>
+
+<p>
+When system relationships are unclear, players may stop trusting their own decisions.
+That shift matters.
+A difficult build system can feel rewarding when the player understands why outcomes happen.
+An unclear build system feels arbitrary because the player cannot identify the rules.
+</p>
+
+<p>
+For developers, gameplay readability QA should test more than whether abilities technically work.
+It should test whether players can identify source systems, understand passive behaviour, track ownership, and form reliable mental models during gameplay.
+</p>
+
+<p>
+For QA testers, this kind of testing demonstrates systems thinking, gameplay readability analysis, player empathy, onboarding awareness, and the ability to explain why technically functional systems may still fail from the player's perspective.
+</p>
+
+<p><strong>
+The goal of gameplay readability QA is not to simplify systems.
+The goal is to make complex systems understandable enough that players are challenged by strategy, not confused by invisible logic.
+</strong></p>
+
+<section class="section faq-accordion" id="faq">
+<h2>Ability System Readability FAQ</h2>
+
+<details>
+<summary>Why do unclear ability systems confuse players?</summary>
+<div class="faq-answer">
+<p>
+Players become confused when ability systems do not clearly communicate what triggered, which system caused the effect, or how passive and active mechanics interact during gameplay.
+</p>
+</div>
+</details>
+
+<details>
+<summary>What are common gameplay readability problems in games?</summary>
+<div class="faq-answer">
+<p>
+Common gameplay readability problems include overlapping effects, hidden passive systems, unclear build ownership, weak cause-and-effect communication, inconsistent system behaviour, and poor visual distinction between gameplay mechanics.
+</p>
+</div>
+</details>
+
+<details>
+<summary>How do QA testers test gameplay readability?</summary>
+<div class="faq-answer">
+<p>
+QA testers evaluate whether players can understand gameplay systems through feedback, UI communication, system behaviour, visual effects, and outcome clarity. This includes testing whether players can identify source systems and understand why gameplay events occur.
+</p>
+</div>
+</details>
+
+<details>
+<summary>Why is build consistency important in games?</summary>
+<div class="faq-answer">
+<p>
+Build consistency is important because players need confidence that their selections are being applied correctly. If selected builds behave differently from expected, players lose trust in experimentation and strategic planning.
+</p>
+</div>
+</details>
+
+<details>
+<summary>What is cause-and-effect clarity in game QA?</summary>
+<div class="faq-answer">
+<p>
+Cause-and-effect clarity refers to whether players can understand how their actions, selections, and gameplay systems produce visible outcomes. Strong clarity helps players learn systems, make informed decisions, and build trust in gameplay rules.
+</p>
+</div>
+</details>
+
+</section>
+
+<section id="links">
+<h2>Related Game QA work</h2>
+<ul>
+<li><a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower.html">Runic Tower QA pass</a></li>
+<li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-system-feedback-breaks-player-trust.html">Why Unclear System Feedback Breaks Player Trust in Strategy Games</a></li>
+<li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-players-quit-game-tutorials.html">Why Players Quit Game Tutorials</a></li>
+<li><a href="/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a></li>
+</ul>
+</section>
+
+<hr>
+
+<p class="cta-row" style="text-align:center;">
+<a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
+<a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+<a class="cta-btn" href="./">Browse more game QA testing articles</a>
+</p>
+
+</main>
+
+<footer>
+<div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+</footer>
+</body>
+</html>
