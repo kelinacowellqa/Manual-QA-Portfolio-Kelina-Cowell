@@ -1,0 +1,586 @@
+<!doctype html> 
+<html lang="en">
+<head>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="91dd4980-fd90-49a2-bfd4-85a7a6778b60"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>How Enemy AI Bugs Break Player Trust in Games | Kelina Cowell</title>
+
+<meta name="description" content="A practical game QA article exploring how enemy AI bugs, detection failures, combat state issues, and inconsistent patrol behaviour can break player trust in games." />
+
+<meta property="og:title" content="How Enemy AI Bugs Break Player Trust in Games">
+<meta property="og:description" content="Real game QA examples showing how enemy AI detection bugs, combat state failures, and inconsistent behaviour can damage player trust.">
+
+<meta name="twitter:title" content="How Enemy AI Bugs Break Player Trust in Games">
+<meta name="twitter:description" content="Real game QA examples showing how enemy AI bugs, detection failures, and combat state issues can break player trust in games.">
+<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-enemy-ai-bugs-break-player-trust.html">
+
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">  
+  
+<style>
+  .meta-line{
+    margin: 10px 0 0;
+    font-size: .95rem;
+    opacity: .75;
+  }
+
+  .hero-media{
+    margin: 14px 0 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+  }
+
+  .hero-media img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-media figcaption{
+    padding: 10px 12px;
+    font-size: .92rem;
+    opacity: .78;
+    border-top: 1px solid var(--line);
+  }
+
+  .callout ul{ margin-top: 8px; }
+  .callout li{ margin: 6px 0; }
+
+  .divider{
+    height: 1px;
+    background: var(--line);
+    margin: 22px 0;
+    opacity: .9;
+  }
+
+  .two-col{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .mini{
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .mini h3{
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  .mini ul{
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .mini li{ margin: 6px 0; }
+
+  .example{
+    border-left: 3px solid rgba(0,242,201,.75);
+    padding: 10px 12px;
+    background: rgba(0,242,201,.06);
+    border-radius: 10px;
+  }
+
+  .example p{ margin: 0 0 8px; }
+  .example p:last-child{ margin: 0; }
+
+  .toc{
+    margin: 14px 0 0;
+    padding: 12px 12px 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .toc strong{
+    display: block;
+    margin-bottom: 8px;
+    opacity: .9;
+  }
+
+  .toc ul{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 28px;
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+
+  .toc li{
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toc a{
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
+
+  .faq-accordion details{
+    margin: 10px 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+  }
+
+  .faq-accordion summary{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--teal);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .faq-answer{
+    margin-top: 10px;
+    opacity: .95;
+  }
+
+  .faq-accordion summary:hover{
+    text-decoration: underline;
+  }
+
+  .tldr{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+
+  .tldr li{
+    list-style: disc;
+    margin-left: 18px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px){
+    .two-col{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px){
+    .tldr,
+    .toc ul{
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Enemy AI Bugs Break Player Trust in Games",
+  "description": "A practical game QA article exploring how enemy AI bugs, detection failures, combat state issues, and inconsistent patrol behaviour can break player trust in games.",
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-11",
+  "inLanguage": "en-GB",
+  "author": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/how-enemy-ai-bugs-break-player-trust.html"
+  }
+}
+</script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+   <h1>How Enemy AI Bugs Break Player Trust in Games</h1>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+      
+<p class="small">
+  Enemy AI does not need to be perfect for players to trust it.
+  It does need to behave consistently enough for players to understand what is happening.
+</p>
+
+<p class="small">
+  When enemy detection, patrol behaviour, combat state, and damage response become inconsistent, players stop reading the encounter as challenge.
+  They start reading it as broken, unfair, or unreliable.
+</p>
+
+<p class="small">
+  This article uses real game QA portfolio work from Undertaker to examine enemy AI bugs, combat state failures, patrol detection issues, and how inconsistent AI behaviour can damage player trust during gameplay.
+</p>
+
+<section class="callout">
+  <h2>TL;DR</h2>
+  <ul class="tldr small">
+    <li>Enemy AI bugs break trust when players cannot predict how enemies will detect, react, or recover</li>
+    <li>Combat state bugs can make encounters feel broken even when the rest of the game functions correctly</li>
+    <li>Detection inconsistency is more damaging than simple difficulty because it weakens player confidence</li>
+    <li>Good enemy AI QA tests behaviour, state transitions, player expectation, and encounter readability</li>
+  </ul>
+</section>
+
+<nav class="toc">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#trust-vs-difficulty">When enemy AI feels unfair instead of difficult</a></li>
+    <li><a href="#enemy-ai-problems">Common enemy AI bugs that damage player trust</a></li>
+    <li><a href="#combat-state">Why combat state matters in game QA</a></li>
+    <li><a href="#undertaker-explosive-example">Undertaker explosive combat-state example</a></li>
+    <li><a href="#undertaker-patrol-example">Undertaker patrol detection example</a></li>
+    <li><a href="#undertaker-reacquire-example">Undertaker reacquisition example</a></li>
+    <li><a href="#faq">Enemy AI QA FAQ</a></li>
+  </ul>
+</nav>
+
+<h2 id="trust-vs-difficulty">When enemy AI feels unfair instead of difficult</h2> 
+      
+<p>
+Difficult enemy AI can be satisfying.
+Players can accept aggressive enemies, fast reactions, limited resources, harsh punishment, and dangerous combat scenarios when the rules are readable.
+</p> 
+
+<p>
+What players struggle to accept is inconsistent behaviour.
+If an enemy detects the player in one moment, ignores them at melee range in another, then enters a broken combat state after a specific interaction, the player no longer understands the rules of the encounter.
+</p>
+
+<p>
+From a QA perspective, this is not only an enemy AI issue.
+It is a player-trust issue.
+The player needs to believe that enemy behaviour follows understandable rules, even if those rules are challenging.
+</p>
+
+<div class="pullquote">
+  <blockquote>
+    <p>Players forgive dangerous enemies more easily than unreadable enemies.</p>
+  </blockquote>
+  <cite>Enemy AI QA takeaway from my Undertaker combat and patrol-state testing</cite>
+</div>
+
+<h2 id="enemy-ai-problems">Common enemy AI bugs that damage player trust</h2>
+
+<p>
+Enemy AI problems do not always look like enemies getting stuck on scenery or failing to move.
+Some of the most damaging issues happen when enemy behaviour partially works, but not consistently enough for players to trust it.
+</p>
+
+<p>
+In enemy AI QA, high-risk problems often include:
+</p>
+
+<ul>
+  <li>Enemies failing to detect the player at close range</li>
+  <li>Enemies only reacting after collision or path obstruction</li>
+  <li>Enemies losing aggro and failing to reacquire the player</li>
+  <li>Combat state breaking after specific item or damage interactions</li>
+  <li>Health state behaving differently from visible damage feedback</li>
+  <li>Tutorial prompts appearing after the relevant combat moment has already passed</li>
+</ul>
+
+<p>
+These issues matter because they affect how players interpret the game.
+A player may not know whether an enemy is meant to be unaware, bugged, passive, invulnerable, resetting, or waiting for a trigger.
+That uncertainty weakens confidence in the combat system.
+</p>
+
+<h2 id="combat-state">Why combat state matters in game QA</h2>
+
+<p>
+Combat state is one of the most important areas to test because it controls how enemies move between awareness, pursuit, attack, recovery, patrol, damage response, and death.
+</p>
+
+<p>
+When those transitions break, the player-facing result can feel much larger than the technical cause.
+A small state mismatch can create an enemy that ignores the player, fails to die, resets health, or stops responding to attacks.
+</p>
+
+<p>
+Enemy AI QA should therefore test more than whether enemies can attack.
+It should test whether enemies enter, maintain, exit, and recover from combat states in ways the player can understand.
+</p>
+
+<p>
+A useful enemy AI QA pass asks:
+</p>
+
+<ul>
+  <li>Does the enemy detect the player when expected?</li>
+  <li>Does the enemy lose detection in a readable way?</li>
+  <li>Does the enemy reacquire the player after line of sight changes?</li>
+  <li>Does damage response remain valid after special interactions?</li>
+  <li>Does the enemy die correctly when health is depleted?</li>
+  <li>Does tutorial timing prepare the player before combat demands the mechanic?</li>
+</ul>
+
+<h2 id="undertaker-explosive-example">Undertaker explosive combat-state example</h2>
+
+<p class="small">
+  Undertaker was tested in Demo v1.0.103 on PC.
+  The QA pass focused on enemy AI behaviour, combat-state transitions, patrol detection consistency, environmental readability, and save/load flow.
+</p>
+
+<p>
+The highest-risk issue appeared during the tutorial Fire Explosive encounter.
+When the explosive was thrown at a group of three enemies, one surviving enemy entered a non-responsive state.
+</p>
+
+<p>
+The enemy remained standing with its back facing the player.
+It did not react to attacks or attempt normal combat behaviour.
+The health bar decreased when attacked, but then reset back to full before depletion instead of allowing the enemy to die.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> Fire Explosive interaction triggered a non-responsive enemy state with resetting health behaviour.</p>
+  <p><strong>Player-facing risk:</strong> The player may interpret the enemy as broken, invulnerable, or incorrectly scripted because visible damage feedback does not lead to a valid combat outcome.</p>
+</div>
+
+<table class="example-table">
+  <tr>
+    <td>
+      <h3>Explosive combat-state risk</h3>
+      <ul class="small">
+        <li><strong>System:</strong> Enemy AI, combat state, health state</li>
+        <li><strong>Build:</strong> Demo v1.0.103</li>
+        <li><strong>Repro rate:</strong> 2/2 with explosive interaction, 0/1 without explosive</li>
+        <li><strong>Severity:</strong> High</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>
+The control test mattered.
+Without explosive usage, the enemy behaved normally and could be killed successfully.
+That comparison suggested the issue was not general enemy behaviour, but a specific failure tied to the Fire Explosive interaction or the resulting combat-state transition.
+</p>
+
+<h2 id="undertaker-patrol-example">Undertaker patrol detection example</h2>
+
+<p>
+A separate issue appeared after the tutorial in the first gameplay area.
+A patrolling enemy repeatedly walked past the player at close range without detecting them.
+The enemy only activated once the player physically blocked the patrol path.
+</p>
+
+<p>
+This is the kind of AI issue that can feel strange rather than immediately catastrophic.
+The enemy is moving.
+The patrol appears active.
+The player is visible.
+But the expected detection response does not happen.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> A patrolling enemy failed to detect the player during normal close-range visibility and only reacted after physical path obstruction.</p>
+  <p><strong>Player-facing risk:</strong> Detection begins to feel ruleless because the enemy ignores obvious player presence but reacts to collision instead.</p>
+</div>
+
+<p>
+This type of issue is especially damaging because it breaks the player's mental model of enemy awareness.
+If visual proximity does not matter, but path blocking does, the player cannot easily understand what the enemy is responding to.
+</p>
+
+<h2 id="undertaker-reacquire-example">Undertaker reacquisition example</h2>
+
+<p>
+Another enemy initially detected and pursued the player correctly.
+After the player briefly broke line of sight using nearby rubble and wall structures, the enemy returned to patrol behaviour.
+</p>
+
+<p>
+The problem appeared after the reset.
+The player stood in open line of sight at close range, but the enemy failed to reacquire them and continued normal patrol behaviour.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> After returning to patrol state, the enemy failed to reacquire the player despite open visibility and melee-range proximity.</p>
+  <p><strong>Player-facing risk:</strong> The player can no longer trust that line of sight, distance, or enemy awareness are being handled consistently.</p>
+</div>
+
+<p>
+This is not just a detection issue.
+It is a state recovery issue.
+The enemy detected correctly at first, but after leaving combat and returning to patrol, it failed to resume valid awareness behaviour.
+</p>
+
+<p>
+That makes it more useful from a QA perspective because it points toward a transition problem rather than a simple “enemy never detects player” bug.
+The failure sits between states, which is exactly where many gameplay bugs hide.
+</p>
+
+<h2 id="why-it-matters">Why this matters in game QA</h2>
+
+<p>
+Enemy AI bugs matter because players judge combat through behaviour.
+They read enemy movement, detection, reaction, damage response, pursuit, and recovery as part of the game's rule system.
+</p>
+
+<p>
+When those behaviours become inconsistent, players may stop blaming themselves and start blaming the game.
+That shift matters.
+A hard encounter can motivate mastery.
+An unreadable encounter creates doubt.
+</p>
+
+<p>
+For developers, enemy AI QA should test more than whether enemies can move and attack.
+It should test whether enemy behaviour remains understandable across combat-state transitions, line-of-sight changes, patrol resets, special item interactions, and damage outcomes.
+</p>
+
+<p>
+For QA testers, this kind of testing demonstrates systems thinking, player empathy, risk analysis, reproduction discipline, and the ability to explain why a bug matters beyond its technical behaviour.
+</p>
+
+<p><strong>
+The goal of enemy AI QA is not to make enemies easier.
+The goal is to make enemy behaviour consistent enough that players are challenged by the game, not confused by broken rules.
+</strong></p>
+
+<section class="section faq-accordion" id="faq">
+  <h2>Enemy AI QA FAQ</h2>
+
+  <details>
+    <summary>How do enemy AI bugs break player trust?</summary>
+    <div class="faq-answer">
+      <p>
+        Enemy AI bugs break player trust when enemies behave inconsistently or unpredictably in ways the player cannot understand. If enemies ignore the player at close range, fail to reacquire after line of sight changes, or enter broken combat states, players may stop trusting the game rules.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What are common enemy AI bugs in games?</summary>
+    <div class="faq-answer">
+      <p>
+        Common enemy AI bugs include detection failures, patrol-state issues, broken aggro transitions, enemies failing to attack, enemies failing to die, pathfinding problems, and combat-state bugs caused by specific item or damage interactions.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do QA testers test enemy AI?</summary>
+    <div class="faq-answer">
+      <p>
+        QA testers test enemy AI by checking detection, aggro, patrol behaviour, pursuit, line-of-sight handling, damage response, recovery states, pathfinding, and combat outcomes. Strong enemy AI testing also checks whether behaviour remains readable from the player's perspective.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Why is enemy detection consistency important?</summary>
+    <div class="faq-answer">
+      <p>
+        Enemy detection consistency is important because players use enemy reactions to understand the rules of combat and stealth. If an enemy detects the player in one situation but ignores them in an almost identical situation, the encounter can feel unfair or broken.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What is a combat-state bug?</summary>
+    <div class="faq-answer">
+      <p>
+        A combat-state bug happens when an enemy enters, exits, or recovers from combat incorrectly. This can cause enemies to become non-responsive, fail to attack, fail to die, reset health, ignore the player, or behave as though they are stuck between gameplay states.
+      </p>
+    </div>
+  </details>
+
+</section>
+      
+    <section id="links">
+      <h2>Related Game QA work</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/undertaker.html">Undertaker QA pass</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-players-quit-game-tutorials.html">Why Players Quit Game Tutorials</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a></li>
+      </ul>
+    </section>
+
+  <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Browse more game QA testing articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
