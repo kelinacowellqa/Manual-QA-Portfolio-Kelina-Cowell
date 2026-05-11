@@ -212,6 +212,22 @@
     .toc ul{
       grid-template-columns: 1fr;
     }
+
+    .video{
+  margin: 14px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,.02);
+}
+
+.video iframe{
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 320px;
+}
   }
 </style>
 
@@ -408,18 +424,18 @@ The health bar decreased when attacked, but then reset back to full before deple
   <p><strong>Player-facing risk:</strong> The player may interpret the enemy as broken, invulnerable, or incorrectly scripted because visible damage feedback does not lead to a valid combat outcome.</p>
 </div>
 
-      <div class="video">
-  <iframe width="560" height="315"
+<div class="video">
+  <iframe
     src="https://www.youtube.com/embed/kfz_ZSQwhmk"
     title="Undertaker enemy combat-state bug showing non-responsive enemy after Fire Explosive interaction"
     frameborder="0"
     allowfullscreen>
   </iframe>
-</div>
 
-<p class="small">
-  Undertaker combat-state example: after the Fire Explosive interaction, the surviving enemy becomes non-responsive, fails to react to attacks, and repeatedly resets health instead of entering a valid death state.
-</p>
+  <div class="video-caption">
+    Undertaker combat-state example: after the Fire Explosive interaction, the surviving enemy becomes non-responsive, fails to react to attacks, and repeatedly resets health instead of entering a valid death state.
+  </div>
+</div>
 
 <table class="example-table">
   <tr>
@@ -463,17 +479,17 @@ But the expected detection response does not happen.
 </div>
 
 <div class="video">
-  <iframe width="560" height="315"
+  <iframe
     src="https://www.youtube.com/embed/EGMZC75XbQ0"
     title="Undertaker enemy patrol detection bug showing AI ignoring the player until path obstruction"
     frameborder="0"
     allowfullscreen>
   </iframe>
-</div>
 
-<p class="small">
-  Undertaker patrol detection example: the enemy repeatedly walks past the player at close range without reacting and only enters combat after the patrol path is physically blocked.
-</p>
+  <div class="video-caption">
+    Undertaker patrol detection example: the enemy repeatedly walks past the player at close range without reacting and only enters combat after the patrol path is physically blocked.
+  </div>
+</div>
       
 <p>
 This type of issue is especially damaging because it breaks the player's mental model of enemy awareness.
@@ -497,18 +513,18 @@ The player stood in open line of sight at close range, but the enemy failed to r
   <p><strong>Player-facing risk:</strong> The player can no longer trust that line of sight, distance, or enemy awareness are being handled consistently.</p>
 </div>
 
-      <div class="video">
-  <iframe width="560" height="315"
+<div class="video">
+  <iframe
     src="https://www.youtube.com/embed/MZvedKbVmHs"
     title="Undertaker enemy reacquisition bug showing failed player detection after patrol-state reset"
     frameborder="0"
     allowfullscreen>
   </iframe>
-</div>
 
-<p class="small">
-  Undertaker reacquisition example: after briefly losing line of sight and returning to patrol behaviour, the enemy fails to reacquire the player despite open visibility and close-range proximity.
-</p>
+  <div class="video-caption">
+    Undertaker reacquisition example: after briefly losing line of sight and returning to patrol behaviour, the enemy fails to reacquire the player despite open visibility and close-range proximity.
+  </div>
+</div>
 
 <p>
 This is not just a detection issue.
