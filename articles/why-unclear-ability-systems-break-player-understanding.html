@@ -291,12 +291,12 @@ They do need to communicate enough information for players to identify what trig
 </p>
 
 <p class="small">
-When abilities, passives, build systems, and gameplay effects are unclear, players stop reading the experience as strategy or mastery.
+When abilities, passives, build systems, rituals, and overlapping gameplay effects are unclear, players stop reading the experience as strategy or mastery.
 They start reading it as guesswork.
 </p>
 
 <p class="small">
-This article uses real game QA portfolio work from Runic Tower to examine unclear ability systems, hidden passive mechanics, inconsistent build behaviour, and how unreadable gameplay systems can damage player understanding.
+This article uses real game QA portfolio work from Runic Tower and Cult of PiN to examine unclear ability systems, hidden passive mechanics, inconsistent build behaviour, overlapping effects, and how unreadable gameplay systems can damage player understanding.
 </p>
 
 <section class="callout">
@@ -305,7 +305,7 @@ This article uses real game QA portfolio work from Runic Tower to examine unclea
 <li>Players struggle when ability systems do not clearly communicate source, ownership, or activation behaviour</li>
 <li>Hidden passive mechanics weaken player learning and build understanding</li>
 <li>Build systems become unreliable if selected abilities do not load consistently</li>
-<li>Good gameplay QA tests whether players can understand cause and effect, not just whether systems technically function</li>
+<li>Overlapping effects can make stable systems feel unclear when players cannot identify trigger source</li>
 </ul>
 </section>
 
@@ -319,6 +319,7 @@ This article uses real game QA portfolio work from Runic Tower to examine unclea
 <li><a href="#runictower-passive-example">Runic Tower passive ability example</a></li>
 <li><a href="#runictower-build-example">Runic Tower build consistency example</a></li>
 <li><a href="#runictower-assignment-example">Runic Tower Player vs Tower assignment example</a></li>
+<li><a href="#cult-of-pin-overlap-example">Cult of PiN system overlap example</a></li>
 <li><a href="#faq">Ability System Readability FAQ</a></li>
 </ul>
 </nav>
@@ -345,7 +346,7 @@ The player needs enough readable feedback to build a mental model of how the sys
 <blockquote>
 <p>Players cannot learn systems they cannot clearly observe.</p>
 </blockquote>
-<cite>Ability system QA takeaway from my Runic Tower gameplay readability pass</cite>
+<cite>Ability system QA takeaway from my Runic Tower and Cult of PiN gameplay readability passes</cite>
 </div>
 
 <h2 id="ability-system-problems">Common ability system readability problems</h2>
@@ -366,6 +367,8 @@ In gameplay readability QA, high-risk problems often include:
 <li>System ownership being unclear between player-controlled and automated systems</li>
 <li>HUD behaviour conflicting with selected builds</li>
 <li>Overlapping combat effects reducing readability during pressure</li>
+<li>Colour coding that does not match the active gameplay effect</li>
+<li>Stable systems becoming hard to interpret when several triggers happen at once</li>
 </ul>
 
 <p>
@@ -390,7 +393,7 @@ The player needs to understand:
 <li>Which system caused the effect?</li>
 <li>Was the outcome passive or active?</li>
 <li>Did the selected build load correctly?</li>
-<li>Was the effect caused by the Player or the Tower?</li>
+<li>Was the effect caused by the Player, Tower, ritual, upgrade, or another system?</li>
 <li>Why did the run succeed or fail?</li>
 </ul>
 
@@ -558,6 +561,96 @@ This issue weakens strategic learning because players cannot establish stable sy
 Without readable rules, experimentation stops feeling meaningful.
 </p>
 
+<h2 id="cult-of-pin-overlap-example">Cult of PiN system overlap example</h2>
+
+<p class="small">
+Cult of PiN was tested in v0.11 DEMO on PC.
+The QA pass focused on ritual clarity, upgrade interpretation, system stacking, timing transitions, and readability under high system overlap.
+</p>
+
+<p>
+Cult of PiN showed a related readability issue in a different type of system-heavy game.
+During normal progression, rituals, multiball, multipliers, boss phases, and upgrade effects could all overlap during active gameplay.
+</p>
+
+<p>
+The systems themselves behaved consistently.
+No major progression, timing, or stacking defects were observed.
+The issue was not that the systems failed.
+The issue was that the player could not always identify which action triggered which outcome during high event density.
+</p>
+
+<div class="example">
+<p><strong>Observed issue:</strong> Multiple systems could trigger correctly at the same time, but the source of each effect was difficult to identify during chaotic gameplay.</p>
+<p><strong>Player-facing risk:</strong> The player may react to effects without understanding what caused them, reducing their ability to make intentional upgrade, ritual, or positioning decisions.</p>
+</div>
+
+<table class="example-table">
+<tr>
+<td>
+<h3>Cult of PiN system-overlap readability risk</h3>
+<ul class="small">
+<li><strong>System:</strong> Rituals, multiball, multipliers, boss phases, upgrade effects</li>
+<li><strong>Build:</strong> v0.11 DEMO</li>
+<li><strong>Test depth:</strong> Full demo runs under high system overlap</li>
+<li><strong>Key finding:</strong> Systems behaved consistently, but trigger attribution became unclear</li>
+</ul>
+</td>
+</tr>
+</table>
+
+<p>
+This is an important distinction in game QA.
+A system can be technically stable and still become difficult to read when too many effects compete for the player's attention.
+In Cult of PiN, the risk was not system failure.
+It was attribution failure.
+</p>
+
+<p>
+The Spare Change ritual also showed a smaller visual consistency issue.
+The ritual appeared purple in the UI, but produced red electrical effects and a yellow explosion when activated.
+Because other rituals used more consistent colour mapping, this mismatch reduced the player's ability to identify active effects quickly during overlap-heavy gameplay.
+</p>
+
+<div class="example">
+<p><strong>Observed issue:</strong> Spare Change used purple UI coding but red and yellow in-game effects.</p>
+<p><strong>Player-facing risk:</strong> Colour inconsistency weakens quick recognition during high system overlap, especially when several ritual and upgrade effects are active at once.</p>
+</div>
+
+<figure class="hero-media">
+<a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/S004_C01_SS_SpareChange_UI_Purple_01.png"
+target="_blank" rel="noopener">
+<img
+src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/S004_C01_SS_SpareChange_UI_Purple_01.png"
+alt="Cult of PiN Spare Change ritual shown as purple in the gameplay UI"
+loading="lazy"
+decoding="async">
+</a>
+<figcaption>
+Cult of PiN readability example: Spare Change appears as a purple ritual in the UI, creating an expectation that the gameplay effect will use the same visual language during activation.
+</figcaption>
+</figure>
+
+<figure class="hero-media">
+<a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/S004_C01_SS_SpareChange_Effect_RedYellow_02.png"
+target="_blank" rel="noopener">
+<img
+src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/S004_C01_SS_SpareChange_Effect_RedYellow_02.png"
+alt="Cult of PiN Spare Change ritual showing red laser and yellow explosion effects during gameplay"
+loading="lazy"
+decoding="async">
+</a>
+<figcaption>
+Cult of PiN effect readability example: the activated Spare Change effect uses red and yellow visuals instead of the expected purple colour mapping, weakening quick recognition during high-overlap gameplay.
+</figcaption>
+</figure>
+
+<p>
+Cult of PiN is useful here because it shows the same player-understanding problem from another angle.
+Runic Tower struggled with ability source, ownership, and build mapping.
+Cult of PiN showed how even stable systems can become hard to interpret when overlapping effects make trigger source unclear.
+</p>
+
 <h2 id="why-it-matters">Why this matters in game QA</h2>
 
 <p>
@@ -574,7 +667,7 @@ An unclear build system feels arbitrary because the player cannot identify the r
 
 <p>
 For developers, gameplay readability QA should test more than whether abilities technically work.
-It should test whether players can identify source systems, understand passive behaviour, track ownership, and form reliable mental models during gameplay.
+It should test whether players can identify source systems, understand passive behaviour, track ownership, recognise visual language, and form reliable mental models during gameplay.
 </p>
 
 <p>
@@ -593,7 +686,7 @@ The goal is to make complex systems understandable enough that players are chall
 <summary>Why do unclear ability systems confuse players?</summary>
 <div class="faq-answer">
 <p>
-Players become confused when ability systems do not clearly communicate what triggered, which system caused the effect, or how passive and active mechanics interact during gameplay.
+Players become confused when ability systems do not clearly communicate what triggered, which system caused the effect, or how passive, active, ritual, and build mechanics interact during gameplay.
 </p>
 </div>
 </details>
@@ -602,7 +695,7 @@ Players become confused when ability systems do not clearly communicate what tri
 <summary>What are common gameplay readability problems in games?</summary>
 <div class="faq-answer">
 <p>
-Common gameplay readability problems include overlapping effects, hidden passive systems, unclear build ownership, weak cause-and-effect communication, inconsistent system behaviour, and poor visual distinction between gameplay mechanics.
+Common gameplay readability problems include overlapping effects, hidden passive systems, unclear build ownership, weak cause-and-effect communication, inconsistent system behaviour, poor visual distinction between mechanics, and colour coding that does not match gameplay effects.
 </p>
 </div>
 </details>
@@ -611,7 +704,7 @@ Common gameplay readability problems include overlapping effects, hidden passive
 <summary>How do QA testers test gameplay readability?</summary>
 <div class="faq-answer">
 <p>
-QA testers evaluate whether players can understand gameplay systems through feedback, UI communication, system behaviour, visual effects, and outcome clarity. This includes testing whether players can identify source systems and understand why gameplay events occur.
+QA testers evaluate whether players can understand gameplay systems through feedback, UI communication, system behaviour, visual effects, colour coding, and outcome clarity. This includes testing whether players can identify source systems and understand why gameplay events occur.
 </p>
 </div>
 </details>
@@ -633,13 +726,13 @@ Cause-and-effect clarity refers to whether players can understand how their acti
 </p>
 </div>
 </details>
-
 </section>
 
 <section id="links">
 <h2>Related Game QA work</h2>
 <ul>
 <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/runic-tower.html">Runic Tower QA pass</a></li>
+<li><a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/cult-of-pin.html">Cult of PiN QA pass</a></li>
 <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-system-feedback-breaks-player-trust.html">Why Unclear System Feedback Breaks Player Trust in Strategy Games</a></li>
 <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-players-quit-game-tutorials.html">Why Players Quit Game Tutorials</a></li>
 <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a></li>
