@@ -408,6 +408,20 @@ For players unfamiliar with vehicle gear notation, movement could appear broken 
   <p><strong>Player-facing risk:</strong> The tutorial could create confusion or progression blocking before the player had learned the basic vehicle controls.</p>
 </div>
 
+      <figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/eod_onboarding_controls_overlay_missing_steering_and_gear_explanation.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/eod_onboarding_controls_overlay_missing_steering_and_gear_explanation.png"
+      alt="Echoes of Delivery vehicle tutorial showing gear controls without explanation during onboarding"
+      loading="lazy"
+      decoding="async">
+  </a>
+  <figcaption>
+    Echoes of Delivery vehicle onboarding example: the tutorial shows gear controls using P, R, N, and D, but does not explain what those states mean or how they affect movement.
+  </figcaption>
+</figure>
+
 <p>
 The same pass also found recovery-related risk.
 The vehicle could become stuck between a fence and bridge, and input attempts to reverse or recover did not reliably resolve the situation.
@@ -447,11 +461,41 @@ According to the developer, multiple players gave up at this stage.
 That is a high-risk onboarding issue because the player may never reach the actual game.
 </p>
 
+      <figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/Manual-QA-Portfolio-Kelina-Cowell/assets/img/MM_S01_Menu_DragInteraction_Issue_v0.4.0.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/Manual-QA-Portfolio-Kelina-Cowell/assets/img/MM_S01_Menu_DragInteraction_Issue_v0.4.0.png"
+      alt="Mind Match main menu showing draggable interaction that visually resembles standard clickable buttons"
+      loading="lazy"
+      decoding="async">
+  </a>
+
+  <figcaption>
+    Mind Match onboarding issue: the menu visually resembles standard clickable buttons, but interaction requires dragging. This creates early interaction confusion before gameplay begins.
+  </figcaption>
+</figure>
+
 <p>
 Further into the tutorial and early gameplay, several systems produced decision-making friction.
 Probability values changed without enough context, hero ability icons changed into numbers without explanation, and terminology shifted between Corrupt, Dark Thought, and Torment.
 The systems technically functioned, but the player's decision-making became uncertain because system relationships were unclear.
 </p>
+
+      <figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/S03_Terminology_Inconsistency.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/S03_Terminology_Inconsistency.png"
+      alt="Mind Match gameplay terminology inconsistency showing Corrupt, Dark Thought, and Torment references"
+      loading="lazy"
+      decoding="async">
+  </a>
+
+  <figcaption>
+    Mind Match system clarity issue: terminology and symbol relationships shift between Corrupt, Dark Thought, and Torment without clear explanation, making system relationships difficult to interpret during gameplay.
+  </figcaption>
+</figure>
 
 <div class="example">
   <p><strong>Observed issue:</strong> The player had partial understanding of some mechanics, but unexplained symbols, values, and terminology created guess-based decisions.</p>
@@ -477,6 +521,19 @@ The problem was not simply that the economy was confusing.
 The problem was that the first-time player experience communicated a different version of the core loop than a later session.
 </p>
 
+<div class="video">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/ZT-zLXzuZx4"
+    title="Infinitavern onboarding issue showing first-session idle income failure and unclear core loop communication"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<p class="small">
+  Infinitavern onboarding example: the first Steam session does not clearly initialise or communicate idle income behaviour, creating confusion around how progression and currency generation work.
+</p>
+      
 <div class="example">
   <p><strong>Observed issue:</strong> First launch did not clearly initialise or communicate idle income, while a later session showed different income behaviour.</p>
   <p><strong>Player-facing risk:</strong> The player may assume the game is non-functional, slow, or unclear before understanding the earn-and-progress loop.</p>
