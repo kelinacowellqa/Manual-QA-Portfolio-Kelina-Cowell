@@ -1,0 +1,674 @@
+<!doctype html> 
+<html lang="en">
+<head>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="91dd4980-fd90-49a2-bfd4-85a7a6778b60"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Why Unclear System Feedback Breaks Player Trust in Strategy Games | Kelina Cowell</title>
+
+<meta name="description" content="A practical game QA article exploring how unclear system feedback, confusing UI values, and weak cause-and-effect communication can break player trust in strategy games." />
+
+<meta property="og:title" content="Why Unclear System Feedback Breaks Player Trust in Strategy Games">
+<meta property="og:description" content="Real game QA examples from Stamperor showing how unclear system feedback, bracket values, and confusing decision outcomes can damage player trust in strategy games.">
+
+<meta name="twitter:title" content="Why Unclear System Feedback Breaks Player Trust in Strategy Games">
+<meta name="twitter:description" content="Real game QA examples showing how unclear system feedback and confusing decision outcomes can break player trust in strategy games.">
+<meta name="twitter:image" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/assets/img/og-default.webp">
+<meta name="twitter:url" content="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-system-feedback-breaks-player-trust.html">
+
+<link rel="stylesheet" href="/Manual-QA-Portfolio-Kelina-Cowell/assets/css/site.css?v=5">  
+
+<style>
+  .meta-line{
+    margin: 10px 0 0;
+    font-size: .95rem;
+    opacity: .75;
+  }
+
+  .hero-media,
+  .video{
+    margin: 14px 0 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+  }
+
+  .hero-media img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-media figcaption,
+  .video-caption{
+    padding: 10px 12px;
+    font-size: .92rem;
+    opacity: .78;
+    border-top: 1px solid var(--line);
+  }
+
+  .video iframe{
+    display: block;
+    width: 100% !important;
+    height: 520px !important;
+    border: 0;
+  }
+
+  .callout ul{ margin-top: 8px; }
+  .callout li{ margin: 6px 0; }
+
+  .divider{
+    height: 1px;
+    background: var(--line);
+    margin: 22px 0;
+    opacity: .9;
+  }
+
+  .two-col{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .mini{
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .mini h3{
+    margin: 0 0 8px;
+    font-size: 1rem;
+  }
+
+  .mini ul{
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .mini li{ margin: 6px 0; }
+
+  .example{
+    border-left: 3px solid rgba(0,242,201,.75);
+    padding: 10px 12px;
+    background: rgba(0,242,201,.06);
+    border-radius: 10px;
+  }
+
+  .example p{ margin: 0 0 8px; }
+  .example p:last-child{ margin: 0; }
+
+  .toc{
+    margin: 14px 0 0;
+    padding: 12px 12px 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.02);
+  }
+
+  .toc strong{
+    display: block;
+    margin-bottom: 8px;
+    opacity: .9;
+  }
+
+  .toc ul{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 28px;
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+
+  .toc li{
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toc a{
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  .pullquote{
+    margin: 16px 0;
+    padding: 14px 16px 14px 18px;
+    border-left: 3px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+  }
+
+  .pullquote blockquote{
+    margin: 0;
+    padding: 0;
+  }
+
+  .pullquote blockquote p{
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .pullquote blockquote p:before{
+    content: "“";
+    font-size: 2.2rem;
+    line-height: 0;
+    vertical-align: -0.35em;
+    opacity: .55;
+    margin-right: 6px;
+  }
+
+  .pullquote cite{
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    opacity: .85;
+    font-size: .95rem;
+  }
+
+  .faq-accordion details{
+    margin: 10px 0;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+  }
+
+  .faq-accordion summary{
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--teal);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .faq-answer{
+    margin-top: 10px;
+    opacity: .95;
+  }
+
+  .faq-accordion summary:hover{
+    text-decoration: underline;
+  }
+
+  .tldr{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 24px;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+
+  .tldr li{
+    list-style: disc;
+    margin-left: 18px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px){
+    .two-col{
+      grid-template-columns: 1fr;
+    }
+
+    .video iframe{
+      height: 420px !important;
+    }
+  }
+
+  @media (max-width: 640px){
+    .tldr,
+    .toc ul{
+      grid-template-columns: 1fr;
+    }
+
+    .video iframe{
+      height: 260px !important;
+    }
+  }
+</style>
+
+  <script data-goatcounter="https://kelina.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Unclear System Feedback Breaks Player Trust in Strategy Games",
+  "description": "A practical game QA article exploring how unclear system feedback, confusing UI values, and weak cause-and-effect communication can break player trust in strategy games.",
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-11",
+  "inLanguage": "en-GB",
+  "author": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Kelina Cowell",
+    "url": "https://kelinacowellqa.github.io/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/why-unclear-system-feedback-breaks-player-trust.html"
+  }
+}
+</script>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main id="content" class="wrap">
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn nav-link is-active" aria-current="page" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/articles/">Back to Articles Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/">Homepage</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/aboutme.html">About Me</a>
+      <a class="cta-btn nav-link" href="https://kelinacowellqa.github.io/QA-Chronicles-Kelina-Cowell/">QA Chronicles</a>
+    </p>
+
+    <hr>
+
+    <header class="article-hero">
+   <h1>Why Unclear System Feedback Breaks Player Trust in Strategy Games</h1>
+
+      <p class="author-row small">
+        <strong>Author:</strong> Kelina Cowell •
+        <a href="https://www.linkedin.com/in/kelina-cowell-qa-tester">LinkedIn</a>
+      </p>
+      
+<p class="small">
+  Strategy games do not need to explain every calculation in full.
+  They do need to communicate enough information for players to understand why the game state changed.
+</p>
+
+<p class="small">
+  When population values, building values, decision outcomes, and event feedback are unclear, players stop reading the system as strategy.
+  They start reading it as guesswork.
+</p>
+
+<p class="small">
+  This article uses real game QA portfolio work from Stamperor to examine unclear system feedback, confusing bracket values, weak cause-and-effect communication, and how unreadable strategy systems can damage player trust.
+</p>
+
+<section class="callout">
+  <h2>TL;DR</h2>
+  <ul class="tldr small">
+    <li>Strategy games rely on player trust in system feedback, not just functional calculations</li>
+    <li>Unexplained values force players to guess what changed, why it changed, and what to do next</li>
+    <li>Decision outcomes need clear cause-and-effect feedback to support informed player choices</li>
+    <li>Good strategy game QA tests whether players can understand system state, not just whether numbers update</li>
+  </ul>
+</section>
+
+<nav class="toc">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#complexity-vs-unreadability">When complexity becomes unreadability</a></li>
+    <li><a href="#system-feedback-problems">Common system feedback problems in strategy games</a></li>
+    <li><a href="#strategy-game-trust">Why strategy games depend on system trust</a></li>
+    <li><a href="#stamperor-earthquake-example">Stamperor earthquake feedback example</a></li>
+    <li><a href="#stamperor-decision-example">Stamperor decision outcome example</a></li>
+    <li><a href="#stamperor-input-example">Stamperor end-of-cycle input example</a></li>
+    <li><a href="#faq">Strategy Game System Feedback FAQ</a></li>
+  </ul>
+</nav>
+
+<h2 id="complexity-vs-unreadability">When complexity becomes unreadability</h2> 
+      
+<p>
+Complexity can be one of the best parts of a strategy game.
+Players often enjoy managing trade-offs, reacting to events, protecting resources, and making decisions under pressure.
+</p> 
+
+<p>
+The problem begins when complexity becomes unreadability.
+If the player cannot understand what a value means, why it changed, or how a decision affected the system, the game stops feeling strategic.
+</p>
+
+<p>
+From a QA perspective, unclear system feedback is not just a UI issue.
+It is a player-trust issue.
+The player needs to believe that the game is showing enough information for decisions to feel informed rather than random.
+</p>
+
+<div class="pullquote">
+  <blockquote>
+    <p>A strategy system can be functional and still fail if the player cannot understand what the numbers are telling them.</p>
+  </blockquote>
+  <cite>System feedback QA takeaway from my Stamperor demo pass</cite>
+</div>
+
+<h2 id="system-feedback-problems">Common system feedback problems in strategy games</h2>
+
+<p>
+System feedback problems do not always look like obvious bugs.
+Sometimes the values update correctly, the event resolves correctly, and the decision technically applies correctly.
+The issue is that the player cannot confidently interpret the result.
+</p>
+
+<p>
+In strategy game QA, high-risk feedback problems often include:
+</p>
+
+<ul>
+  <li>Values changing without explanation</li>
+  <li>Positive and negative bracket values with no clear definition</li>
+  <li>Decision outcomes that do not visually align with displayed values</li>
+  <li>Event consequences that require player inference rather than clear feedback</li>
+  <li>Hidden or layered values affecting visible results</li>
+  <li>UI instructions that do not match actual input behaviour</li>
+</ul>
+
+<p>
+These issues matter because strategy games depend on informed decision-making.
+If players cannot understand the current state of the system, they cannot confidently plan around it.
+</p>
+
+<h2 id="strategy-game-trust">Why strategy games depend on system trust</h2>
+
+<p>
+Strategy games ask players to make decisions based on information.
+That information may include population, buildings, resources, event effects, risk, damage, recovery, and long-term consequences.
+</p>
+
+<p>
+When the game communicates those systems clearly, players can form a mental model.
+They can predict consequences, compare options, and understand why a choice succeeded or failed.
+</p>
+
+<p>
+When the feedback is unclear, players are forced into guess-based play.
+That creates a different kind of difficulty.
+The challenge no longer comes from planning or trade-offs.
+It comes from trying to decode the interface.
+</p>
+
+<p>
+A useful strategy game QA pass asks:
+</p>
+
+<ul>
+  <li>Can the player understand what changed after an event?</li>
+  <li>Can the player connect a decision to its visible outcome?</li>
+  <li>Are positive and negative values defined clearly?</li>
+  <li>Do displayed values match player expectation after a choice?</li>
+  <li>Does the UI explain temporary, damaged, incoming, or hidden states?</li>
+  <li>Does input behaviour match the instruction shown on screen?</li>
+</ul>
+
+<h2 id="stamperor-earthquake-example">Stamperor earthquake feedback example</h2>
+
+<p class="small">
+  Stamperor was tested in Demo Hotfix v0.0.5 on PC.
+  The QA pass focused on system update visibility, bracket value behaviour, decision outcome clarity, and end-of-cycle input stability.
+</p>
+
+<p>
+One system clarity issue appeared after an earthquake event.
+Population and building values changed, and bracketed numbers appeared after destruction.
+</p>
+
+<p>
+The values appeared consistently, but their meaning was not explained.
+Buildings showed a negative bracket value, likely indicating damaged or unusable buildings.
+Population showed a positive bracket value, but the meaning was unclear.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> Bracket values appeared after destruction events, but the UI did not explain whether they represented loss, damage, temporary state, recovery, or incoming change.</p>
+  <p><strong>Player-facing risk:</strong> The player cannot confidently interpret core system state after a major event, leading to hesitation and guesswork in decision-making.</p>
+</div>
+
+<figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C02_PreEvent_GameplayUI.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C02_PreEvent_GameplayUI.png"
+      alt="Stamperor gameplay UI before earthquake event showing population and building values before destruction"
+      loading="lazy"
+      decoding="async">
+  </a>
+  <figcaption>
+    Stamperor pre-event example: before the earthquake, the gameplay UI shows the baseline population and building values used for comparison after the destruction event.
+  </figcaption>
+</figure>
+
+<figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C02_PostEvent_BracketValues_CloseUp.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C02_PostEvent_BracketValues_CloseUp.png"
+      alt="Stamperor post-earthquake UI close-up showing unexplained bracket values after destruction"
+      loading="lazy"
+      decoding="async">
+  </a>
+  <figcaption>
+    Stamperor post-earthquake example: after destruction, bracket values appear beside the population and building totals, but the UI does not clearly explain what those modifiers represent.
+  </figcaption>
+</figure>
+
+<table class="example-table">
+  <tr>
+    <td>
+      <h3>Post-earthquake system feedback risk</h3>
+      <ul class="small">
+        <li><strong>System:</strong> Population and building state updates</li>
+        <li><strong>Build:</strong> Demo Hotfix v0.0.5</li>
+        <li><strong>Test depth:</strong> Repeated runs with destruction events and before/after comparison</li>
+        <li><strong>Risk level:</strong> High</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>
+This matters because the earthquake is not just a visual event.
+It affects survival systems.
+If the player cannot understand how population and buildings changed after destruction, they cannot make confident follow-up decisions.
+</p>
+
+<h2 id="stamperor-decision-example">Stamperor decision outcome example</h2>
+
+<p>
+The strongest system feedback issue appeared during a population decision.
+The decision text indicated a population change of “Allow people to leave -15.”
+</p>
+
+<p>
+Before the decision, the visible population value showed 5 (+7).
+After the decision, the visible value showed 5 (-8).
+The system may have been applying layered values correctly, but the visible feedback did not clearly communicate how the stated -15 outcome connected to the displayed result.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> The decision outcome did not clearly align with the visible population values before and after selection.</p>
+  <p><strong>Player-facing risk:</strong> The player cannot confidently understand how decisions affect core systems, making future choices feel unreliable.</p>
+</div>
+
+<figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C03_Decision_Before_Population.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C03_Decision_Before_Population.png"
+      alt="Stamperor decision screen showing population value before selecting Allow people to leave"
+      loading="lazy"
+      decoding="async">
+  </a>
+  <figcaption>
+    Stamperor decision outcome example: before selecting the population decision, the visible value shows 5 (+7), creating an expectation that the following choice should clearly explain how the population state will change.
+  </figcaption>
+</figure>
+
+<figure class="hero-media">
+  <a href="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C03_Decision_After_Population.png"
+     target="_blank" rel="noopener">
+    <img
+      src="https://kelinacowellqa.github.io/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/STAMPEROR_C03_Decision_After_Population.png"
+      alt="Stamperor population value after decision showing 5 minus 8 after a stated minus 15 population outcome"
+      loading="lazy"
+      decoding="async">
+  </a>
+  <figcaption>
+    Stamperor decision outcome example: after the decision, the value changes to 5 (-8). The result may be internally logical, but the visible feedback does not clearly explain how the stated -15 outcome maps to the displayed population state.
+  </figcaption>
+</figure>
+
+<p>
+This is where system feedback becomes a trust issue.
+The player sees a stated decision consequence, then sees a result that requires interpretation.
+If the player cannot connect the choice to the visible outcome, future decisions may feel less strategic and more like trial and error.
+</p>
+
+<h2 id="stamperor-input-example">Stamperor end-of-cycle input example</h2>
+
+<p>
+Stamperor also showed a separate end-of-cycle input issue.
+The screen instructed the player to click anywhere to continue, but input did not respond reliably.
+</p>
+
+<p>
+ESC had no effect.
+Mouse input was delayed or inconsistent.
+In one test, repeated clicking eventually returned the player to the main menu instead of continuing to the next cycle.
+In a later check, the interaction could trigger an unintended language menu and lead to a soft lock requiring forced closure.
+</p>
+
+<div class="example">
+  <p><strong>Observed issue:</strong> The end-of-cycle screen did not respond consistently to expected input and could transition to the wrong state or become unresponsive.</p>
+  <p><strong>Player-facing risk:</strong> The player may lose progression trust because the instruction shown on screen does not match the actual interaction behaviour.</p>
+</div>
+
+<table class="example-table">
+  <tr>
+    <td>
+      <h3>End-of-cycle input risk</h3>
+      <ul class="small">
+        <li><strong>System:</strong> UI, menu navigation, input handling</li>
+        <li><strong>Build:</strong> Demo Hotfix v0.0.5</li>
+        <li><strong>Severity:</strong> High</li>
+        <li><strong>Impact:</strong> Incorrect transition, unresponsive input, and possible soft lock</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>
+This issue is different from the value clarity problems, but it belongs in the same wider trust discussion.
+The screen tells the player what should happen.
+The game then behaves differently.
+That mismatch weakens confidence in the interface.
+</p>
+
+<h2 id="why-it-matters">Why this matters in game QA</h2>
+
+<p>
+System feedback matters because players use visible information to make decisions.
+In a strategy game, unclear numbers are not just presentation issues.
+They directly affect planning, confidence, and perceived fairness.
+</p>
+
+<p>
+When feedback is unclear, players may stop trusting the relationship between action and outcome.
+That shift matters.
+A difficult decision can feel satisfying when the player understands the trade-off.
+An unclear decision feels unreliable because the player cannot tell what the game is doing.
+</p>
+
+<p>
+For developers, strategy game QA should test more than whether values update.
+It should test whether players can understand what the values mean, why they changed, and how decisions affect future state.
+</p>
+
+<p>
+For QA testers, this kind of testing demonstrates systems thinking, player empathy, cause-and-effect analysis, UI readability judgement, and the ability to explain why a technically working system may still fail from the player's perspective.
+</p>
+
+<p><strong>
+The goal of strategy game QA is not to remove complexity.
+The goal is to make complex systems readable enough that players are challenged by decisions, not confused by unexplained feedback.
+</strong></p>
+
+<section class="section faq-accordion" id="faq">
+  <h2>Strategy Game System Feedback FAQ</h2>
+
+  <details>
+    <summary>Why does unclear system feedback break player trust?</summary>
+    <div class="faq-answer">
+      <p>
+        Unclear system feedback breaks player trust when players cannot understand what changed, why it changed, or how their decisions affected the game state. If values update without clear explanation, players may feel that the system is unreliable or arbitrary.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What are common strategy game UI problems?</summary>
+    <div class="faq-answer">
+      <p>
+        Common strategy game UI problems include unexplained values, unclear positive and negative modifiers, hidden calculations, weak event feedback, confusing decision outcomes, and interface instructions that do not match actual behaviour.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do QA testers test strategy game system feedback?</summary>
+    <div class="faq-answer">
+      <p>
+        QA testers test strategy game system feedback by comparing values before and after events, checking whether decision outcomes match visible results, validating whether modifiers are explained, and assessing whether players can understand cause and effect without guessing.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Why are clear decision outcomes important in strategy games?</summary>
+    <div class="faq-answer">
+      <p>
+        Clear decision outcomes are important because strategy games rely on informed choice. If a decision says one thing but the visible system state appears to show something else, players may lose confidence in future decisions.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What is guess-based play in strategy games?</summary>
+    <div class="faq-answer">
+      <p>
+        Guess-based play happens when players make decisions without enough readable information to understand the likely result. This can make a strategy game feel confusing rather than challenging, especially when core values and consequences are not clearly communicated.
+      </p>
+    </div>
+  </details>
+
+</section>
+      
+    <section id="links">
+      <h2>Related Game QA work</h2>
+      <ul>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/exploratory-qa-live-testing/demos-alphas-betas/stamperor.html">Stamperor QA pass</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/how-enemy-ai-bugs-break-player-trust.html">How Enemy AI Bugs Break Player Trust in Games</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/articles/why-players-quit-game-tutorials.html">Why Players Quit Game Tutorials</a></li>
+        <li><a href="/Manual-QA-Portfolio-Kelina-Cowell/">Game QA Portfolio Hub</a></li>
+      </ul>
+    </section>
+
+  <hr>
+
+    <p class="cta-row" style="text-align:center;">
+      <a class="cta-btn" href="mailto:kelinacowell.qa@gmail.com">Contact me about game QA testing</a>
+      <a class="cta-btn" href="https://www.linkedin.com/in/kelina-cowell-qa-tester">Connect on LinkedIn</a>
+      <a class="cta-btn" href="./">Browse more game QA testing articles</a>
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <script>document.write(new Date().getFullYear())</script> Kelina Cowell • QA Portfolio</div>
+  </footer>
+</body>
+</html>
