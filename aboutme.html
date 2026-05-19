@@ -125,10 +125,14 @@
   }
 
   .intro{
+    display:block;
+    margin:8px 0 6px;
+  }
+
+  .intro-main{
     display:flex;
     gap:16px;
     align-items:flex-start;
-    margin:8px 0 6px;
   }
 
   .headshot{
@@ -154,11 +158,17 @@
   }
 
   .callouts{
+    width:100%;
+    box-sizing:border-box;
     background:rgba(15,18,21,.55);
     border:1px solid rgba(255,255,255,.10);
     border-radius:var(--r);
-    padding:14px;
-    margin:10px 0 6px;
+    padding:18px 20px;
+    margin:22px 0 6px;
+  }
+
+  .callouts ul{
+    margin-bottom:0;
   }
 
   .cta-row{
@@ -180,7 +190,7 @@
   }
 
   @media (max-width:600px){
-    .intro{
+    .intro-main{
       flex-direction:column;
     }
 
@@ -190,6 +200,7 @@
     }
   }
 </style>
+  
   <script data-goatcounter="https://kelina.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <script type="application/ld+json">
@@ -238,45 +249,66 @@
     <hr class="rule">
 
     <!-- Intro -->
-    <section class="section" aria-labelledby="about-title">
-      <h1 id="about-title">About Kelina Cowell</h1>
+<section class="section" aria-labelledby="about-title">
+  <h1 id="about-title">About Kelina Cowell</h1>
 
-      <div class="intro">
-        <img
-          class="headshot"
-          src="assets/img/kelina_cowell_qa.jpg"
-          alt="Portrait of Kelina Cowell"
-          width="264" height="264"
-          loading="lazy"
-          decoding="async"
-        />
+  <div class="intro">
 
-<div>
-  <p>
-    I am a UK-based <strong>Game QA Tester</strong> currently providing structured QA support for indie games in active development across PC, mobile, and VR.
-  </p>
+    <div class="intro-main">
 
-  <p>
-    My work focuses on gameplay systems testing, onboarding and player-flow analysis, usability validation, accessibility-focused observations, issue reproduction, and identifying player-facing problems that impact clarity, progression, or overall gameplay experience.
-  </p>
+      <img
+        class="headshot"
+        src="assets/img/kelina_cowell_qa.jpg"
+        alt="Portrait of Kelina Cowell"
+        width="264" height="264"
+        loading="lazy"
+        decoding="async"
+      />
 
-  <p class="muted">
-    I currently support Loom &amp; Lore Games across multiple in-development mobile titles preparing for Google Play release, including <em>Mama Llama’s Food Cart Adventure</em> and <em>Dungeon Raiders EX</em>.
-  </p>
-</div>
+      <div>
+        <p>
+          I am a UK-based <strong>Game QA Tester</strong> currently providing structured QA support for indie games in active development across PC, mobile, and VR.
+        </p>
 
-<div class="callouts">
-  <p><strong>My work demonstrates:</strong></p>
-  <ul>
-    <li>Clear scoping, environment setup, and risk-focused test design based on active builds, gameplay systems, and recent updates.</li>
-    <li>Focused exploratory testing aligned to gameplay systems, progression flow, recent changes, and player-facing risk.</li>
-    <li>Structured, evidence-backed bug reporting with clear reproduction, context, and gameplay impact.</li>
-    <li>Evaluation of usability, onboarding clarity, accessibility, and overall player experience alongside system behaviour.</li>
-  </ul>
-</div>
+        <p>
+          My work focuses on gameplay systems testing, onboarding and player-flow analysis, usability validation, accessibility-focused observations, issue reproduction, and identifying player-facing problems that impact clarity, progression, or overall gameplay experience.
+        </p>
 
+        <p class="muted">
+          I currently support Loom &amp; Lore Games across multiple in-development mobile titles preparing or Google Play release, including <em>Mama Llama’s Food Cart Adventure</em> and <em>Dungeon Raiders EX</em>.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="callouts">
+      <p><strong>My work demonstrates:</strong></p>
+
+      <ul>
+        <li>
+          <strong>Risk-focused QA planning</strong><br>
+          Clear scoping, environment setup, and targeted test design based on active builds, gameplay systems, and recent updates.
+        </li>
+
+        <li>
+          <strong>Systems-focused exploratory testing</strong><br>
+          Focused QA passes aligned to gameplay systems, progression flow, recent changes, and player-facing risk.
+        </li>
+
+        <li>
+          <strong>Structured developer-facing reporting</strong><br>
+          Evidence-backed bug reporting with clear reproduction, context, supporting media, and gameplay impact.
+        </li>
+
+        <li>
+          <strong>Player-focused quality analysis</strong><br>
+          Evaluation of usability, onboarding clarity, accessibility, and overall player experience alongside system behaviour.
+        </li>
+      </ul>
+    </div>
+
+  </div>
 </section>
-
 <hr>
 
 <section class="section" aria-labelledby="portfolio">
