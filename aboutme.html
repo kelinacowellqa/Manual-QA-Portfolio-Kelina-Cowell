@@ -197,10 +197,12 @@
 }
 
 .achievement-badge{
-  width:220px;
-  height:auto;
+  width:220px !important;
+  max-width:220px !important;
+  height:auto !important;
   flex-shrink:0;
   border-radius:12px;
+  object-fit:contain;
 }
 
 .achievement-content{
@@ -208,7 +210,7 @@
 }
 
 .achievement-content h3{
-  margin-top:0;
+  margin:0 0 10px;
   color:var(--teal);
 }
 
@@ -216,6 +218,16 @@
   .achievement-card{
     flex-direction:column;
     text-align:center;
+  }
+
+  .achievement-badge{
+    width:260px !important;
+    max-width:100% !important;
+  }
+
+  .headshot{
+    width:120px;
+    height:120px;
   }
 
     .headshot{
@@ -424,7 +436,7 @@
   <img
     src="assets/img/LB_Mentee_Gif_SQ.gif"
     alt="Limit Break Mentee 2026"
-    class="limit-break-badge"
+    class="achievement-badge"
   >
 
   <div class="achievement-content">
