@@ -189,19 +189,34 @@
     opacity:.85;
   }
 
-  img.limit-break-badge {
-  display: block;
-  max-width: 400px !important;
-  width: 100% !important;
-  height: auto !important;
-  margin: 1.5rem auto !important;
-  border-radius: 12px;
+.achievement-card{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  margin:24px 0;
 }
 
-  @media (max-width:600px){
-    .intro-main{
-      flex-direction:column;
-    }
+.limit-break-badge{
+  width:220px;
+  height:auto;
+  flex-shrink:0;
+  border-radius:12px;
+}
+
+.achievement-content{
+  flex:1;
+}
+
+.achievement-content h3{
+  margin-top:0;
+  color:var(--teal);
+}
+
+@media (max-width:700px){
+  .achievement-card{
+    flex-direction:column;
+    text-align:center;
+  }
 
     .headshot{
       width:120px;
@@ -389,21 +404,30 @@
     I also completed <strong>QA 101 - Foundations of Game QA</strong> with Emerge QA, alongside Jira-focused training covering issue tracking, Scrum, Kanban, and user stories.
   </p>
 
-  <h2 id="limit break">Limit Break Mentorship Programme (2026)</h2>
+<div class="achievement-card">
 
-<a href="https://wearelimitbreak.org/" target="_blank">
   <img
     src="assets/img/LB_Mentee_Gif_SQ.gif"
     alt="Limit Break Mentee 2026"
     class="limit-break-badge"
-  />
-</a>
+  >
 
-  <p>
-  <strong>Selected for the Limit Break Mentorship Programme (2026)</strong>,
-  receiving mentorship from <strong>Jordan Stewart, QA Lead at Supermassive Games</strong>,
-  as part of a UK games industry talent development programme.
-</p>
+  <div class="achievement-content">
+    <h3>Limit Break Mentorship Programme (2026)</h3>
+
+    <p>
+      <strong>Selected for the Limit Break Mentorship Programme (2026)</strong>,
+      receiving mentorship from <strong>Jordan Stewart, QA Lead at Supermassive Games</strong>,
+      as part of a UK games industry talent development programme.
+    </p>
+
+    <p>
+      The programme provides mentorship, industry guidance, and professional development
+      support for emerging games industry talent.
+    </p>
+  </div>
+
+</div>
 
   <p>
     For full details and certificates, see my
